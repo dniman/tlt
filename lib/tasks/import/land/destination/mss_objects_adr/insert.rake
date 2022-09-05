@@ -101,6 +101,8 @@ namespace :import do
             Rake.info "Задача '#{ t }' успешно выполнена."
           rescue StandardError => e
             Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."
+            Rake.info "Текст запроса \"#{ sql }\""
+
             exit
           end
         end

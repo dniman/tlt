@@ -1,5 +1,6 @@
 database.yml
 query.rb
 .byebug_history
+replace.sh
 /tmp/*
 

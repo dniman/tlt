@@ -19,6 +19,7 @@ namespace :import do
           rescue StandardError => e
             Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."
             Rake.info "Текст запроса \"#{ sql }\""
+
             exit
           end
         end

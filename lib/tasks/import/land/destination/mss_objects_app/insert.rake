@@ -48,7 +48,7 @@ namespace :import do
             sliced_rows.each do |rows|
               rows.each do |row|
                 insert << {
-                  link_up: row[:link]
+                  link_up: row[:link],
                   link_param: land_pl,
                   numeric: row["square"],
                   inventar_num: row["invno"]&.strip,
@@ -79,6 +79,8 @@ namespace :import do
             Rake.info "Задача '#{ t }' успешно выполнена."
           rescue StandardError => e
             Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."
+            Rake.info "Текст запроса \"#{ sql }\""
+
             exit
           end
 
