@@ -32,7 +32,7 @@ namespace :import do
               result.do
             end
             
-            Rake.info "Задачи '#{ t }' успешно выполнена."
+            Rake.info "Задача '#{ t }' успешно выполнена."
           rescue StandardError => e
             Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."
             Rake.info "Текст запроса \"#{ sql }\""
