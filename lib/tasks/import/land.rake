@@ -20,7 +20,14 @@ namespace :import do
       'import:land:destination:mss_objects:drop___cad_quorter',
       'import:land:destination:mss_objects:drop___kadastrno',
       'import:land:destination:mss_objects_adr:insert',
-      'import:land:source:ids:drop___link_adr'
+      'import:land:destination:mss_adr:update',
+      'import:land:source:ids:drop___link_adr',
+      'import:land:source:ids:add___addr',
+      'import:land:source:ids:update___addr',
+      'import:land:destination:mss_objects_app:add_hist:insert',
+      'import:land:source:ids:drop___addr',
+      'import:land:destination:mss_objects_app:obj_name_hist:insert',
+      'import:land:destination:mss_objects_app:land_pl:insert',
     ]
   end
 end
