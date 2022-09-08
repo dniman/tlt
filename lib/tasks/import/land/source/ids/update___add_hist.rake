@@ -2,7 +2,7 @@ namespace :import do
   namespace :land do
     namespace :source do
       namespace :ids do
-        task :update___addr do |t|
+        task :update___add_hist do |t|
           def query
             Destination.set_engine!
             query =
@@ -24,7 +24,7 @@ namespace :import do
           
               sql = <<~SQL
                 update ids set 
-                  ids.___addr = values_table.adr
+                  ids.___add_hist = values_table.adr
                 from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
                 where ids.link = values_table.link and ids.table_id = #{ Source::Objects.table_id }
               SQL

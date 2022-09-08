@@ -2,11 +2,11 @@ namespace :import do
   namespace :land do
     namespace:source do
       namespace :ids do
-        task :add___addr do |t|
+        task :add___add_hist do |t|
           begin
             sql = Arel.sql(
               "alter table #{ Source.ids.name }
-                add ___addr varchar(2000)
+                add ___add_hist varchar(2000)
               "
             )
             Source.execute_query(sql).do

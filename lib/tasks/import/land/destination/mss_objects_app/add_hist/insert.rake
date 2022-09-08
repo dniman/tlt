@@ -27,7 +27,7 @@ namespace :import do
               query = 
                 Source.objects
                 .project([
-                  Source.ids[:___addr],
+                  Source.ids[:___add_hist],
                   Source.ids[:link_type],
                   Source.ids[:link] 
                 ])
@@ -48,7 +48,7 @@ namespace :import do
                   insert << {
                     link_up: row["link"],
                     link_param: link_param,
-                    varchar: row["___addr"]
+                    varchar: row["___add_hist"]
                   }
                 end
 

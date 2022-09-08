@@ -6,6 +6,7 @@ namespace :destroy do
       'destroy:land:destination:mss_objects_app:add_hist:delete',
       'destroy:land:destination:mss_objects_app:land_pl:delete',
       'destroy:land:destination:mss_objects_app:obj_name_hist:delete',
+      'destroy:land:destination:mss_objects_app:adr_str:delete',
 
       'destroy:land:destination:mss_objects:delete',
       'destroy:land:destination:mss_objects:drop___cad_quorter',
@@ -14,7 +15,7 @@ namespace :destroy do
       'destroy:land:destination:mss_objects_dicts:delete',
       'destroy:land:destination:mss_objects_adr:delete',
       'destroy:land:source:ids:drop___link_adr',
-      'destroy:land:source:ids:drop___addr',
+      'destroy:land:source:ids:drop___add_hist',
       'destroy:land:destination:mss_adr:delete',
     ]
   end

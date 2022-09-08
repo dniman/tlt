@@ -1,13 +1,13 @@
-namespace :destroy do
+namespace :import do
   namespace :land do
     namespace :source do
       namespace :ids do
-        task :drop___addr do |t|
+        task :drop___add_hist do |t|
           begin
             sql = Arel.sql(
-              "if (col_length('#{ Source.ids.name }','___addr') is not null)
+              "if (col_length('#{ Source.ids.name }','___add_hist') is not null)
               alter table #{ Source.ids.name }
-                drop column ___addr
+                drop column ___add_hist
               "
             )
             Source.execute_query(sql).do
