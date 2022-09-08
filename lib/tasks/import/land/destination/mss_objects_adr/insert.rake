@@ -56,23 +56,8 @@ namespace :import do
             sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
             sliced_rows.each do |rows|
               rows.each do |row|
-                full_addr = [
-                  row[:country_name].to_s.strip,
-                  row[:post_index].to_s.strip,
-                  row[:region_name].to_s.strip,
-                  row[:rayon_name].to_s.strip,
-                  '',
-                  row[:city_name].to_s.strip,
-                  '',
-                  row[:street_name].to_s.strip,
-                  row[:house_num].to_s.strip,
-                  row[:corp_num].to_s.strip,
-                  row[:room_num].to_s.strip,
-                  row[:addition].to_s.strip
-                ]
                 insert << {
                   link_up: row['___link_adr'],
-                  adr: full_addr.join(','),
                   country: row['country_name'].to_s.strip,
                   post_index: row['post_index'].to_s.strip[0,6],
                   region: row['region_name'].to_s.strip[0,50],
