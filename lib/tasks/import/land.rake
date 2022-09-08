@@ -28,6 +28,10 @@ namespace :import do
       'import:land:source:ids:drop___addr',
       'import:land:destination:mss_objects_app:obj_name_hist:insert',
       'import:land:destination:mss_objects_app:land_pl:insert',
+      'import:land:source:ids:add___adr_str',
+      'import:land:source:ids:update___adr_str',
+      'import:land:destination:mss_objects_app:adr_str:insert',
+      'import:land:source:ids:drop___adr_str',
     ]
   end
 end
