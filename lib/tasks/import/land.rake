@@ -32,6 +32,9 @@ namespace :import do
       'import:land:source:ids:update___adr_str',
       'import:land:destination:mss_objects_app:adr_str:insert',
       'import:land:source:ids:drop___adr_str',
+      'import:land:destination:mss_objects_app:id_obj:insert',
+      'import:land:destination:mss_objects_app:usl_n:insert',
+      'import:land:destination:mss_objects_app:rn_old:insert',
     ]
   end
 end
