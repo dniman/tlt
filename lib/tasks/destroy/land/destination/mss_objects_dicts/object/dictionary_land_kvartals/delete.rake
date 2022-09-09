@@ -12,17 +12,18 @@ namespace :destroy do
                   .project(Destination.mss_objects_dicts[:link])
                   .distinct
                   .join(Destination.mss_objects).on(Destination.mss_objects[:link_cad_quorter].eq(Destination.mss_objects_dicts[:link]))
-                  .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin)
-                  .on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
-                  .where(Destination.mss_objects_types[:code].eq('LAND'))
-                  .where(
-                    Destination.mss_objects_dicts
-                    .project(Destination.mss_objects_dicts[:link])
-                    .distinct
-                    .join(Destination.mss_objects).on(Destination.mss_objects[:link_cad_quorter].eq(Destination.mss_objects_dicts[:link]))
-                    .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin)
-                    .on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
-                    .where(Destination.mss_objects_types[:code].not_eq('LAND')).exists.not
+                  .where(Destination.mss_objects_dicts[:object].eq(Destination::MssObjectsDicts::DICTIONARY_LAND_KVARTALS)
+                    .and(
+                      Destination.mss_objects_dicts
+                      .project(Destination.mss_objects_dicts[:link])
+                      .distinct
+                      .join(Destination.mss_objects).on(Destination.mss_objects[:link_cad_quorter].eq(Destination.mss_objects_dicts[:link]))
+                      .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin)
+                        .on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
+                      .where(Destination.mss_objects_dicts[:objects].eq(Destination::MssObjectsDicts::DICTIONARY_LAND_KVARTALS)
+                        .and(Destination.mss_objects_types[:code].not_eq('LAND'))
+                      ).exists.not
+                    )
                   )
 
                 manager = Arel::DeleteManager.new(Database.destination_engine)
