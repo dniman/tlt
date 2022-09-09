@@ -18,7 +18,7 @@ namespace :destroy do
       'destroy:land:destination:mss_objects:drop___oktmo',
       'destroy:land:destination:mss_objects:drop___land_ownership',
       'destroy:land:destination:mss_objects:drop___link_land_ownership',
-      'destroy:land:destination:mss_objects_dicts:delete',
+      'destroy:land:destination:mss_objects_dicts:object:dictionary_land_kvartals:delete',
       'destroy:land:destination:mss_objects_dicts:link_type:land_ownership:delete',
       'destroy:land:destination:mss_objects_adr:delete',
       'destroy:land:source:ids:drop___link_adr',

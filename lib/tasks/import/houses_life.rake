@@ -12,7 +12,7 @@ namespace :import do
       'import:houses_life:destination:mss_objects:update_inventar_num',
       'import:houses_life:destination:mss_objects:add___cad_quorter', 
       'import:houses_life:destination:mss_objects:update___cad_quorter',
-      'import:houses_life:destination:mss_objects_dicts:insert',
+      'import:houses_life:destination:mss_objects_dicts:object:dictionary_land_kvartals:insert',
       'import:houses_life:destination:mss_objects:update_link_cad_quorter',
       'import:houses_life:destination:mss_objects:drop___cad_quorter',
       'import:houses_life:destination:mss_objects:drop___kadastrno',

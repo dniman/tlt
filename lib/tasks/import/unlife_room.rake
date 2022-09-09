@@ -12,7 +12,7 @@ namespace :import do
       'import:unlife_room:destination:mss_objects:update_inventar_num',
       'import:unlife_room:destination:mss_objects:add___cad_quorter', 
       'import:unlife_room:destination:mss_objects:update___cad_quorter',
-      'import:unlife_room:destination:mss_objects_dicts:insert',
+      'import:unlife_room:destination:mss_objects_dicts:object:dictionary_land_kvartals:insert',
       'import:unlife_room:destination:mss_objects:update_link_cad_quorter',
       'import:unlife_room:destination:mss_objects:drop___cad_quorter',
       'import:unlife_room:destination:mss_objects:drop___kadastrno',
