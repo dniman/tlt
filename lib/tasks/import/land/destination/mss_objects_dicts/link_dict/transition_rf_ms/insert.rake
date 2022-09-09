@@ -27,7 +27,7 @@ namespace :import do
 
                 sql = ""
                 insert = []
-                rows = [{'in_transition': 'Да'}, {'in_transition': 'Нет'}]
+                rows = [{'in_transition' => 'Да'}, {'in_transition' => 'Нет'}]
                 rows.each do |row|
                   insert << {
                     name: row["in_transition"],
