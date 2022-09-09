@@ -44,6 +44,15 @@ namespace :import do
       'import:land:destination:mss_objects_app:land_ownership:insert',
       'import:land:destination:mss_objects:drop___land_ownership', 
       'import:land:destination:mss_objects:drop___link_land_ownership', 
+      
+      'import:land:destination:mss_objects_dicts:link_dict:transition_rf_ms:insert',
+      'import:land:destination:mss_objects:add___transition_rf_ms', 
+      'import:land:destination:mss_objects:add___link_transition_rf_ms', 
+      'import:land:destination:mss_objects:update___transition_rf_ms', 
+      'import:land:destination:mss_objects:update___link_transition_rf_ms', 
+      'import:land:destination:mss_objects_app:transition_rf_ms:insert',
+      'import:land:destination:mss_objects:drop___transition_rf_ms', 
+      'import:land:destination:mss_objects:drop___link_transition_rf_ms', 
     ]
   end
 end
