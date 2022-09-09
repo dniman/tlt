@@ -20,7 +20,7 @@ namespace :destroy do
                       .join(Destination.mss_objects).on(Destination.mss_objects[:link_cad_quorter].eq(Destination.mss_objects_dicts[:link]))
                       .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin)
                         .on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
-                      .where(Destination.mss_objects_dicts[:objects].eq(Destination::MssObjectsDicts::DICTIONARY_LAND_KVARTALS)
+                      .where(Destination.mss_objects_dicts[:object].eq(Destination::MssObjectsDicts::DICTIONARY_LAND_KVARTALS)
                         .and(Destination.mss_objects_types[:code].not_eq('LAND'))
                       ).exists.not
                     )
