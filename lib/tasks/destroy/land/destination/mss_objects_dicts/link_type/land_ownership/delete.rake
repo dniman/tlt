@@ -19,14 +19,10 @@ namespace :destroy do
 
                 Destination.set_engine!
                 subquery = 
-                  Destination.mss_objects_app
-                  .project(Destination.mss_objects_app[:link_dict])
+                  Destination.mss_objects_dicts
+                  .project(Destination.mss_objects_dicts[:link])
                   .distinct
-                  .join(Destination.mss_objects).on(Destination.mss_objects[:link].eq(Destination.mss_objects_app[:link_up]))
-                  .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin)
-                    .on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
-                  .where(Destination.mss_objects_types[:code].eq('LAND')
-                    .and(Destination.mss_objects_app[:link_param].eq(link_param))
+                  .where(Destination.mss_objects_dicts[:link_dict].eq(link_param)
                     .and(
                       Destination.mss_objects_app
                       .project(Destination.mss_objects_app[:link_dict])
@@ -42,10 +38,7 @@ namespace :destroy do
 
                 manager = Arel::DeleteManager.new(Database.destination_engine)
                 manager.from (Destination.mss_objects_dicts)
-                manager.where(
-                  Arel::Nodes::In.new(Destination.mss_objects_dicts[:link],subquery)
-                  .and(Destination.mss_objects_dicts[:link_dict].eq(link_param))
-                )
+                manager.where(Arel::Nodes::In.new(Destination.mss_objects_dicts[:link],subquery))
 
                 Destination.execute_query(manager.to_sql).do
                 Rake.info "Задача '#{ t }' успешно выполнена."
