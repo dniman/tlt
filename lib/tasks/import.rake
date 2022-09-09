@@ -10,7 +10,7 @@ import 'lib/tasks/import/unlife_room.rake'
 
 namespace :import do
   task :set_logger do
-    Rake.logger = Logger.new File.open(File.join('tmp', 'import.log'), 'w')
+    Rake.logger = Logger.new Rake::MultiIO.new(STDOUT, File.open(File.join('tmp', 'destroy.log'), 'w'))
   end
 
   desc 'Запуск задачи импорта данных в базу назначения'

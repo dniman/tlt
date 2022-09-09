@@ -10,7 +10,7 @@ import 'lib/tasks/destroy/unlife_room.rake'
 
 namespace :destroy do
   task :set_logger do
-    Rake.logger = Logger.new File.open(File.join('tmp', 'destroy.log'), 'w')
+    Rake.logger = Logger.new Rake::MultiIO.new(STDOUT, File.open(File.join('tmp', 'destroy.log'), 'w'))
   end
 
   desc 'Запуск задачи удаления данных в базе назначения'
