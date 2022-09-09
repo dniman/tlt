@@ -35,6 +35,15 @@ namespace :import do
       'import:land:destination:mss_objects_app:id_obj:insert',
       'import:land:destination:mss_objects_app:usl_n:insert',
       'import:land:destination:mss_objects_app:rn_old:insert',
+
+      'import:land:destination:mss_objects_dicts:link_dict:land_ownership:insert',
+      'import:land:destination:mss_objects:add___land_ownership', 
+      'import:land:destination:mss_objects:add___link_land_ownership', 
+      'import:land:destination:mss_objects:update___land_ownership', 
+      'import:land:destination:mss_objects:update___link_land_ownership', 
+      'import:land:destination:mss_objects_app:land_ownership:insert',
+      'import:land:destination:mss_objects:drop___land_ownership', 
+      'import:land:destination:mss_objects:drop___link_land_ownership', 
     ]
   end
 end

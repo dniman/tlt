@@ -16,7 +16,8 @@ module Source
     :townarea,
     :microarea,
     :buildings,
-    :buildtypes
+    :buildtypes,
+    :grounds_noknum_own
   ]
   
   class << self
