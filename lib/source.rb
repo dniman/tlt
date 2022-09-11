@@ -17,7 +17,8 @@ module Source
     :microarea,
     :buildings,
     :buildtypes,
-    :grounds_noknum_own
+    :grounds_noknum_own,
+    :groundtypes
   ]
   
   class << self
