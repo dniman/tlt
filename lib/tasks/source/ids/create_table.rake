@@ -12,6 +12,9 @@ namespace :source do
         )
         if not exists(select * from sys.indexes where name = 'ix_ids_table_id_id' and object_id = object_id('ids'))
         create nonclustered index [ix_ids_table_id_id] on [dbo].[ids] ([table_id], [id] asc)
+        
+        if not exists(select * from sys.indexes where name = 'ix_ids_table_id_link_type' and object_id = object_id('ids'))
+        create nonclustered index [ix_ids_table_id_link_type] on [dbo].[ids] ([table_id], [link_type]) include(id, row_id)
       SQL
       
       unless Source.table_exists?('ids')
