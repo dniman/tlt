@@ -33,6 +33,7 @@ namespace :destroy do
       'destroy:land:destination:mss_objects_dicts:object:dictionary_land_kvartals:delete',
       'destroy:land:destination:mss_objects_dicts:link_type:land_ownership:delete',
       'destroy:land:destination:mss_objects_dicts:link_type:transition_rf_ms:delete',
+      'destroy:land:destination:mss_objects_dicts:link_type:land_kateg:delete',
       'destroy:land:destination:mss_objects_dicts:link_type:land_used:delete',
       'destroy:land:destination:mss_objects_dicts:link_type:unmovable_used_new:delete',
       'destroy:land:destination:mss_objects_adr:delete',
