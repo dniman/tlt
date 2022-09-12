@@ -23,11 +23,16 @@ namespace :import do
                 Source.grounds[:oktmo],
                 Source.grounds[:kadastrno],
                 Source.ids[:row_id],
-                Source.ids[:link_type]
+                Source.ids[:link_type],
+                Source.grounds_noknum_own[:name].as("___land_ownership"),
+                Source.grounds[:in_transition],
+                Source.groundtypes[:name].as("___land_kateg"),
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
               .join(Source.grounds).on(Source.grounds[:objects_id].eq(Source.objects[:id]))
+              .join(Source.groundtypes).on(Source.groundtypes[:id].eq(Source.grounds[:groundtypes_id]))
+              .join(Source.grounds_noknum_own, Arel::Nodes::OuterJoin).on(Source.grounds_noknum_own[:id].eq(Source.grounds[:ground_owner]))
               .where(Source.ids[:link_type].eq(link_type))
           end
 
@@ -54,7 +59,10 @@ namespace :import do
                       else 
                         nil
                       end
-                    end
+                    end,
+                  ___land_ownership: row["___land_ownership"]&.strip,
+                  ___transition_rf_ms: row["in_transition"]&.strip == 'Y' ? 'Да' : 'Нет'
+                  ___land_kateg: row["___land_kateg"]&.strip
                 }
               end
               sql = Destination::MssObjects.insert_query(rows: insert, condition: "mss_objects.row_id = values_table.row_id")
