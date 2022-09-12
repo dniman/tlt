@@ -70,7 +70,7 @@ namespace :import do
                     mss_objects_dicts.name = values_table.name
                       and mss_objects_dicts.link_dict = values_table.link_dict
                   SQL
-                  sql = Destination::MssObjectsDicts.insert_query(rows: insert, condition: nil)
+                  sql = Destination::MssObjectsDicts.insert_query(rows: insert, condition: condition)
                   result = Destination.execute_query(sql)
                   result.do
                   insert.clear
