@@ -34,6 +34,7 @@ namespace :destroy do
       'destroy:land:destination:mss_objects_adr:delete',
       'destroy:land:source:ids:drop___link_adr',
       'destroy:land:source:ids:drop___add_hist',
+      'destroy:land:source:ids:drop___adr_str',
       'destroy:land:destination:mss_adr:delete',
     ]
   end
