@@ -17,6 +17,7 @@ namespace :import do
       'import:land:destination:mss_objects:add___grounds_funk_using_grounds_funk_using_id', 
       'import:land:destination:mss_objects:add___wow_obj', 
       'import:land:destination:mss_objects:add___soc_zn_obj', 
+      'import:land:destination:mss_objects:add___obj_zkx', 
       
       'import:land:source:ids:add___link_adr',
       'import:land:destination:mss_objects:insert', 
@@ -130,6 +131,14 @@ namespace :import do
       'import:land:destination:mss_objects_app:soc_zn_obj:insert',
       'import:land:destination:mss_objects:drop___soc_zn_obj', 
       'import:land:destination:mss_objects:drop___link_soc_zn_obj', 
+      
+      # объект жкх 
+      'import:land:destination:mss_objects_dicts:link_dict:obj_zkx:insert',
+      'import:land:destination:mss_objects:add___link_obj_zkx', 
+      'import:land:destination:mss_objects:update___link_obj_zkx', 
+      'import:land:destination:mss_objects_app:obj_zkx:insert',
+      'import:land:destination:mss_objects:drop___obj_zkx', 
+      'import:land:destination:mss_objects:drop___link_obj_zkx', 
     ]
   end
 end

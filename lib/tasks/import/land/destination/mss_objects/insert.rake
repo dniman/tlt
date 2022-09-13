@@ -35,6 +35,7 @@ namespace :import do
                 Source.grounds_funk_using[:name].as("___grounds_funk_using_grounds_funk_using_id"),
                 Source.objects[:is_sign],
                 Source.objects[:is_social],
+                Source.objects[:is_zhkh],
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
@@ -88,6 +89,7 @@ namespace :import do
                   ___grounds_funk_using_grounds_funk_using_id: row["___grounds_funk_using_grounds_funk_using_id"]&.strip,
                   ___wow_obj: row["is_sign"]&.strip == 'Y' ? 'Да' : nil,
                   ___soc_zn_obj: row["is_social"]&.strip == 'Y' ? 'Да' : nil,
+                  ___obj_zkx: row["is_zhkh"]&.strip == 'Y' ? 'Да' : nil,
                 }
               end
               sql = Destination::MssObjects.insert_query(rows: insert, condition: "mss_objects.row_id = values_table.row_id")
