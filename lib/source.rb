@@ -21,6 +21,7 @@ module Source
     :groundtypes,
     :gr_fact_release,
     :grounds_release,
+    :gr_rel_groups,
   ]
   
   class << self
