@@ -22,6 +22,7 @@ module Source
     :gr_fact_release,
     :grounds_release,
     :gr_rel_groups,
+    :target_doc,
   ]
   
   class << self

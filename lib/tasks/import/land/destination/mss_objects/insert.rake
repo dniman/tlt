@@ -31,6 +31,7 @@ namespace :import do
                 Source.gr_fact_release[:name].as("___unmovable_used_new"),
                 Source.grounds_release[:name].as("___grounds_release_release_id"),
                 Source.gr_rel_groups[:name].as("___gr_rel_groups_gr_rel_group_id"),
+                Source.target_doc[:name].as("___target_doc_target_doc_id"),
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
@@ -42,6 +43,8 @@ namespace :import do
                 .on(Source.grounds_release[:id].eq(Source.grounds[:release_id]))
               .join(Source.gr_rel_groups, Arel::Nodes::OuterJoin)
                 .on(Source.gr_rel_groups[:id].eq(Source.grounds[:gr_rel_group_id]))
+              .join(Source.target_doc, Arel::Nodes::OuterJoin)
+                .on(Source.target_doc[:id].eq(Source.grounds[:target_doc_id]))
               .where(Source.ids[:link_type].eq(link_type))
           end
 
@@ -76,6 +79,7 @@ namespace :import do
                   ___unmovable_used_new: row["___unmovable_used_new"]&.strip,
                   ___grounds_release_release_id: row["___grounds_release_release_id"]&.strip,
                   ___gr_rel_groups_gr_rel_group_id: row["___gr_rel_groups_gr_rel_group_id"]&.strip,
+                  ___target_doc_target_doc_id: row["___target_doc_target_doc_id"]&.strip,
                 }
               end
               sql = Destination::MssObjects.insert_query(rows: insert, condition: "mss_objects.row_id = values_table.row_id")
