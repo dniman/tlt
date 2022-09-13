@@ -11,6 +11,7 @@ namespace :import do
       'import:land:destination:mss_objects:add___land_kateg', 
       'import:land:destination:mss_objects:add___land_used', 
       'import:land:destination:mss_objects:add___unmovable_used_new', 
+      'import:land:destination:mss_objects:add___grounds_release_release_id', 
 
       'import:land:source:ids:add___link_adr',
       'import:land:destination:mss_objects:insert', 
@@ -69,13 +70,21 @@ namespace :import do
       'import:land:destination:mss_objects_app:land_used:insert',
       'import:land:destination:mss_objects:drop___land_used', 
       'import:land:destination:mss_objects:drop___link_land_used', 
-      
+     
       'import:land:destination:mss_objects_dicts:link_dict:unmovable_used_new:insert',
       'import:land:destination:mss_objects:add___link_unmovable_used_new', 
       'import:land:destination:mss_objects:update___link_unmovable_used_new', 
       'import:land:destination:mss_objects_app:unmovable_used_new:insert',
       'import:land:destination:mss_objects:drop___unmovable_used_new', 
       'import:land:destination:mss_objects:drop___link_unmovable_used_new', 
+      
+      # разрешенное использование Сауми
+      'import:land:destination:mss_objects_dicts:link_dict:grounds_release_release_id:insert',
+      'import:land:destination:mss_objects:add___link_grounds_release_release_id', 
+      'import:land:destination:mss_objects:update___link_grounds_release_release_id', 
+      'import:land:destination:mss_objects_app:grounds_release_release_id:insert',
+      'import:land:destination:mss_objects:drop___grounds_release_release_id', 
+      'import:land:destination:mss_objects:drop___link_grounds_release_release_id', 
     ]
   end
 end

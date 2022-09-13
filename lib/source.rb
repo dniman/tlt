@@ -19,7 +19,8 @@ module Source
     :buildtypes,
     :grounds_noknum_own,
     :groundtypes,
-    :gr_fact_release
+    :gr_fact_release,
+    :grounds_release,
   ]
   
   class << self
