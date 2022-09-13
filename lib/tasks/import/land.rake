@@ -18,6 +18,7 @@ namespace :import do
       'import:land:destination:mss_objects:add___wow_obj', 
       'import:land:destination:mss_objects:add___soc_zn_obj', 
       'import:land:destination:mss_objects:add___obj_zkx', 
+      'import:land:destination:mss_objects:add___vid_obj_zkx', 
       
       'import:land:source:ids:add___link_adr',
       'import:land:destination:mss_objects:insert', 
@@ -139,6 +140,14 @@ namespace :import do
       'import:land:destination:mss_objects_app:obj_zkx:insert',
       'import:land:destination:mss_objects:drop___obj_zkx', 
       'import:land:destination:mss_objects:drop___link_obj_zkx', 
+     
+      # вид объекта жкх
+      'import:land:destination:mss_objects_dicts:link_dict:vid_obj_zkx:insert',
+      'import:land:destination:mss_objects:add___link_vid_obj_zkx', 
+      'import:land:destination:mss_objects:update___link_vid_obj_zkx', 
+      'import:land:destination:mss_objects_app:vid_obj_zkx:insert',
+      'import:land:destination:mss_objects:drop___vid_obj_zkx', 
+      'import:land:destination:mss_objects:drop___link_vid_obj_zkx', 
     ]
   end
 end

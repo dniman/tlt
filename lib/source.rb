@@ -24,6 +24,7 @@ module Source
     :gr_rel_groups,
     :target_doc,
     :grounds_funk_using,
+    :spr_zhkh_vid,
   ]
   
   class << self

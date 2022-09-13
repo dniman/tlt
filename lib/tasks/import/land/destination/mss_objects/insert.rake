@@ -36,6 +36,7 @@ namespace :import do
                 Source.objects[:is_sign],
                 Source.objects[:is_social],
                 Source.objects[:is_zhkh],
+                Source.spr_zhkh_vid[:name].as("___vid_obj_zkx"),
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
@@ -51,6 +52,8 @@ namespace :import do
                 .on(Source.target_doc[:id].eq(Source.grounds[:target_doc_id]))
               .join(Source.grounds_funk_using, Arel::Nodes::OuterJoin)
                 .on(Source.grounds_funk_using[:id].eq(Source.grounds[:grounds_funk_using_id]))
+              .join(Source.spr_zhkh_vid, Arel::Nodes::OuterJoin)
+                .on(Source.spr_zhkh_vid[:id].eq(Source.objects[:vid_zhkh_id]))
               .where(Source.ids[:link_type].eq(link_type))
           end
 
@@ -90,6 +93,7 @@ namespace :import do
                   ___wow_obj: row["is_sign"]&.strip == 'Y' ? 'Да' : nil,
                   ___soc_zn_obj: row["is_social"]&.strip == 'Y' ? 'Да' : nil,
                   ___obj_zkx: row["is_zhkh"]&.strip == 'Y' ? 'Да' : nil,
+                  ___vid_obj_zkx: row["___vid_obj_zkx"]&.strip,
                 }
               end
               sql = Destination::MssObjects.insert_query(rows: insert, condition: "mss_objects.row_id = values_table.row_id")
