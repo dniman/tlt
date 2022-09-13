@@ -15,6 +15,7 @@ namespace :import do
       'import:land:destination:mss_objects:add___gr_rel_groups_gr_rel_group_id', 
       'import:land:destination:mss_objects:add___target_doc_target_doc_id', 
       'import:land:destination:mss_objects:add___grounds_funk_using_grounds_funk_using_id', 
+      'import:land:destination:mss_objects:add___wow_obj', 
       
       'import:land:source:ids:add___link_adr',
       'import:land:destination:mss_objects:insert', 
@@ -112,6 +113,14 @@ namespace :import do
       'import:land:destination:mss_objects_app:grounds_funk_using_grounds_funk_using_id:insert',
       'import:land:destination:mss_objects:drop___grounds_funk_using_grounds_funk_using_id', 
       'import:land:destination:mss_objects:drop___link_grounds_funk_using_grounds_funk_using_id', 
+      
+      # знаковый объект
+      'import:land:destination:mss_objects_dicts:link_dict:wow_obj:insert',
+      'import:land:destination:mss_objects:add___link_wow_obj', 
+      'import:land:destination:mss_objects:update___link_wow_obj', 
+      'import:land:destination:mss_objects_app:wow_obj:insert',
+      'import:land:destination:mss_objects:drop___wow_obj', 
+      'import:land:destination:mss_objects:drop___link_wow_obj', 
     ]
   end
 end
