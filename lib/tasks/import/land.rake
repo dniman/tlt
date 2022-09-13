@@ -16,6 +16,7 @@ namespace :import do
       'import:land:destination:mss_objects:add___target_doc_target_doc_id', 
       'import:land:destination:mss_objects:add___grounds_funk_using_grounds_funk_using_id', 
       'import:land:destination:mss_objects:add___wow_obj', 
+      'import:land:destination:mss_objects:add___soc_zn_obj', 
       
       'import:land:source:ids:add___link_adr',
       'import:land:destination:mss_objects:insert', 
@@ -121,6 +122,14 @@ namespace :import do
       'import:land:destination:mss_objects_app:wow_obj:insert',
       'import:land:destination:mss_objects:drop___wow_obj', 
       'import:land:destination:mss_objects:drop___link_wow_obj', 
+      
+      # социально-значимый объект
+      'import:land:destination:mss_objects_dicts:link_dict:soc_zn_obj:insert',
+      'import:land:destination:mss_objects:add___link_soc_zn_obj', 
+      'import:land:destination:mss_objects:update___link_soc_zn_obj', 
+      'import:land:destination:mss_objects_app:soc_zn_obj:insert',
+      'import:land:destination:mss_objects:drop___soc_zn_obj', 
+      'import:land:destination:mss_objects:drop___link_soc_zn_obj', 
     ]
   end
 end
