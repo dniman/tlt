@@ -14,6 +14,7 @@ namespace :import do
       'import:land:destination:mss_objects:add___grounds_release_release_id', 
       'import:land:destination:mss_objects:add___gr_rel_groups_gr_rel_group_id', 
       'import:land:destination:mss_objects:add___target_doc_target_doc_id', 
+      'import:land:destination:mss_objects:add___grounds_funk_using_grounds_funk_using_id', 
       
       'import:land:source:ids:add___link_adr',
       'import:land:destination:mss_objects:insert', 
@@ -103,6 +104,14 @@ namespace :import do
       'import:land:destination:mss_objects_app:target_doc_target_doc_id:insert',
       'import:land:destination:mss_objects:drop___target_doc_target_doc_id', 
       'import:land:destination:mss_objects:drop___link_target_doc_target_doc_id', 
+      
+      # вид целевого использования Сауми
+      'import:land:destination:mss_objects_dicts:link_dict:grounds_funk_using_grounds_funk_using_id:insert',
+      'import:land:destination:mss_objects:add___link_grounds_funk_using_grounds_funk_using_id', 
+      'import:land:destination:mss_objects:update___link_grounds_funk_using_grounds_funk_using_id', 
+      'import:land:destination:mss_objects_app:grounds_funk_using_grounds_funk_using_id:insert',
+      'import:land:destination:mss_objects:drop___grounds_funk_using_grounds_funk_using_id', 
+      'import:land:destination:mss_objects:drop___link_grounds_funk_using_grounds_funk_using_id', 
     ]
   end
 end

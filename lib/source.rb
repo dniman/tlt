@@ -23,6 +23,7 @@ module Source
     :grounds_release,
     :gr_rel_groups,
     :target_doc,
+    :grounds_funk_using,
   ]
   
   class << self
