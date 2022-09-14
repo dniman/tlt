@@ -1,12 +1,7 @@
 require 'logger'
 
-import 'lib/tasks/import/land.rake'
-import 'lib/tasks/import/houses_life.rake'
-import 'lib/tasks/import/houses_unlife.rake'
-import 'lib/tasks/import/construction.rake'
-import 'lib/tasks/import/unfinished.rake'
-import 'lib/tasks/import/life_room.rake'
-import 'lib/tasks/import/unlife_room.rake'
+import 'lib/tasks/import/dictionaries.rake'
+import 'lib/tasks/import/objects.rake'
 
 namespace :import do
   task :set_logger do
@@ -19,13 +14,30 @@ namespace :import do
     'source:initialize', 
     'destination:initialize',
 
-    'import:land:tasks',
-    'import:houses_life:tasks',
-    'import:houses_unlife:tasks',
-    'import:construction:tasks',
-    'import:unfinished:tasks',
-    'import:life_room:tasks',
-    'import:unlife_room:tasks'
+    'import:dictionaries:tasks',
+    'import:objects:tasks',
   ] 
+  
+  namespace :dictionaries do
+    desc 'Запуск задачи импорта справочников в базу назначения'
+    task :start => [
+      'set_logger', 
+      'source:initialize', 
+      'destination:initialize',
+
+      'import:dictionaries:tasks',
+    ] 
+  end
+ 
+  namespace :objects do
+    desc 'Запуск задачи импорта объектов в базу назначения'
+    task :start => [
+      'set_logger', 
+      'source:initialize', 
+      'destination:initialize',
+
+      'import:objects:tasks',
+    ] 
+  end
 end
 
