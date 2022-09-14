@@ -1,7 +1,7 @@
 require 'logger'
 
-import 'lib/tasks/import/dictionaries.rake'
-import 'lib/tasks/import/objects.rake'
+import 'lib/tasks/dictionaries.rake'
+import 'lib/tasks/objects.rake'
 
 namespace :import do
   task :set_logger do
@@ -14,8 +14,8 @@ namespace :import do
     'source:initialize', 
     'destination:initialize',
 
-    'import:dictionaries:tasks',
-    'import:objects:tasks',
+    'dictionaries:import',
+    'objects:import',
   ] 
   
   namespace :dictionaries do
@@ -25,7 +25,7 @@ namespace :import do
       'source:initialize', 
       'destination:initialize',
 
-      'import:dictionaries:tasks',
+      'dictionaries:import',
     ] 
   end
  
@@ -36,7 +36,7 @@ namespace :import do
       'source:initialize', 
       'destination:initialize',
 
-      'import:objects:tasks',
+      'objects:import',
     ] 
   end
 end

@@ -1,12 +1,7 @@
 require 'logger'
 
-import 'lib/tasks/destroy/land.rake'
-import 'lib/tasks/destroy/houses_life.rake'
-import 'lib/tasks/destroy/houses_unlife.rake'
-import 'lib/tasks/destroy/construction.rake'
-import 'lib/tasks/destroy/unfinished.rake'
-import 'lib/tasks/destroy/life_room.rake'
-import 'lib/tasks/destroy/unlife_room.rake'
+import 'lib/tasks/dictionaries.rake'
+import 'lib/tasks/objects.rake'
 
 namespace :destroy do
   task :set_logger do
@@ -19,13 +14,30 @@ namespace :destroy do
     'source:initialize', 
     'destination:initialize',
 
-    'destroy:land:tasks',
-    'destroy:houses_life:tasks',
-    'destroy:houses_unlife:tasks',
-    'destroy:construction:tasks',
-    'destroy:unfinished:tasks',
-    'destroy:life_room:tasks',
-    'destroy:unlife_room:tasks'
+    'objects:destroy',
+    'dictionaries:destroy',
   ]
+  
+  namespace :objects do
+    desc 'Запуск задачи удаления объектов в базе назначения'
+    task :start => [
+      'set_logger', 
+      'source:initialize', 
+      'destination:initialize',
+
+      'objects:destroy',
+    ] 
+  end
+  
+  namespace :dictionaries do
+    desc 'Запуск задачи удаления справочников в базе назначения'
+    task :start => [
+      'set_logger', 
+      'source:initialize', 
+      'destination:initialize',
+
+      'dictionaries:destroy',
+    ] 
+  end
 end
 
