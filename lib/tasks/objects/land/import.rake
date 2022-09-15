@@ -137,6 +137,10 @@ namespace :objects do
         'objects:land:destination:mss_objects_app:vid_obj_zkx:insert',
         'objects:land:destination:mss_objects:drop___vid_obj_zkx', 
         'objects:land:destination:mss_objects:drop___link_vid_obj_zkx', 
+
+        # примечание
+        'objects:land:destination:mss_objects_app:note_obj:insert',
+
       ]
     end
   end

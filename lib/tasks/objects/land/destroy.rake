@@ -24,6 +24,7 @@ namespace :objects do
         'objects:land:destination:mss_objects_app:soc_zn_obj:delete',
         'objects:land:destination:mss_objects_app:obj_zkx:delete',
         'objects:land:destination:mss_objects_app:vid_obj_zkx:delete',
+        'objects:land:destination:mss_objects_app:note_obj:delete',
 
         'objects:land:destination:mss_objects:delete',
         'objects:land:destination:mss_objects:drop___cad_quorter',
