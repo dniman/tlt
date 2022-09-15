@@ -1,4 +1,4 @@
-namespace :object do
+namespace :objects do
   namespace :life_room do
     namespace :destination do
       namespace :mss_objects_dicts do

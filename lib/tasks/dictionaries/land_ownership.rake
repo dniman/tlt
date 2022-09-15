@@ -6,7 +6,7 @@ namespace :dictionaries do
       'dictionaries:land_ownership:destination:mss_objects_dicts:insert',
     ]
     
-    task :import => [
+    task :destroy => [
       'dictionaries:land_ownership:destination:mss_objects_dicts:delete',
     ]
   end

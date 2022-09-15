@@ -1,4 +1,4 @@
-namespace :destroy do
+namespace :objects do
   namespace :land do
     namespace :destination do
       namespace :mss_objects_app do
