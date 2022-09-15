@@ -8,7 +8,9 @@ module Destination
     :mss_objects_adr,
     :mss_adr,
     :mss_objects_params,
-    :mss_objects_app
+    :mss_objects_app,
+    :s_note,
+    :s_objects,
   ]
 
   class << self
@@ -38,6 +40,11 @@ module Destination
       Destination::MssObjectsDicts.const_set(
         :DICTIONARY_LAND_KVARTALS,
         execute_query("select dbo.obj_id('DICTIONARY_LAND_KVARTALS')").entries.first.values.first
+      )
+      
+      Destination::SNote.const_set(
+        :COMPLETED_TASKS,
+        Destination::SObjects.obj_id('COMPLETED_TASKS')
       )
 
       nil

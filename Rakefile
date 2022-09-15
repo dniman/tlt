@@ -1,3 +1,5 @@
+require 'securerandom'
+
 module Rake
   class MultiIO
     def initialize(*targets)
@@ -32,6 +34,30 @@ module Rake
 
     def info(message)
       @logger.info message
+    end
+
+    def invoke_task(task_name)
+      args = []
+      args.insert 0, SecureRandom.uuid.to_s 
+
+      body = proc {
+        if Destination::SNote.task_exists?(task_name)
+          Rake.warn "Задача '#{ task_name }' пропущена. Выполнено ранее."
+          return 
+        end
+        
+        Rake.application.invoke_task task_name
+        
+        insert = [{
+          value: task_name,
+          object: Destination::SNote::COMPLETED_TASKS,
+          row_id: Arel.sql('newid()'),
+        }]
+
+        Destination::SNote.task_insert(rows: insert)
+      }
+      task = Rake::Task.define_task(*args, &body)
+      task.invoke(task_name)
     end
   end
 end
