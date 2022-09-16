@@ -1,5 +1,3 @@
-Dir[File.expand_path('../**/*.rake', __FILE__)].each {|path| import path}
-
 namespace :objects do
   namespace :houses_unlife do
     namespace :destroy do

@@ -1,5 +1,4 @@
-import 'lib/tasks/objects/houses_unlife/import.rake'
-import 'lib/tasks/objects/houses_unlife/destroy.rake'
+Dir[File.expand_path('../houses_unlife/**/*.rake', __FILE__)].each {|path| import path}
 
 namespace :objects do
   namespace :houses_unlife do

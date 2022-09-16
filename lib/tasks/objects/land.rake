@@ -1,5 +1,4 @@
-import 'lib/tasks/objects/land/import.rake'
-import 'lib/tasks/objects/land/destroy.rake'
+Dir[File.expand_path('../land/**/*.rake', __FILE__)].each {|path| import path}
 
 namespace :objects do
   namespace :land do

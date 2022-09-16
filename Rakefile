@@ -43,7 +43,7 @@ module Rake
       body = proc {
         if Destination::SNote.task_exists?(task_name)
           Rake.warn "Задача '#{ task_name }' пропущена. Выполнено ранее."
-          return 
+          next 
         end
         
         Rake.application.invoke_task task_name

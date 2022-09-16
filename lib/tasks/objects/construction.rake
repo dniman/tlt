@@ -1,5 +1,4 @@
-import 'lib/tasks/objects/construction/import.rake'
-import 'lib/tasks/objects/construction/destroy.rake'
+Dir[File.expand_path('../construction/**/*.rake', __FILE__)].each {|path| import path}
 
 namespace :objects do
   namespace :construction do
