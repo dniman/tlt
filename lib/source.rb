@@ -25,6 +25,8 @@ module Source
     :target_doc,
     :grounds_funk_using,
     :spr_zhkh_vid,
+    :enginf,
+    :enginftypes,
   ]
   
   class << self
