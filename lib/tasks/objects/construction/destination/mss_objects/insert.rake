@@ -16,20 +16,44 @@ namespace :objects do
             link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
 
             Source.set_engine!
-            query = 
+            select_one = 
               Source.objects
               .project([
                 Source.objects[:description],
                 Source.objects[:invno],
                 Source.buildings[:kadastrno],
                 Source.ids[:row_id],
-                Source.ids[:link_type]
+                Source.ids[:link_type],
+                Source.buildings[:levelname].as("name"),
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
               .join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.objects[:id]))
               .join(Source.buildtypes, Arel::Nodes::OuterJoin).on(Source.buildtypes[:id].eq(Source.buildings[:buildtypes_id]))
               .where(Source.ids[:link_type].eq(link_type))
+            
+            select_two = 
+              Source.objects
+              .project([
+                Source.objects[:description],
+                Source.objects[:invno],
+                Source.enginf[:kadastrno],
+                Source.ids[:row_id],
+                Source.ids[:link_type],
+                Source.enginf[:name],
+              ])
+              .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
+              .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+              .join(Source.enginf).on(Source.enginf[:objects_id].eq(Source.objects[:id]))
+              .join(Source.enginftypes, Arel::Nodes::OuterJoin).on(Source.enginftypes[:id].eq(Source.enginf[:enginftypes_id]))
+              .where(Source.ids[:link_type].eq(link_type))
+              
+            union = select_one.union :all, select_two
+            union_table = Arel::Table.new :union_table
+
+            manager = Arel::SelectManager.new
+            manager.project(Arel.star)
+            manager.from(union_table.create_table_alias(union,:union_table))
           end
 
           begin
@@ -39,7 +63,7 @@ namespace :objects do
             sliced_rows.each do |rows|
               rows.each do |row|
                 insert << {
-                  name: row["description"]&.strip,
+                  name: (row["name"].nil? || row["name"].strip.empty?) ? row["description"]&.strip : row["name"]&.strip,
                   inventar_num: row["invno"]&.strip,
                   inventar_num_date: nil,
                   link_type: row["link_type"],
