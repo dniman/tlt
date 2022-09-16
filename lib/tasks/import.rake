@@ -8,6 +8,10 @@ namespace :import do
     Rake.logger = Logger.new Rake::MultiIO.new(STDOUT, File.open(File.join('tmp', 'import.log'), 'w'))
   end
 
+  task :final_message, [:message] do |_,args|
+    Rake.info args[:message]
+  end
+
   desc 'Запуск задачи импорта данных в базу назначения'
   task :start => [
     'set_logger', 
@@ -16,7 +20,10 @@ namespace :import do
 
     'dictionaries:import',
     'objects:import',
-  ] 
+  ] do
+
+    Rake::Task['import:final_message'].invoke("Импорт данных в базу назначения завершен.")
+  end
   
   namespace :dictionaries do
     desc 'Запуск задачи импорта справочников в базу назначения'
@@ -26,7 +33,10 @@ namespace :import do
       'destination:initialize',
 
       'dictionaries:import',
-    ] 
+    ] do 
+    
+      Rake::Task['import:final_message'].invoke("Импорт справочников в базу назначения завершен.")
+    end
   end
  
   namespace :objects do
@@ -37,7 +47,10 @@ namespace :import do
       'destination:initialize',
 
       'objects:import',
-    ] 
+    ] do 
+
+      Rake::Task['import:final_message'].invoke("Импорт объектов в базу назначения завершен.")
+    end
   end
 end
 
