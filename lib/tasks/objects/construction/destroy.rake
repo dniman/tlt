@@ -4,6 +4,8 @@ namespace :objects do
       task :tasks => [
         # История адреса
         'objects:construction:destination:mss_objects_app:add_hist:delete',
+        # История наименования
+        'objects:construction:destination:mss_objects_app:obj_name_hist:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',

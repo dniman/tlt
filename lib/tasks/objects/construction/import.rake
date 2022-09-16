@@ -1,6 +1,7 @@
 namespace :objects do
   namespace :construction do
     namespace :import do
+
       task :tasks do
         Rake.invoke_task 'objects:construction:source:ids:insert'
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___kadastrno'
@@ -17,13 +18,17 @@ namespace :objects do
         Rake.invoke_task 'objects:construction:destination:mss_objects:drop___kadastrno'
         Rake.invoke_task 'objects:construction:destination:mss_objects_adr:insert'
         Rake.invoke_task 'objects:construction:source:ids:drop___link_adr'
-       
+        
         # История адреса
         Rake.invoke_task 'objects:construction:source:ids:add___add_hist'
         Rake.invoke_task 'objects:construction:source:ids:update___add_hist'
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:add_hist:insert'
         Rake.invoke_task 'objects:construction:source:ids:drop___add_hist'
+        
+        # История наименования
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:obj_name_hist:insert'
       end 
     end
+
   end
 end
