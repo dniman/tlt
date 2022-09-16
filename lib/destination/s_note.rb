@@ -44,12 +44,19 @@ module Destination
       result
     end
 
-    def self.task_insert(rows:)
+    def self.task_insert(task_name)
       condition =<<~SQL
         s_note.value = values_table.value
           and s_note.object = values_table.object
       SQL
-      sql = insert_query(rows: rows, condition: condition)
+      
+      insert = [{
+        value: task_name,
+        object: COMPLETED_TASKS,
+        row_id: Arel.sql('newid()'),
+      }]
+
+      sql = insert_query(rows: insert, condition: condition)
       Destination.execute_query(sql).do
     end
     

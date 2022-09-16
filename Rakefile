@@ -48,13 +48,8 @@ module Rake
         
         Rake.application.invoke_task task_name
         
-        insert = [{
-          value: task_name,
-          object: Destination::SNote::COMPLETED_TASKS,
-          row_id: Arel.sql('newid()'),
-        }]
 
-        Destination::SNote.task_insert(rows: insert)
+        Destination::SNote.task_insert(task_name)
       }
       task = Rake::Task.define_task(*args, &body)
       task.invoke(task_name)
