@@ -2,6 +2,9 @@ namespace :objects do
   namespace :construction do
     namespace :destroy do
       task :tasks => [
+        # История адреса
+        'objects:construction:destination:mss_objects_app:add_hist:delete',
+
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
         'objects:construction:destination:mss_objects:drop___kadastrno',

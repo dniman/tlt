@@ -17,6 +17,12 @@ namespace :objects do
         Rake.invoke_task 'objects:construction:destination:mss_objects:drop___kadastrno'
         Rake.invoke_task 'objects:construction:destination:mss_objects_adr:insert'
         Rake.invoke_task 'objects:construction:source:ids:drop___link_adr'
+       
+        # История адреса
+        Rake.invoke_task 'objects:construction:source:ids:add___add_hist'
+        Rake.invoke_task 'objects:construction:source:ids:update___add_hist'
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:add_hist:insert'
+        Rake.invoke_task 'objects:construction:source:ids:drop___add_hist'
       end 
     end
   end
