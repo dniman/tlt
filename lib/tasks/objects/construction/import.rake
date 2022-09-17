@@ -42,6 +42,9 @@ namespace :objects do
         
         # Инвентарный номер 
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:hous_inv_n:insert'
+        
+        # Год ввода в эксплуатацию 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:year_vvod:insert'
       end 
     end
 

@@ -20,6 +20,9 @@ namespace :objects do
         
         # Инвентарный номер
         'objects:construction:destination:mss_objects_app:hous_inv_n:delete',
+        
+        # Год ввода в эксплуатацию 
+        'objects:construction:destination:mss_objects_app:year_vvod:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
