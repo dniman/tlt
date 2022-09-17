@@ -12,7 +12,7 @@ namespace :objects do
     'objects:land:import',
     #'objects:houses_life:import',
     #'objects:houses_unlife:import',
-    #'objects:construction:import',
+    'objects:construction:import',
     #'objects:unfinished:import',
     #'objects:life_room:import',
     #'objects:unlife_room:import'
