@@ -9,8 +9,11 @@ namespace :objects do
         # История наименования
         'objects:construction:destination:mss_objects_app:obj_name_hist:delete',
 
-        # Официальный танец
+        # Официальный адрес 
         'objects:construction:destination:mss_objects_app:adr_str:delete',
+
+        # Общая площадь
+        'objects:construction:destination:mss_objects_app:house_pl:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',

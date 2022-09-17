@@ -33,6 +33,9 @@ namespace :objects do
         Rake.invoke_task 'objects:construction:source:ids:update___adr_str'
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:adr_str:insert'
         Rake.invoke_task 'objects:construction:source:ids:drop___adr_str'
+        
+        # Общая площадь
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:house_pl:insert'
       end 
     end
 
