@@ -36,6 +36,9 @@ namespace :objects do
         
         # Общая площадь
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:house_pl:insert'
+
+        # ID объекта из Сауми
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:id_obj:insert'
       end 
     end
 

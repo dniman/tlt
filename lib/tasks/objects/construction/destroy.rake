@@ -15,6 +15,9 @@ namespace :objects do
         # Общая площадь
         'objects:construction:destination:mss_objects_app:house_pl:delete',
 
+        # ID объекта из Сауми
+        'objects:construction:destination:mss_objects_app:id_obj:delete',
+
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
         'objects:construction:destination:mss_objects:drop___kadastrno',
