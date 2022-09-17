@@ -17,6 +17,9 @@ namespace :objects do
 
         # ID объекта из Сауми
         'objects:construction:destination:mss_objects_app:id_obj:delete',
+        
+        # Инвентарный номер
+        'objects:construction:destination:mss_objects_app:hous_inv_n:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',

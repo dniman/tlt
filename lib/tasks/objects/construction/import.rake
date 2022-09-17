@@ -39,6 +39,9 @@ namespace :objects do
 
         # ID объекта из Сауми
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:id_obj:insert'
+        
+        # Инвентарный номер 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:hous_inv_n:insert'
       end 
     end
 
