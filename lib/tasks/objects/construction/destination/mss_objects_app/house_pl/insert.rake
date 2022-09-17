@@ -77,7 +77,7 @@ namespace :objects do
                 
                 condition =<<~SQL 
                   mss_objects_app.link_up = values_table.link_up 
-                    and mss_objects_app.link_param = values_table.link_param"
+                    and mss_objects_app.link_param = values_table.link_param
                 SQL
 
                 sql = Destination::MssObjectsApp.insert_query(rows: insert, condition: condition)
