@@ -45,6 +45,9 @@ namespace :objects do
         
         # Год ввода в эксплуатацию 
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:year_vvod:insert'
+        
+        # Дата ввода в эксплуатацию 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:house_date_begin_use:insert'
       end 
     end
 

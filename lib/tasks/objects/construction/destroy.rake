@@ -23,6 +23,9 @@ namespace :objects do
         
         # Год ввода в эксплуатацию 
         'objects:construction:destination:mss_objects_app:year_vvod:delete',
+        
+        # Дата ввода в эксплуатацию 
+        'objects:construction:destination:mss_objects_app:house_date_begin_use:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
