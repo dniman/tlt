@@ -2,7 +2,7 @@ namespace :objects do
   namespace :construction do
     namespace :destination do
       namespace :mss_objects_app do
-        namespace :house_pl do
+        namespace :year_vvod do
           
           task :delete do |t|
             begin
@@ -17,7 +17,7 @@ namespace :objects do
                 .join(Destination.mss_objects_params, Arel::Nodes::OuterJoin)
                   .on(Destination.mss_objects_params[:link].eq(Destination.mss_objects_app[:link_param]))
                 .where(Destination.mss_objects_types[:code].eq('CONSTRUCTION')
-                  .and(Destination.mss_objects_params[:code].eq('HOUSE_PL')))
+                  .and(Destination.mss_objects_params[:code].eq('YEAR_VVOD')))
 
               manager = Arel::DeleteManager.new(Database.destination_engine)
               manager.from (Destination.mss_objects_app)
