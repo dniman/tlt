@@ -26,6 +26,7 @@ namespace :objects do
                 Source.ids[:link_type],
                 Source.buildings[:levelname].as("name"),
                 Source.buildmaterials[:name].as("___house_material"),
+                Source.buildings[:isrealestate],
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
@@ -44,6 +45,7 @@ namespace :objects do
                 Source.ids[:link_type],
                 Source.enginf[:name],
                 Source.enginf[:material].as("___house_material"),
+                Source.enginf[:isrealestate],
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
@@ -83,6 +85,15 @@ namespace :objects do
                       end
                     end,
                   ___house_material: row["___house_material"]&.strip,
+                  ___is_immovable: 
+                    begin
+                      case row["isrealestate"]&.strip 
+                      when 'Y' 
+                        'Да' 
+                      when 'N'
+                        'Нет'
+                      end
+                    end,
                 }
               end
               sql = Destination::MssObjects.insert_query(rows: insert, condition: "mss_objects.row_id = values_table.row_id")

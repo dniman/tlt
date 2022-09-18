@@ -5,6 +5,7 @@ namespace :objects do
       task :tasks do
         Rake.invoke_task 'objects:construction:source:ids:insert'
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___house_material' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___is_immovable'
 
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___kadastrno'
         Rake.invoke_task 'objects:construction:source:ids:add___link_adr'
@@ -63,6 +64,13 @@ namespace :objects do
         
         # Объем
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:capacity:insert'
+
+        # Является недвижимым имуществом
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___link_is_immovable' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:update___link_is_immovable' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:is_immovable:insert'
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___is_immovable' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___link_is_immovable' 
       end 
     end
 

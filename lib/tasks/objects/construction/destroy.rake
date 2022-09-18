@@ -35,6 +35,9 @@ namespace :objects do
         
         # Объем
         'objects:construction:destination:mss_objects_app:capacity:delete',
+        
+        # Является недвижимым имуществом
+        'objects:construction:destination:mss_objects_app:is_immovable:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
@@ -45,6 +48,8 @@ namespace :objects do
         'objects:construction:destination:mss_adr:delete',
         'objects:construction:destination:mss_objects:drop___house_material',
         'objects:construction:destination:mss_objects:drop___link_house_material',
+        'objects:construction:destination:mss_objects:drop___is_immovable',
+        'objects:construction:destination:mss_objects:drop___link_is_immovable',
       ]
 
     end

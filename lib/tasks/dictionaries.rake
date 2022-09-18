@@ -12,6 +12,7 @@ import 'lib/tasks/dictionaries/soc_zn_obj.rake'
 import 'lib/tasks/dictionaries/obj_zkx.rake'
 import 'lib/tasks/dictionaries/vid_obj_zkx.rake'
 import 'lib/tasks/dictionaries/house_material.rake'
+import 'lib/tasks/dictionaries/is_immovable.rake'
 
 namespace :dictionaries do
 
@@ -30,6 +31,7 @@ namespace :dictionaries do
     'dictionaries:obj_zkx:import',
     'dictionaries:vid_obj_zkx:import',
     'dictionaries:house_material:import',
+    'dictionaries:is_immovable:import',
   ] 
 
   task :destroy => [
@@ -47,6 +49,7 @@ namespace :dictionaries do
     'dictionaries:obj_zkx:destroy',
     'dictionaries:vid_obj_zkx:destroy',
     'dictionaries:house_material:destroy',
+    'dictionaries:is_immovable:destroy',
   ] 
 
 end 
