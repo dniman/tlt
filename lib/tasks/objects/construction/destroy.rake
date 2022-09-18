@@ -38,6 +38,9 @@ namespace :objects do
         
         # Является недвижимым имуществом
         'objects:construction:destination:mss_objects_app:is_immovable:delete',
+        
+        # Этажность
+        'objects:construction:destination:mss_objects_app:house_flats:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',

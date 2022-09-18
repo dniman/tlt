@@ -71,6 +71,9 @@ namespace :objects do
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:is_immovable:insert'
         Rake.invoke_task 'objects:construction:destination:mss_objects:drop___is_immovable' 
         Rake.invoke_task 'objects:construction:destination:mss_objects:drop___link_is_immovable' 
+        
+        # Этажность
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:house_flats:insert'
       end 
     end
 
