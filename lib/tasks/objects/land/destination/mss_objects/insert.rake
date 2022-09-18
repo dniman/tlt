@@ -91,9 +91,33 @@ namespace :objects do
                   ___gr_rel_groups_gr_rel_group_id: row["___gr_rel_groups_gr_rel_group_id"]&.strip,
                   ___target_doc_target_doc_id: row["___target_doc_target_doc_id"]&.strip,
                   ___grounds_funk_using_grounds_funk_using_id: row["___grounds_funk_using_grounds_funk_using_id"]&.strip,
-                  ___wow_obj: row["is_sign"]&.strip == 'Y' ? 'Да' : nil,
-                  ___soc_zn_obj: row["is_social"]&.strip == 'Y' ? 'Да' : nil,
-                  ___obj_zkx: row["is_zhkh"]&.strip == 'Y' ? 'Да' : nil,
+                  ___wow_obj: 
+                    begin
+                      case row["is_sign"]&.strip 
+                      when 'Y' 
+                        'Да' 
+                      when 'N'
+                        'Нет'
+                      end
+                    end,
+                  ___soc_zn_obj: 
+                    begin
+                      case row["is_social"]&.strip
+                      when 'Y' 
+                        'Да' 
+                      when 'N'
+                        'Нет'
+                      end
+                    end,
+                  ___obj_zkx: 
+                    begin
+                      case row["is_zhkh"]&.strip
+                      when 'Y' 
+                        'Да' 
+                      when 'N'
+                        'Нет'
+                      end
+                    end,
                   ___vid_obj_zkx: row["___vid_obj_zkx"]&.strip,
                 }
               end
