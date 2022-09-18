@@ -57,6 +57,9 @@ namespace :objects do
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:house_material:insert'
         Rake.invoke_task 'objects:construction:destination:mss_objects:drop___house_material' 
         Rake.invoke_task 'objects:construction:destination:mss_objects:drop___link_house_material' 
+        
+        # Литера БТИ 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:bti_liter:insert'
       end 
     end
 

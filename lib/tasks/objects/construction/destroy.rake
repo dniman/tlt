@@ -29,6 +29,9 @@ namespace :objects do
        
         # Материал
         'objects:construction:destination:mss_objects_app:house_material:delete',
+        
+        # Литера БТИ
+        'objects:construction:destination:mss_objects_app:bti_liter:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
