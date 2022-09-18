@@ -25,11 +25,13 @@ namespace :objects do
                 Source.ids[:row_id],
                 Source.ids[:link_type],
                 Source.buildings[:levelname].as("name"),
+                Source.buildmaterials[:name].as("___house_material"),
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
               .join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.objects[:id]))
               .join(Source.buildtypes, Arel::Nodes::OuterJoin).on(Source.buildtypes[:id].eq(Source.buildings[:buildtypes_id]))
+              .join(Source.buildmaterials, Arel::Nodes::OuterJoin).on(Source.buildmaterials[:id].eq(Source.buildings[:buildmaterial_id]))
               .where(Source.ids[:link_type].eq(link_type))
             
             select_two = 
@@ -41,6 +43,7 @@ namespace :objects do
                 Source.ids[:row_id],
                 Source.ids[:link_type],
                 Source.enginf[:name],
+                Source.enginf[:material].as("___house_material"),
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
@@ -78,7 +81,8 @@ namespace :objects do
                       else 
                         nil
                       end
-                    end
+                    end,
+                  ___house_material: row["___house_material"]&.strip,
                 }
               end
               sql = Destination::MssObjects.insert_query(rows: insert, condition: "mss_objects.row_id = values_table.row_id")

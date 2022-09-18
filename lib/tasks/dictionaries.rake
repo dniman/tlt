@@ -11,6 +11,7 @@ import 'lib/tasks/dictionaries/wow_obj.rake'
 import 'lib/tasks/dictionaries/soc_zn_obj.rake'
 import 'lib/tasks/dictionaries/obj_zkx.rake'
 import 'lib/tasks/dictionaries/vid_obj_zkx.rake'
+import 'lib/tasks/dictionaries/house_material.rake'
 
 namespace :dictionaries do
 
@@ -28,6 +29,7 @@ namespace :dictionaries do
     'dictionaries:soc_zn_obj:import',
     'dictionaries:obj_zkx:import',
     'dictionaries:vid_obj_zkx:import',
+    'dictionaries:house_material:import',
   ] 
 
   task :destroy => [
@@ -44,6 +46,7 @@ namespace :dictionaries do
     'dictionaries:soc_zn_obj:destroy',
     'dictionaries:obj_zkx:destroy',
     'dictionaries:vid_obj_zkx:destroy',
+    'dictionaries:house_material:destroy',
   ] 
 
 end 

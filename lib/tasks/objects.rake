@@ -10,12 +10,12 @@ namespace :objects do
 
   task :import => [
     'objects:land:import',
-    #'objects:houses_life:import',
-    #'objects:houses_unlife:import',
+    'objects:houses_life:import',
+    'objects:houses_unlife:import',
     'objects:construction:import',
-    #'objects:unfinished:import',
-    #'objects:life_room:import',
-    #'objects:unlife_room:import'
+    'objects:unfinished:import',
+    'objects:life_room:import',
+    'objects:unlife_room:import'
   ] 
   
   task :destroy => [

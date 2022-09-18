@@ -4,6 +4,8 @@ namespace :objects do
 
       task :tasks do
         Rake.invoke_task 'objects:construction:source:ids:insert'
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___house_material' 
+
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___kadastrno'
         Rake.invoke_task 'objects:construction:source:ids:add___link_adr'
         Rake.invoke_task 'objects:construction:destination:mss_objects:insert'
@@ -48,6 +50,13 @@ namespace :objects do
         
         # Дата ввода в эксплуатацию 
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:house_date_begin_use:insert'
+
+        # Материал
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___link_house_material' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:update___link_house_material' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:house_material:insert'
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___house_material' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___link_house_material' 
       end 
     end
 

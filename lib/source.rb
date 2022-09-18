@@ -27,6 +27,7 @@ module Source
     :spr_zhkh_vid,
     :enginf,
     :enginftypes,
+    :buildmaterials,
   ]
   
   class << self
