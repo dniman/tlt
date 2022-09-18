@@ -60,6 +60,9 @@ namespace :objects do
         
         # Литера БТИ 
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:bti_liter:insert'
+        
+        # Объем
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:capacity:insert'
       end 
     end
 

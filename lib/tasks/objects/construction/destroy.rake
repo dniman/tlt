@@ -32,6 +32,9 @@ namespace :objects do
         
         # Литера БТИ
         'objects:construction:destination:mss_objects_app:bti_liter:delete',
+        
+        # Объем
+        'objects:construction:destination:mss_objects_app:capacity:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
