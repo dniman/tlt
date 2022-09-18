@@ -27,12 +27,18 @@ namespace :objects do
                 Source.buildings[:levelname].as("name"),
                 Source.buildmaterials[:name].as("___house_material"),
                 Source.buildings[:isrealestate],
+                Source.objects[:is_sign],
+                Source.objects[:is_social],
+                Source.objects[:is_zhkh],
+                Source.spr_zhkh_vid[:name].as("___vid_obj_zkx"),
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
               .join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.objects[:id]))
               .join(Source.buildtypes, Arel::Nodes::OuterJoin).on(Source.buildtypes[:id].eq(Source.buildings[:buildtypes_id]))
               .join(Source.buildmaterials, Arel::Nodes::OuterJoin).on(Source.buildmaterials[:id].eq(Source.buildings[:buildmaterial_id]))
+              .join(Source.spr_zhkh_vid, Arel::Nodes::OuterJoin)
+                .on(Source.spr_zhkh_vid[:id].eq(Source.objects[:vid_zhkh_id]))
               .where(Source.ids[:link_type].eq(link_type))
             
             select_two = 
@@ -46,11 +52,17 @@ namespace :objects do
                 Source.enginf[:name],
                 Source.enginf[:material].as("___house_material"),
                 Source.enginf[:isrealestate],
+                Source.objects[:is_sign],
+                Source.objects[:is_social],
+                Source.objects[:is_zhkh],
+                Source.spr_zhkh_vid[:name].as("___vid_obj_zkx"),
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
               .join(Source.enginf).on(Source.enginf[:objects_id].eq(Source.objects[:id]))
               .join(Source.enginftypes, Arel::Nodes::OuterJoin).on(Source.enginftypes[:id].eq(Source.enginf[:enginftypes_id]))
+              .join(Source.spr_zhkh_vid, Arel::Nodes::OuterJoin)
+                .on(Source.spr_zhkh_vid[:id].eq(Source.objects[:vid_zhkh_id]))
               .where(Source.ids[:link_type].eq(link_type))
               
             union = select_one.union :all, select_two
@@ -94,6 +106,34 @@ namespace :objects do
                         'Нет'
                       end
                     end,
+                  ___wow_obj: 
+                    begin
+                      case row["is_sign"]&.strip 
+                      when 'Y' 
+                        'Да' 
+                      when 'N'
+                        'Нет'
+                      end
+                    end,
+                  ___soc_zn_obj: 
+                    begin
+                      case row["is_social"]&.strip
+                      when 'Y' 
+                        'Да' 
+                      when 'N'
+                        'Нет'
+                      end
+                    end,
+                  ___obj_zkx: 
+                    begin
+                      case row["is_zhkh"]&.strip
+                      when 'Y' 
+                        'Да' 
+                      when 'N'
+                        'Нет'
+                      end
+                    end,
+                  ___vid_obj_zkx: row["___vid_obj_zkx"]&.strip,
                 }
               end
               sql = Destination::MssObjects.insert_query(rows: insert, condition: "mss_objects.row_id = values_table.row_id")

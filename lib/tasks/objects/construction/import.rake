@@ -6,6 +6,10 @@ namespace :objects do
         Rake.invoke_task 'objects:construction:source:ids:insert'
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___house_material' 
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___is_immovable'
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___wow_obj' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___soc_zn_obj' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___obj_zkx' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___vid_obj_zkx' 
 
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___kadastrno'
         Rake.invoke_task 'objects:construction:source:ids:add___link_adr'
@@ -74,6 +78,34 @@ namespace :objects do
         
         # Этажность
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:house_flats:insert'
+        
+        # знаковый объект
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___link_wow_obj' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:update___link_wow_obj' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:wow_obj:insert'
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___wow_obj' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___link_wow_obj' 
+        
+        # социально-значимый объект
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___link_soc_zn_obj' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:update___link_soc_zn_obj' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:soc_zn_obj:insert'
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___soc_zn_obj' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___link_soc_zn_obj' 
+        
+        # объект жкх 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___link_obj_zkx' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:update___link_obj_zkx' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:obj_zkx:insert'
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___obj_zkx' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___link_obj_zkx' 
+       
+        # вид объекта жкх
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___link_vid_obj_zkx' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:update___link_vid_obj_zkx' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:vid_obj_zkx:insert'
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___vid_obj_zkx' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___link_vid_obj_zkx' 
       end 
     end
 
