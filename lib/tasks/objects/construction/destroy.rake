@@ -74,7 +74,10 @@ namespace :objects do
         
         # Отопление
         'objects:construction:destination:mss_objects_app:blag_hot:delete',
-
+        
+        # Телевидение
+        'objects:construction:destination:mss_objects_app:blag_tv:delete',
+        
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
         'objects:construction:destination:mss_objects:drop___kadastrno',

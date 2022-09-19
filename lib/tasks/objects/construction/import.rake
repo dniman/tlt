@@ -127,6 +127,9 @@ namespace :objects do
         
         # Отопление 
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_hot:insert'
+        
+        # Телевидение 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_tv:insert'
       end 
     end
 
