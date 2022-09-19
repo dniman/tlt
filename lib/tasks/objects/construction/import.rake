@@ -113,6 +113,8 @@ namespace :objects do
         # Вода
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_water:insert'
 
+        # Газ 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_gaz:insert'
       end 
     end
 

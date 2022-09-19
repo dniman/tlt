@@ -59,6 +59,9 @@ namespace :objects do
         
         # Вода
         'objects:construction:destination:mss_objects_app:blag_water:delete',
+        
+        # Газ 
+        'objects:construction:destination:mss_objects_app:blag_gaz:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
