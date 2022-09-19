@@ -11,6 +11,7 @@ namespace :objects do
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___obj_zkx' 
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___vid_obj_zkx' 
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___culturial_sense' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___unmovable_used' 
 
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___kadastrno'
         Rake.invoke_task 'objects:construction:source:ids:add___link_adr'
@@ -174,6 +175,13 @@ namespace :objects do
         
         # Площадь застройки
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:built_up_area:insert'
+        
+        # Назначение
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___link_unmovable_used' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:update___link_unmovable_used' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:unmovable_used:insert'
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___unmovable_used' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___link_unmovable_used' 
       end 
     end
 

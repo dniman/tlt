@@ -116,6 +116,9 @@ namespace :objects do
         
         # Площадь застройки
         'objects:construction:destination:mss_objects_app:built_up_area:delete',
+        
+        # Материал
+        'objects:construction:destination:mss_objects_app:unmovable_used:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
@@ -138,6 +141,8 @@ namespace :objects do
         'objects:construction:destination:mss_objects:drop___link_vid_obj_zkx',
         'objects:construction:destination:mss_objects:drop___culturial_sense',
         'objects:construction:destination:mss_objects:drop___link_culturial_sense',
+        'objects:construction:destination:mss_objects:drop___unmovable_used',
+        'objects:construction:destination:mss_objects:drop___link_unmovable_used',
       ]
 
     end
