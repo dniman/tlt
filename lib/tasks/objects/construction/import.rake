@@ -153,6 +153,10 @@ namespace :objects do
         
         # Дополнительная информация о памятнике
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:other_monument:insert'
+
+        # Старый реестровый номер
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:rn_old:insert'
+
       end 
     end
 
