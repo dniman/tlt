@@ -68,6 +68,9 @@ namespace :objects do
         
         # Лифт
         'objects:construction:destination:mss_objects_app:blag_lift:delete',
+        
+        # Мусоропровод 
+        'objects:construction:destination:mss_objects_app:blag_mus:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',

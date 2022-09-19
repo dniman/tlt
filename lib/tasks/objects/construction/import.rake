@@ -121,6 +121,9 @@ namespace :objects do
         
         # Лифт
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_lift:insert'
+        
+        # Мусоропровод 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_mus:insert'
       end 
     end
 
