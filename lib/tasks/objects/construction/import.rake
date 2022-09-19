@@ -118,6 +118,9 @@ namespace :objects do
         
         # Канализация 
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_kan:insert'
+        
+        # Лифт
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_lift:insert'
       end 
     end
 

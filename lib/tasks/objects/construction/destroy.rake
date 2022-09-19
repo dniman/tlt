@@ -65,6 +65,9 @@ namespace :objects do
         
         # Канализация
         'objects:construction:destination:mss_objects_app:blag_kan:delete',
+        
+        # Лифт
+        'objects:construction:destination:mss_objects_app:blag_lift:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
