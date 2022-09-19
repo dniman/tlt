@@ -43,16 +43,16 @@ namespace :objects do
         'objects:construction:destination:mss_objects_app:house_flats:delete',
        
         # знаковый объект
-        'objects:land:destination:mss_objects_app:wow_obj:delete',
+        'objects:construction:destination:mss_objects_app:wow_obj:delete',
        
         # социально-значимый объект
-        'objects:land:destination:mss_objects_app:soc_zn_obj:delete',
+        'objects:construction:destination:mss_objects_app:soc_zn_obj:delete',
 
         # объект жкх 
-        'objects:land:destination:mss_objects_app:obj_zkx:delete',
+        'objects:construction:destination:mss_objects_app:obj_zkx:delete',
 
         # вид объекта жкх
-        'objects:land:destination:mss_objects_app:vid_obj_zkx:delete',
+        'objects:construction:destination:mss_objects_app:vid_obj_zkx:delete',
 
         # Электроэнергия
         'objects:construction:destination:mss_objects_app:blag_energ:delete',
