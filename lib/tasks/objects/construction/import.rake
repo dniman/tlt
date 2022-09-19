@@ -150,6 +150,9 @@ namespace :objects do
         
         # Наименование памятника
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:name_monument:insert'
+        
+        # Дополнительная информация о памятнике
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:other_monument:insert'
       end 
     end
 
