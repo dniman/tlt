@@ -22,7 +22,7 @@ namespace :dictionaries do
               .where(Source.buildmaterials[:name].not_eq(nil))
 
             select_two =
-              Source.objects
+              Source.enginf
               .project([
                 Arel.sql(
                   "ltrim(rtrim(
@@ -30,12 +30,7 @@ namespace :dictionaries do
                     ))"
                 ).as("name")
               ])
-              .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-              .join(Source.enginf).on(Source.enginf[:objects_id].eq(Source.objects[:id]))
-              .join(Source.enginftypes, Arel::Nodes::OuterJoin).on(Source.enginftypes[:id].eq(Source.enginf[:enginftypes_id]))
-              .where(Source.objtypes[:name].eq('Инженерная инфраструктура')
-                .and(Source.enginf[:material].not_eq(nil))
-              )
+              .where(Source.enginf[:material].not_eq(nil))
 
             union = select_one.union :all, select_two
             union_table = Arel::Table.new :union_table
