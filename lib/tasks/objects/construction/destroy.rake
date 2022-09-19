@@ -99,6 +99,9 @@ namespace :objects do
         # Старый реестровый номер
         'objects:construction:destination:mss_objects_app:rn_old:delete',
 
+        # Примечание 
+        'objects:construction:destination:mss_objects_app:note_obj:delete',
+
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
         'objects:construction:destination:mss_objects:drop___kadastrno',

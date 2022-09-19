@@ -156,6 +156,9 @@ namespace :objects do
 
         # Старый реестровый номер
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:rn_old:insert'
+        
+        # Примечание 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:note_obj:insert'
 
       end 
     end
