@@ -78,6 +78,9 @@ namespace :objects do
         # Телевидение
         'objects:construction:destination:mss_objects_app:blag_tv:delete',
         
+        # Телефонизация
+        'objects:construction:destination:mss_objects_app:blag_tel:delete',
+        
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
         'objects:construction:destination:mss_objects:drop___kadastrno',

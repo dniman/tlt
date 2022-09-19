@@ -130,6 +130,9 @@ namespace :objects do
         
         # Телевидение 
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_tv:insert'
+        
+        # Телефонизация
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_tel:insert'
       end 
     end
 
