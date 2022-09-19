@@ -165,6 +165,9 @@ namespace :objects do
 
         # Протяженность
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:house_spread:insert'
+        
+        # Ширина
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:width:insert'
       end 
     end
 

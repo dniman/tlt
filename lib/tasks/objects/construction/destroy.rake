@@ -107,6 +107,9 @@ namespace :objects do
         
         # Протяженность
         'objects:construction:destination:mss_objects_app:house_spread:delete',
+        
+        # Ширина
+        'objects:construction:destination:mss_objects_app:width:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
