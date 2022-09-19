@@ -109,6 +109,9 @@ namespace :objects do
 
         # Электроэнергия 
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_energ:insert'
+        
+        # Вода
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_water:insert'
 
       end 
     end

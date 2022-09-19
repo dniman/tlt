@@ -56,6 +56,9 @@ namespace :objects do
 
         # Электроэнергия
         'objects:construction:destination:mss_objects_app:blag_energ:delete',
+        
+        # Вода
+        'objects:construction:destination:mss_objects_app:blag_water:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
