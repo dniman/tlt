@@ -2,7 +2,7 @@ namespace :objects do
   namespace :construction do
     namespace :destination do
       namespace :mss_objects_app do
-        namespace :construction do
+        namespace :rn_old do
           
           task :delete do |t|
             begin
