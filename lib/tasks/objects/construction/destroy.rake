@@ -71,6 +71,9 @@ namespace :objects do
         
         # Мусоропровод 
         'objects:construction:destination:mss_objects_app:blag_mus:delete',
+        
+        # Отопление
+        'objects:construction:destination:mss_objects_app:blag_hot:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',

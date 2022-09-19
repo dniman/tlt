@@ -124,6 +124,9 @@ namespace :objects do
         
         # Мусоропровод 
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_mus:insert'
+        
+        # Отопление 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_hot:insert'
       end 
     end
 
