@@ -110,6 +110,16 @@ namespace :objects do
         'objects:construction:destination:mss_objects:drop___link_house_material',
         'objects:construction:destination:mss_objects:drop___is_immovable',
         'objects:construction:destination:mss_objects:drop___link_is_immovable',
+        'objects:construction:destination:mss_objects:drop___wow_obj',
+        'objects:construction:destination:mss_objects:drop___link_wow_obj',
+        'objects:construction:destination:mss_objects:drop___soc_zn_obj',
+        'objects:construction:destination:mss_objects:drop___link_soc_zn_obj',
+        'objects:construction:destination:mss_objects:drop___obj_zkx',
+        'objects:construction:destination:mss_objects:drop___link_obj_zkx',
+        'objects:construction:destination:mss_objects:drop___vid_obj_zkx',
+        'objects:construction:destination:mss_objects:drop___link_vid_obj_zkx',
+        'objects:construction:destination:mss_objects:drop___culturial_sense',
+        'objects:construction:destination:mss_objects:drop___link_culturial_sense',
       ]
 
     end
