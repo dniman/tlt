@@ -28,6 +28,7 @@ module Source
     :enginf,
     :enginftypes,
     :buildmaterials,
+    :monumenttypes,
   ]
   
   class << self

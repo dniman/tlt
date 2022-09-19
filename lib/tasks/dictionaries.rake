@@ -13,6 +13,7 @@ import 'lib/tasks/dictionaries/obj_zkx.rake'
 import 'lib/tasks/dictionaries/vid_obj_zkx.rake'
 import 'lib/tasks/dictionaries/house_material.rake'
 import 'lib/tasks/dictionaries/is_immovable.rake'
+import 'lib/tasks/dictionaries/culturial_sense.rake'
 
 namespace :dictionaries do
 
@@ -32,6 +33,7 @@ namespace :dictionaries do
     'dictionaries:vid_obj_zkx:import',
     'dictionaries:house_material:import',
     'dictionaries:is_immovable:import',
+    'dictionaries:culturial_sense:import',
   ] 
 
   task :destroy => [
@@ -50,6 +52,7 @@ namespace :dictionaries do
     'dictionaries:vid_obj_zkx:destroy',
     'dictionaries:house_material:destroy',
     'dictionaries:is_immovable:destroy',
+    'dictionaries:culturial_sense:destroy',
   ] 
 
 end 
