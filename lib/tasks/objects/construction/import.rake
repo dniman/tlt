@@ -106,6 +106,10 @@ namespace :objects do
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:vid_obj_zkx:insert'
         Rake.invoke_task 'objects:construction:destination:mss_objects:drop___vid_obj_zkx' 
         Rake.invoke_task 'objects:construction:destination:mss_objects:drop___link_vid_obj_zkx' 
+
+        # Электроэнергия 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_energ:insert'
+
       end 
     end
 

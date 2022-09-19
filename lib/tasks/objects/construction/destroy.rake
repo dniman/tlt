@@ -54,6 +54,9 @@ namespace :objects do
         # вид объекта жкх
         'objects:land:destination:mss_objects_app:vid_obj_zkx:delete',
 
+        # Электроэнергия
+        'objects:construction:destination:mss_objects_app:blag_energ:delete',
+
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
         'objects:construction:destination:mss_objects:drop___kadastrno',
