@@ -84,6 +84,9 @@ namespace :objects do
         # Вентиляция
         'objects:construction:destination:mss_objects_app:blag_vent:delete',
         
+        # Памятник 
+        'objects:construction:destination:mss_objects_app:is_monument:delete',
+        
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
         'objects:construction:destination:mss_objects:drop___kadastrno',

@@ -136,6 +136,9 @@ namespace :objects do
         
         # Вентиляция
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_vent:insert'
+        
+        # Памятник
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:is_monument:insert'
       end 
     end
 
