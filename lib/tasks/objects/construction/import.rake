@@ -159,6 +159,9 @@ namespace :objects do
         
         # Примечание 
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:note_obj:insert'
+        
+        # Кадастровый(условный) номер 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:cad_num_dop:insert'
 
       end 
     end

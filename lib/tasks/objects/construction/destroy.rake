@@ -101,6 +101,9 @@ namespace :objects do
 
         # Примечание 
         'objects:construction:destination:mss_objects_app:note_obj:delete',
+        
+        # Кадастровый(условный) номер
+        'objects:construction:destination:mss_objects_app:cad_num_dop:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
