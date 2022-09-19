@@ -90,6 +90,10 @@ namespace :objects do
         # Категория историко-культурного значения
         'objects:construction:destination:mss_objects_app:culturial_sense:delete',
         
+        # Наименование памятника
+        'objects:construction:destination:mss_objects_app:name_monument:delete',
+
+
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
         'objects:construction:destination:mss_objects:drop___kadastrno',
