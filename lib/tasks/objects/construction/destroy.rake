@@ -113,6 +113,9 @@ namespace :objects do
         
         # Глубина 
         'objects:construction:destination:mss_objects_app:depth:delete',
+        
+        # Площадь застройки
+        'objects:construction:destination:mss_objects_app:built_up_area:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',

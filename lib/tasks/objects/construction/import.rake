@@ -171,6 +171,9 @@ namespace :objects do
         
         # Глубина
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:depth:insert'
+        
+        # Площадь застройки
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:built_up_area:insert'
       end 
     end
 
