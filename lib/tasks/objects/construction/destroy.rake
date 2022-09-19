@@ -110,6 +110,9 @@ namespace :objects do
         
         # Ширина
         'objects:construction:destination:mss_objects_app:width:delete',
+        
+        # Глубина 
+        'objects:construction:destination:mss_objects_app:depth:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',

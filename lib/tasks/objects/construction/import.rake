@@ -168,6 +168,9 @@ namespace :objects do
         
         # Ширина
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:width:insert'
+        
+        # Глубина
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:depth:insert'
       end 
     end
 
