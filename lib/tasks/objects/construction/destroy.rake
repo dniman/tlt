@@ -62,6 +62,9 @@ namespace :objects do
         
         # Газ 
         'objects:construction:destination:mss_objects_app:blag_gaz:delete',
+        
+        # Канализация
+        'objects:construction:destination:mss_objects_app:blag_kan:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',

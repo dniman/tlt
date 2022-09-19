@@ -115,6 +115,9 @@ namespace :objects do
 
         # Газ 
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_gaz:insert'
+        
+        # Канализация 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_kan:insert'
       end 
     end
 
