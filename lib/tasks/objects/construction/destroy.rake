@@ -81,6 +81,9 @@ namespace :objects do
         # Телефонизация
         'objects:construction:destination:mss_objects_app:blag_tel:delete',
         
+        # Вентиляция
+        'objects:construction:destination:mss_objects_app:blag_vent:delete',
+        
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
         'objects:construction:destination:mss_objects:drop___kadastrno',

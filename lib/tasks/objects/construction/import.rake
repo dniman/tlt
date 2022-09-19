@@ -133,6 +133,9 @@ namespace :objects do
         
         # Телефонизация
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_tel:insert'
+        
+        # Вентиляция
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:blag_vent:insert'
       end 
     end
 
