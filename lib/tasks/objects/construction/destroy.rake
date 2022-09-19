@@ -104,6 +104,9 @@ namespace :objects do
         
         # Кадастровый(условный) номер
         'objects:construction:destination:mss_objects_app:cad_num_dop:delete',
+        
+        # Протяженность
+        'objects:construction:destination:mss_objects_app:house_spread:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',

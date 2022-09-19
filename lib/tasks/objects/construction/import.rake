@@ -163,6 +163,8 @@ namespace :objects do
         # Кадастровый(условный) номер 
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:cad_num_dop:insert'
 
+        # Протяженность
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:house_spread:insert'
       end 
     end
 
