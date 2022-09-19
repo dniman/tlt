@@ -119,6 +119,9 @@ namespace :objects do
         
         # Материал
         'objects:construction:destination:mss_objects_app:unmovable_used:delete',
+        
+        # Идентификационный номер автодороги
+        'objects:construction:destination:mss_objects_app:id_avtodor:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
