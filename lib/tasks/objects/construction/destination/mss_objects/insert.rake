@@ -31,6 +31,7 @@ namespace :objects do
                 Source.objects[:is_social],
                 Source.objects[:is_zhkh],
                 Source.spr_zhkh_vid[:name].as("___vid_obj_zkx"),
+                Source.monumenttypes[:name].as("___culturial_sense"),
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
@@ -39,6 +40,8 @@ namespace :objects do
               .join(Source.buildmaterials, Arel::Nodes::OuterJoin).on(Source.buildmaterials[:id].eq(Source.buildings[:buildmaterial_id]))
               .join(Source.spr_zhkh_vid, Arel::Nodes::OuterJoin)
                 .on(Source.spr_zhkh_vid[:id].eq(Source.objects[:vid_zhkh_id]))
+              .join(Source.monumenttypes, Arel::Nodes::OuterJoin)
+                .on(Source.monumenttypes[:id].eq(Source.objects[:mntype_id]))
               .where(Source.ids[:link_type].eq(link_type))
             
             select_two = 
@@ -56,6 +59,7 @@ namespace :objects do
                 Source.objects[:is_social],
                 Source.objects[:is_zhkh],
                 Source.spr_zhkh_vid[:name].as("___vid_obj_zkx"),
+                Source.monumenttypes[:name].as("___culturial_sense"),
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
@@ -63,6 +67,8 @@ namespace :objects do
               .join(Source.enginftypes, Arel::Nodes::OuterJoin).on(Source.enginftypes[:id].eq(Source.enginf[:enginftypes_id]))
               .join(Source.spr_zhkh_vid, Arel::Nodes::OuterJoin)
                 .on(Source.spr_zhkh_vid[:id].eq(Source.objects[:vid_zhkh_id]))
+              .join(Source.monumenttypes, Arel::Nodes::OuterJoin)
+                .on(Source.monumenttypes[:id].eq(Source.objects[:mntype_id]))
               .where(Source.ids[:link_type].eq(link_type))
               
             union = select_one.union :all, select_two
@@ -134,6 +140,7 @@ namespace :objects do
                       end
                     end,
                   ___vid_obj_zkx: row["___vid_obj_zkx"]&.strip,
+                  ___culturial_sense: row["___culturial_sense"]&.strip,
                 }
               end
               sql = Destination::MssObjects.insert_query(rows: insert, condition: "mss_objects.row_id = values_table.row_id")

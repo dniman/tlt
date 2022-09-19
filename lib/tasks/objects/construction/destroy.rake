@@ -87,6 +87,9 @@ namespace :objects do
         # Памятник 
         'objects:construction:destination:mss_objects_app:is_monument:delete',
         
+        # Категория историко-культурного значения
+        'objects:construction:destination:mss_objects_app:culturial_sense:delete',
+        
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
         'objects:construction:destination:mss_objects:drop___kadastrno',
