@@ -25,12 +25,20 @@ namespace :objects do
                 Source.ids[:row_id],
                 Source.ids[:link_type],
                 Source.buildings[:levelname].as("name"),
-                Source.buildmaterials[:name].as("___house_material"),
+                Arel.sql(
+                  "ltrim(rtrim(
+                      replace(replace([buildmaterials].[name], char(9), ''), char(10), '')
+                    ))"
+                ).as("___house_material"),
                 Source.buildings[:isrealestate],
                 Source.objects[:is_sign],
                 Source.objects[:is_social],
                 Source.objects[:is_zhkh],
-                Source.spr_zhkh_vid[:name].as("___vid_obj_zkx"),
+                Arel.sql(
+                  "ltrim(rtrim(
+                      replace(replace([spr_zhkh_vid].[name], char(9), ''), char(10), '')
+                    ))"
+                ).as("___vid_obj_zkx"),
                 Source.monumenttypes[:name].as("___culturial_sense"),
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
@@ -53,12 +61,20 @@ namespace :objects do
                 Source.ids[:row_id],
                 Source.ids[:link_type],
                 Source.enginf[:name],
-                Source.enginf[:material].as("___house_material"),
+                Arel.sql(
+                  "ltrim(rtrim(
+                      replace(replace([enginf].[material], char(9), ''), char(10), '')
+                    ))"
+                ).as("___house_material"),
                 Source.enginf[:isrealestate],
                 Source.objects[:is_sign],
                 Source.objects[:is_social],
                 Source.objects[:is_zhkh],
-                Source.spr_zhkh_vid[:name].as("___vid_obj_zkx"),
+                Arel.sql(
+                  "ltrim(rtrim(
+                      replace(replace([spr_zhkh_vid].[name], char(9), ''), char(10), '')
+                    ))"
+                ).as("___vid_obj_zkx"),
                 Source.monumenttypes[:name].as("___culturial_sense"),
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
