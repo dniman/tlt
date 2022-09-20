@@ -35,6 +35,8 @@ module Source
     :infgroups,
     :clients,
     :client_types,
+    :privates,
+    :organisations,
   ]
   
   class << self

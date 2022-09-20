@@ -11,6 +11,8 @@ module Destination
     :mss_objects_app,
     :s_note,
     :s_objects,
+    :s_corr,
+    :mss_objcorr,
   ]
 
   class << self
@@ -45,6 +47,11 @@ module Destination
       Destination::SNote.const_set(
         :COMPLETED_TASKS,
         Destination::SObjects.obj_id('COMPLETED_TASKS')
+      )
+
+      Destination::SCorr.const_set(
+        :DICTIONARY_CORR,
+        Destination::SObjects.obj_id('DICTIONARY_CORR')
       )
 
       nil
