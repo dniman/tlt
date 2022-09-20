@@ -29,6 +29,7 @@ module Source
     :enginftypes,
     :buildmaterials,
     :monumenttypes,
+    :road_use,
   ]
   
   class << self

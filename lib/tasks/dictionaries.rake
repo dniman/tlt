@@ -15,6 +15,7 @@ import 'lib/tasks/dictionaries/house_material.rake'
 import 'lib/tasks/dictionaries/is_immovable.rake'
 import 'lib/tasks/dictionaries/culturial_sense.rake'
 import 'lib/tasks/dictionaries/unmovable_used.rake'
+import 'lib/tasks/dictionaries/vri_avtodor.rake'
 
 namespace :dictionaries do
 
@@ -36,6 +37,7 @@ namespace :dictionaries do
     'dictionaries:is_immovable:import',
     'dictionaries:culturial_sense:import',
     'dictionaries:unmovable_used:import',
+    'dictionaries:vri_avtodor:import',
   ] 
 
   task :destroy => [
@@ -56,6 +58,7 @@ namespace :dictionaries do
     'dictionaries:is_immovable:destroy',
     'dictionaries:culturial_sense:destroy',
     'dictionaries:unmovable_used:destroy',
+    'dictionaries:vri_avtodor:destroy',
   ] 
 
 end 
