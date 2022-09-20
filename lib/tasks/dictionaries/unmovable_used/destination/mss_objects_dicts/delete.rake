@@ -20,19 +20,7 @@ namespace :dictionaries do
               Destination.mss_objects_dicts
               .project(Destination.mss_objects_dicts[:link])
               .distinct
-              .where(Destination.mss_objects_dicts[:link_dict].eq(link_param)
-                .and(
-                  Destination.mss_objects_app
-                  .project(Destination.mss_objects_app[:link_dict])
-                  .distinct
-                  .join(Destination.mss_objects).on(Destination.mss_objects[:link].eq(Destination.mss_objects_app[:link_up]))
-                  .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin)
-                    .on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
-                  .where(Destination.mss_objects_types[:code].not_eq('CONSTRUCTION')
-                    .and(Destination.mss_objects_app[:link_param].eq(link_param))
-                  ).exists.not
-                )
-              )
+              .where(Destination.mss_objects_dicts[:link_dict].eq(link_param))
 
             manager = Arel::DeleteManager.new(Database.destination_engine)
             manager.from (Destination.mss_objects_dicts)
