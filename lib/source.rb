@@ -30,6 +30,8 @@ module Source
     :buildmaterials,
     :monumenttypes,
     :road_use,
+    :road_category,
+    :road_classes,
   ]
   
   class << self

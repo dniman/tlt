@@ -15,11 +15,11 @@ namespace :dictionaries do
           def query
             Source.set_engine!
             query = 
-              Source.road_use
+              Source.road_classes
               .project([
-                Source.road_use[:name],
+                Source.road_classes[:name],
               ])
-              .where(Source.road_use[:name].not_eq(nil))
+              .where(Source.road_classes[:name].not_eq(nil))
           end
 
           begin
