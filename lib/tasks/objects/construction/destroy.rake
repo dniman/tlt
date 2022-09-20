@@ -122,6 +122,9 @@ namespace :objects do
         
         # Идентификационный номер автодороги
         'objects:construction:destination:mss_objects_app:id_avtodor:delete',
+        
+        # Вид разрешенного использования автодороги
+        'objects:construction:destination:mss_objects_app:vri_avtodor:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
@@ -146,6 +149,8 @@ namespace :objects do
         'objects:construction:destination:mss_objects:drop___link_culturial_sense',
         'objects:construction:destination:mss_objects:drop___unmovable_used',
         'objects:construction:destination:mss_objects:drop___link_unmovable_used',
+        'objects:construction:destination:mss_objects:drop___vri_avtodor',
+        'objects:construction:destination:mss_objects:drop___link_vri_avtodor',
       ]
 
     end

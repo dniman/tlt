@@ -12,6 +12,7 @@ namespace :objects do
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___vid_obj_zkx' 
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___culturial_sense' 
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___unmovable_used' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___vri_avtodor' 
 
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___kadastrno'
         Rake.invoke_task 'objects:construction:source:ids:add___link_adr'
@@ -185,6 +186,13 @@ namespace :objects do
         
         # Идентификационный номер автодороги
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:id_avtodor:insert'
+        
+        # Вид разрешенного использования автодороги
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___link_vri_avtodor' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:update___link_vri_avtodor' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:vri_avtodor:insert'
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___vri_avtodor' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___link_vri_avtodor' 
       end 
     end
 
