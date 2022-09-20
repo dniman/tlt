@@ -45,7 +45,7 @@ namespace :objects do
                       replace(replace([buildings].[purpose], char(9), ''), char(10), '')
                     ))"
                 ).as("___unmovable_used"),
-                Arel.sql("null as vri_avtodor"),
+                Arel.sql("null as ___vri_avtodor"),
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
