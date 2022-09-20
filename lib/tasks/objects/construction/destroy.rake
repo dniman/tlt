@@ -131,6 +131,9 @@ namespace :objects do
         
         # Категория автодороги
         'objects:construction:destination:mss_objects_app:kateg_avtodor:delete',
+        
+        # Группа сооружений
+        'objects:construction:destination:mss_objects_app:group_im:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
@@ -161,6 +164,8 @@ namespace :objects do
         'objects:construction:destination:mss_objects:drop___link_klass_avtodor',
         'objects:construction:destination:mss_objects:drop___kateg_avtodor',
         'objects:construction:destination:mss_objects:drop___link_kateg_avtodor',
+        'objects:construction:destination:mss_objects:drop___group_im',
+        'objects:construction:destination:mss_objects:drop___link_group_im',
       ]
 
     end

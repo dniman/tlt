@@ -15,6 +15,7 @@ namespace :objects do
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___vri_avtodor' 
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___klass_avtodor' 
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___kateg_avtodor' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___group_im' 
 
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___kadastrno'
         Rake.invoke_task 'objects:construction:source:ids:add___link_adr'
@@ -209,6 +210,13 @@ namespace :objects do
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:kateg_avtodor:insert'
         Rake.invoke_task 'objects:construction:destination:mss_objects:drop___kateg_avtodor' 
         Rake.invoke_task 'objects:construction:destination:mss_objects:drop___link_kateg_avtodor' 
+        
+        # Группа сооружений
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___link_group_im' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:update___link_group_im' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:group_im:insert'
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___group_im' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___link_group_im' 
       end 
     end
 
