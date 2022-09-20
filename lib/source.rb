@@ -33,6 +33,8 @@ module Source
     :road_category,
     :road_classes,
     :infgroups,
+    :clients,
+    :client_types,
   ]
   
   class << self

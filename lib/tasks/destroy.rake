@@ -1,6 +1,7 @@
 require 'logger'
 
 import 'lib/tasks/dictionaries.rake'
+import 'lib/tasks/corrs.rake'
 import 'lib/tasks/objects.rake'
 
 namespace :destroy do
@@ -66,6 +67,21 @@ namespace :destroy do
 
       Rake::Task['destroy:delete_completed_tasks'].invoke("objects:%")
       Rake::Task['destroy:final_message'].invoke("Удаление объектов в базе назначения завершено.")
+    end
+  end
+  
+  namespace :corrs do
+    desc 'Запуск задачи удаления корреспондентов в базе назначения'
+    task :start => [
+      'set_logger', 
+      'source:initialize', 
+      'destination:initialize',
+
+      'corrs:destroy',
+    ] do 
+
+      Rake::Task['destroy:delete_completed_tasks'].invoke("corrs:%")
+      Rake::Task['destroy:final_message'].invoke("Удаление корреспондентов в базе назначения завершено.")
     end
   end
   

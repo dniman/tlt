@@ -1,6 +1,7 @@
 require 'logger'
 
 import 'lib/tasks/dictionaries.rake'
+import 'lib/tasks/corrs.rake'
 import 'lib/tasks/objects.rake'
 
 namespace :import do
@@ -19,6 +20,7 @@ namespace :import do
     'destination:initialize',
 
     'dictionaries:import',
+    'corrs:import',
     'objects:import',
   ] do
 
@@ -36,6 +38,20 @@ namespace :import do
     ] do 
     
       Rake::Task['import:final_message'].invoke("Импорт справочников в базу назначения завершен.")
+    end
+  end
+  
+  namespace :corrs do
+    desc 'Запуск задачи импорта корреспондентов в базу назначения'
+    task :start => [
+      'set_logger', 
+      'source:initialize', 
+      'destination:initialize',
+
+      'corrs:import',
+    ] do 
+
+      Rake::Task['import:final_message'].invoke("Импорт кореспондентов в базу назначения завершен.")
     end
   end
  
