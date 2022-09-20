@@ -125,6 +125,12 @@ namespace :objects do
         
         # Вид разрешенного использования автодороги
         'objects:construction:destination:mss_objects_app:vri_avtodor:delete',
+        
+        # Класс автодороги
+        'objects:construction:destination:mss_objects_app:klass_avtodor:delete',
+        
+        # Категория автодороги
+        'objects:construction:destination:mss_objects_app:kateg_avtodor:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',
@@ -151,6 +157,10 @@ namespace :objects do
         'objects:construction:destination:mss_objects:drop___link_unmovable_used',
         'objects:construction:destination:mss_objects:drop___vri_avtodor',
         'objects:construction:destination:mss_objects:drop___link_vri_avtodor',
+        'objects:construction:destination:mss_objects:drop___klass_avtodor',
+        'objects:construction:destination:mss_objects:drop___link_klass_avtodor',
+        'objects:construction:destination:mss_objects:drop___kateg_avtodor',
+        'objects:construction:destination:mss_objects:drop___link_kateg_avtodor',
       ]
 
     end

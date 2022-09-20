@@ -13,6 +13,8 @@ namespace :objects do
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___culturial_sense' 
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___unmovable_used' 
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___vri_avtodor' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___klass_avtodor' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___kateg_avtodor' 
 
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___kadastrno'
         Rake.invoke_task 'objects:construction:source:ids:add___link_adr'
@@ -193,6 +195,20 @@ namespace :objects do
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:vri_avtodor:insert'
         Rake.invoke_task 'objects:construction:destination:mss_objects:drop___vri_avtodor' 
         Rake.invoke_task 'objects:construction:destination:mss_objects:drop___link_vri_avtodor' 
+        
+        # Класс автодороги
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___link_klass_avtodor' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:update___link_klass_avtodor' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:klass_avtodor:insert'
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___klass_avtodor' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___link_klass_avtodor' 
+        
+        # Категория автодороги
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___link_kateg_avtodor' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:update___link_kateg_avtodor' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:kateg_avtodor:insert'
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___kateg_avtodor' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___link_kateg_avtodor' 
       end 
     end
 

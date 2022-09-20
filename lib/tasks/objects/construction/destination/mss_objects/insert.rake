@@ -46,6 +46,8 @@ namespace :objects do
                     ))"
                 ).as("___unmovable_used"),
                 Arel.sql("null as ___vri_avtodor"),
+                Arel.sql("null as ___klass_avtodor"),
+                Arel.sql("null as ___kateg_avtodor"),
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
@@ -88,6 +90,8 @@ namespace :objects do
                     ))"
                 ).as("___unmovable_used"),
                 Source.road_use[:name].as("___vri_avtodor"),
+                Source.road_classes[:name].as("___klass_avtodor"),
+                Source.road_category[:name].as("___kateg_avtodor"),
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
@@ -99,6 +103,10 @@ namespace :objects do
                 .on(Source.monumenttypes[:id].eq(Source.objects[:mntype_id]))
               .join(Source.road_use, Arel::Nodes::OuterJoin)
                 .on(Source.road_use[:id].eq(Source.enginf[:road_use_id]))
+              .join(Source.road_classes, Arel::Nodes::OuterJoin)
+                .on(Source.road_classes[:id].eq(Source.enginf[:road_classes_id]))
+              .join(Source.road_category, Arel::Nodes::OuterJoin)
+                .on(Source.road_category[:id].eq(Source.enginf[:road_category_id]))
               .where(Source.ids[:link_type].eq(link_type))
               
             union = select_one.union :all, select_two
@@ -173,6 +181,8 @@ namespace :objects do
                   ___culturial_sense: row["___culturial_sense"]&.strip,
                   ___unmovable_used: row["___unmovable_used"]&.strip,
                   ___vri_avtodor: row["___vri_avtodor"]&.strip,
+                  ___klass_avtodor: row["___klass_avtodor"]&.strip,
+                  ___kateg_avtodor: row["___kateg_avtodor"]&.strip,
                 }
               end
               sql = Destination::MssObjects.insert_query(rows: insert, condition: "mss_objects.row_id = values_table.row_id")
