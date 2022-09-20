@@ -32,6 +32,7 @@ module Source
     :road_use,
     :road_category,
     :road_classes,
+    :infgroups,
   ]
   
   class << self
