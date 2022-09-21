@@ -13,6 +13,7 @@ module Destination
     :s_objects,
     :s_corr,
     :mss_objcorr,
+    :t_corr_dict,
   ]
 
   class << self
@@ -52,6 +53,16 @@ module Destination
       Destination::SCorr.const_set(
         :DICTIONARY_CORR,
         Destination::SObjects.obj_id('DICTIONARY_CORR')
+      )
+      
+      Destination::SCorr.const_set(
+        :DICTIONARY_CORR_TYPE,
+        Destination::SObjects.obj_id('DICTIONARY_CORR_TYPE')
+      )
+      
+      Destination::TCorrDict.const_set(
+        :REFERENCE_CORR_TYPE,
+        Destination::SObjects.obj_id('REFERENCE_CORR_TYPE')
       )
 
       nil
