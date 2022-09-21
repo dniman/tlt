@@ -14,6 +14,9 @@ module Destination
     :s_corr,
     :mss_objcorr,
     :t_corr_dict,
+    :mss_docs,
+    :mss_oac_rowstates,
+    :mss_objcorr_types,
   ]
 
   class << self

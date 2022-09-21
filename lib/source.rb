@@ -1,4 +1,3 @@
-#Dir.glob('source/*.rb').each { |r| require_relative r }
 Dir[File.expand_path('../source/*.rb', __FILE__)].each {|path| require path}
 
 module Source
@@ -37,6 +36,7 @@ module Source
     :client_types,
     :privates,
     :organisations,
+    :documents,
   ]
   
   class << self
