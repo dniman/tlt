@@ -9,7 +9,7 @@ namespace :documents do
           query = 
             Destination.mss_objcorr_types
             .project(Destination.mss_objcorr_types[:link])
-            .where(Destination.mss_objcorr_types[:code].eq('docs'))
+            .where(Destination.mss_objcorr_types[:code].eq('doc'))
         end
 
         begin
