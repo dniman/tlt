@@ -6,6 +6,7 @@ namespace :corrs do
 
         'corrs:destination:mss_objcorr:delete',
         'corrs:destination:s_corr:delete',
+        'corrs:source:ids:drop___link',
     ]
 
   end

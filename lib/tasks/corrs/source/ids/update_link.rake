@@ -10,7 +10,9 @@ namespace :corrs do
             .project(
               Destination.s_corr[:link], 
               Destination.s_corr[:row_id], 
+              Destination.mss_objcorr[:link].as("___link")
             )
+            .join(Destination.mss_objcorr).on(Destination.mss_objcorr[:link_s_corr].eq(Destination.s_corr[:link]))
             .where(Destination.s_corr[:object].eq(Destination::SCorr::DICTIONARY_CORR))
         end
 
@@ -23,6 +25,7 @@ namespace :corrs do
             sql = <<~SQL
               update ids set 
                 ids.link = values_table.link
+                ,ids.___link = values_table.___link
               from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
               where ids.row_id = values_table.row_id  
             SQL

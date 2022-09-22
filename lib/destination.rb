@@ -19,6 +19,8 @@ module Destination
     :mss_objcorr_types,
     :mss_objcorr_prop_ref,
     :mss_doc_types,
+    :mss_viw_ocval_mo_ref,
+    :mss_objcorr_props,
   ]
 
   class << self
