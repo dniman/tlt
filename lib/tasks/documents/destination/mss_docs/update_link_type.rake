@@ -3,7 +3,7 @@ namespace :documents do
     namespace :mss_docs do
 
       task :update_link_type do |t|
-        def link_param_query(code)
+        def link_base_query
           Destination.set_engine!
           
           query = 
@@ -20,7 +20,7 @@ namespace :documents do
               "(
                 select link 
                 from mss_objcorr_types 
-                where name = mss_objcorr_types.___type
+                where name = mss_docs.___type
                   and mss_objcorr_types.link_base = #{ link_base }
               )"
             )

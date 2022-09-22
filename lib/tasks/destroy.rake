@@ -35,6 +35,7 @@ namespace :destroy do
     'destination:initialize',
 
     'objects:destroy',
+    'documents:destroy',
     'dictionaries:destroy',
   ] do 
 
@@ -78,6 +79,21 @@ namespace :destroy do
       'destination:initialize',
 
       'corrs:destroy',
+    ] do 
+
+      Rake::Task['destroy:delete_completed_tasks'].invoke("corrs:%")
+      Rake::Task['destroy:final_message'].invoke("Удаление корреспондентов в базе назначения завершено.")
+    end
+  end
+
+  namespace :documents do
+    desc 'Запуск задачи удаления документов в базе назначения'
+    task :start => [
+      'set_logger', 
+      'source:initialize', 
+      'destination:initialize',
+
+      'documents:destroy',
     ] do 
 
       Rake::Task['destroy:delete_completed_tasks'].invoke("corrs:%")

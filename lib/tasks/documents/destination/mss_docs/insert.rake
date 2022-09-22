@@ -3,6 +3,15 @@ namespace :documents do
     namespace :mss_docs do
 
       task :insert do |t|
+        def link_type_query
+          Destination.set_engine!
+          
+          query = 
+            Destination.mss_objcorr_types
+            .project(Destination.mss_objcorr_types[:link])
+            .where(Destination.mss_objcorr_types[:code].eq('doc'))
+        end
+
         def link_scd_state_query
           Destination.set_engine!
           query = 
@@ -31,6 +40,8 @@ namespace :documents do
         begin
           sql = ""
           insert = []
+
+          link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
           link_scd_state = Destination.execute_query(link_scd_state_query.to_sql).entries.first["link"]
 
           sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
@@ -40,13 +51,14 @@ namespace :documents do
                 num: row["docno"].nil? ? nil : row["docno"].strip[0,50],
                 ser: row["docser"].nil? ? nil : row["docser"].strip[0,50],
                 name: row["explanation"].nil? ? nil : row["explanation"].strip[0,2000],
+                link_type: link_type,
                 ___type: row["name"],
                 link_mo: Destination.link_mo,
                 link_scd_state: link_scd_state, 
                 row_id: row["row_id"],
               }
             end
-            sql = Destination::SCorr.insert_query(rows: insert, condition: "mss_docs.row_id = values_table.row_id")
+            sql = Destination::MssDocs.insert_query(rows: insert, condition: "mss_docs.row_id = values_table.row_id")
             result = Destination.execute_query(sql)
             result.do
             insert.clear

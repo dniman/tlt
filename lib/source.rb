@@ -37,6 +37,7 @@ module Source
     :privates,
     :organisations,
     :documents,
+    :doctypes,
   ]
   
   class << self

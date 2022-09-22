@@ -1,18 +1,18 @@
 module Destination
-  class MssObjcorrTypes
+  class MssDocTypes
 
-    def self.mss_objcorr_types
-      Destination.mss_objcorr_types
+    def self.mss_doc_types
+      Destination.mss_doc_types
     end
     
     def self.insert_query(rows:, condition: nil)
       Destination.set_engine!
       manager = Arel::InsertManager.new
-      manager.into(Destination.mss_objcorr_types)
+      manager.into(Destination.mss_doc_types)
 
       columns = rows.map(&:keys).uniq.flatten
       columns.each do |column|
-        manager.columns << mss_objcorr_types[column]
+        manager.columns << mss_doc_types[column]
       end
 
       manager.values = manager.create_values_list(rows.map(&:values))
@@ -22,7 +22,7 @@ module Destination
       
       if condition
         query =
-          Destination.mss_objcorr_types
+          Destination.mss_doc_types
           .project(Arel.star)
           .where(Arel.sql(condition)).exists.not
         sql << " where #{query.to_sql}"

@@ -5,7 +5,7 @@ namespace :documents do
       task :add___type do |t|
         begin
           sql = Arel.sql(
-            "alter table #{ Destination.mss_objects.name }
+            "alter table #{ Destination.mss_docs.name }
               add ___type varchar(255)
             "
           )

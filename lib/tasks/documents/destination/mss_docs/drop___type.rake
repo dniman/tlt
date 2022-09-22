@@ -5,8 +5,8 @@ namespace :documents do
       task :drop___type do |t|
         begin
           sql = Arel.sql(
-            "if (col_length('#{ Destination.mss_objects.name }','___type') is not null)
-            alter table #{ Destination.mss_objects.name }
+            "if (col_length('#{ Destination.mss_docs.name }','___type') is not null)
+            alter table #{ Destination.mss_docs.name }
               drop column ___type
             "
           )

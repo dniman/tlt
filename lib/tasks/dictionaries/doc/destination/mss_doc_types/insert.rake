@@ -1,7 +1,7 @@
 namespace :dictionaries do
   namespace :doc do
     namespace :destination do
-      namespace :mss_objcorr_types do
+      namespace :mss_doc_types do
 
         task :insert do |t|
           
@@ -14,42 +14,43 @@ namespace :dictionaries do
           end
 
           def query
-            Source.set_engine!
+            link_base = Destination.execute_query(link_base_query.to_sql).entries.first["link"]
+
+            Destination.set_engine!
             query = 
-              Source.doctypes
+              Destination.mss_objcorr_types
               .project([
-                Source.doctypes[:name],
+                Destination.mss_objcorr_types[:link],
               ])
               .distinct
-              .where(Source.doctypes[:name].not_eq(nil))
+              .where(Destination.mss_objcorr_types[:link_base].eq(link_base)
+                .and(Destination.mss_objcorr_types[:code].matches("dtsaumiToll_%"))
+              )
           end
 
           begin
-            link_base = Destination.execute_query(link_base_query.to_sql).entries.first["link"]
-
             sql = ""
             insert = []
             index = 1
             
-            sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
+            sliced_rows = Destination.execute_query(query.to_sql).each_slice(1000).to_a
             sliced_rows.each do |rows|
               rows.each do |row|
                 insert << {
-                  code: Arel.sql("'dtsaumiToll_#{index}'"),
-                  name: row["name"],
-                  link_base: link_base.to_s,
-                  row_id: Arel.sql('newid()'),
+                  link: row["link"],
+                  link_right_state: 0,
+                  doc_object: Destination::MssDocTypes::MSS_DOCS_COMMON
                 }
                 index += 1
               end
             end
 
             condition =<<~SQL
-              mss_objcorr_types.name = values_table.name
-                and mss_objcorr_types.link_base = values_table.link_base
+              mss_doc_types.link = values_table.link
+                and mss_doc_types.doc_object = #{ Destination::MssDocTypes::MSS_DOCS_COMMON }
             SQL
 
-            sql = Destination::MssObjcorrTypes.insert_query(rows: insert, condition: condition)
+            sql = Destination::MssDocTypes.insert_query(rows: insert, condition: condition)
             result = Destination.execute_query(sql)
             result.do
             insert.clear

@@ -41,6 +41,20 @@ namespace :import do
     end
   end
   
+  namespace :documents do
+    desc 'Запуск задачи импорта документов в базу назначения'
+    task :start => [
+      'set_logger', 
+      'source:initialize', 
+      'destination:initialize',
+
+      'documents:import',
+    ] do 
+
+      Rake::Task['import:final_message'].invoke("Импорт документов в базу назначения завершен.")
+    end
+  end
+  
   namespace :corrs do
     desc 'Запуск задачи импорта корреспондентов в базу назначения'
     task :start => [

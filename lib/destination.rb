@@ -17,6 +17,8 @@ module Destination
     :mss_docs,
     :mss_oac_rowstates,
     :mss_objcorr_types,
+    :mss_objcorr_prop_ref,
+    :mss_doc_types,
   ]
 
   class << self
@@ -66,6 +68,11 @@ module Destination
       Destination::TCorrDict.const_set(
         :REFERENCE_CORR_TYPE,
         Destination::SObjects.obj_id('REFERENCE_CORR_TYPE')
+      )
+      
+      Destination::MssDocTypes.const_set(
+        :MSS_DOCS_COMMON,
+        Destination::SObjects.obj_id('MSS_DOCS_COMMON')
       )
 
       nil

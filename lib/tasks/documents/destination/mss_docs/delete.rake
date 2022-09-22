@@ -8,10 +8,14 @@ namespace :documents do
           query = 
             Source.ids
             .project(Source.ids[:link])
-            .where(Source.ids[:table_id].eq(Source::Documents.table_id))
+            .where(Source.ids[:table_id].eq(Source::Documents.table_id)
+              .and(Source.ids[:link].not_eq(nil))
+            )
         end
 
         begin
+          Destination.execute_query('disable trigger mss_docs_mrchng on mss_docs')
+
           sql = ""
           sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
           sliced_rows.each do |rows|
@@ -27,6 +31,8 @@ namespace :documents do
           Rake.info "Текст запроса \"#{ sql }\""
 
           exit
+        ensure
+          Destination.execute_query('enable trigger mss_docs_mrchng on mss_docs')
         end
       end
 
