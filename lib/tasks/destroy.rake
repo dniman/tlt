@@ -57,17 +57,34 @@ namespace :destroy do
       Rake::Task['destroy:final_message'].invoke("Удаление объектов в базе назначения завершено.")
     end
     
-    desc 'Запуск задачи удаления сооружений в базе назначения'
-    task :start => [
-      'set_logger', 
-      'source:initialize', 
-      'destination:initialize',
+    namespace :construction do
+      desc 'Запуск задачи удаления сооружений в базе назначения'
+      task :start => [
+        'set_logger', 
+        'source:initialize', 
+        'destination:initialize',
 
-      'objects:construction:destroy',
-    ] do 
+        'objects:construction:destroy',
+      ] do 
 
-      Rake::Task['destroy:delete_completed_tasks'].invoke("objects:%")
-      Rake::Task['destroy:final_message'].invoke("Удаление объектов в базе назначения завершено.")
+        Rake::Task['destroy:delete_completed_tasks'].invoke("objects:%")
+        Rake::Task['destroy:final_message'].invoke("Удаление объектов в базе назначения завершено.")
+      end
+    end
+    
+    namespace :houses_life do
+      desc 'Запуск задачи удаления жилых зданий в базе назначения'
+      task :start => [
+        'set_logger', 
+        'source:initialize', 
+        'destination:initialize',
+
+        'objects:houses_life:destroy',
+      ] do 
+
+        Rake::Task['destroy:delete_completed_tasks'].invoke("objects:%")
+        Rake::Task['destroy:final_message'].invoke("Удаление объектов в базе назначения завершено.")
+      end
     end
   end
   
