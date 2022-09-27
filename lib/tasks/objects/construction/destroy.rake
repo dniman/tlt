@@ -143,7 +143,7 @@ namespace :objects do
         'objects:construction:source:ids:drop___link_adr',
         'objects:construction:destination:mss_adr:delete',
         'objects:construction:source:ids:drop___add_hist',
-        'objects:construction:source:ids:drop___add_str',
+        'objects:construction:source:ids:drop___adr_str',
         
         'objects:construction:destination:mss_objects:drop___house_material',
         'objects:construction:destination:mss_objects:drop___link_house_material',
