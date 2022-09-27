@@ -3,5 +3,9 @@ import 'lib/tasks/source/tables_instantiate.rake'
 import 'lib/tasks/source/ids/create_table.rake'
 
 namespace :source do
-  task :initialize => ['source:establish_connection', 'source:tables_instantiate!', 'source:ids:create_table']
+  task :initialize => [
+    'source:establish_connection', 
+    'source:tables_instantiate!', 
+    'source:ids:create_table',
+  ]
 end

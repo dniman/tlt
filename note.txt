@@ -6,3 +6,49 @@ CREATE NONCLUSTERED INDEX [IX_MSS_LIST_DOCS_SCOPE_CORR] ON [dbo].[MSS_LISTS_DOCS
 # Перед загрузкой необходимо удалить данные 
 delete from sys_links
 delete from mss_docs
+
+delete t_charge_accrual
+delete isk_etap_charges
+delete charge
+
+delete t_extrem
+delete extrem_app
+delete extrem
+delete rem3_income
+delete rem3
+delete rem2
+delete t_rem1
+delete rem1_app
+delete bank_out
+delete rem1
+delete mss_movs_app
+delete mss_movs
+delete mss_gr_movemoves
+delete mss_moves_key
+delete paycard
+delete transfer
+delete pc_type_nastr
+delete cover_app
+delete cover
+delete
+from t_kbk
+where ref1 in(
+  select link
+  from s_kbk
+  where object = dbo.obj_id('DICTIONARY_KBK_INC')
+)
+  
+delete
+from s_kbk_name
+where link_up in(
+  select link
+  from s_kbk
+  where object = dbo.obj_id('DICTIONARY_KBK_INC')
+)  
+  
+delete t_corr_kbk
+
+delete 
+from s_kbk
+where object = dbo.obj_id('DICTIONARY_KBK_INC')
+

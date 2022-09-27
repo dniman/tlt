@@ -38,6 +38,8 @@ module Source
     :organisations,
     :documents,
     :doctypes,
+    :cls_kbk,
+    :additional_ids,
   ]
   
   class << self

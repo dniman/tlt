@@ -20,6 +20,7 @@ import 'lib/tasks/dictionaries/klass_avtodor.rake'
 import 'lib/tasks/dictionaries/kateg_avtodor.rake'
 import 'lib/tasks/dictionaries/group_im.rake'
 import 'lib/tasks/dictionaries/doc.rake'
+import 'lib/tasks/dictionaries/kbk.rake'
 
 namespace :dictionaries do
 
@@ -46,6 +47,7 @@ namespace :dictionaries do
     'dictionaries:kateg_avtodor:import',
     'dictionaries:group_im:import',
     'dictionaries:doc:import',
+    'dictionaries:kbk:import',
   ] 
 
   task :destroy => [
@@ -71,6 +73,7 @@ namespace :dictionaries do
     'dictionaries:kateg_avtodor:destroy',
     'dictionaries:group_im:destroy',
     'dictionaries:doc:destroy',
+    'dictionaries:kbk:destroy',
   ] 
 
 end 

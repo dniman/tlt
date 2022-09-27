@@ -21,6 +21,9 @@ module Destination
     :mss_doc_types,
     :mss_viw_ocval_mo_ref,
     :mss_objcorr_props,
+    :s_kbk,
+    :s_kbk_name,
+    :t_kbk,
   ]
 
   class << self
@@ -75,6 +78,51 @@ module Destination
       Destination::MssDocTypes.const_set(
         :MSS_DOCS_COMMON,
         Destination::SObjects.obj_id('MSS_DOCS_COMMON')
+      )
+      
+      Destination::SKbk.const_set(
+        :DICTIONARY_DEPARTMENT,
+        Destination::SObjects.obj_id('DICTIONARY_DEPARTMENT')
+      )
+      
+      Destination::SKbk.const_set(
+        :DICTIONARY_INCOME,
+        Destination::SObjects.obj_id('DICTIONARY_INCOME')
+      )
+      
+      Destination::SKbk.const_set(
+        :DICTIONARY_PROGRAM,
+        Destination::SObjects.obj_id('DICTIONARY_PROGRAM')
+      )
+      
+      Destination::SKbk.const_set(
+        :DICTIONARY_ITEM,
+        Destination::SObjects.obj_id('DICTIONARY_ITEM')
+      )
+      
+      Destination::SKbk.const_set(
+        :DICTIONARY_KBK_INC,
+        Destination::SObjects.obj_id('DICTIONARY_KBK_INC')
+      )
+      
+      Destination::TKbk.const_set(
+        :REF_INC_ADM,
+        Destination::SObjects.obj_id('REF_INC_ADM')
+      )
+      
+      Destination::TKbk.const_set(
+        :REF_INC,
+        Destination::SObjects.obj_id('REF_INC')
+      )
+      
+      Destination::TKbk.const_set(
+        :REF_INC_PROG,
+        Destination::SObjects.obj_id('REF_INC_PROG')
+      )
+      
+      Destination::TKbk.const_set(
+        :REF_INC_ITEM,
+        Destination::SObjects.obj_id('REF_INC_ITEM')
       )
 
       nil
