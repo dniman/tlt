@@ -21,6 +21,7 @@ import 'lib/tasks/dictionaries/kateg_avtodor.rake'
 import 'lib/tasks/dictionaries/group_im.rake'
 import 'lib/tasks/dictionaries/doc.rake'
 import 'lib/tasks/dictionaries/kbk.rake'
+import 'lib/tasks/dictionaries/house_wall_type.rake'
 
 namespace :dictionaries do
 
@@ -48,6 +49,7 @@ namespace :dictionaries do
     'dictionaries:group_im:import',
     'dictionaries:doc:import',
     'dictionaries:kbk:import',
+    'dictionaries:house_wall_type:import',
   ] 
 
   task :destroy => [
@@ -74,6 +76,7 @@ namespace :dictionaries do
     'dictionaries:group_im:destroy',
     'dictionaries:doc:destroy',
     'dictionaries:kbk:destroy',
+    'dictionaries:house_wall_type:destroy',
   ] 
 
 end 

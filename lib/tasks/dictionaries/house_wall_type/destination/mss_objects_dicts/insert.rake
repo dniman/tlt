@@ -1,5 +1,5 @@
 namespace :dictionaries do
-  namespace :house_material do
+  namespace :house_wall_type do
     namespace :destination do
       namespace :mss_objects_dicts do
 
@@ -15,20 +15,16 @@ namespace :dictionaries do
           def query
             Source.set_engine!
             
-            Source.enginf
+            Source.buildmaterials
             .project([
-              Arel.sql(
-                "ltrim(rtrim(
-                    replace(replace([enginf].[material], char(9), ''), char(10), '')
-                  ))"
-              ).as("name")
+              Source.buildmaterials[:name],
             ])
             .distinct
-            .where(Source.enginf[:material].not_eq(nil))
+            .where(Source.buildmaterials[:name].not_eq(nil))
           end
 
           begin
-            link_dict = Destination.execute_query(link_param_query('HOUSE_MATERIAL').to_sql).entries.first["link"]
+            link_dict = Destination.execute_query(link_param_query('HOUSE_WALL_TYPE').to_sql).entries.first["link"]
 
             sql = ""
             insert = []
