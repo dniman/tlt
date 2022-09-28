@@ -26,8 +26,8 @@ namespace :objects do
         # Дата ввода в эксплуатацию 
         'objects:houses_life:destination:mss_objects_app:house_date_begin_use:delete',
         
-        # Материал
-        'objects:houses_life:destination:mss_objects_app:house_material:delete',
+        # Материал стен
+        'objects:houses_life:destination:mss_objects_app:house_wall_type:delete',
 
         # Литера БТИ
         'objects:houses_life:destination:mss_objects_app:bti_liter:delete',
@@ -115,8 +115,8 @@ namespace :objects do
         'objects:houses_life:source:ids:drop___add_hist',
         'objects:houses_life:source:ids:drop___adr_str',
         
-        'objects:houses_life:destination:mss_objects:drop___house_material',
-        'objects:houses_life:destination:mss_objects:drop___link_house_material',
+        'objects:houses_life:destination:mss_objects:drop___house_wall_type',
+        'objects:houses_life:destination:mss_objects:drop___link_house_wall_type',
         'objects:houses_life:destination:mss_objects:drop___is_immovable',
         'objects:houses_life:destination:mss_objects:drop___link_is_immovable',
         'objects:houses_life:destination:mss_objects:drop___wow_obj',

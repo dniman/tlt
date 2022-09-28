@@ -3,12 +3,12 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects do
 
-        task :drop___house_material do |t|
+        task :drop___house_wall_type do |t|
           begin
             sql = Arel.sql(
-              "if (col_length('#{ Destination.mss_objects.name }','___house_material') is not null)
+              "if (col_length('#{ Destination.mss_objects.name }','___house_wall_type') is not null)
               alter table #{ Destination.mss_objects.name }
-                drop column ___house_material
+                drop column ___house_wall_type
               "
             )
             Destination.execute_query(sql).do

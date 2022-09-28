@@ -4,7 +4,7 @@ namespace :objects do
 
       task :tasks do 
         Rake.invoke_task 'objects:houses_life:source:ids:insert'
-        Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___house_material' 
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___house_wall_type' 
         Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___is_immovable'
         Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___wow_obj' 
         Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___soc_zn_obj' 
@@ -58,12 +58,12 @@ namespace :objects do
         # Дата ввода в эксплуатацию 
         Rake.invoke_task 'objects:houses_life:destination:mss_objects_app:house_date_begin_use:insert'
 
-        # Материал
-        Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___link_house_material' 
-        Rake.invoke_task 'objects:houses_life:destination:mss_objects:update___link_house_material' 
-        Rake.invoke_task 'objects:houses_life:destination:mss_objects_app:house_material:insert'
-        Rake.invoke_task 'objects:houses_life:destination:mss_objects:drop___house_material' 
-        Rake.invoke_task 'objects:houses_life:destination:mss_objects:drop___link_house_material' 
+        # Материал стен
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___link_house_wall_type' 
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects:update___link_house_wall_type' 
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects_app:house_wall_type:insert'
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects:drop___house_wall_type' 
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects:drop___link_house_wall_type' 
         
         # Литера БТИ 
         Rake.invoke_task 'objects:houses_life:destination:mss_objects_app:bti_liter:insert'

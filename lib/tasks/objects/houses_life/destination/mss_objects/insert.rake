@@ -29,7 +29,7 @@ namespace :objects do
                   "ltrim(rtrim(
                       replace(replace([buildmaterials].[name], char(9), ''), char(10), '')
                     ))"
-                ).as("___house_material"),
+                ).as("___house_wall_type"),
                 Source.buildings[:isrealestate],
                 Source.objects[:is_sign],
                 Source.objects[:is_social],
@@ -81,7 +81,7 @@ namespace :objects do
                         nil
                       end
                     end,
-                  ___house_material: row["___house_material"]&.strip,
+                  ___house_wall_type: row["___house_wall_type"]&.strip,
                   ___is_immovable: 
                     begin
                       case row["isrealestate"]&.strip 

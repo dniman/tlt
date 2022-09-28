@@ -2,7 +2,7 @@ namespace :objects do
   namespace :houses_life do
     namespace :destination do
       namespace :mss_objects_app do
-        namespace :house_material do
+        namespace :house_wall_type do
           
           task :delete do |t|
             begin
@@ -17,7 +17,7 @@ namespace :objects do
                 .join(Destination.mss_objects_params, Arel::Nodes::OuterJoin)
                   .on(Destination.mss_objects_params[:link].eq(Destination.mss_objects_app[:link_param]))
                 .where(Destination.mss_objects_types[:code].eq('HOUSES_LIFE')
-                  .and(Destination.mss_objects_params[:code].eq('HOUSE_MATERIAL')))
+                  .and(Destination.mss_objects_params[:code].eq('HOUSE_WALL_TYPE')))
 
               manager = Arel::DeleteManager.new(Database.destination_engine)
               manager.from (Destination.mss_objects_app)
