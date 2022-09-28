@@ -82,6 +82,9 @@ namespace :objects do
         
         # Памятник 
         'objects:houses_life:destination:mss_objects_app:is_monument:delete',
+        
+        # Категория историко-культурного значения
+        'objects:houses_life:destination:mss_objects_app:culturial_sense:delete',
 
         'objects:houses_life:destination:mss_objects:delete',
         'objects:houses_life:destination:mss_objects:drop___cad_quorter',
@@ -106,6 +109,8 @@ namespace :objects do
         'objects:houses_life:destination:mss_objects:drop___link_obj_zkx',
         'objects:houses_life:destination:mss_objects:drop___vid_obj_zkx',
         'objects:houses_life:destination:mss_objects:drop___link_vid_obj_zkx',
+        'objects:houses_life:destination:mss_objects:drop___culturial_sense',
+        'objects:houses_life:destination:mss_objects:drop___link_culturial_sense',
       ]
     end
   end

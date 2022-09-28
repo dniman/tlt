@@ -39,6 +39,7 @@ namespace :objects do
                       replace(replace([spr_zhkh_vid].[name], char(9), ''), char(10), '')
                     ))"
                 ).as("___vid_obj_zkx"),
+                Source.monumenttypes[:name].as("___culturial_sense"),
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
@@ -47,7 +48,9 @@ namespace :objects do
               .join(Source.buildmaterials, Arel::Nodes::OuterJoin).on(Source.buildmaterials[:id].eq(Source.buildings[:buildmaterial_id]))
               .join(Source.spr_zhkh_vid, Arel::Nodes::OuterJoin)
                 .on(Source.spr_zhkh_vid[:id].eq(Source.objects[:vid_zhkh_id]))
-                .where(Source.ids[:link_type].eq(link_type))
+              .join(Source.monumenttypes, Arel::Nodes::OuterJoin)
+                .on(Source.monumenttypes[:id].eq(Source.objects[:mntype_id]))
+              .where(Source.ids[:link_type].eq(link_type))
           end
 
           begin
@@ -111,6 +114,7 @@ namespace :objects do
                       end
                     end,
                   ___vid_obj_zkx: row["___vid_obj_zkx"]&.strip,
+                  ___culturial_sense: row["___culturial_sense"]&.strip,
                 }
               end
 

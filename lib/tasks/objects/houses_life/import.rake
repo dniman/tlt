@@ -10,6 +10,7 @@ namespace :objects do
         Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___soc_zn_obj' 
         Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___obj_zkx' 
         Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___vid_obj_zkx' 
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___culturial_sense' 
 
         Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___kadastrno'
         Rake.invoke_task 'objects:houses_life:source:ids:add___link_adr'
@@ -136,6 +137,13 @@ namespace :objects do
         
         # Памятник
         Rake.invoke_task 'objects:houses_life:destination:mss_objects_app:is_monument:insert'
+        
+        # Категория историко-культурного значения 
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___link_culturial_sense' 
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects:update___link_culturial_sense' 
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects_app:culturial_sense:insert'
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects:drop___culturial_sense' 
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects:drop___link_culturial_sense' 
       end 
 
     end
