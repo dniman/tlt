@@ -94,6 +94,9 @@ namespace :objects do
 
         # Старый реестровый номер
         'objects:houses_life:destination:mss_objects_app:rn_old:delete',
+        
+        # Примечание 
+        'objects:houses_life:destination:mss_objects_app:note_obj:delete',
 
         'objects:houses_life:destination:mss_objects:delete',
         'objects:houses_life:destination:mss_objects:drop___cad_quorter',
