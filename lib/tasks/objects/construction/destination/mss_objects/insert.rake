@@ -25,11 +25,7 @@ namespace :objects do
                 Source.ids[:row_id],
                 Source.ids[:link_type],
                 Source.buildings[:levelname].as("name"),
-                Arel.sql(
-                  "ltrim(rtrim(
-                      replace(replace([buildmaterials].[name], char(9), ''), char(10), '')
-                    ))"
-                ).as("___house_material"),
+                Arel.sql("null").as("___house_material"),
                 Source.buildings[:isrealestate],
                 Source.objects[:is_sign],
                 Source.objects[:is_social],
