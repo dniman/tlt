@@ -92,6 +92,9 @@ namespace :objects do
         # Дополнительная информация о памятнике
         'objects:houses_life:destination:mss_objects_app:other_monument:delete',
 
+        # Старый реестровый номер
+        'objects:houses_life:destination:mss_objects_app:rn_old:delete',
+
         'objects:houses_life:destination:mss_objects:delete',
         'objects:houses_life:destination:mss_objects:drop___cad_quorter',
         'objects:houses_life:destination:mss_objects:drop___kadastrno',
