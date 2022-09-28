@@ -11,6 +11,7 @@ namespace :objects do
         Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___obj_zkx' 
         Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___vid_obj_zkx' 
         Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___culturial_sense' 
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___unmovable_used' 
 
         Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___kadastrno'
         Rake.invoke_task 'objects:houses_life:source:ids:add___link_adr'
@@ -156,6 +157,13 @@ namespace :objects do
         
         # Примечание 
         Rake.invoke_task 'objects:houses_life:destination:mss_objects_app:note_obj:insert'
+        
+        # Назначение
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects:add___link_unmovable_used' 
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects:update___link_unmovable_used' 
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects_app:unmovable_used:insert'
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects:drop___unmovable_used' 
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects:drop___link_unmovable_used' 
       end 
 
     end

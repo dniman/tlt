@@ -97,6 +97,9 @@ namespace :objects do
         
         # Примечание 
         'objects:houses_life:destination:mss_objects_app:note_obj:delete',
+        
+        # Назначение 
+        'objects:houses_life:destination:mss_objects_app:unmovable_used:delete',
 
         'objects:houses_life:destination:mss_objects:delete',
         'objects:houses_life:destination:mss_objects:drop___cad_quorter',
@@ -123,6 +126,8 @@ namespace :objects do
         'objects:houses_life:destination:mss_objects:drop___link_vid_obj_zkx',
         'objects:houses_life:destination:mss_objects:drop___culturial_sense',
         'objects:houses_life:destination:mss_objects:drop___link_culturial_sense',
+        'objects:houses_life:destination:mss_objects:drop___unmovable_used',
+        'objects:houses_life:destination:mss_objects:drop___link_unmovable_used',
       ]
     end
   end

@@ -117,7 +117,7 @@ namespace :objects do
         # Площадь застройки
         'objects:construction:destination:mss_objects_app:built_up_area:delete',
         
-        # Материал
+        # Назначение
         'objects:construction:destination:mss_objects_app:unmovable_used:delete',
         
         # Идентификационный номер автодороги
