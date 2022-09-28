@@ -86,6 +86,9 @@ namespace :objects do
         # Категория историко-культурного значения
         'objects:houses_life:destination:mss_objects_app:culturial_sense:delete',
 
+        # Наименование памятника
+        'objects:houses_life:destination:mss_objects_app:name_monument:delete',
+ 
         'objects:houses_life:destination:mss_objects:delete',
         'objects:houses_life:destination:mss_objects:drop___cad_quorter',
         'objects:houses_life:destination:mss_objects:drop___kadastrno',

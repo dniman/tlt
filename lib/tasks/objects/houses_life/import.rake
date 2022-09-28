@@ -144,6 +144,9 @@ namespace :objects do
         Rake.invoke_task 'objects:houses_life:destination:mss_objects_app:culturial_sense:insert'
         Rake.invoke_task 'objects:houses_life:destination:mss_objects:drop___culturial_sense' 
         Rake.invoke_task 'objects:houses_life:destination:mss_objects:drop___link_culturial_sense' 
+        
+        # Наименование памятника
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects_app:name_monument:insert'
       end 
 
     end
