@@ -101,6 +101,9 @@ namespace :objects do
         # Назначение 
         'objects:houses_life:destination:mss_objects_app:unmovable_used:delete',
 
+        # Жилая площадь
+        'objects:houses_life:destination:mss_objects_app:house_pl_gil:delete',
+
         'objects:houses_life:destination:mss_objects:delete',
         'objects:houses_life:destination:mss_objects:drop___cad_quorter',
         'objects:houses_life:destination:mss_objects:drop___kadastrno',

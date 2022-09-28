@@ -164,6 +164,9 @@ namespace :objects do
         Rake.invoke_task 'objects:houses_life:destination:mss_objects_app:unmovable_used:insert'
         Rake.invoke_task 'objects:houses_life:destination:mss_objects:drop___unmovable_used' 
         Rake.invoke_task 'objects:houses_life:destination:mss_objects:drop___link_unmovable_used' 
+        
+        # Жилая площадь
+        Rake.invoke_task 'objects:houses_life:destination:mss_objects_app:house_pl_gil:insert'
       end 
 
     end
