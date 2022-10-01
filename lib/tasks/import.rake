@@ -124,6 +124,19 @@ namespace :import do
       end
     end
 
+    namespace :life_room do
+      desc 'Запуск задачи импорта жилых помещений в базу назначения'
+      task :start => [
+        'set_logger', 
+        'source:initialize', 
+        'destination:initialize',
+
+        'objects:life_room:import',
+      ] do 
+
+        Rake::Task['import:final_message'].invoke("Импорт объектов в базу назначения завершен.")
+      end
+    end
   end
 end
 

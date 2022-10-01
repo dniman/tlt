@@ -102,6 +102,20 @@ namespace :destroy do
       end
     end
 
+    namespace :life_room do
+      desc 'Запуск задачи удаления жилых помещений в базе назначения'
+      task :start => [
+        'set_logger', 
+        'source:initialize', 
+        'destination:initialize',
+
+        'objects:life_room:destroy',
+      ] do 
+
+        Rake::Task['destroy:delete_completed_tasks'].invoke("objects:%")
+        Rake::Task['destroy:final_message'].invoke("Удаление объектов в базе назначения завершено.")
+      end
+    end
   end
   
   namespace :corrs do

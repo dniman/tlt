@@ -13,7 +13,7 @@ namespace :objects do
                 Destination.mss_objects[:row_id], 
               )
               .join(Destination.mss_objects_types).on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
-              .where(Destination.mss_objects_types[:code].eq('BUILD'))
+              .where(Destination.mss_objects_types[:code].eq('LIFE_ROOM'))
             query
           end
 

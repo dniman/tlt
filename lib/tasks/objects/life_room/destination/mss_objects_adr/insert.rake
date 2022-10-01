@@ -11,10 +11,10 @@ namespace :objects do
               .project(Destination.mss_objects_types[:link])
               .where(Destination.mss_objects_types[:code].eq("LIFE_ROOM"))
           end
-
+          
           def query
             link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
-            
+
             Source.set_engine!
             attributes = [
               "___link_adr = ids.___link_adr",
@@ -107,7 +107,7 @@ namespace :objects do
             exit
           end
         end
-        
+
       end
     end
   end
