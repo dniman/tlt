@@ -182,6 +182,9 @@ namespace :objects do
         
         # Год начала строительства 
         Rake.invoke_task 'objects:unfinished:destination:mss_objects_app:kossm_startyear:insert'
+        
+        # Год окончания строительства 
+        Rake.invoke_task 'objects:unfinished:destination:mss_objects_app:kossm_endyear:insert'
       end 
 
     end
