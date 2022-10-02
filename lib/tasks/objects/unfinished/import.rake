@@ -188,6 +188,9 @@ namespace :objects do
         
         # Стоимость по проекту
         Rake.invoke_task 'objects:unfinished:destination:mss_objects_app:kossm_startprice:insert'
+        
+        # Сумма инвестиций
+        Rake.invoke_task 'objects:unfinished:destination:mss_objects_app:kossm_investsum:insert'
       end 
 
     end
