@@ -121,6 +121,9 @@ namespace :objects do
         
         # Год окончания строительства
         'objects:unfinished:destination:mss_objects_app:kossm_endyear:delete',
+        
+        # Стоимость по проекту
+        'objects:unfinished:destination:mss_objects_app:kossm_startprice:delete',
 
         'objects:unfinished:destination:mss_objects:delete',
         'objects:unfinished:destination:mss_objects:drop___cad_quorter',

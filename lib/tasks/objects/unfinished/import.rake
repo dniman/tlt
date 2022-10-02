@@ -185,6 +185,9 @@ namespace :objects do
         
         # Год окончания строительства 
         Rake.invoke_task 'objects:unfinished:destination:mss_objects_app:kossm_endyear:insert'
+        
+        # Стоимость по проекту
+        Rake.invoke_task 'objects:unfinished:destination:mss_objects_app:kossm_startprice:insert'
       end 
 
     end
