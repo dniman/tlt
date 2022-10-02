@@ -146,6 +146,22 @@ namespace :destroy do
         Rake::Task['destroy:final_message'].invoke("Удаление объектов в базе назначения завершено.")
       end
     end
+    
+    namespace :movable_other do
+      desc 'Запуск задачи удаления иного движимого имущества в базе назначения'
+      task :start => [
+        'set_logger', 
+        'source:initialize', 
+        'destination:initialize',
+
+        'objects:movable_other:destroy',
+      ] do 
+
+        Rake::Task['destroy:delete_completed_tasks'].invoke("objects:%")
+        Rake::Task['destroy:final_message'].invoke("Удаление объектов в базе назначения завершено.")
+      end
+    end
+
   end
   
   namespace :corrs do

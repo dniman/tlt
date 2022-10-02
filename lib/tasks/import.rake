@@ -166,6 +166,20 @@ namespace :import do
       end
     end
 
+    namespace :unfinished do
+      desc 'Запуск задачи импорта иного движимого имущества в базу назначения'
+      task :start => [
+        'set_logger', 
+        'source:initialize', 
+        'destination:initialize',
+
+        'objects:movable_other:import',
+      ] do 
+
+        Rake::Task['import:final_message'].invoke("Импорт объектов в базу назначения завершен.")
+      end
+    end
+    
   end
 end
 

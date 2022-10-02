@@ -5,6 +5,7 @@ import 'lib/tasks/objects/construction.rake'
 import 'lib/tasks/objects/unfinished.rake'
 import 'lib/tasks/objects/life_room.rake'
 import 'lib/tasks/objects/unlife_room.rake'
+import 'lib/tasks/objects/movable_other.rake'
 
 namespace :objects do
 
@@ -16,6 +17,7 @@ namespace :objects do
     'objects:unfinished:import',
     'objects:life_room:import',
     'objects:unlife_room:import'
+    'objects:movable_other:import'
   ] 
   
   task :destroy => [
@@ -26,6 +28,7 @@ namespace :objects do
     'objects:unfinished:destroy',
     'objects:life_room:destroy',
     'objects:unlife_room:destroy'
+    'objects:movable_other:destroy'
   ] 
 
 end  
