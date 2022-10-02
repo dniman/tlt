@@ -4,7 +4,7 @@ namespace :objects do
       namespace :mss_objects_dicts do
         namespace :object do
           namespace :dictionary_land_kvartals do
-            
+
             task :delete do |t|
               begin
                 Destination.set_engine!
@@ -29,8 +29,8 @@ namespace :objects do
                 manager = Arel::DeleteManager.new(Database.destination_engine)
                 manager.from (Destination.mss_objects_dicts)
                 manager.where(Arel::Nodes::In.new(Destination.mss_objects_dicts[:link],subquery))
+                    
                 Destination.execute_query(manager.to_sql).do
-
                 Rake.info "Задача '#{ t }' успешно выполнена."
               rescue StandardError => e
                 Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."

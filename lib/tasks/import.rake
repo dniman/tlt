@@ -137,6 +137,21 @@ namespace :import do
         Rake::Task['import:final_message'].invoke("Импорт объектов в базу назначения завершен.")
       end
     end
+    
+    namespace :unlife_room do
+      desc 'Запуск задачи импорта нежилых помещений в базу назначения'
+      task :start => [
+        'set_logger', 
+        'source:initialize', 
+        'destination:initialize',
+
+        'objects:unlife_room:import',
+      ] do 
+
+        Rake::Task['import:final_message'].invoke("Импорт объектов в базу назначения завершен.")
+      end
+    end
+
   end
 end
 
