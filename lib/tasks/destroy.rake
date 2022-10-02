@@ -132,6 +132,20 @@ namespace :destroy do
       end
     end
 
+    namespace :unfinished do
+      desc 'Запуск задачи удаления объектов незавершенного строительства в базе назначения'
+      task :start => [
+        'set_logger', 
+        'source:initialize', 
+        'destination:initialize',
+
+        'objects:unfinished:destroy',
+      ] do 
+
+        Rake::Task['destroy:delete_completed_tasks'].invoke("objects:%")
+        Rake::Task['destroy:final_message'].invoke("Удаление объектов в базе назначения завершено.")
+      end
+    end
   end
   
   namespace :corrs do

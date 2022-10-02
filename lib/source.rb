@@ -40,6 +40,7 @@ module Source
     :doctypes,
     :cls_kbk,
     :additional_ids,
+    :unconstr,
   ]
   
   class << self

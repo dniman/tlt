@@ -2,7 +2,7 @@ namespace :objects do
   namespace :unfinished do
     namespace:destination do
       namespace :mss_objects do
-        
+
         task :add___cad_quorter do |t|
           begin
             sql = Arel.sql(

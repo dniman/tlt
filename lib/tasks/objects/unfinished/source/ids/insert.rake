@@ -14,7 +14,8 @@ namespace :objects do
 
           def query
             Source.set_engine!
-            query = 
+
+            select_one = 
               Source.objects
               .project([
                 Arel.sql("table_id = #{Source::Objects.table_id}"),
@@ -26,7 +27,24 @@ namespace :objects do
               .join(Source.buildtypes, Arel::Nodes::OuterJoin).on(Source.buildtypes[:id].eq(Source.buildings[:buildtypes_id]))
               .where(Source.objtypes[:name].eq('Здания и помещения')
               .and(Source.buildtypes[:name].eq('Незавершенный строительством')))
-          end
+
+            select_two =
+              Source.objects
+              .project([
+                Arel.sql("table_id = #{Source::Objects.table_id}"),
+                Source.objects[:id],
+                Arel.sql("row_id = newid()")
+              ])
+              .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
+              .where(Source.objtypes[:name].eq('Незавершенное строительство'))
+
+            union = select_one.union :all, select_two
+            union_table = Arel::Table.new :union_table
+
+            manager = Arel::SelectManager.new
+            manager.project(Arel.star)
+            manager.from(union_table.create_table_alias(union,:union_table))
+         end
 
           begin
             sql = ""
