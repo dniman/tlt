@@ -25,39 +25,20 @@ namespace :objects do
               link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
 
               Source.set_engine!
-              select_one = 
-                Source.objects
-                .project([
-                  Source.buildings[:enter_date],
-                  Source.ids[:link],
-                  Source.ids[:link_type],
-                ])
-                .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-                .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
-                .join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.objects[:id]))
-                .join(Source.buildtypes, Arel::Nodes::OuterJoin).on(Source.buildtypes[:id].eq(Source.buildings[:buildtypes_id]))
-                .where(Source.ids[:link_type].eq(link_type))
-              
-              select_two = 
-                Source.objects
-                .project([
-                  Arel.sql('null as enter_date'),
-                  Source.ids[:link],
-                  Source.ids[:link_type],
-                ])
-                .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-                .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
-                .join(Source.enginf).on(Source.enginf[:objects_id].eq(Source.objects[:id]))
-                .join(Source.enginftypes, Arel::Nodes::OuterJoin).on(Source.enginftypes[:id].eq(Source.enginf[:enginftypes_id]))
-                .where(Source.ids[:link_type].eq(link_type))
-                
-              union = select_one.union :all, select_two
-              union_table = Arel::Table.new :union_table
 
-              manager = Arel::SelectManager.new
-              manager.project(Arel.star)
-              manager.from(union_table.create_table_alias(union,:union_table))
-              manager.where(union_table[:enter_date].not_eq(nil))
+              Source.objects
+              .project([
+                Source.buildings[:enter_date],
+                Source.ids[:link],
+                Source.ids[:link_type],
+              ])
+              .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
+              .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+              .join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.objects[:id]))
+              .join(Source.buildtypes, Arel::Nodes::OuterJoin).on(Source.buildtypes[:id].eq(Source.buildings[:buildtypes_id]))
+              .where(Source.ids[:link_type].eq(link_type)
+                .and(Source.buildings[:enter_date].not_eq(nil))
+              )
             end
 
             begin
