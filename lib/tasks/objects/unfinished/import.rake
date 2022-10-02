@@ -179,6 +179,9 @@ namespace :objects do
         
         # Строительный номер
         Rake.invoke_task 'objects:unfinished:destination:mss_objects_app:kossm_buildno:insert'
+        
+        # Год начала строительства 
+        Rake.invoke_task 'objects:unfinished:destination:mss_objects_app:kossm_startyear:insert'
       end 
 
     end
