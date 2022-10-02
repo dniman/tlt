@@ -41,6 +41,7 @@ module Source
     :cls_kbk,
     :additional_ids,
     :unconstr,
+    :property,
   ]
   
   class << self
