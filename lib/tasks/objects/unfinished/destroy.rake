@@ -112,6 +112,9 @@ namespace :objects do
         
         # Общая площадь помещений
         'objects:unfinished:destination:mss_objects_app:all_pl_st:delete',
+        
+        # Строительный номер
+        'objects:unfinished:destination:mss_objects_app:kossm_buildno:delete',
 
         'objects:unfinished:destination:mss_objects:delete',
         'objects:unfinished:destination:mss_objects:drop___cad_quorter',

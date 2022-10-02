@@ -176,6 +176,9 @@ namespace :objects do
         
         # Общая площадь помещений 
         Rake.invoke_task 'objects:unfinished:destination:mss_objects_app:all_pl_st:insert'
+        
+        # Строительный номер
+        Rake.invoke_task 'objects:unfinished:destination:mss_objects_app:kossm_buildno:insert'
       end 
 
     end
