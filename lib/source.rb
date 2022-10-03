@@ -43,6 +43,7 @@ module Source
     :unconstr,
     :property,
     :propnames,
+    :propgroups,
   ]
   
   class << self
