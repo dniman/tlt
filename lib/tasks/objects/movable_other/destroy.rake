@@ -17,10 +17,16 @@ namespace :objects do
         # Примечание 
         'objects:movable_other:destination:mss_objects_app:note_obj:delete',
         
+        # Значение из справочника наименований
+        'objects:movable_other:destination:mss_objects_app:dict_name:delete',
+
         # Удаление основного объекта
         'objects:movable_other:destination:mss_objects:delete',
 
-        'objects:life_room:source:ids:drop___last_loc_addr',
+         # Удаление дополнительных колонок
+        'objects:movable_other:source:ids:drop___last_loc_addr',
+        'objects:movable_other:destination:mss_objects:drop___dict_name',
+        'objects:movable_other:destination:mss_objects:drop___link_dict_name',
       ]
     end
   end
