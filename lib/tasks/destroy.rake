@@ -176,6 +176,21 @@ namespace :destroy do
         Rake::Task['destroy:final_message'].invoke("Удаление объектов в базе назначения завершено.")
       end
     end
+    
+    namespace :exright_intellprop do
+      desc 'Запуск задачи удаления объектов интеллектуальной собственности в базе назначения'
+      task :start => [
+        'set_logger', 
+        'source:initialize', 
+        'destination:initialize',
+
+        'objects:exright_intellprop:destroy',
+      ] do 
+
+        Rake::Task['destroy:delete_completed_tasks'].invoke("objects:%")
+        Rake::Task['destroy:final_message'].invoke("Удаление объектов в базе назначения завершено.")
+      end
+    end
 
   end
   
@@ -205,7 +220,7 @@ namespace :destroy do
     ] do 
 
       Rake::Task['destroy:delete_completed_tasks'].invoke("corrs:%")
-      Rake::Task['destroy:final_message'].invoke("Удаление корреспондентов в базе назначения завершено.")
+      Rake::Task['destroy:final_message'].invoke("Удаление документов в базе назначения завершено.")
     end
   end
   
