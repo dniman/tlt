@@ -180,6 +180,20 @@ namespace :import do
       end
     end
     
+    namespace :transport do
+      desc 'Запуск задачи импорта транспортных средств в базу назначения'
+      task :start => [
+        'set_logger', 
+        'source:initialize', 
+        'destination:initialize',
+
+        'objects:transport:import',
+      ] do 
+
+        Rake::Task['import:final_message'].invoke("Импорт объектов в базу назначения завершен.")
+      end
+    end
+    
   end
 end
 

@@ -45,6 +45,7 @@ module Source
     :propnames,
     :propgroups,
     :propsections,
+    :transport,
   ]
   
   class << self
