@@ -22,6 +22,9 @@ namespace :objects do
         
         # Группы
         'objects:movable_other:destination:mss_objects_app:group:delete',
+        
+        # Разделы
+        'objects:movable_other:destination:mss_objects_app:section:delete',
 
         # Удаление основного объекта
         'objects:movable_other:destination:mss_objects:delete',
@@ -32,6 +35,8 @@ namespace :objects do
         'objects:movable_other:destination:mss_objects:drop___link_dict_name',
         'objects:movable_other:destination:mss_objects:drop___group',
         'objects:movable_other:destination:mss_objects:drop___link_group',
+        'objects:movable_other:destination:mss_objects:drop___section',
+        'objects:movable_other:destination:mss_objects:drop___link_section',
       ]
     end
   end

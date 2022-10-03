@@ -6,6 +6,7 @@ namespace :objects do
         Rake.invoke_task 'objects:movable_other:source:ids:insert'
         Rake.invoke_task 'objects:movable_other:destination:mss_objects:add___dict_name' 
         Rake.invoke_task 'objects:movable_other:destination:mss_objects:add___group' 
+        Rake.invoke_task 'objects:movable_other:destination:mss_objects:add___section' 
 
         Rake.invoke_task 'objects:movable_other:destination:mss_objects:insert'
         Rake.invoke_task 'objects:movable_other:source:ids:update_link'
@@ -41,6 +42,13 @@ namespace :objects do
         Rake.invoke_task 'objects:movable_other:destination:mss_objects_app:group:insert'
         Rake.invoke_task 'objects:movable_other:destination:mss_objects:drop___group' 
         Rake.invoke_task 'objects:movable_other:destination:mss_objects:drop___link_group' 
+        
+        # Разделы
+        Rake.invoke_task 'objects:movable_other:destination:mss_objects:add___link_section' 
+        Rake.invoke_task 'objects:movable_other:destination:mss_objects:update___link_section' 
+        Rake.invoke_task 'objects:movable_other:destination:mss_objects_app:section:insert'
+        Rake.invoke_task 'objects:movable_other:destination:mss_objects:drop___section' 
+        Rake.invoke_task 'objects:movable_other:destination:mss_objects:drop___link_section' 
       end 
 
     end

@@ -26,12 +26,14 @@ namespace :objects do
               Source.property[:model].as("name"),
               Source.propnames[:name].as("___dict_name"),
               Source.propgroups[:name].as("___group"),
+              Source.propsections[:name].as("___section"),
             ])
             .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
             .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
             .join(Source.property).on(Source.property[:objects_id].eq(Source.objects[:id]))
             .join(Source.propnames, Arel::Nodes::OuterJoin).on(Source.propnames[:id].eq(Source.property[:propnames_id]))
             .join(Source.propgroups, Arel::Nodes::OuterJoin).on(Source.propgroups[:id].eq(Source.property[:propgroups_id]))
+            .join(Source.propsections, Arel::Nodes::OuterJoin).on(Source.propsections[:id].eq(Source.property[:propsections_id]))
             .where(Source.ids[:link_type].eq(link_type))
           end
 
@@ -52,6 +54,7 @@ namespace :objects do
                   row_id: row["row_id"],
                   ___dict_name: row["___dict_name"]&.strip,
                   ___group: row["___group"]&.strip,
+                  ___section: row["___section"]&.strip,
                 }
               end
 
