@@ -19,6 +19,7 @@ namespace :dictionaries do
             .project([
               Source.propsections[:name],
             ])
+            .distinct
             .where(Source.propsections[:name].not_eq(nil))
           end
 

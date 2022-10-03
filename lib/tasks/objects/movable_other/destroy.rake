@@ -19,6 +19,9 @@ namespace :objects do
         
         # Значение из справочника наименований
         'objects:movable_other:destination:mss_objects_app:dict_name:delete',
+        
+        # Группы
+        'objects:movable_other:destination:mss_objects_app:group:delete',
 
         # Удаление основного объекта
         'objects:movable_other:destination:mss_objects:delete',
@@ -27,6 +30,8 @@ namespace :objects do
         'objects:movable_other:source:ids:drop___last_loc_addr',
         'objects:movable_other:destination:mss_objects:drop___dict_name',
         'objects:movable_other:destination:mss_objects:drop___link_dict_name',
+        'objects:movable_other:destination:mss_objects:drop___group',
+        'objects:movable_other:destination:mss_objects:drop___link_group',
       ]
     end
   end

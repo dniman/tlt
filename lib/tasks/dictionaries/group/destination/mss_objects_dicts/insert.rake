@@ -19,6 +19,7 @@ namespace :dictionaries do
             .project([
               Source.propgroups[:name],
             ])
+            .distinct
             .where(Source.propgroups[:name].not_eq(nil))
           end
 
