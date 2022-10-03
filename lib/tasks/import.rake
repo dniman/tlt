@@ -166,7 +166,7 @@ namespace :import do
       end
     end
 
-    namespace :unfinished do
+    namespace :movable_other do
       desc 'Запуск задачи импорта иного движимого имущества в базу назначения'
       task :start => [
         'set_logger', 

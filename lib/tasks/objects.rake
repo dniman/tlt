@@ -16,8 +16,8 @@ namespace :objects do
     'objects:construction:import',
     'objects:unfinished:import',
     'objects:life_room:import',
-    'objects:unlife_room:import'
-    'objects:movable_other:import'
+    'objects:unlife_room:import',
+    'objects:movable_other:import',
   ] 
   
   task :destroy => [
@@ -27,8 +27,8 @@ namespace :objects do
     'objects:construction:destroy',
     'objects:unfinished:destroy',
     'objects:life_room:destroy',
-    'objects:unlife_room:destroy'
-    'objects:movable_other:destroy'
+    'objects:unlife_room:destroy',
+    'objects:movable_other:destroy',
   ] 
 
 end  

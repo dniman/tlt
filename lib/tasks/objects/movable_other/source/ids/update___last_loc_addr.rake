@@ -3,19 +3,20 @@ namespace :objects do
     namespace :source do
       namespace :ids do
 
-        task :update___adr_str do |t|
+        task :update___last_loc_addr do |t|
           def link_type_query(code)
             Destination.set_engine!
-            query = 
-              Destination.mss_objects_types 
-              .project(Destination.mss_objects_types[:link])
-              .where(Destination.mss_objects_types[:code].eq(code))
+            
+            Destination.mss_objects_types 
+            .project(Destination.mss_objects_types[:link])
+            .where(Destination.mss_objects_types[:code].eq(code))
           end
 
           def query
             link_type = Destination.execute_query(link_type_query("MOVABLE_OTHER").to_sql).entries.first["link"]
             
             Source.set_engine!
+
             attributes = [
               "link = ids.link",
               "country_name = isnull(countries.name, '')",
@@ -36,19 +37,21 @@ namespace :objects do
               "no_view_townarea = address.no_view_townarea"
             ]
             
-            query =
-              Source.address
-              .project(attributes.join(', '))
-              .join(Source.countries, Arel::Nodes::OuterJoin).on(Source.countries[:id].eq(Source.address[:country_id]))
-              .join(Source.regions, Arel::Nodes::OuterJoin).on(Source.regions[:id].eq(Source.address[:regions_id]))
-              .join(Source.provincearea, Arel::Nodes::OuterJoin).on(Source.provincearea[:id].eq(Source.address[:provincearea_id]))
-              .join(Source.townnames, Arel::Nodes::OuterJoin).on(Source.townnames[:id].eq(Source.address[:townnames_id]))
-              .join(Source.streets, Arel::Nodes::OuterJoin).on(Source.streets[:id].eq(Source.address[:streets_id]))
-              .join(Source.townarea, Arel::Nodes::OuterJoin).on(Source.townarea[:id].eq(Source.address[:townarea_id]))
-              .join(Source.microarea, Arel::Nodes::OuterJoin).on(Source.microarea[:id].eq(Source.address[:microarea_id]))
-              .join(Source.objects).on(Source.objects[:address_id].eq(Source.address[:id]))
-              .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
-              .where(Source.ids[:link_type].eq(link_type))
+            Source.address
+            .project(attributes.join(', '))
+            .join(Source.countries, Arel::Nodes::OuterJoin).on(Source.countries[:id].eq(Source.address[:country_id]))
+            .join(Source.regions, Arel::Nodes::OuterJoin).on(Source.regions[:id].eq(Source.address[:regions_id]))
+            .join(Source.provincearea, Arel::Nodes::OuterJoin).on(Source.provincearea[:id].eq(Source.address[:provincearea_id]))
+            .join(Source.townnames, Arel::Nodes::OuterJoin).on(Source.townnames[:id].eq(Source.address[:townnames_id]))
+            .join(Source.streets, Arel::Nodes::OuterJoin).on(Source.streets[:id].eq(Source.address[:streets_id]))
+            .join(Source.townarea, Arel::Nodes::OuterJoin).on(Source.townarea[:id].eq(Source.address[:townarea_id]))
+            .join(Source.microarea, Arel::Nodes::OuterJoin).on(Source.microarea[:id].eq(Source.address[:microarea_id]))
+            .join(Source.property).on(Source.property[:address_id].eq(Source.address[:id]))
+            .join(Source.objects).on(Source.objects[:id].eq(Source.property[:objects_id]))
+            .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+            .where(Source.ids[:link_type].eq(link_type)
+              .and(Source.property[:address_id].not_eq(nil))
+            )
           end
 
           begin
@@ -70,10 +73,10 @@ namespace :objects do
                 full_addr << row["corp_num"].to_s.strip unless row["corp_num"].to_s.strip.empty?
                 full_addr << row["room_num"].to_s.strip unless row["room_num"].to_s.strip.empty?
                 full_addr << row["addition"].to_s.strip unless row["addition"].to_s.strip.empty?
-                
+              
                 update << {
                   link: row["link"],
-                  full_addr: full_addr.join(',').match(/[^,*].*[^,*]/)[0]
+                  full_addr: full_addr.join(',').match?(/[^,*].*[^,*]/) ? full_addr.join(',').match(/[^,*].*[^,*]/)[0] : ''
                 }
               end
               columns = update.map(&:keys).uniq.flatten 
@@ -81,7 +84,7 @@ namespace :objects do
               
               sql = <<~SQL
                 update ids set 
-                  ids.___adr_str = values_table.full_addr
+                  ids.___last_loc_addr = values_table.full_addr
                 from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
                 where ids.link = values_table.link and ids.table_id = #{ Source::Objects.table_id }
               SQL

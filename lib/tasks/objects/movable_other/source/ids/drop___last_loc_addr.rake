@@ -1,17 +1,17 @@
 namespace :objects do
   namespace :movable_other do
-    namespace :destination do
-      namespace :mss_objects do
+    namespace :source do
+      namespace :ids do
 
-        task :drop___wow_obj do |t|
+        task :drop___last_loc_addr do |t|
           begin
             sql = Arel.sql(
-              "if (col_length('#{ Destination.mss_objects.name }','___wow_obj') is not null)
-              alter table #{ Destination.mss_objects.name }
-                drop column ___wow_obj
+              "if (col_length('#{ Source.ids.name }','___last_loc_addr') is not null)
+              alter table #{ Source.ids.name }
+                drop column ___last_loc_addr
               "
             )
-            Destination.execute_query(sql).do
+            Source.execute_query(sql).do
             Rake.info "Задача '#{ t }' успешно выполнена."
           rescue StandardError => e
             Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."

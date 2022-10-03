@@ -2,7 +2,7 @@ namespace :objects do
   namespace :movable_other do
     namespace :destination do
       namespace :mss_objects_app do
-        namespace :blag_hot do
+        namespace :last_loc_addr do
           
           task :delete do |t|
             begin
@@ -17,7 +17,7 @@ namespace :objects do
                 .join(Destination.mss_objects_params, Arel::Nodes::OuterJoin)
                   .on(Destination.mss_objects_params[:link].eq(Destination.mss_objects_app[:link_param]))
                 .where(Destination.mss_objects_types[:code].eq('MOVABLE_OTHER')
-                  .and(Destination.mss_objects_params[:code].eq('BLAG_HOT')))
+                  .and(Destination.mss_objects_params[:code].eq('LAST_LOC_ADDR')))
 
               manager = Arel::DeleteManager.new(Database.destination_engine)
               manager.from (Destination.mss_objects_app)

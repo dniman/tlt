@@ -46,7 +46,8 @@ namespace :objects do
               .join(Source.streets, Arel::Nodes::OuterJoin).on(Source.streets[:id].eq(Source.address[:streets_id]))
               .join(Source.townarea, Arel::Nodes::OuterJoin).on(Source.townarea[:id].eq(Source.address[:townarea_id]))
               .join(Source.microarea, Arel::Nodes::OuterJoin).on(Source.microarea[:id].eq(Source.address[:microarea_id]))
-              .join(Source.objects).on(Source.objects[:address_id].eq(Source.address[:id]))
+              .join(Source.property).on(Source.property[:address_id].eq(Source.address[:id]))
+              .join(Source.objects).on(Source.objects[:id].eq(Source.property[:objects_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
               .where(Source.ids[:link_type].eq(link_type))
           end

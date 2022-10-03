@@ -1,17 +1,16 @@
 namespace :objects do
   namespace :movable_other do
-    namespace :destination do
-      namespace :mss_objects do
+    namespace:source do
+      namespace :ids do
 
-        task :drop___link_unmovable_used do |t|
+        task :add___last_loc_addr do |t|
           begin
             sql = Arel.sql(
-              "if (col_length('#{ Destination.mss_objects.name }','___link_unmovable_used') is not null)
-              alter table #{ Destination.mss_objects.name }
-                drop column ___link_unmovable_used
+              "alter table #{ Source.ids.name }
+                add ___last_loc_addr varchar(2000)
               "
             )
-            Destination.execute_query(sql).do
+            Source.execute_query(sql).do
             Rake.info "Задача '#{ t }' успешно выполнена."
           rescue StandardError => e
             Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."
