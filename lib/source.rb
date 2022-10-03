@@ -42,6 +42,7 @@ module Source
     :additional_ids,
     :unconstr,
     :property,
+    :propnames,
   ]
   
   class << self
