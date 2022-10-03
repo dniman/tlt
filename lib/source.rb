@@ -44,6 +44,7 @@ module Source
     :property,
     :propnames,
     :propgroups,
+    :propsections,
   ]
   
   class << self
