@@ -17,6 +17,9 @@ namespace :objects do
         # Модель транспортного средства
         'objects:transport:destination:mss_objects_app:movable_model:delete',
         
+        # Год выпуска
+        'objects:transport:destination:mss_objects_app:movable_year:delete',
+        
         # Значение из справочника наименований
         #'objects:transport:destination:mss_objects_app:dict_name:delete',
         
