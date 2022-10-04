@@ -51,6 +51,7 @@ module Source
     :transptype,
     :brandnames,
     :colors,
+    :engtype,
   ]
   
   class << self

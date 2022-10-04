@@ -28,6 +28,7 @@ import 'lib/tasks/dictionaries/section.rake'
 import 'lib/tasks/dictionaries/type_transport.rake'
 import 'lib/tasks/dictionaries/automaker.rake'
 import 'lib/tasks/dictionaries/color_kuzov.rake'
+import 'lib/tasks/dictionaries/engine_type.rake'
 
 namespace :dictionaries do
 
@@ -62,6 +63,7 @@ namespace :dictionaries do
     'dictionaries:type_transport:import',
     'dictionaries:automaker:import',
     'dictionaries:color_kuzov:import',
+    'dictionaries:engine_type:import',
   ] 
 
   task :destroy => [
@@ -95,6 +97,7 @@ namespace :dictionaries do
     'dictionaries:type_transport:destroy',
     'dictionaries:automaker:destroy',
     'dictionaries:color_kuzov:destroy',
+    'dictionaries:engine_type:destroy',
   ] 
 
 end 
