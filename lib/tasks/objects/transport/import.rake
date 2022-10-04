@@ -81,6 +81,9 @@ namespace :objects do
         
         # Разрешенная максимальная масса
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:razresh_max_mas:insert'
+        
+        # Масса без нагрузки
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:mass_without_load:insert'
       end 
 
     end

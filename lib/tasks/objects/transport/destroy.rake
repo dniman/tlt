@@ -55,6 +55,9 @@ namespace :objects do
         
         # Разрешенная максимальная масса
         'objects:transport:destination:mss_objects_app:razresh_max_mas:delete',
+        
+        # Масса без нагрузки
+        'objects:transport:destination:mss_objects_app:mass_without_load:delete',
 
         ###
         # Удаление основного объекта
