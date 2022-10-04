@@ -64,6 +64,9 @@ namespace :objects do
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:color_kuzov:insert'
         Rake.invoke_task 'objects:transport:destination:mss_objects:drop___color_kuzov' 
         Rake.invoke_task 'objects:transport:destination:mss_objects:drop___link_color_kuzov' 
+        
+        # Мощность двигателя
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:power_dvig:insert'
       end 
 
     end

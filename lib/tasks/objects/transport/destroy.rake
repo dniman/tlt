@@ -43,6 +43,9 @@ namespace :objects do
         
         # Цвет кузова
         'objects:transport:destination:mss_objects_app:color_kuzov:delete',
+        
+        # Мощность двигателя
+        'objects:transport:destination:mss_objects_app:power_dvig:delete',
 
         # Удаление основного объекта
         'objects:transport:destination:mss_objects:delete',
