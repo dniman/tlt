@@ -46,7 +46,11 @@ namespace :objects do
         
         # Мощность двигателя
         'objects:transport:destination:mss_objects_app:power_dvig:delete',
+        
+        # Объем двигателя
+        'objects:transport:destination:mss_objects_app:v_dvigatel:delete',
 
+        ###
         # Удаление основного объекта
         'objects:transport:destination:mss_objects:delete',
 

@@ -67,6 +67,9 @@ namespace :objects do
         
         # Мощность двигателя
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:power_dvig:insert'
+        
+        # Объем двигателя
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:v_dvigatel:insert'
       end 
 
     end
