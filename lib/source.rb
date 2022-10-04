@@ -49,6 +49,7 @@ module Source
     :objshares,
     :sharetypes,
     :transptype,
+    :brandnames,
   ]
   
   class << self

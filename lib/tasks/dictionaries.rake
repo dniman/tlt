@@ -26,6 +26,7 @@ import 'lib/tasks/dictionaries/dict_name.rake'
 import 'lib/tasks/dictionaries/group.rake'
 import 'lib/tasks/dictionaries/section.rake'
 import 'lib/tasks/dictionaries/type_transport.rake'
+import 'lib/tasks/dictionaries/automaker.rake'
 
 namespace :dictionaries do
 
@@ -58,6 +59,7 @@ namespace :dictionaries do
     'dictionaries:group:import',
     'dictionaries:section:import',
     'dictionaries:type_transport:import',
+    'dictionaries:automaker:import',
   ] 
 
   task :destroy => [
@@ -89,6 +91,7 @@ namespace :dictionaries do
     'dictionaries:group:destroy',
     'dictionaries:section:destroy',
     'dictionaries:type_transport:destroy',
+    'dictionaries:automaker:destroy',
   ] 
 
 end 
