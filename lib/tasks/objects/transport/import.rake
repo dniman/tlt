@@ -55,6 +55,9 @@ namespace :objects do
         Rake.invoke_task 'objects:transport:destination:mss_objects:drop___automaker' 
         Rake.invoke_task 'objects:transport:destination:mss_objects:drop___link_automaker' 
         
+        # Идентификационный номер(VIN)
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:vin_num:insert'
+        
         # Разделы
         #Rake.invoke_task 'objects:transport:destination:mss_objects:add___link_section' 
         #Rake.invoke_task 'objects:transport:destination:mss_objects:update___link_section' 

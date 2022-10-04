@@ -38,6 +38,9 @@ namespace :objects do
         # Марка транспортного средства
         'objects:transport:destination:mss_objects_app:automaker:delete',
         
+        # Идентификационный номер(VIN)
+        'objects:transport:destination:mss_objects_app:vin_num:delete',
+        
         # Разделы
         #'objects:transport:destination:mss_objects_app:section:delete',
 
