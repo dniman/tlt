@@ -58,6 +58,9 @@ namespace :objects do
         
         # Масса без нагрузки
         'objects:transport:destination:mss_objects_app:mass_without_load:delete',
+        
+        # Изготовитель(страна)
+        'objects:transport:destination:mss_objects_app:auto_country:delete',
 
         ###
         # Удаление основного объекта
@@ -72,6 +75,8 @@ namespace :objects do
         'objects:transport:destination:mss_objects:drop___link_color_kuzov',
         'objects:transport:destination:mss_objects:drop___engine_type',
         'objects:transport:destination:mss_objects:drop___link_engine_type',
+        'objects:transport:destination:mss_objects:drop___auto_country',
+        'objects:transport:destination:mss_objects:drop___link_auto_country',
       ]
     end
   end

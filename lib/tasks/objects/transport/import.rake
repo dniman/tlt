@@ -8,6 +8,7 @@ namespace :objects do
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___automaker' 
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___color_kuzov' 
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___engine_type' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects:add___auto_country' 
 
         Rake.invoke_task 'objects:transport:destination:mss_objects:insert'
         Rake.invoke_task 'objects:transport:source:ids:update_link'
@@ -84,6 +85,13 @@ namespace :objects do
         
         # Масса без нагрузки
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:mass_without_load:insert'
+        
+        # Изготовитель(страна)
+        Rake.invoke_task 'objects:transport:destination:mss_objects:add___link_auto_country' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects:update___link_auto_country' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:auto_country:insert'
+        Rake.invoke_task 'objects:transport:destination:mss_objects:drop___auto_country' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects:drop___link_auto_country' 
       end 
 
     end
