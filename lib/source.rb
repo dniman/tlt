@@ -52,6 +52,7 @@ module Source
     :brandnames,
     :colors,
     :engtype,
+    :manufacturers,
   ]
   
   class << self
