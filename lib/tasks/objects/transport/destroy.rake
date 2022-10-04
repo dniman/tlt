@@ -41,8 +41,8 @@ namespace :objects do
         # Идентификационный номер(VIN)
         'objects:transport:destination:mss_objects_app:vin_num:delete',
         
-        # Разделы
-        #'objects:transport:destination:mss_objects_app:section:delete',
+        # Цвет кузова
+        'objects:transport:destination:mss_objects_app:color_kuzov:delete',
 
         # Удаление основного объекта
         'objects:transport:destination:mss_objects:delete',
@@ -52,8 +52,8 @@ namespace :objects do
         'objects:transport:destination:mss_objects:drop___link_type_transport',
         'objects:transport:destination:mss_objects:drop___automaker',
         'objects:transport:destination:mss_objects:drop___link_automaker',
-        #'objects:transport:destination:mss_objects:drop___section',
-        #'objects:transport:destination:mss_objects:drop___link_section',
+        'objects:transport:destination:mss_objects:drop___color_kuzov',
+        'objects:transport:destination:mss_objects:drop___link_color_kuzov',
       ]
     end
   end

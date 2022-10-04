@@ -3,7 +3,7 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects do
         
-        task :update___link_section do |t|
+        task :update___link_color_kuzov do |t|
           def link_param_query(code)
             Destination.set_engine!
             query = 
@@ -13,19 +13,19 @@ namespace :objects do
           end
 
           begin
-            link_param = Destination.execute_query(link_param_query('SECTION').to_sql).entries.first["link"]
+            link_param = Destination.execute_query(link_param_query('COLOR_KUZOV').to_sql).entries.first["link"]
 
             update = [ 
-              ___link_section: Arel.sql(
+              ___link_color_kuzov: Arel.sql(
                 "(
                   select link 
                   from mss_objects_dicts 
-                  where name = mss_objects.___section
+                  where name = mss_objects.___color_kuzov
                     and mss_objects_dicts.link_dict = #{ link_param }
                 )"
               )
             ]
-            where = Arel.sql("mss_objects.___section is not null")
+            where = Arel.sql("mss_objects.___color_kuzov is not null")
 
             sql = Destination::MssObjects.update_query(row: update, where: where)
             result = Destination.execute_query(sql)

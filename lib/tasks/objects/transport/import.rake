@@ -6,7 +6,7 @@ namespace :objects do
         Rake.invoke_task 'objects:transport:source:ids:insert'
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___type_transport' 
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___automaker' 
-        #Rake.invoke_task 'objects:transport:destination:mss_objects:add___section' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects:add___color_kuzov' 
 
         Rake.invoke_task 'objects:transport:destination:mss_objects:insert'
         Rake.invoke_task 'objects:transport:source:ids:update_link'
@@ -58,12 +58,12 @@ namespace :objects do
         # Идентификационный номер(VIN)
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:vin_num:insert'
         
-        # Разделы
-        #Rake.invoke_task 'objects:transport:destination:mss_objects:add___link_section' 
-        #Rake.invoke_task 'objects:transport:destination:mss_objects:update___link_section' 
-        #Rake.invoke_task 'objects:transport:destination:mss_objects_app:section:insert'
-        #Rake.invoke_task 'objects:transport:destination:mss_objects:drop___section' 
-        #Rake.invoke_task 'objects:transport:destination:mss_objects:drop___link_section' 
+        # Цвет кузова
+        Rake.invoke_task 'objects:transport:destination:mss_objects:add___link_color_kuzov' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects:update___link_color_kuzov' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:color_kuzov:insert'
+        Rake.invoke_task 'objects:transport:destination:mss_objects:drop___color_kuzov' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects:drop___link_color_kuzov' 
       end 
 
     end

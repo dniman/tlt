@@ -2,7 +2,7 @@ namespace :objects do
   namespace :transport do
     namespace :destination do
       namespace :mss_objects_app do
-        namespace :section do
+        namespace :color_kuzov do
 
           task :insert do |t|
             def link_type_query
@@ -29,18 +29,18 @@ namespace :objects do
               Destination.mss_objects
               .project([
                 Destination.mss_objects[:link],
-                Destination.mss_objects[:___link_section],
+                Destination.mss_objects[:___link_color_kuzov],
               ])
               .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin).on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
               .where(Destination.mss_objects[:link_type].eq(link_type)
-                .and(Destination.mss_objects[:___link_section].not_eq(nil))
+                .and(Destination.mss_objects[:___link_color_kuzov].not_eq(nil))
               )
             end
 
             begin
               sql = ""
               insert = []
-              link_param = Destination.execute_query(link_param_query('SECTION').to_sql).entries.first["link"]
+              link_param = Destination.execute_query(link_param_query('COLOR_KUZOV').to_sql).entries.first["link"]
               
               sliced_rows = Destination.execute_query(query.to_sql).each_slice(1000).to_a
               sliced_rows.each do |rows|
@@ -48,7 +48,7 @@ namespace :objects do
                   insert << {
                     link_up: row["link"],
                     link_param: link_param,
-                    link_dict: row["___link_section"]
+                    link_dict: row["___link_color_kuzov"]
                   }
                 end
                 

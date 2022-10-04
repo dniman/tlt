@@ -3,11 +3,11 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects do
 
-        task :add___section do |t|
+        task :add___color_kuzov do |t|
           begin
             sql = Arel.sql(
               "alter table #{ Destination.mss_objects.name }
-                add ___section varchar(1000)
+                add ___color_kuzov varchar(1000)
               "
             )
             Destination.execute_query(sql).do
