@@ -29,6 +29,12 @@ namespace :objects do
         # Год выпуска
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:movable_year:insert'
         
+        # Государственный регистрационный номер
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:transport_reg_n:insert'
+        
+        # Номер двигателя
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:dvigat_num:insert'
+        
         # Значение из справочника наименований
         #Rake.invoke_task 'objects:transport:destination:mss_objects:add___link_dict_name' 
         #Rake.invoke_task 'objects:transport:destination:mss_objects:update___link_dict_name' 

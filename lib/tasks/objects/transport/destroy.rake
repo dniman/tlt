@@ -20,6 +20,12 @@ namespace :objects do
         # Год выпуска
         'objects:transport:destination:mss_objects_app:movable_year:delete',
         
+        # Государственный регистрационный номер
+        'objects:transport:destination:mss_objects_app:transport_reg_n:delete',
+        
+        # Номер двигателя
+        'objects:transport:destination:mss_objects_app:dvigat_num:delete',
+
         # Значение из справочника наименований
         #'objects:transport:destination:mss_objects_app:dict_name:delete',
         
