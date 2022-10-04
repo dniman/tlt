@@ -14,6 +14,9 @@ namespace :objects do
         # Примечание 
         'objects:transport:destination:mss_objects_app:note_obj:delete',
         
+        # Модель транспортного средства
+        'objects:transport:destination:mss_objects_app:movable_model:delete',
+        
         # Значение из справочника наименований
         #'objects:transport:destination:mss_objects_app:dict_name:delete',
         

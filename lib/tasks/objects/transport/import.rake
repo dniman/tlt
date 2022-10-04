@@ -23,6 +23,9 @@ namespace :objects do
         # Примечание 
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:note_obj:insert'
         
+        # Модель транспортного средства
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:movable_model:insert'
+        
         # Значение из справочника наименований
         #Rake.invoke_task 'objects:transport:destination:mss_objects:add___link_dict_name' 
         #Rake.invoke_task 'objects:transport:destination:mss_objects:update___link_dict_name' 
