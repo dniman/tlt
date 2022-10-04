@@ -8,6 +8,7 @@ import 'lib/tasks/objects/unlife_room.rake'
 import 'lib/tasks/objects/movable_other.rake'
 import 'lib/tasks/objects/transport.rake'
 import 'lib/tasks/objects/share.rake'
+import 'lib/tasks/objects/partnership.rake'
 
 namespace :objects do
 
@@ -22,6 +23,7 @@ namespace :objects do
     'objects:movable_other:import',
     'objects:transport:import',
     'objects:share:import',
+    'objects:partnership:import',
   ] 
   
   task :destroy => [
@@ -35,6 +37,7 @@ namespace :objects do
     'objects:movable_other:destroy',
     'objects:transport:destroy',
     'objects:share:destroy',
+    'objects:partnership:destroy',
   ] 
 
 end  

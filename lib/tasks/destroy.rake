@@ -206,6 +206,22 @@ namespace :destroy do
         Rake::Task['destroy:final_message'].invoke("Удаление объектов в базе назначения завершено.")
       end
     end
+    
+    namespace :partnership do
+      desc 'Запуск задачи удаления долей в уставном капитале в базе назначения'
+      task :start => [
+        'set_logger', 
+        'source:initialize', 
+        'destination:initialize',
+
+        'objects:partnership:destroy',
+      ] do 
+
+        Rake::Task['destroy:delete_completed_tasks'].invoke("objects:%")
+        Rake::Task['destroy:final_message'].invoke("Удаление объектов в базе назначения завершено.")
+      end
+    end
+
   end
   
   namespace :corrs do
