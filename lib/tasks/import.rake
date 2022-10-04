@@ -208,6 +208,19 @@ namespace :import do
       end
     end
 
+    namespace :share do
+      desc 'Запуск задачи импорта акций в базу назначения'
+      task :start => [
+        'set_logger', 
+        'source:initialize', 
+        'destination:initialize',
+
+        'objects:share:import',
+      ] do 
+
+        Rake::Task['import:final_message'].invoke("Импорт объектов в базу назначения завершен.")
+      end
+    end
   end
 end
 

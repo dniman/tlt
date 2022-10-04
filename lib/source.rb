@@ -46,6 +46,8 @@ module Source
     :propgroups,
     :propsections,
     :transport,
+    :objshares,
+    :sharetypes,
   ]
   
   class << self
