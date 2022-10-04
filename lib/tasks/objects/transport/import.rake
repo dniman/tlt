@@ -7,6 +7,7 @@ namespace :objects do
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___type_transport' 
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___automaker' 
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___color_kuzov' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects:add___engine_type' 
 
         Rake.invoke_task 'objects:transport:destination:mss_objects:insert'
         Rake.invoke_task 'objects:transport:source:ids:update_link'
@@ -70,6 +71,13 @@ namespace :objects do
         
         # Объем двигателя
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:v_dvigatel:insert'
+        
+        # Тип двигателя
+        Rake.invoke_task 'objects:transport:destination:mss_objects:add___link_engine_type' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects:update___link_engine_type' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:engine_type:insert'
+        Rake.invoke_task 'objects:transport:destination:mss_objects:drop___engine_type' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects:drop___link_engine_type' 
       end 
 
     end

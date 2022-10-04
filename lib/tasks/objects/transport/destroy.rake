@@ -49,6 +49,9 @@ namespace :objects do
         
         # Объем двигателя
         'objects:transport:destination:mss_objects_app:v_dvigatel:delete',
+        
+        # Тип двигателя
+        'objects:transport:destination:mss_objects_app:engine_type:delete',
 
         ###
         # Удаление основного объекта
@@ -61,6 +64,8 @@ namespace :objects do
         'objects:transport:destination:mss_objects:drop___link_automaker',
         'objects:transport:destination:mss_objects:drop___color_kuzov',
         'objects:transport:destination:mss_objects:drop___link_color_kuzov',
+        'objects:transport:destination:mss_objects:drop___engine_type',
+        'objects:transport:destination:mss_objects:drop___link_engine_type',
       ]
     end
   end

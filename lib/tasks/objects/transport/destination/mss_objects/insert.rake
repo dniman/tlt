@@ -26,6 +26,7 @@ namespace :objects do
               Source.transptype[:name].as("___type_transport"),
               Source.brandnames[:name].as("___automaker"),
               Source.colors[:name].as("___color_kuzov"),
+              Source.engtype[:name].as("___engine_type"),
             ])
             .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
             .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
@@ -33,6 +34,7 @@ namespace :objects do
             .join(Source.transptype, Arel::Nodes::OuterJoin).on(Source.transptype[:id].eq(Source.transport[:transptype_id]))
             .join(Source.brandnames, Arel::Nodes::OuterJoin).on(Source.brandnames[:id].eq(Source.transport[:brandnames_id]))
             .join(Source.colors, Arel::Nodes::OuterJoin).on(Source.colors[:id].eq(Source.transport[:ps_color_id]))
+            .join(Source.engtype, Arel::Nodes::OuterJoin).on(Source.engtype[:id].eq(Source.transport[:ps_engtype_id]))
             .where(Source.ids[:link_type].eq(link_type))
           end
 
@@ -54,6 +56,7 @@ namespace :objects do
                   ___type_transport: row["___type_transport"]&.strip,
                   ___automaker: row["___automaker"]&.strip,
                   ___color_kuzov: row["___color_kuzov"]&.strip,
+                  ___engine_type: row["___engine_type"]&.strip,
                 }
               end
 
