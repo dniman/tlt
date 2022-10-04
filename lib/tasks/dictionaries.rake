@@ -25,6 +25,7 @@ import 'lib/tasks/dictionaries/house_wall_type.rake'
 import 'lib/tasks/dictionaries/dict_name.rake'
 import 'lib/tasks/dictionaries/group.rake'
 import 'lib/tasks/dictionaries/section.rake'
+import 'lib/tasks/dictionaries/type_transport.rake'
 
 namespace :dictionaries do
 
@@ -56,6 +57,7 @@ namespace :dictionaries do
     'dictionaries:dict_name:import',
     'dictionaries:group:import',
     'dictionaries:section:import',
+    'dictionaries:type_transport:import',
   ] 
 
   task :destroy => [
@@ -86,6 +88,7 @@ namespace :dictionaries do
     'dictionaries:dict_name:destroy',
     'dictionaries:group:destroy',
     'dictionaries:section:destroy',
+    'dictionaries:type_transport:destroy',
   ] 
 
 end 

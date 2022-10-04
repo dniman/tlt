@@ -48,6 +48,7 @@ module Source
     :transport,
     :objshares,
     :sharetypes,
+    :transptype,
   ]
   
   class << self
