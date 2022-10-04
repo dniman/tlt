@@ -25,6 +25,9 @@ namespace :objects do
         
         # Номер двигателя
         'objects:transport:destination:mss_objects_app:dvigat_num:delete',
+        
+        # Номер шасси(рамы) 
+        'objects:transport:destination:mss_objects_app:shassi_num:delete',
 
         # Значение из справочника наименований
         #'objects:transport:destination:mss_objects_app:dict_name:delete',

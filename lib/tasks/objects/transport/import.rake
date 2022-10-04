@@ -35,6 +35,9 @@ namespace :objects do
         # Номер двигателя
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:dvigat_num:insert'
         
+        # Номер шасси(рамы) 
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:shassi_num:insert'
+        
         # Значение из справочника наименований
         #Rake.invoke_task 'objects:transport:destination:mss_objects:add___link_dict_name' 
         #Rake.invoke_task 'objects:transport:destination:mss_objects:update___link_dict_name' 
