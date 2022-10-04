@@ -5,7 +5,7 @@ namespace :objects do
       task :tasks do 
         Rake.invoke_task 'objects:transport:source:ids:insert'
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___type_transport' 
-        #Rake.invoke_task 'objects:transport:destination:mss_objects:add___group' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects:add___automaker' 
         #Rake.invoke_task 'objects:transport:destination:mss_objects:add___section' 
 
         Rake.invoke_task 'objects:transport:destination:mss_objects:insert'
@@ -48,12 +48,12 @@ namespace :objects do
         Rake.invoke_task 'objects:transport:destination:mss_objects:drop___type_transport' 
         Rake.invoke_task 'objects:transport:destination:mss_objects:drop___link_type_transport' 
         
-        # Группы
-        #Rake.invoke_task 'objects:transport:destination:mss_objects:add___link_group' 
-        #Rake.invoke_task 'objects:transport:destination:mss_objects:update___link_group' 
-        #Rake.invoke_task 'objects:transport:destination:mss_objects_app:group:insert'
-        #Rake.invoke_task 'objects:transport:destination:mss_objects:drop___group' 
-        #Rake.invoke_task 'objects:transport:destination:mss_objects:drop___link_group' 
+        # Марка транспортного средства
+        Rake.invoke_task 'objects:transport:destination:mss_objects:add___link_automaker' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects:update___link_automaker' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:automaker:insert'
+        Rake.invoke_task 'objects:transport:destination:mss_objects:drop___automaker' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects:drop___link_automaker' 
         
         # Разделы
         #Rake.invoke_task 'objects:transport:destination:mss_objects:add___link_section' 

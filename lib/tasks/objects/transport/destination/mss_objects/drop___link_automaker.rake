@@ -3,11 +3,12 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects do
 
-        task :add___group do |t|
+        task :drop___link_automaker do |t|
           begin
             sql = Arel.sql(
-              "alter table #{ Destination.mss_objects.name }
-                add ___group varchar(1000)
+              "if (col_length('#{ Destination.mss_objects.name }','___link_automaker') is not null)
+              alter table #{ Destination.mss_objects.name }
+                drop column ___link_automaker
               "
             )
             Destination.execute_query(sql).do

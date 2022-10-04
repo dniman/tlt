@@ -35,8 +35,8 @@ namespace :objects do
         # Тип транспорта
         'objects:transport:destination:mss_objects_app:type_transport:delete',
         
-        # Группы
-        #'objects:transport:destination:mss_objects_app:group:delete',
+        # Марка транспортного средства
+        'objects:transport:destination:mss_objects_app:automaker:delete',
         
         # Разделы
         #'objects:transport:destination:mss_objects_app:section:delete',
@@ -47,8 +47,8 @@ namespace :objects do
          # Удаление дополнительных колонок
         'objects:transport:destination:mss_objects:drop___type_transport',
         'objects:transport:destination:mss_objects:drop___link_type_transport',
-        #'objects:transport:destination:mss_objects:drop___group',
-        #'objects:transport:destination:mss_objects:drop___link_group',
+        'objects:transport:destination:mss_objects:drop___automaker',
+        'objects:transport:destination:mss_objects:drop___link_automaker',
         #'objects:transport:destination:mss_objects:drop___section',
         #'objects:transport:destination:mss_objects:drop___link_section',
       ]

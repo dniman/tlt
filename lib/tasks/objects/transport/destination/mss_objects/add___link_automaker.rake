@@ -3,11 +3,11 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects do
         
-        task :add___link_group do |t|
+        task :add___link_automaker do |t|
           begin
             sql = Arel.sql(
               "alter table #{ Destination.mss_objects.name }
-                add ___link_group int
+                add ___link_automaker int
               "
             )
             Destination.execute_query(sql).do
