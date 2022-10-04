@@ -50,6 +50,7 @@ module Source
     :sharetypes,
     :transptype,
     :brandnames,
+    :colors,
   ]
   
   class << self
