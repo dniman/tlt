@@ -3,11 +3,11 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects do
         
-        task :add___link_dict_name do |t|
+        task :add___link_type_transport do |t|
           begin
             sql = Arel.sql(
               "alter table #{ Destination.mss_objects.name }
-                add ___link_dict_name int
+                add ___link_type_transport int
               "
             )
             Destination.execute_query(sql).do

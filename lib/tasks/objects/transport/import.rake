@@ -4,7 +4,7 @@ namespace :objects do
 
       task :tasks do 
         Rake.invoke_task 'objects:transport:source:ids:insert'
-        #Rake.invoke_task 'objects:transport:destination:mss_objects:add___dict_name' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects:add___type_transport' 
         #Rake.invoke_task 'objects:transport:destination:mss_objects:add___group' 
         #Rake.invoke_task 'objects:transport:destination:mss_objects:add___section' 
 
@@ -41,12 +41,12 @@ namespace :objects do
         # Номер кузова
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:kuzov_num:insert'
         
-        # Значение из справочника наименований
-        #Rake.invoke_task 'objects:transport:destination:mss_objects:add___link_dict_name' 
-        #Rake.invoke_task 'objects:transport:destination:mss_objects:update___link_dict_name' 
-        #Rake.invoke_task 'objects:transport:destination:mss_objects_app:dict_name:insert'
-        #Rake.invoke_task 'objects:transport:destination:mss_objects:drop___dict_name' 
-        #Rake.invoke_task 'objects:transport:destination:mss_objects:drop___link_dict_name' 
+        # Тип транспорта
+        Rake.invoke_task 'objects:transport:destination:mss_objects:add___link_type_transport' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects:update___link_type_transport' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:type_transport:insert'
+        Rake.invoke_task 'objects:transport:destination:mss_objects:drop___type_transport' 
+        Rake.invoke_task 'objects:transport:destination:mss_objects:drop___link_type_transport' 
         
         # Группы
         #Rake.invoke_task 'objects:transport:destination:mss_objects:add___link_group' 

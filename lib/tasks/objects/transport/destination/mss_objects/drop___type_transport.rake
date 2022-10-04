@@ -3,12 +3,12 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects do
 
-        task :drop___dict_name do |t|
+        task :drop___type_transport do |t|
           begin
             sql = Arel.sql(
-              "if (col_length('#{ Destination.mss_objects.name }','___dict_name') is not null)
+              "if (col_length('#{ Destination.mss_objects.name }','___type_transport') is not null)
               alter table #{ Destination.mss_objects.name }
-                drop column ___dict_name
+                drop column ___type_transport
               "
             )
             Destination.execute_query(sql).do

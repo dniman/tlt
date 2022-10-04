@@ -32,8 +32,8 @@ namespace :objects do
         # Номер кузова
         'objects:transport:destination:mss_objects_app:kuzov_num:delete',
 
-        # Значение из справочника наименований
-        #'objects:transport:destination:mss_objects_app:dict_name:delete',
+        # Тип транспорта
+        'objects:transport:destination:mss_objects_app:type_transport:delete',
         
         # Группы
         #'objects:transport:destination:mss_objects_app:group:delete',
@@ -45,8 +45,8 @@ namespace :objects do
         'objects:transport:destination:mss_objects:delete',
 
          # Удаление дополнительных колонок
-        #'objects:transport:destination:mss_objects:drop___dict_name',
-        #'objects:transport:destination:mss_objects:drop___link_dict_name',
+        'objects:transport:destination:mss_objects:drop___type_transport',
+        'objects:transport:destination:mss_objects:drop___link_type_transport',
         #'objects:transport:destination:mss_objects:drop___group',
         #'objects:transport:destination:mss_objects:drop___link_group',
         #'objects:transport:destination:mss_objects:drop___section',
