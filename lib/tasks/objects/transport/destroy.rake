@@ -52,6 +52,9 @@ namespace :objects do
         
         # Тип двигателя
         'objects:transport:destination:mss_objects_app:engine_type:delete',
+        
+        # Разрешенная максимальная масса
+        'objects:transport:destination:mss_objects_app:razresh_max_mas:delete',
 
         ###
         # Удаление основного объекта

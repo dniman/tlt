@@ -78,6 +78,9 @@ namespace :objects do
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:engine_type:insert'
         Rake.invoke_task 'objects:transport:destination:mss_objects:drop___engine_type' 
         Rake.invoke_task 'objects:transport:destination:mss_objects:drop___link_engine_type' 
+        
+        # Разрешенная максимальная масса
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:razresh_max_mas:insert'
       end 
 
     end
