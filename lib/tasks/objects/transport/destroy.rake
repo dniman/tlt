@@ -73,6 +73,9 @@ namespace :objects do
         
         # Организация, выдавшая ПТС
         'objects:transport:destination:mss_objects_app:auto_pts_org:delete',
+        
+        # Дата ПТС
+        'objects:transport:destination:mss_objects_app:data_pts:delete',
 
         ###
         # Удаление основного объекта

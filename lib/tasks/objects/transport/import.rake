@@ -109,6 +109,9 @@ namespace :objects do
         
         # Организация, выдавшая ПТС
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:auto_pts_org:insert'
+        
+        # Дата ПТС
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:data_pts:insert'
       end 
 
     end
