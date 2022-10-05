@@ -106,6 +106,9 @@ namespace :objects do
         
         # Таможенные ограничения
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:auto_tam_ogr:insert'
+        
+        # Организация, выдавшая ПТС
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:auto_pts_org:insert'
       end 
 
     end

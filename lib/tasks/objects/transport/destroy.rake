@@ -70,6 +70,9 @@ namespace :objects do
         
         # Таможенные ограничения
         'objects:transport:destination:mss_objects_app:auto_tam_ogr:delete',
+        
+        # Организация, выдавшая ПТС
+        'objects:transport:destination:mss_objects_app:auto_pts_org:delete',
 
         ###
         # Удаление основного объекта
