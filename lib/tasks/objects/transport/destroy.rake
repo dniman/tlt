@@ -61,6 +61,9 @@ namespace :objects do
         
         # Изготовитель(страна)
         'objects:transport:destination:mss_objects_app:auto_country:delete',
+        
+        # Страна вывоза
+        'objects:transport:destination:mss_objects_app:auto_country_export:delete',
 
         ###
         # Удаление основного объекта
@@ -77,6 +80,8 @@ namespace :objects do
         'objects:transport:destination:mss_objects:drop___link_engine_type',
         'objects:transport:destination:mss_objects:drop___auto_country',
         'objects:transport:destination:mss_objects:drop___link_auto_country',
+        'objects:transport:destination:mss_objects:drop___auto_country_export',
+        'objects:transport:destination:mss_objects:drop___link_auto_country_export',
       ]
     end
   end
