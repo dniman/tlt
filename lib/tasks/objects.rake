@@ -9,6 +9,7 @@ import 'lib/tasks/objects/movable_other.rake'
 import 'lib/tasks/objects/transport.rake'
 import 'lib/tasks/objects/share.rake'
 import 'lib/tasks/objects/partnership.rake'
+import 'lib/tasks/objects/inland_waterway_vessel.rake'
 
 namespace :objects do
 
@@ -24,6 +25,7 @@ namespace :objects do
     'objects:transport:import',
     'objects:share:import',
     'objects:partnership:import',
+    'objects:inland_waterway_vessel:import',
   ] 
   
   task :destroy => [
@@ -38,6 +40,7 @@ namespace :objects do
     'objects:transport:destroy',
     'objects:share:destroy',
     'objects:partnership:destroy',
+    'objects:inland_waterway_vessel:destroy',
   ] 
 
 end  
