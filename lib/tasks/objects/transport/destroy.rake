@@ -67,6 +67,9 @@ namespace :objects do
         
         # Серия, номер ГТД
         'objects:transport:destination:mss_objects_app:gdt_ser_num:delete',
+        
+        # Таможенные ограничения
+        'objects:transport:destination:mss_objects_app:auto_tam_ogr:delete',
 
         ###
         # Удаление основного объекта

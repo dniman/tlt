@@ -103,6 +103,9 @@ namespace :objects do
         
         # Серия, номер ГТД
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:gdt_ser_num:insert'
+        
+        # Таможенные ограничения
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:auto_tam_ogr:insert'
       end 
 
     end
