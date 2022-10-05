@@ -100,6 +100,9 @@ namespace :objects do
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:auto_country_export:insert'
         Rake.invoke_task 'objects:transport:destination:mss_objects:drop___auto_country_export' 
         Rake.invoke_task 'objects:transport:destination:mss_objects:drop___link_auto_country_export' 
+        
+        # Серия, номер ГТД
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:gdt_ser_num:insert'
       end 
 
     end

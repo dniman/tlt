@@ -64,6 +64,9 @@ namespace :objects do
         
         # Страна вывоза
         'objects:transport:destination:mss_objects_app:auto_country_export:delete',
+        
+        # Серия, номер ГТД
+        'objects:transport:destination:mss_objects_app:gdt_ser_num:delete',
 
         ###
         # Удаление основного объекта
