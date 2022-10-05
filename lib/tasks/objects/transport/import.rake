@@ -112,6 +112,9 @@ namespace :objects do
         
         # Дата ПТС
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:data_pts:insert'
+        
+        # Отделение ГИБДД
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:ps_gibdd:insert'
       end 
 
     end

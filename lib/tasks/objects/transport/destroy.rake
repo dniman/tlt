@@ -76,6 +76,9 @@ namespace :objects do
         
         # Дата ПТС
         'objects:transport:destination:mss_objects_app:data_pts:delete',
+        
+        # Отделение ГИБДД
+        'objects:transport:destination:mss_objects_app:ps_gibdd:delete',
 
         ###
         # Удаление основного объекта
