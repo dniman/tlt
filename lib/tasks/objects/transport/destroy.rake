@@ -10,6 +10,9 @@ namespace :objects do
 
         # ID объекта из Сауми
         'objects:transport:destination:mss_objects_app:id_obj:delete',
+
+        # Код ОКОФ
+        'objects:transport:destination:mss_objects_app:okof:delete',
         
         # Старый реестровый номер
         'objects:transport:destination:mss_objects_app:rn_old:delete',
