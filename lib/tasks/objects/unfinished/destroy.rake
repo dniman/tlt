@@ -17,6 +17,9 @@ namespace :objects do
         # ID объекта из Сауми
         'objects:unfinished:destination:mss_objects_app:id_obj:delete',
         
+        # Код ОКОФ
+        'objects:unfinished:destination:mss_objects_app:okof:delete',
+        
         # Инвентарный номер
         'objects:unfinished:destination:mss_objects_app:hous_inv_n:delete',
         
