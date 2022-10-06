@@ -11,6 +11,9 @@ namespace :objects do
         # ID объекта из Сауми
         'objects:inland_waterway_vessel:destination:mss_objects_app:id_obj:delete',
         
+        # Код ОКОФ
+        'objects:inland_waterway_vessel:destination:mss_objects_app:okof:delete',
+        
         # Старый реестровый номер
         'objects:inland_waterway_vessel:destination:mss_objects_app:rn_old:delete',
         

@@ -21,6 +21,9 @@ namespace :objects do
         # ID объекта из Сауми
         Rake.invoke_task 'objects:inland_waterway_vessel:destination:mss_objects_app:id_obj:insert'
         
+        # Код ОКОФ
+        Rake.invoke_task 'objects:inland_waterway_vessel:destination:mss_objects_app:okof:insert'
+        
         # Старый реестровый номер
         Rake.invoke_task 'objects:inland_waterway_vessel:destination:mss_objects_app:rn_old:insert'
         
