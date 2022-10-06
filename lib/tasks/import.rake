@@ -13,6 +13,7 @@ namespace :import do
     Rake.info args[:message]
   end
 
+  # Импорт всех данных
   desc 'Запуск задачи импорта данных в базу назначения'
   task :start => [
     'set_logger', 
@@ -26,7 +27,8 @@ namespace :import do
 
     Rake::Task['import:final_message'].invoke("Импорт данных в базу назначения завершен.")
   end
-  
+ 
+  # Импорт справочников
   namespace :dictionaries do
     desc 'Запуск задачи импорта справочников в базу назначения'
     task :start => [
@@ -41,6 +43,7 @@ namespace :import do
     end
   end
   
+  # Импорт документов
   namespace :documents do
     desc 'Запуск задачи импорта документов в базу назначения'
     task :start => [
@@ -55,6 +58,7 @@ namespace :import do
     end
   end
   
+  # Импорт корреспондентов
   namespace :corrs do
     desc 'Запуск задачи импорта корреспондентов в базу назначения'
     task :start => [
@@ -69,6 +73,7 @@ namespace :import do
     end
   end
  
+  # Импорт объектов
   namespace :objects do
     desc 'Запуск задачи импорта объектов в базу назначения'
     task :start => [
@@ -81,7 +86,8 @@ namespace :import do
 
       Rake::Task['import:final_message'].invoke("Импорт объектов в базу назначения завершен.")
     end
-    
+   
+    # Импорт сооружений
     namespace :construction do
       desc 'Запуск задачи импорта сооружений в базу назначения'
       task :start => [
@@ -96,6 +102,7 @@ namespace :import do
       end
     end
     
+    # Импорт жилых зданий
     namespace :houses_life do
       desc 'Запуск задачи импорта жилых зданий в базу назначения'
       task :start => [
@@ -110,6 +117,7 @@ namespace :import do
       end
     end
     
+    # Импорт нежилых зданий
     namespace :houses_unlife do
       desc 'Запуск задачи импорта нежилых зданий в базу назначения'
       task :start => [
@@ -124,6 +132,7 @@ namespace :import do
       end
     end
 
+    # Импорт жилых помещений
     namespace :life_room do
       desc 'Запуск задачи импорта жилых помещений в базу назначения'
       task :start => [
@@ -138,6 +147,7 @@ namespace :import do
       end
     end
     
+    # Импорт нежилых помещений
     namespace :unlife_room do
       desc 'Запуск задачи импорта нежилых помещений в базу назначения'
       task :start => [
@@ -152,6 +162,7 @@ namespace :import do
       end
     end
     
+    # Импорт незавершенного строительства
     namespace :unfinished do
       desc 'Запуск задачи импорта объектов незавершенного строительства в базу назначения'
       task :start => [
@@ -166,6 +177,7 @@ namespace :import do
       end
     end
 
+    # Импорт движимого имущества
     namespace :movable_other do
       desc 'Запуск задачи импорта иного движимого имущества в базу назначения'
       task :start => [
@@ -180,6 +192,7 @@ namespace :import do
       end
     end
     
+    # Импорт транспортных средств
     namespace :transport do
       desc 'Запуск задачи импорта транспортных средств в базу назначения'
       task :start => [
@@ -193,7 +206,8 @@ namespace :import do
         Rake::Task['import:final_message'].invoke("Импорт объектов в базу назначения завершен.")
       end
     end
-    
+   
+    # Импорт судов внутреннего плавания
     namespace :inland_waterway_vessel do
       desc 'Запуск задачи импорта судов внутреннего плавания в базу назначения'
       task :start => [
@@ -207,7 +221,8 @@ namespace :import do
         Rake::Task['import:final_message'].invoke("Импорт объектов в базу назначения завершен.")
       end
     end
-    
+   
+    # Импорт объектов интеллектуальной собственности
     namespace :exright_intellprop do
       desc 'Запуск задачи импорта объектов интеллектуальной собственности в базу назначения'
       task :start => [
@@ -222,6 +237,7 @@ namespace :import do
       end
     end
 
+    # Импорт акций
     namespace :share do
       desc 'Запуск задачи импорта акций в базу назначения'
       task :start => [
@@ -236,6 +252,7 @@ namespace :import do
       end
     end
     
+    # Импорт долей в уставном капитале
     namespace :partnership do
       desc 'Запуск задачи импорта долей в уставном капитале в базу назначения'
       task :start => [

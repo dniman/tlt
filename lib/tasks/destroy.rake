@@ -28,6 +28,7 @@ namespace :destroy do
     Destination.execute_query(manager.to_sql).do
   end
 
+  # Удаление всех данных
   desc 'Запуск задачи удаления данных в базе назначения'
   task :start => [
     'destroy:set_logger',
@@ -43,6 +44,7 @@ namespace :destroy do
     Rake::Task['destroy:final_message'].invoke("Удаление данных в базе назначения завершено.")
   end
   
+  # Удаление объектов
   namespace :objects do
     desc 'Запуск задачи удаления объектов в базе назначения'
     task :start => [
@@ -57,6 +59,7 @@ namespace :destroy do
       Rake::Task['destroy:final_message'].invoke("Удаление объектов в базе назначения завершено.")
     end
     
+    # Удаление сооружений
     namespace :construction do
       desc 'Запуск задачи удаления сооружений в базе назначения'
       task :start => [
@@ -72,6 +75,7 @@ namespace :destroy do
       end
     end
     
+    # Удаление жилых зданий
     namespace :houses_life do
       desc 'Запуск задачи удаления жилых зданий в базе назначения'
       task :start => [
@@ -87,6 +91,7 @@ namespace :destroy do
       end
     end
     
+    # Удаление нежилых зданий
     namespace :houses_unlife do
       desc 'Запуск задачи удаления нежилых зданий в базе назначения'
       task :start => [
@@ -102,6 +107,7 @@ namespace :destroy do
       end
     end
 
+    # Удаление жилых помещений
     namespace :life_room do
       desc 'Запуск задачи удаления жилых помещений в базе назначения'
       task :start => [
@@ -117,6 +123,7 @@ namespace :destroy do
       end
     end
     
+    # Удаление нежилых помещений
     namespace :unlife_room do
       desc 'Запуск задачи удаления нежилых помещений в базе назначения'
       task :start => [
@@ -132,6 +139,7 @@ namespace :destroy do
       end
     end
 
+    # Удаление объектов незавершенного строительства
     namespace :unfinished do
       desc 'Запуск задачи удаления объектов незавершенного строительства в базе назначения'
       task :start => [
@@ -147,6 +155,7 @@ namespace :destroy do
       end
     end
     
+    # Удаление иного движимого имущества
     namespace :movable_other do
       desc 'Запуск задачи удаления иного движимого имущества в базе назначения'
       task :start => [
@@ -162,6 +171,7 @@ namespace :destroy do
       end
     end
 
+    # Удаление транспортных средств
     namespace :transport do
       desc 'Запуск задачи удаления транспортных средств в базе назначения'
       task :start => [
@@ -177,6 +187,7 @@ namespace :destroy do
       end
     end
     
+    # Удаление судов внутреннего плавания
     namespace :inland_waterway_vessel do
       desc 'Запуск задачи удаления судов внутреннего плавания в базе назначения'
       task :start => [
@@ -192,6 +203,7 @@ namespace :destroy do
       end
     end
     
+    # Удаление объектов интеллектуальной собственности
     namespace :exright_intellprop do
       desc 'Запуск задачи удаления объектов интеллектуальной собственности в базе назначения'
       task :start => [
@@ -207,6 +219,7 @@ namespace :destroy do
       end
     end
 
+    # Удаление акций
     namespace :share do
       desc 'Запуск задачи удаления акций в базе назначения'
       task :start => [
@@ -222,6 +235,7 @@ namespace :destroy do
       end
     end
     
+    # Удаление долей в уставном капитале
     namespace :partnership do
       desc 'Запуск задачи удаления долей в уставном капитале в базе назначения'
       task :start => [
@@ -239,6 +253,7 @@ namespace :destroy do
 
   end
   
+  # Удаление корреспондентов 
   namespace :corrs do
     desc 'Запуск задачи удаления корреспондентов в базе назначения'
     task :start => [
@@ -254,6 +269,7 @@ namespace :destroy do
     end
   end
 
+  # Удаление документов
   namespace :documents do
     desc 'Запуск задачи удаления документов в базе назначения'
     task :start => [
@@ -269,6 +285,7 @@ namespace :destroy do
     end
   end
   
+  # Удаление справочников
   namespace :dictionaries do
     desc 'Запуск задачи удаления справочников в базе назначения'
     task :start => [
