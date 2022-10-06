@@ -49,6 +49,9 @@ namespace :objects do
         # ID объекта из Сауми
         Rake.invoke_task 'objects:houses_unlife:destination:mss_objects_app:id_obj:insert'
         
+        # Код ОКОФ
+        Rake.invoke_task 'objects:houses_unlife:destination:mss_objects_app:okof:insert'
+        
         # Инвентарный номер 
         Rake.invoke_task 'objects:houses_unlife:destination:mss_objects_app:hous_inv_n:insert'
         
