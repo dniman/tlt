@@ -1,8 +1,8 @@
 namespace :objects do
-  namespace :inland_waterway_vessel do
+  namespace :transport do
     namespace :destination do
       namespace :mss_objects_app do
-        namespace :type_transport do
+        namespace :obj_invnum_hist do
           
           task :delete do |t|
             begin
@@ -16,8 +16,8 @@ namespace :objects do
                   .on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
                 .join(Destination.mss_objects_params, Arel::Nodes::OuterJoin)
                   .on(Destination.mss_objects_params[:link].eq(Destination.mss_objects_app[:link_param]))
-                .where(Destination.mss_objects_types[:code].eq('INLAND_WATERWAY_VESSEL')
-                  .and(Destination.mss_objects_params[:code].eq('TYPE_TRANSPORT')))
+                .where(Destination.mss_objects_types[:code].eq('TRANSPORT')
+                  .and(Destination.mss_objects_params[:code].eq('OBJ_INVNUM_HIST')))
 
               manager = Arel::DeleteManager.new(Database.destination_engine)
               manager.from (Destination.mss_objects_app)

@@ -177,6 +177,21 @@ namespace :destroy do
       end
     end
     
+    namespace :inland_waterway_vessel do
+      desc 'Запуск задачи удаления судов внутреннего плавания в базе назначения'
+      task :start => [
+        'set_logger', 
+        'source:initialize', 
+        'destination:initialize',
+
+        'objects:inland_waterway_vessel:destroy',
+      ] do 
+
+        Rake::Task['destroy:delete_completed_tasks'].invoke("objects:%")
+        Rake::Task['destroy:final_message'].invoke("Удаление объектов в базе назначения завершено.")
+      end
+    end
+    
     namespace :exright_intellprop do
       desc 'Запуск задачи удаления объектов интеллектуальной собственности в базе назначения'
       task :start => [

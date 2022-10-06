@@ -17,6 +17,9 @@ namespace :objects do
         # История наименования
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:obj_name_hist:insert'
         
+        # История инвентарного номера
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:obj_invnum_hist:insert'
+        
         # ID объекта из Сауми
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:id_obj:insert'
         

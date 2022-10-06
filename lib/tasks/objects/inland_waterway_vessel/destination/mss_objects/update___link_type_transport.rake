@@ -13,7 +13,7 @@ namespace :objects do
           end
 
           begin
-            link_param = Destination.execute_query(link_param_query('TYPE_INLAND_WATERWAY_VESSEL').to_sql).entries.first["link"]
+            link_param = Destination.execute_query(link_param_query('TYPE_TRANSPORT').to_sql).entries.first["link"]
 
             update = [ 
               ___link_type_transport: Arel.sql(

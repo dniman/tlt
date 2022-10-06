@@ -22,7 +22,11 @@ namespace :objects do
               Arel.sql("row_id = newid()")
             ])
             .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-            .where(Source.objtypes[:name].eq('Транспортные средства'))
+            .join(Source.transport).on(Source.transport[:objects_id].eq(Source.objects[:id]))
+            .join(Source.transptype, Arel::Nodes::OuterJoin).on(Source.transptype[:id].eq(Source.transport[:transptype_id]))
+            .where(Source.objtypes[:name].eq('Транспортные средства')
+              .and(Source.transptype[:name].in(['Лодка', 'Катер', 'Теплоход', 'Мотолодка']).not)
+            )
          end
 
           begin

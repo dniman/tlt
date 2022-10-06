@@ -4,6 +4,9 @@ namespace :objects do
       task :tasks => [
         # История наименования
         'objects:transport:destination:mss_objects_app:obj_name_hist:delete',
+        
+        # История инвентарного номера
+        'objects:transport:destination:mss_objects_app:obj_invnum_hist:delete',
 
         # ID объекта из Сауми
         'objects:transport:destination:mss_objects_app:id_obj:delete',
@@ -79,6 +82,30 @@ namespace :objects do
         
         # Отделение ГИБДД
         'objects:transport:destination:mss_objects_app:ps_gibdd:delete',
+
+        # Счет учета ОС
+        'objects:transport:destination:mss_objects_app:fixed_assets_account:delete',
+        
+        # Нормы амортизации
+        'objects:transport:destination:mss_objects_app:object:mss_depre_rates:delete',
+        
+        # Амортизационные группы
+        'objects:transport:destination:mss_objects_app:object:mss_depre_groups:delete',
+        
+        # Дата начала начисления амортизации
+        'objects:transport:destination:mss_objects_app:object:mss_od_date_begin_depre:delete',
+        
+        # Амортизация до принятия к учету
+        'objects:transport:destination:mss_objects_app:object:mss_od_depre_init_cost:delete',
+        
+        # Метод начисления амортизации 
+        'objects:transport:destination:mss_objects_app:object:mss_od_depre_method:delete',
+        
+        # Оставшийся срок полезного использования в месяцах 
+        'objects:transport:destination:mss_objects_app:object:mss_od_remaining_useful_life_m:delete',
+        
+        # Оставшийся срок полезного использования в годах
+        'objects:transport:destination:mss_objects_app:object:mss_od_remaining_useful_life_y:delete',
 
         ###
         # Удаление основного объекта

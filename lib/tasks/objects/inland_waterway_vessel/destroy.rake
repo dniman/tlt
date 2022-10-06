@@ -4,6 +4,9 @@ namespace :objects do
       task :tasks => [
         # История наименования
         'objects:inland_waterway_vessel:destination:mss_objects_app:obj_name_hist:delete',
+        
+        # История инвентарного номера
+        'objects:inland_waterway_vessel:destination:mss_objects_app:obj_invnum_hist:delete',
 
         # ID объекта из Сауми
         'objects:inland_waterway_vessel:destination:mss_objects_app:id_obj:delete',
@@ -21,14 +24,11 @@ namespace :objects do
         'objects:inland_waterway_vessel:destination:mss_objects_app:movable_year:delete',
         
         # Государственный регистрационный номер
-        'objects:inland_waterway_vessel:destination:mss_objects_app:inland_waterway_vessel_reg_n:delete',
+        'objects:inland_waterway_vessel:destination:mss_objects_app:vessel_reg_num:delete',
         
         # Номер двигателя
         'objects:inland_waterway_vessel:destination:mss_objects_app:dvigat_num:delete',
         
-        # Номер шасси(рамы) 
-        'objects:inland_waterway_vessel:destination:mss_objects_app:shassi_num:delete',
-
         # Номер кузова
         'objects:inland_waterway_vessel:destination:mss_objects_app:kuzov_num:delete',
 
@@ -37,12 +37,6 @@ namespace :objects do
         
         # Марка транспортного средства
         'objects:inland_waterway_vessel:destination:mss_objects_app:automaker:delete',
-        
-        # Идентификационный номер(VIN)
-        'objects:inland_waterway_vessel:destination:mss_objects_app:vin_num:delete',
-        
-        # Цвет кузова
-        'objects:inland_waterway_vessel:destination:mss_objects_app:color_kuzov:delete',
         
         # Мощность двигателя
         'objects:inland_waterway_vessel:destination:mss_objects_app:power_dvig:delete',
@@ -61,24 +55,31 @@ namespace :objects do
         
         # Изготовитель(страна)
         'objects:inland_waterway_vessel:destination:mss_objects_app:auto_country:delete',
+
+
+        # Счет учета ОС
+        'objects:inland_waterway_vessel:destination:mss_objects_app:fixed_assets_account:delete',
         
-        # Страна вывоза
-        'objects:inland_waterway_vessel:destination:mss_objects_app:auto_country_export:delete',
+        # Нормы амортизации
+        'objects:inland_waterway_vessel:destination:mss_objects_app:object:mss_depre_rates:delete',
         
-        # Серия, номер ГТД
-        'objects:inland_waterway_vessel:destination:mss_objects_app:gdt_ser_num:delete',
+        # Амортизационные группы
+        'objects:inland_waterway_vessel:destination:mss_objects_app:object:mss_depre_groups:delete',
         
-        # Таможенные ограничения
-        'objects:inland_waterway_vessel:destination:mss_objects_app:auto_tam_ogr:delete',
+        # Дата начала начисления амортизации
+        'objects:inland_waterway_vessel:destination:mss_objects_app:object:mss_od_date_begin_depre:delete',
         
-        # Организация, выдавшая ПТС
-        'objects:inland_waterway_vessel:destination:mss_objects_app:auto_pts_org:delete',
+        # Амортизация до принятия к учету
+        'objects:inland_waterway_vessel:destination:mss_objects_app:object:mss_od_depre_init_cost:delete',
         
-        # Дата ПТС
-        'objects:inland_waterway_vessel:destination:mss_objects_app:data_pts:delete',
+        # Метод начисления амортизации 
+        'objects:inland_waterway_vessel:destination:mss_objects_app:object:mss_od_depre_method:delete',
         
-        # Отделение ГИБДД
-        'objects:inland_waterway_vessel:destination:mss_objects_app:ps_gibdd:delete',
+        # Оставшийся срок полезного использования в месяцах 
+        'objects:inland_waterway_vessel:destination:mss_objects_app:object:mss_od_remaining_useful_life_m:delete',
+        
+        # Оставшийся срок полезного использования в годах
+        'objects:inland_waterway_vessel:destination:mss_objects_app:object:mss_od_remaining_useful_life_y:delete',
 
         ###
         # Удаление основного объекта
@@ -89,14 +90,10 @@ namespace :objects do
         'objects:inland_waterway_vessel:destination:mss_objects:drop___link_type_transport',
         'objects:inland_waterway_vessel:destination:mss_objects:drop___automaker',
         'objects:inland_waterway_vessel:destination:mss_objects:drop___link_automaker',
-        'objects:inland_waterway_vessel:destination:mss_objects:drop___color_kuzov',
-        'objects:inland_waterway_vessel:destination:mss_objects:drop___link_color_kuzov',
         'objects:inland_waterway_vessel:destination:mss_objects:drop___engine_type',
         'objects:inland_waterway_vessel:destination:mss_objects:drop___link_engine_type',
         'objects:inland_waterway_vessel:destination:mss_objects:drop___auto_country',
         'objects:inland_waterway_vessel:destination:mss_objects:drop___link_auto_country',
-        'objects:inland_waterway_vessel:destination:mss_objects:drop___auto_country_export',
-        'objects:inland_waterway_vessel:destination:mss_objects:drop___link_auto_country_export',
       ]
     end
   end

@@ -2,15 +2,15 @@ namespace :objects do
   namespace :inland_waterway_vessel do
     namespace :destination do
       namespace :mss_objects_app do
-        namespace :type_transport do
+        namespace :obj_invnum_hist do
 
           task :insert do |t|
             def link_type_query
               Destination.set_engine!
-              
-              Destination.mss_objects_types 
-              .project(Destination.mss_objects_types[:link])
-              .where(Destination.mss_objects_types[:code].eq("INLAND_WATERWAY_VESSEL"))
+              query = 
+                Destination.mss_objects_types 
+                .project(Destination.mss_objects_types[:link])
+                .where(Destination.mss_objects_types[:code].eq("INLAND_WATERWAY_VESSEL"))
             end
             
             def link_param_query(code)
@@ -24,38 +24,35 @@ namespace :objects do
             def query
               link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
 
-              Destination.set_engine!
+              Source.set_engine!
               
-              Destination.mss_objects
+              Source.objects
               .project([
-                Destination.mss_objects[:link],
-                Destination.mss_objects[:___link_type_transport],
+                Source.objects[:invno],
+                Source.ids[:link],
               ])
-              .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin).on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
-              .where(Destination.mss_objects[:link_type].eq(link_type)
-                .and(Destination.mss_objects[:___link_type_transport].not_eq(nil))
+              .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
+              .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+              .where(Source.ids[:link_type].eq(link_type)
+                .and(Source.objects[:invno].not_eq(nil))
               )
             end
 
             begin
               sql = ""
               insert = []
-              link_param = Destination.execute_query(link_param_query('TYPE_TRANSPORT').to_sql).entries.first["link"]
+              link_param = Destination.execute_query(link_param_query('OBJ_INVNUM_HIST').to_sql).entries.first["link"]
               
-              sliced_rows = Destination.execute_query(query.to_sql).each_slice(1000).to_a
+              sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
               sliced_rows.each do |rows|
                 rows.each do |row|
                   insert << {
                     link_up: row["link"],
                     link_param: link_param,
-                    link_dict: row["___link_type_transport"]
+                    varchar: row["invno"]&.strip,
                   }
                 end
-                
-                condition = "
-                  mss_objects_app.link_up = values_table.link_up 
-                    and mss_objects_app.link_param = values_table.link_param
-                "
+                condition = "mss_objects_app.link_up = values_table.link_up and mss_objects_app.link_param = values_table.link_param"
                 sql = Destination::MssObjectsApp.insert_query(rows: insert, condition: condition)
                 result = Destination.execute_query(sql)
                 result.do
