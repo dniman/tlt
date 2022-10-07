@@ -106,6 +106,32 @@ namespace :objects do
 
         # Жилая площадь
         'objects:unlife_room:destination:mss_objects_app:link_param:house_pl_gil:delete',
+        
+
+        # Счет учета ОС
+        'objects:unlife_room:destination:mss_objects_app:link_param:fixed_assets_account:delete',
+        
+        # Нормы амортизации
+        'objects:unlife_room:destination:mss_objects_app:object:mss_depre_rates:delete',
+        
+        # Амортизационные группы
+        'objects:unlife_room:destination:mss_objects_app:object:mss_depre_groups:delete',
+        
+        # Дата начала начисления амортизации
+        'objects:unlife_room:destination:mss_objects_app:object:mss_od_date_begin_depre:delete',
+        
+        # Амортизация до принятия к учету
+        'objects:unlife_room:destination:mss_objects_app:object:mss_od_depre_init_cost:delete',
+        
+        # Метод начисления амортизации 
+        'objects:unlife_room:destination:mss_objects_app:object:mss_od_depre_method:delete',
+        
+        # Оставшийся срок полезного использования в месяцах 
+        'objects:unlife_room:destination:mss_objects_app:object:mss_od_remaining_useful_life_m:delete',
+        
+        # Оставшийся срок полезного использования в годах
+        'objects:unlife_room:destination:mss_objects_app:object:mss_od_remaining_useful_life_y:delete',
+
 
         'objects:unlife_room:destination:mss_objects:delete',
         'objects:unlife_room:destination:mss_objects:drop___cad_quorter',

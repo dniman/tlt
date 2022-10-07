@@ -22,6 +22,32 @@ namespace :objects do
         
         # Разделы
         #'objects:share:destination:mss_objects_app:link_param:section:delete',
+        
+
+        # Счет учета ОС
+        'objects:share:destination:mss_objects_app:link_param:fixed_assets_account:delete',
+        
+        # Нормы амортизации
+        'objects:share:destination:mss_objects_app:object:mss_depre_rates:delete',
+        
+        # Амортизационные группы
+        'objects:share:destination:mss_objects_app:object:mss_depre_groups:delete',
+        
+        # Дата начала начисления амортизации
+        'objects:share:destination:mss_objects_app:object:mss_od_date_begin_depre:delete',
+        
+        # Амортизация до принятия к учету
+        'objects:share:destination:mss_objects_app:object:mss_od_depre_init_cost:delete',
+        
+        # Метод начисления амортизации 
+        'objects:share:destination:mss_objects_app:object:mss_od_depre_method:delete',
+        
+        # Оставшийся срок полезного использования в месяцах 
+        'objects:share:destination:mss_objects_app:object:mss_od_remaining_useful_life_m:delete',
+        
+        # Оставшийся срок полезного использования в годах
+        'objects:share:destination:mss_objects_app:object:mss_od_remaining_useful_life_y:delete',
+
 
         # Удаление основного объекта
         'objects:share:destination:mss_objects:delete',
