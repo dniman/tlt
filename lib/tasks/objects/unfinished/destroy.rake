@@ -3,133 +3,133 @@ namespace :objects do
     namespace :destroy do
       task :tasks => [
         # История адреса
-        'objects:unfinished:destination:mss_objects_app:add_hist:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:add_hist:delete',
         
         # История наименования
-        'objects:unfinished:destination:mss_objects_app:obj_name_hist:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:obj_name_hist:delete',
 
         # Официальный адрес 
-        'objects:unfinished:destination:mss_objects_app:adr_str:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:adr_str:delete',
         
         # Общая площадь
-        'objects:unfinished:destination:mss_objects_app:house_pl:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:house_pl:delete',
 
         # ID объекта из Сауми
-        'objects:unfinished:destination:mss_objects_app:id_obj:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:id_obj:delete',
         
         # Код ОКОФ
-        'objects:unfinished:destination:mss_objects_app:okof:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:okof:delete',
         
         # Инвентарный номер
-        'objects:unfinished:destination:mss_objects_app:hous_inv_n:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:hous_inv_n:delete',
         
         # Год ввода в эксплуатацию 
-        'objects:unfinished:destination:mss_objects_app:year_vvod:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:year_vvod:delete',
         
         # Дата ввода в эксплуатацию 
-        'objects:unfinished:destination:mss_objects_app:house_date_begin_use:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:house_date_begin_use:delete',
         
         # Материал стен
-        'objects:unfinished:destination:mss_objects_app:house_wall_type:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:house_wall_type:delete',
 
         # Литера БТИ
-        'objects:unfinished:destination:mss_objects_app:bti_liter:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:bti_liter:delete',
         
         # Является недвижимым имуществом
-        'objects:unfinished:destination:mss_objects_app:is_immovable:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:is_immovable:delete',
 
         # Этажность
-        'objects:unfinished:destination:mss_objects_app:house_flats:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:house_flats:delete',
 
         # знаковый объект
-        'objects:unfinished:destination:mss_objects_app:wow_obj:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:wow_obj:delete',
        
         # социально-значимый объект
-        'objects:unfinished:destination:mss_objects_app:soc_zn_obj:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:soc_zn_obj:delete',
 
         # объект жкх 
-        'objects:unfinished:destination:mss_objects_app:obj_zkx:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:obj_zkx:delete',
 
         # вид объекта жкх
-        'objects:unfinished:destination:mss_objects_app:vid_obj_zkx:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:vid_obj_zkx:delete',
         
         # Электроэнергия
-        'objects:unfinished:destination:mss_objects_app:blag_energ:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:blag_energ:delete',
         
         # Вода
-        'objects:unfinished:destination:mss_objects_app:blag_water:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:blag_water:delete',
         
         # Газ 
-        'objects:unfinished:destination:mss_objects_app:blag_gaz:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:blag_gaz:delete',
         
         # Канализация
-        'objects:unfinished:destination:mss_objects_app:blag_kan:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:blag_kan:delete',
         
         # Лифт
-        'objects:unfinished:destination:mss_objects_app:blag_lift:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:blag_lift:delete',
         
         # Мусоропровод 
-        'objects:unfinished:destination:mss_objects_app:blag_mus:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:blag_mus:delete',
         
         # Отопление
-        'objects:unfinished:destination:mss_objects_app:blag_hot:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:blag_hot:delete',
         
         # Телевидение
-        'objects:unfinished:destination:mss_objects_app:blag_tv:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:blag_tv:delete',
         
         # Телефонизация
-        'objects:unfinished:destination:mss_objects_app:blag_tel:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:blag_tel:delete',
         
         # Вентиляция
-        'objects:unfinished:destination:mss_objects_app:blag_vent:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:blag_vent:delete',
         
         # Памятник 
-        'objects:unfinished:destination:mss_objects_app:is_monument:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:is_monument:delete',
         
         # Категория историко-культурного значения
-        'objects:unfinished:destination:mss_objects_app:culturial_sense:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:culturial_sense:delete',
 
         # Наименование памятника
-        'objects:unfinished:destination:mss_objects_app:name_monument:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:name_monument:delete',
  
         # Дополнительная информация о памятнике
-        'objects:unfinished:destination:mss_objects_app:other_monument:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:other_monument:delete',
 
         # Старый реестровый номер
-        'objects:unfinished:destination:mss_objects_app:rn_old:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:rn_old:delete',
         
         # Примечание 
-        'objects:unfinished:destination:mss_objects_app:note_obj:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:note_obj:delete',
         
         # Назначение 
-        'objects:unfinished:destination:mss_objects_app:unmovable_used:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:unmovable_used:delete',
 
         # Жилая площадь
-        'objects:unfinished:destination:mss_objects_app:house_pl_gil:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:house_pl_gil:delete',
 
         # Кадастровый(условный) номер
-        'objects:unfinished:destination:mss_objects_app:cad_num_dop:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:cad_num_dop:delete',
         
         # Площадь застройки
-        'objects:unfinished:destination:mss_objects_app:pl_proj_st:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:pl_proj_st:delete',
         
         # Общая площадь помещений
-        'objects:unfinished:destination:mss_objects_app:all_pl_st:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:all_pl_st:delete',
         
         # Строительный номер
-        'objects:unfinished:destination:mss_objects_app:kossm_buildno:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:kossm_buildno:delete',
         
         # Год начала строительства
-        'objects:unfinished:destination:mss_objects_app:kossm_startyear:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:kossm_startyear:delete',
         
         # Год окончания строительства
-        'objects:unfinished:destination:mss_objects_app:kossm_endyear:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:kossm_endyear:delete',
         
         # Стоимость по проекту
-        'objects:unfinished:destination:mss_objects_app:kossm_startprice:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:kossm_startprice:delete',
         
         # Сумма инвестиций
-        'objects:unfinished:destination:mss_objects_app:kossm_investsum:delete',
+        'objects:unfinished:destination:mss_objects_app:link_param:kossm_investsum:delete',
 
         'objects:unfinished:destination:mss_objects:delete',
         'objects:unfinished:destination:mss_objects:drop___cad_quorter',

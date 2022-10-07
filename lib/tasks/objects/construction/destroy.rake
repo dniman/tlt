@@ -4,139 +4,139 @@ namespace :objects do
 
       task :tasks => [
         # История адреса
-        'objects:construction:destination:mss_objects_app:add_hist:delete',
+        'objects:construction:destination:mss_objects_app:link_param:add_hist:delete',
         
         # История наименования
-        'objects:construction:destination:mss_objects_app:obj_name_hist:delete',
+        'objects:construction:destination:mss_objects_app:link_param:obj_name_hist:delete',
 
         # Официальный адрес 
-        'objects:construction:destination:mss_objects_app:adr_str:delete',
+        'objects:construction:destination:mss_objects_app:link_param:adr_str:delete',
 
         # Общая площадь
-        'objects:construction:destination:mss_objects_app:house_pl:delete',
+        'objects:construction:destination:mss_objects_app:link_param:house_pl:delete',
 
         # ID объекта из Сауми
-        'objects:construction:destination:mss_objects_app:id_obj:delete',
+        'objects:construction:destination:mss_objects_app:link_param:id_obj:delete',
         
         # Код ОКОФ
-        'objects:construction:destination:mss_objects_app:okof:delete',
+        'objects:construction:destination:mss_objects_app:link_param:okof:delete',
         
         # Инвентарный номер
-        'objects:construction:destination:mss_objects_app:hous_inv_n:delete',
+        'objects:construction:destination:mss_objects_app:link_param:hous_inv_n:delete',
         
         # Год ввода в эксплуатацию 
-        'objects:construction:destination:mss_objects_app:year_vvod:delete',
+        'objects:construction:destination:mss_objects_app:link_param:year_vvod:delete',
         
         # Дата ввода в эксплуатацию 
-        'objects:construction:destination:mss_objects_app:house_date_begin_use:delete',
+        'objects:construction:destination:mss_objects_app:link_param:house_date_begin_use:delete',
        
         # Материал
-        'objects:construction:destination:mss_objects_app:house_material:delete',
+        'objects:construction:destination:mss_objects_app:link_param:house_material:delete',
         
         # Литера БТИ
-        'objects:construction:destination:mss_objects_app:bti_liter:delete',
+        'objects:construction:destination:mss_objects_app:link_param:bti_liter:delete',
         
         # Объем
-        'objects:construction:destination:mss_objects_app:capacity:delete',
+        'objects:construction:destination:mss_objects_app:link_param:capacity:delete',
         
         # Является недвижимым имуществом
-        'objects:construction:destination:mss_objects_app:is_immovable:delete',
+        'objects:construction:destination:mss_objects_app:link_param:is_immovable:delete',
         
         # Этажность
-        'objects:construction:destination:mss_objects_app:house_flats:delete',
+        'objects:construction:destination:mss_objects_app:link_param:house_flats:delete',
        
         # знаковый объект
-        'objects:construction:destination:mss_objects_app:wow_obj:delete',
+        'objects:construction:destination:mss_objects_app:link_param:wow_obj:delete',
        
         # социально-значимый объект
-        'objects:construction:destination:mss_objects_app:soc_zn_obj:delete',
+        'objects:construction:destination:mss_objects_app:link_param:soc_zn_obj:delete',
 
         # объект жкх 
-        'objects:construction:destination:mss_objects_app:obj_zkx:delete',
+        'objects:construction:destination:mss_objects_app:link_param:obj_zkx:delete',
 
         # вид объекта жкх
-        'objects:construction:destination:mss_objects_app:vid_obj_zkx:delete',
+        'objects:construction:destination:mss_objects_app:link_param:vid_obj_zkx:delete',
 
         # Электроэнергия
-        'objects:construction:destination:mss_objects_app:blag_energ:delete',
+        'objects:construction:destination:mss_objects_app:link_param:blag_energ:delete',
         
         # Вода
-        'objects:construction:destination:mss_objects_app:blag_water:delete',
+        'objects:construction:destination:mss_objects_app:link_param:blag_water:delete',
         
         # Газ 
-        'objects:construction:destination:mss_objects_app:blag_gaz:delete',
+        'objects:construction:destination:mss_objects_app:link_param:blag_gaz:delete',
         
         # Канализация
-        'objects:construction:destination:mss_objects_app:blag_kan:delete',
+        'objects:construction:destination:mss_objects_app:link_param:blag_kan:delete',
         
         # Лифт
-        'objects:construction:destination:mss_objects_app:blag_lift:delete',
+        'objects:construction:destination:mss_objects_app:link_param:blag_lift:delete',
         
         # Мусоропровод 
-        'objects:construction:destination:mss_objects_app:blag_mus:delete',
+        'objects:construction:destination:mss_objects_app:link_param:blag_mus:delete',
         
         # Отопление
-        'objects:construction:destination:mss_objects_app:blag_hot:delete',
+        'objects:construction:destination:mss_objects_app:link_param:blag_hot:delete',
         
         # Телевидение
-        'objects:construction:destination:mss_objects_app:blag_tv:delete',
+        'objects:construction:destination:mss_objects_app:link_param:blag_tv:delete',
         
         # Телефонизация
-        'objects:construction:destination:mss_objects_app:blag_tel:delete',
+        'objects:construction:destination:mss_objects_app:link_param:blag_tel:delete',
         
         # Вентиляция
-        'objects:construction:destination:mss_objects_app:blag_vent:delete',
+        'objects:construction:destination:mss_objects_app:link_param:blag_vent:delete',
         
         # Памятник 
-        'objects:construction:destination:mss_objects_app:is_monument:delete',
+        'objects:construction:destination:mss_objects_app:link_param:is_monument:delete',
         
         # Категория историко-культурного значения
-        'objects:construction:destination:mss_objects_app:culturial_sense:delete',
+        'objects:construction:destination:mss_objects_app:link_param:culturial_sense:delete',
         
         # Наименование памятника
-        'objects:construction:destination:mss_objects_app:name_monument:delete',
+        'objects:construction:destination:mss_objects_app:link_param:name_monument:delete',
         
         # Дополнительная информация о памятнике
-        'objects:construction:destination:mss_objects_app:other_monument:delete',
+        'objects:construction:destination:mss_objects_app:link_param:other_monument:delete',
 
         # Старый реестровый номер
-        'objects:construction:destination:mss_objects_app:rn_old:delete',
+        'objects:construction:destination:mss_objects_app:link_param:rn_old:delete',
 
         # Примечание 
-        'objects:construction:destination:mss_objects_app:note_obj:delete',
+        'objects:construction:destination:mss_objects_app:link_param:note_obj:delete',
         
         # Кадастровый(условный) номер
-        'objects:construction:destination:mss_objects_app:cad_num_dop:delete',
+        'objects:construction:destination:mss_objects_app:link_param:cad_num_dop:delete',
         
         # Протяженность
-        'objects:construction:destination:mss_objects_app:house_spread:delete',
+        'objects:construction:destination:mss_objects_app:link_param:house_spread:delete',
         
         # Ширина
-        'objects:construction:destination:mss_objects_app:width:delete',
+        'objects:construction:destination:mss_objects_app:link_param:width:delete',
         
         # Глубина 
-        'objects:construction:destination:mss_objects_app:depth:delete',
+        'objects:construction:destination:mss_objects_app:link_param:depth:delete',
         
         # Площадь застройки
-        'objects:construction:destination:mss_objects_app:built_up_area:delete',
+        'objects:construction:destination:mss_objects_app:link_param:built_up_area:delete',
         
         # Назначение
-        'objects:construction:destination:mss_objects_app:unmovable_used:delete',
+        'objects:construction:destination:mss_objects_app:link_param:unmovable_used:delete',
         
         # Идентификационный номер автодороги
-        'objects:construction:destination:mss_objects_app:id_avtodor:delete',
+        'objects:construction:destination:mss_objects_app:link_param:id_avtodor:delete',
         
         # Вид разрешенного использования автодороги
-        'objects:construction:destination:mss_objects_app:vri_avtodor:delete',
+        'objects:construction:destination:mss_objects_app:link_param:vri_avtodor:delete',
         
         # Класс автодороги
-        'objects:construction:destination:mss_objects_app:klass_avtodor:delete',
+        'objects:construction:destination:mss_objects_app:link_param:klass_avtodor:delete',
         
         # Категория автодороги
-        'objects:construction:destination:mss_objects_app:kateg_avtodor:delete',
+        'objects:construction:destination:mss_objects_app:link_param:kateg_avtodor:delete',
         
         # Группа сооружений
-        'objects:construction:destination:mss_objects_app:group_im:delete',
+        'objects:construction:destination:mss_objects_app:link_param:group_im:delete',
 
         'objects:construction:destination:mss_objects:delete',
         'objects:construction:destination:mss_objects:drop___cad_quorter',

@@ -3,109 +3,109 @@ namespace :objects do
     namespace :destroy do
       task :tasks => [
         # История адреса
-        'objects:life_room:destination:mss_objects_app:add_hist:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:add_hist:delete',
         
         # История наименования
-        'objects:life_room:destination:mss_objects_app:obj_name_hist:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:obj_name_hist:delete',
 
         # Официальный адрес 
-        'objects:life_room:destination:mss_objects_app:adr_str:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:adr_str:delete',
         
         # Общая площадь
-        'objects:life_room:destination:mss_objects_app:house_pl:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:house_pl:delete',
 
         # ID объекта из Сауми
-        'objects:life_room:destination:mss_objects_app:id_obj:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:id_obj:delete',
         
         # Код ОКОФ
-        'objects:life_room:destination:mss_objects_app:okof:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:okof:delete',
         
         # Инвентарный номер
-        'objects:life_room:destination:mss_objects_app:hous_inv_n:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:hous_inv_n:delete',
         
         # Год ввода в эксплуатацию 
-        'objects:life_room:destination:mss_objects_app:year_vvod:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:year_vvod:delete',
         
         # Дата ввода в эксплуатацию 
-        'objects:life_room:destination:mss_objects_app:house_date_begin_use:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:house_date_begin_use:delete',
         
         # Материал стен
-        'objects:life_room:destination:mss_objects_app:house_wall_type:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:house_wall_type:delete',
 
         # Литера БТИ
-        'objects:life_room:destination:mss_objects_app:bti_liter:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:bti_liter:delete',
         
         # Является недвижимым имуществом
-        'objects:life_room:destination:mss_objects_app:is_immovable:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:is_immovable:delete',
 
         # Этажность
-        'objects:life_room:destination:mss_objects_app:house_flats:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:house_flats:delete',
 
         # знаковый объект
-        'objects:life_room:destination:mss_objects_app:wow_obj:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:wow_obj:delete',
        
         # социально-значимый объект
-        'objects:life_room:destination:mss_objects_app:soc_zn_obj:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:soc_zn_obj:delete',
 
         # объект жкх 
-        'objects:life_room:destination:mss_objects_app:obj_zkx:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:obj_zkx:delete',
 
         # вид объекта жкх
-        'objects:life_room:destination:mss_objects_app:vid_obj_zkx:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:vid_obj_zkx:delete',
         
         # Электроэнергия
-        'objects:life_room:destination:mss_objects_app:blag_energ:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:blag_energ:delete',
         
         # Вода
-        'objects:life_room:destination:mss_objects_app:blag_water:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:blag_water:delete',
         
         # Газ 
-        'objects:life_room:destination:mss_objects_app:blag_gaz:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:blag_gaz:delete',
         
         # Канализация
-        'objects:life_room:destination:mss_objects_app:blag_kan:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:blag_kan:delete',
         
         # Лифт
-        'objects:life_room:destination:mss_objects_app:blag_lift:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:blag_lift:delete',
         
         # Мусоропровод 
-        'objects:life_room:destination:mss_objects_app:blag_mus:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:blag_mus:delete',
         
         # Отопление
-        'objects:life_room:destination:mss_objects_app:blag_hot:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:blag_hot:delete',
         
         # Телевидение
-        'objects:life_room:destination:mss_objects_app:blag_tv:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:blag_tv:delete',
         
         # Телефонизация
-        'objects:life_room:destination:mss_objects_app:blag_tel:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:blag_tel:delete',
         
         # Вентиляция
-        'objects:life_room:destination:mss_objects_app:blag_vent:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:blag_vent:delete',
         
         # Памятник 
-        'objects:life_room:destination:mss_objects_app:is_monument:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:is_monument:delete',
         
         # Категория историко-культурного значения
-        'objects:life_room:destination:mss_objects_app:culturial_sense:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:culturial_sense:delete',
 
         # Наименование памятника
-        'objects:life_room:destination:mss_objects_app:name_monument:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:name_monument:delete',
  
         # Дополнительная информация о памятнике
-        'objects:life_room:destination:mss_objects_app:other_monument:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:other_monument:delete',
 
         # Старый реестровый номер
-        'objects:life_room:destination:mss_objects_app:rn_old:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:rn_old:delete',
         
         # Примечание 
-        'objects:life_room:destination:mss_objects_app:note_obj:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:note_obj:delete',
         
         # Назначение 
-        'objects:life_room:destination:mss_objects_app:unmovable_used:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:unmovable_used:delete',
 
         # Жилая площадь
-        'objects:life_room:destination:mss_objects_app:house_pl_gil:delete',
+        'objects:life_room:destination:mss_objects_app:link_param:house_pl_gil:delete',
 
         'objects:life_room:destination:mss_objects:delete',
         'objects:life_room:destination:mss_objects:drop___cad_quorter',
