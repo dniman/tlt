@@ -1,5 +1,5 @@
 namespace :objects do
-  namespace :inland_waterway_vessel do
+  namespace :construction do
     namespace :destination do
       namespace :mss_objects_app do
         namespace :object do
@@ -11,7 +11,7 @@ namespace :objects do
                 query = 
                   Destination.mss_objects_types 
                   .project(Destination.mss_objects_types[:link])
-                  .where(Destination.mss_objects_types[:code].eq("INLAND_WATERWAY_VESSEL"))
+                  .where(Destination.mss_objects_types[:code].eq("CONSTRUCTION"))
               end
               
               def query

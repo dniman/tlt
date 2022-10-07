@@ -1,5 +1,5 @@
 namespace :objects do
-  namespace :inland_waterway_vessel do
+  namespace :unfinished do
     namespace :destination do
       namespace :mss_objects_app do
         namespace :object do
@@ -17,7 +17,7 @@ namespace :objects do
                     .on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
                   .join(Destination.mss_objects_params, Arel::Nodes::OuterJoin)
                     .on(Destination.mss_objects_params[:link].eq(Destination.mss_objects_app[:link_param]))
-                  .where(Destination.mss_objects_types[:code].eq('INLAND_WATERWAY_VESSEL')
+                  .where(Destination.mss_objects_types[:code].eq('UNFINISHED')
                     .and(Destination.mss_objects_app[:object].eq(Destination::SObjects.obj_id('MSS_OD_DEPRE_INIT_COST'))))
 
                 manager = Arel::DeleteManager.new(Database.destination_engine)
