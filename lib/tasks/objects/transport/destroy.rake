@@ -3,91 +3,91 @@ namespace :objects do
     namespace :destroy do
       task :tasks => [
         # История наименования
-        'objects:transport:destination:mss_objects_app:obj_name_hist:delete',
+        'objects:transport:destination:mss_objects_app:link_param:obj_name_hist:delete',
         
         # История инвентарного номера
-        'objects:transport:destination:mss_objects_app:obj_invnum_hist:delete',
+        'objects:transport:destination:mss_objects_app:link_param:obj_invnum_hist:delete',
 
         # ID объекта из Сауми
-        'objects:transport:destination:mss_objects_app:id_obj:delete',
+        'objects:transport:destination:mss_objects_app:link_param:id_obj:delete',
 
         # Код ОКОФ
-        'objects:transport:destination:mss_objects_app:okof:delete',
+        'objects:transport:destination:mss_objects_app:link_param:okof:delete',
         
         # Старый реестровый номер
-        'objects:transport:destination:mss_objects_app:rn_old:delete',
+        'objects:transport:destination:mss_objects_app:link_param:rn_old:delete',
         
         # Примечание 
-        'objects:transport:destination:mss_objects_app:note_obj:delete',
+        'objects:transport:destination:mss_objects_app:link_param:note_obj:delete',
         
         # Модель транспортного средства
-        'objects:transport:destination:mss_objects_app:movable_model:delete',
+        'objects:transport:destination:mss_objects_app:link_param:movable_model:delete',
         
         # Год выпуска
-        'objects:transport:destination:mss_objects_app:movable_year:delete',
+        'objects:transport:destination:mss_objects_app:link_param:movable_year:delete',
         
         # Государственный регистрационный номер
-        'objects:transport:destination:mss_objects_app:transport_reg_n:delete',
+        'objects:transport:destination:mss_objects_app:link_param:transport_reg_n:delete',
         
         # Номер двигателя
-        'objects:transport:destination:mss_objects_app:dvigat_num:delete',
+        'objects:transport:destination:mss_objects_app:link_param:dvigat_num:delete',
         
         # Номер шасси(рамы) 
-        'objects:transport:destination:mss_objects_app:shassi_num:delete',
+        'objects:transport:destination:mss_objects_app:link_param:shassi_num:delete',
 
         # Номер кузова
-        'objects:transport:destination:mss_objects_app:kuzov_num:delete',
+        'objects:transport:destination:mss_objects_app:link_param:kuzov_num:delete',
 
         # Тип транспорта
-        'objects:transport:destination:mss_objects_app:type_transport:delete',
+        'objects:transport:destination:mss_objects_app:link_param:type_transport:delete',
         
         # Марка транспортного средства
-        'objects:transport:destination:mss_objects_app:automaker:delete',
+        'objects:transport:destination:mss_objects_app:link_param:automaker:delete',
         
         # Идентификационный номер(VIN)
-        'objects:transport:destination:mss_objects_app:vin_num:delete',
+        'objects:transport:destination:mss_objects_app:link_param:vin_num:delete',
         
         # Цвет кузова
-        'objects:transport:destination:mss_objects_app:color_kuzov:delete',
+        'objects:transport:destination:mss_objects_app:link_param:color_kuzov:delete',
         
         # Мощность двигателя
-        'objects:transport:destination:mss_objects_app:power_dvig:delete',
+        'objects:transport:destination:mss_objects_app:link_param:power_dvig:delete',
         
         # Объем двигателя
-        'objects:transport:destination:mss_objects_app:v_dvigatel:delete',
+        'objects:transport:destination:mss_objects_app:link_param:v_dvigatel:delete',
         
         # Тип двигателя
-        'objects:transport:destination:mss_objects_app:engine_type:delete',
+        'objects:transport:destination:mss_objects_app:link_param:engine_type:delete',
         
         # Разрешенная максимальная масса
-        'objects:transport:destination:mss_objects_app:razresh_max_mas:delete',
+        'objects:transport:destination:mss_objects_app:link_param:razresh_max_mas:delete',
         
         # Масса без нагрузки
-        'objects:transport:destination:mss_objects_app:mass_without_load:delete',
+        'objects:transport:destination:mss_objects_app:link_param:mass_without_load:delete',
         
         # Изготовитель(страна)
-        'objects:transport:destination:mss_objects_app:auto_country:delete',
+        'objects:transport:destination:mss_objects_app:link_param:auto_country:delete',
         
         # Страна вывоза
-        'objects:transport:destination:mss_objects_app:auto_country_export:delete',
+        'objects:transport:destination:mss_objects_app:link_param:auto_country_export:delete',
         
         # Серия, номер ГТД
-        'objects:transport:destination:mss_objects_app:gdt_ser_num:delete',
+        'objects:transport:destination:mss_objects_app:link_param:gdt_ser_num:delete',
         
         # Таможенные ограничения
-        'objects:transport:destination:mss_objects_app:auto_tam_ogr:delete',
+        'objects:transport:destination:mss_objects_app:link_param:auto_tam_ogr:delete',
         
         # Организация, выдавшая ПТС
-        'objects:transport:destination:mss_objects_app:auto_pts_org:delete',
+        'objects:transport:destination:mss_objects_app:link_param:auto_pts_org:delete',
         
         # Дата ПТС
-        'objects:transport:destination:mss_objects_app:data_pts:delete',
+        'objects:transport:destination:mss_objects_app:link_param:data_pts:delete',
         
         # Отделение ГИБДД
-        'objects:transport:destination:mss_objects_app:ps_gibdd:delete',
+        'objects:transport:destination:mss_objects_app:link_param:ps_gibdd:delete',
 
         # Счет учета ОС
-        'objects:transport:destination:mss_objects_app:fixed_assets_account:delete',
+        'objects:transport:destination:mss_objects_app:link_param:fixed_assets_account:delete',
         
         # Нормы амортизации
         'objects:transport:destination:mss_objects_app:object:mss_depre_rates:delete',
