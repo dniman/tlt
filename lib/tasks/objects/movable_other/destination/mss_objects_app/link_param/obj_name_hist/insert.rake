@@ -2,6 +2,7 @@ namespace :objects do
   namespace :movable_other do
     namespace :destination do
       namespace :mss_objects_app do
+        namespace :link_param do
         namespace :obj_name_hist do
 
           task :insert do |t|
@@ -73,4 +74,5 @@ namespace :objects do
       end
     end
   end
+end
 end
