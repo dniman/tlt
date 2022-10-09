@@ -54,6 +54,7 @@ module Source
     :engtype,
     :manufacturers,
     :intellectualtypes,
+    :intellect,
   ]
   
   class << self

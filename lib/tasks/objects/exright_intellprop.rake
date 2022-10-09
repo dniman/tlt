@@ -1,7 +1,7 @@
 Dir[File.expand_path('../exright_intellprop/**/*.rake', __FILE__)].each {|path| import path}
 
 namespace :objects do
-  namespace :transport do
+  namespace :exright_intellprop do
 
     task :import => [
       'objects:exright_intellprop:import:tasks',

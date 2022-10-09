@@ -3,7 +3,7 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects do
         
-        task :update___link_dict_name do |t|
+        task :update___link_intellprop_sp do |t|
           def link_param_query(code)
             Destination.set_engine!
             query = 
@@ -13,19 +13,19 @@ namespace :objects do
           end
 
           begin
-            link_param = Destination.execute_query(link_param_query('DICT_NAME').to_sql).entries.first["link"]
+            link_param = Destination.execute_query(link_param_query('INTELLPROP_SP').to_sql).entries.first["link"]
 
             update = [ 
-              ___link_dict_name: Arel.sql(
+              ___link_intellprop_sp: Arel.sql(
                 "(
                   select link 
                   from mss_objects_dicts 
-                  where name = mss_objects.___dict_name
+                  where name = mss_objects.___intellprop_sp
                     and mss_objects_dicts.link_dict = #{ link_param }
                 )"
               )
             ]
-            where = Arel.sql("mss_objects.___dict_name is not null")
+            where = Arel.sql("mss_objects.___intellprop_sp is not null")
 
             sql = Destination::MssObjects.update_query(row: update, where: where)
             result = Destination.execute_query(sql)

@@ -2,13 +2,12 @@ namespace :objects do
   namespace :exright_intellprop do
     namespace :destination do
       namespace :mss_objects do
-
-        task :drop___link_dict_name do |t|
+        
+        task :add___link_intellprop_sp do |t|
           begin
             sql = Arel.sql(
-              "if (col_length('#{ Destination.mss_objects.name }','___link_dict_name') is not null)
-              alter table #{ Destination.mss_objects.name }
-                drop column ___link_dict_name
+              "alter table #{ Destination.mss_objects.name }
+                add ___link_intellprop_sp int
               "
             )
             Destination.execute_query(sql).do

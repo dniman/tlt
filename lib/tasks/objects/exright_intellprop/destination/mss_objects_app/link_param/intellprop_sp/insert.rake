@@ -3,7 +3,7 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects_app do
         namespace :link_param do
-          namespace :dict_name do
+          namespace :intellprop_sp do
 
             task :insert do |t|
               def link_type_query
@@ -30,18 +30,18 @@ namespace :objects do
                 Destination.mss_objects
                 .project([
                   Destination.mss_objects[:link],
-                  Destination.mss_objects[:___link_dict_name],
+                  Destination.mss_objects[:___link_intellprop_sp],
                 ])
                 .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin).on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
                 .where(Destination.mss_objects[:link_type].eq(link_type)
-                  .and(Destination.mss_objects[:___link_dict_name].not_eq(nil))
+                  .and(Destination.mss_objects[:___link_intellprop_sp].not_eq(nil))
                 )
               end
 
               begin
                 sql = ""
                 insert = []
-                link_param = Destination.execute_query(link_param_query('DICT_NAME').to_sql).entries.first["link"]
+                link_param = Destination.execute_query(link_param_query('INTELLPROP_SP').to_sql).entries.first["link"]
                 
                 sliced_rows = Destination.execute_query(query.to_sql).each_slice(1000).to_a
                 sliced_rows.each do |rows|
@@ -49,7 +49,7 @@ namespace :objects do
                     insert << {
                       link_up: row["link"],
                       link_param: link_param,
-                      link_dict: row["___link_dict_name"]
+                      link_dict: row["___link_intellprop_sp"]
                     }
                   end
                   

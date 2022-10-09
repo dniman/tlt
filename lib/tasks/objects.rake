@@ -10,6 +10,7 @@ import 'lib/tasks/objects/transport.rake'
 import 'lib/tasks/objects/share.rake'
 import 'lib/tasks/objects/partnership.rake'
 import 'lib/tasks/objects/inland_waterway_vessel.rake'
+import 'lib/tasks/objects/exright_intellprop.rake'
 
 namespace :objects do
 
@@ -26,6 +27,7 @@ namespace :objects do
     'objects:share:import',
     'objects:partnership:import',
     'objects:inland_waterway_vessel:import',
+    'objects:exright_intellprop:import',
   ] 
   
   task :destroy => [
@@ -41,6 +43,7 @@ namespace :objects do
     'objects:share:destroy',
     'objects:partnership:destroy',
     'objects:inland_waterway_vessel:destroy',
+    'objects:exright_intellprop:destroy',
   ] 
 
 end  

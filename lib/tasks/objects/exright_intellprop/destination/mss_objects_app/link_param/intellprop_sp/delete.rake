@@ -3,7 +3,7 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects_app do
         namespace :link_param do
-          namespace :dict_name do
+          namespace :intellprop_sp do
             
             task :delete do |t|
               begin
@@ -18,7 +18,7 @@ namespace :objects do
                   .join(Destination.mss_objects_params, Arel::Nodes::OuterJoin)
                     .on(Destination.mss_objects_params[:link].eq(Destination.mss_objects_app[:link_param]))
                   .where(Destination.mss_objects_types[:code].eq('EXRIGHT_INTELLPROP')
-                    .and(Destination.mss_objects_params[:code].eq('DICT_NAME')))
+                    .and(Destination.mss_objects_params[:code].eq('INTELLPROP_SP')))
 
                 manager = Arel::DeleteManager.new(Database.destination_engine)
                 manager.from (Destination.mss_objects_app)

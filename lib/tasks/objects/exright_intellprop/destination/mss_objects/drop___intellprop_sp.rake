@@ -3,11 +3,12 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects do
 
-        task :add___dict_name do |t|
+        task :drop___intellprop_sp do |t|
           begin
             sql = Arel.sql(
-              "alter table #{ Destination.mss_objects.name }
-                add ___dict_name varchar(1000)
+              "if (col_length('#{ Destination.mss_objects.name }','___intellprop_sp') is not null)
+              alter table #{ Destination.mss_objects.name }
+                drop column ___intellprop_sp
               "
             )
             Destination.execute_query(sql).do
