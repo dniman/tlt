@@ -14,8 +14,8 @@ namespace :objects do
         # Примечание 
         'objects:exright_intellprop:destination:mss_objects_app:link_param:note_obj:delete',
         
-        # Значение из справочника наименований
-        #'objects:exright_intellprop:destination:mss_objects_app:link_param:dict_name:delete',
+        # Вид объекта интеллектуальной собственности
+        'objects:exright_intellprop:destination:mss_objects_app:link_param:intellprop_sp:delete',
         
         # Группы
         #'objects:exright_intellprop:destination:mss_objects_app:link_param:group:delete',

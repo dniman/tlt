@@ -32,6 +32,7 @@ import 'lib/tasks/dictionaries/engine_type.rake'
 import 'lib/tasks/dictionaries/auto_country.rake'
 import 'lib/tasks/dictionaries/auto_country_export.rake'
 import 'lib/tasks/dictionaries/intellprop_sp.rake'
+import 'lib/tasks/dictionaries/func_nazn_ei.rake'
 
 namespace :dictionaries do
 
@@ -70,6 +71,7 @@ namespace :dictionaries do
     'dictionaries:auto_country:import',
     'dictionaries:auto_country_export:import',
     'dictionaries:intellprop_sp:import',
+    'dictionaries:func_nazn_ei:import',
   ] 
 
   task :destroy => [
@@ -106,6 +108,7 @@ namespace :dictionaries do
     'dictionaries:engine_type:destroy',
     'dictionaries:auto_country:destroy',
     'dictionaries:intellprop_sp:destroy',
+    'dictionaries:func_nazn_ei:destroy',
   ] 
 
 end 

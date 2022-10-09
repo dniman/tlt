@@ -2,7 +2,7 @@ namespace :objects do
   namespace :houses_unlife do
     namespace :destination do
       namespace :mss_objects_app do
-        namespace :link_type do
+        namespace :link_param do
           namespace :id_obj do
             
             task :delete do |t|
