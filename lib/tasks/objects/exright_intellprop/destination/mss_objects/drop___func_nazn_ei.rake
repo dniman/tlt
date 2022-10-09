@@ -3,12 +3,12 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects do
 
-        task :drop___link_group do |t|
+        task :drop___func_nazn_ei do |t|
           begin
             sql = Arel.sql(
-              "if (col_length('#{ Destination.mss_objects.name }','___link_group') is not null)
+              "if (col_length('#{ Destination.mss_objects.name }','___func_nazn_ei') is not null)
               alter table #{ Destination.mss_objects.name }
-                drop column ___link_group
+                drop column ___func_nazn_ei
               "
             )
             Destination.execute_query(sql).do

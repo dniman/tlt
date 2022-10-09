@@ -5,7 +5,7 @@ namespace :objects do
       task :tasks do 
         Rake.invoke_task 'objects:exright_intellprop:source:ids:insert'
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___intellprop_sp' 
-        #Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___group' 
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___func_nazn_ei' 
         #Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___section' 
 
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:insert'
@@ -30,12 +30,12 @@ namespace :objects do
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:drop___intellprop_sp' 
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:drop___link_intellprop_sp' 
         
-        # Группы
-        #Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___link_group' 
-        #Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:update___link_group' 
-        #Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects_app:link_param:group:insert'
-        #Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:drop___group' 
-        #Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:drop___link_group' 
+        # Функциональное назначение
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___link_func_nazn_ei' 
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:update___link_func_nazn_ei' 
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects_app:link_param:func_nazn_ei:insert'
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:drop___func_nazn_ei' 
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:drop___link_func_nazn_ei' 
         
         # Разделы
         #Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___link_section' 

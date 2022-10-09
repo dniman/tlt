@@ -17,7 +17,11 @@ namespace :dictionaries do
             
             Source.intellect
             .project([
-              Source.intellect[:func_nazn],
+              Arel.sql(
+                "ltrim(rtrim(
+                    replace(replace([intellect].[func_nazn], char(9), ''), char(10), '')
+                  ))"
+              ).as("name")
             ])
             .distinct
             .where(Source.intellect[:func_nazn].not_eq(nil))
@@ -32,7 +36,7 @@ namespace :dictionaries do
             sliced_rows.each do |rows|
               rows.each do |row|
                 insert << {
-                  name: row['func_nazn']&.strip,
+                  name: row['name']&.strip,
                   link_dict: link_dict,
                   row_id: Arel.sql('newid()'),
                 }

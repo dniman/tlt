@@ -25,14 +25,17 @@ namespace :objects do
               Source.ids[:link_type],
               Source.intellect[:name],
               Source.intellectualtypes[:name].as("___intellprop_sp"),
-              #Source.propgroups[:name].as("___group"),
+              Arel.sql(
+                "ltrim(rtrim(
+                    replace(replace([intellect].[func_nazn], char(9), ''), char(10), '')
+                  ))"
+              ).as("___func_nazn_ei"),
               #Source.propsections[:name].as("___section"),
             ])
             .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
             .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
             .join(Source.intellect, Arel::Nodes::OuterJoin).on(Source.intellect[:objects_id].eq(Source.objects[:id]))
             .join(Source.intellectualtypes, Arel::Nodes::OuterJoin).on(Source.intellectualtypes[:id].eq(Source.intellect[:intell_type_id]))
-            #.join(Source.propgroups, Arel::Nodes::OuterJoin).on(Source.propgroups[:id].eq(Source.property[:propgroups_id]))
             #.join(Source.propsections, Arel::Nodes::OuterJoin).on(Source.propsections[:id].eq(Source.property[:propsections_id]))
             .where(Source.ids[:link_type].eq(link_type))
           end
@@ -53,7 +56,7 @@ namespace :objects do
                   object: Destination::MssObjects::DICTIONARY_MSS_OBJECTS,
                   row_id: row["row_id"],
                   ___intellprop_sp: row["___intellprop_sp"]&.strip,
-                  #___group: row["___group"]&.strip,
+                  ___func_nazn_ei: row["___func_nazn_ei"]&.strip,
                   #___section: row["___section"]&.strip,
                 }
               end

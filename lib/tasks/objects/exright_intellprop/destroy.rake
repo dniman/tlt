@@ -17,8 +17,8 @@ namespace :objects do
         # Вид объекта интеллектуальной собственности
         'objects:exright_intellprop:destination:mss_objects_app:link_param:intellprop_sp:delete',
         
-        # Группы
-        #'objects:exright_intellprop:destination:mss_objects_app:link_param:group:delete',
+        # Функциональное назначение
+        'objects:exright_intellprop:destination:mss_objects_app:link_param:func_nazn_ei:delete',
         
         # Разделы
         #'objects:exright_intellprop:destination:mss_objects_app:link_param:section:delete',
@@ -52,10 +52,10 @@ namespace :objects do
         'objects:exright_intellprop:destination:mss_objects:delete',
 
          # Удаление дополнительных колонок
-        #'objects:exright_intellprop:destination:mss_objects:drop___dict_name',
-        #'objects:exright_intellprop:destination:mss_objects:drop___link_dict_name',
-        #'objects:exright_intellprop:destination:mss_objects:drop___group',
-        #'objects:exright_intellprop:destination:mss_objects:drop___link_group',
+        'objects:exright_intellprop:destination:mss_objects:drop___intellprop_sp',
+        'objects:exright_intellprop:destination:mss_objects:drop___link_intellprop_sp',
+        'objects:exright_intellprop:destination:mss_objects:drop___func_nazn_ei',
+        'objects:exright_intellprop:destination:mss_objects:drop___link_func_nazn_ei',
         #'objects:exright_intellprop:destination:mss_objects:drop___section',
         #'objects:exright_intellprop:destination:mss_objects:drop___link_section',
       ]
