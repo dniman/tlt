@@ -53,6 +53,7 @@ module Source
     :colors,
     :engtype,
     :manufacturers,
+    :intellectualtypes,
   ]
   
   class << self
