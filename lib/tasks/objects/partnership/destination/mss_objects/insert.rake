@@ -16,6 +16,7 @@ namespace :objects do
             link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
 
             Source.set_engine!
+            ids2 = Source.ids.alias('ids2')
 
             Source.objects
             .project([
@@ -23,16 +24,17 @@ namespace :objects do
               Source.objects[:invno],
               Source.ids[:row_id],
               Source.ids[:link_type],
-              #Source.propnames[:name].as("___dict_name"),
-              #Source.propgroups[:name].as("___group"),
-              #Source.propsections[:name].as("___section"),
+              ids2[:link].as("link_corr"),
             ])
             .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
             .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
             .join(Source.objshares).on(Source.objshares[:objects_id].eq(Source.objects[:id]))
-            #.join(Source.propnames, Arel::Nodes::OuterJoin).on(Source.propnames[:id].eq(Source.property[:propnames_id]))
-            #.join(Source.propgroups, Arel::Nodes::OuterJoin).on(Source.propgroups[:id].eq(Source.property[:propgroups_id]))
-            #.join(Source.propsections, Arel::Nodes::OuterJoin).on(Source.propsections[:id].eq(Source.property[:propsections_id]))
+            .join(Source.organisations, Arel::Nodes::OuterJoin).on(Source.organisations[:id].eq(Source.objshares[:organisations_id]))
+            .join(Source.clients, Arel::Nodes::OuterJoin).on(Source.clients[:id].eq(Source.organisations[:clients_id]))
+            .join(ids2, Arel::Nodes::OuterJoin)
+              .on(ids2[:id].eq(Source.clients[:id])
+                .and(ids2[:table_id].eq(Source::Clients.table_id))
+              )
             .where(Source.ids[:link_type].eq(link_type))
           end
 
@@ -43,7 +45,7 @@ namespace :objects do
             sliced_rows.each do |rows|
               rows.each do |row|
                 insert << {
-                  #name: row["description"]&.strip,
+                  name: row["description"]&.strip,
                   inventar_num: row["invno"]&.strip,
                   inventar_num_date: nil,
                   link_type: row["link_type"],
@@ -51,9 +53,7 @@ namespace :objects do
                   link_oktmo: nil,
                   object: Destination::MssObjects::DICTIONARY_MSS_OBJECTS,
                   row_id: row["row_id"],
-                  #___dict_name: row["___dict_name"]&.strip,
-                  #___group: row["___group"]&.strip,
-                  #___section: row["___section"]&.strip,
+                  link_corr: row["link_corr"],
                 }
               end
 

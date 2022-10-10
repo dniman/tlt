@@ -30,12 +30,19 @@ module Destination
       sql
     end
     
-    def self.delete_query(links:)
+    def self.delete_query(links:, condition: nil)
       Destination.set_engine!
      
       manager = Arel::DeleteManager.new(Database.destination_engine)
       manager.from (Destination.t_corr_dict)
-      manager.where(Arel::Nodes::In.new(Destination.t_corr_dict[:corr],links))
+      if condition
+        manager.where(
+          Arel::Nodes::In.new(Destination.t_corr_dict[:corr],links)
+          .and(Arel.sql(condition))
+        )
+      else
+        manager.where(Arel::Nodes::In.new(Destination.t_corr_dict[:corr],links))
+      end
       manager.to_sql
     end
     

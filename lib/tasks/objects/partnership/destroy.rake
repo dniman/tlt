@@ -14,16 +14,6 @@ namespace :objects do
         # Примечание 
         'objects:partnership:destination:mss_objects_app:link_param:note_obj:delete',
         
-        # Значение из справочника наименований
-        #'objects:partnership:destination:mss_objects_app:link_param:dict_name:delete',
-        
-        # Группы
-        #'objects:partnership:destination:mss_objects_app:link_param:group:delete',
-        
-        # Разделы
-        #'objects:partnership:destination:mss_objects_app:link_param:section:delete',
-        
-
         # Счет учета ОС
         'objects:partnership:destination:mss_objects_app:link_param:fixed_assets_account:delete',
         
@@ -48,17 +38,11 @@ namespace :objects do
         # Оставшийся срок полезного использования в годах
         'objects:partnership:destination:mss_objects_app:object:mss_od_remaining_useful_life_y:delete',
 
+        # Удалим ссылку на тип Хозяйственное общество или товарищество 
+        'objects:partnership:destination:t_corr_dict:reference_corr_type:partnership:delete',
 
         # Удаление основного объекта
         'objects:partnership:destination:mss_objects:delete',
-
-         # Удаление дополнительных колонок
-        #'objects:partnership:destination:mss_objects:drop___dict_name',
-        #'objects:partnership:destination:mss_objects:drop___link_dict_name',
-        #'objects:partnership:destination:mss_objects:drop___group',
-        #'objects:partnership:destination:mss_objects:drop___link_group',
-        #'objects:partnership:destination:mss_objects:drop___section',
-        #'objects:partnership:destination:mss_objects:drop___link_section',
       ]
     end
   end
