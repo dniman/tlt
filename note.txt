@@ -2,7 +2,6 @@
 # добавить параметр house_pl_gil
 # код ОКОФ тип данных на текстовый поменять
 
-
 # Должно быть в сборке новых версий
 alter table dbo.mss_objects_dicts
   alter column name varchar(1000)
