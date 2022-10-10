@@ -3,7 +3,7 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects do
         
-        task :update___link_section do |t|
+        task :update___link_storage_authority_ei do |t|
           def link_param_query(code)
             Destination.set_engine!
             query = 
@@ -13,19 +13,19 @@ namespace :objects do
           end
 
           begin
-            link_param = Destination.execute_query(link_param_query('SECTION').to_sql).entries.first["link"]
+            link_param = Destination.execute_query(link_param_query('STORAGE_AUTHORITY_EI').to_sql).entries.first["link"]
 
             update = [ 
-              ___link_section: Arel.sql(
+              ___link_storage_authority_ei: Arel.sql(
                 "(
                   select link 
                   from mss_objects_dicts 
-                  where name = mss_objects.___section
+                  where name = mss_objects.___storage_authority_ei
                     and mss_objects_dicts.link_dict = #{ link_param }
                 )"
               )
             ]
-            where = Arel.sql("mss_objects.___section is not null")
+            where = Arel.sql("mss_objects.___storage_authority_ei is not null")
 
             sql = Destination::MssObjects.update_query(row: update, where: where)
             result = Destination.execute_query(sql)

@@ -3,12 +3,12 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects do
 
-        task :drop___section do |t|
+        task :drop___link_storage_authority_ei do |t|
           begin
             sql = Arel.sql(
-              "if (col_length('#{ Destination.mss_objects.name }','___section') is not null)
+              "if (col_length('#{ Destination.mss_objects.name }','___link_storage_authority_ei') is not null)
               alter table #{ Destination.mss_objects.name }
-                drop column ___section
+                drop column ___link_storage_authority_ei
               "
             )
             Destination.execute_query(sql).do

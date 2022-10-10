@@ -2,13 +2,12 @@ namespace :objects do
   namespace :exright_intellprop do
     namespace :destination do
       namespace :mss_objects do
-
-        task :drop___link_section do |t|
+        
+        task :add___link_storage_authority_ei do |t|
           begin
             sql = Arel.sql(
-              "if (col_length('#{ Destination.mss_objects.name }','___link_section') is not null)
-              alter table #{ Destination.mss_objects.name }
-                drop column ___link_section
+              "alter table #{ Destination.mss_objects.name }
+                add ___link_storage_authority_ei int
               "
             )
             Destination.execute_query(sql).do

@@ -2,8 +2,12 @@ namespace :objects do
   namespace :exright_intellprop do
     namespace :destroy do
       task :tasks => [
+        
         # История наименования
         'objects:exright_intellprop:destination:mss_objects_app:link_param:obj_name_hist:delete',
+        
+        # История инвентарного номера
+        'objects:exright_intellprop:destination:mss_objects_app:link_param:obj_invnum_hist:delete',
 
         # ID объекта из Сауми
         'objects:exright_intellprop:destination:mss_objects_app:link_param:id_obj:delete',
@@ -20,8 +24,8 @@ namespace :objects do
         # Функциональное назначение
         'objects:exright_intellprop:destination:mss_objects_app:link_param:func_nazn_ei:delete',
         
-        # Разделы
-        #'objects:exright_intellprop:destination:mss_objects_app:link_param:section:delete',
+        # Орган, осуществлюящий хранение
+        'objects:exright_intellprop:destination:mss_objects_app:link_param:storage_authority_ei:delete',
         
         # Счет учета ОС
         'objects:exright_intellprop:destination:mss_objects_app:link_param:fixed_assets_account:delete',
@@ -56,8 +60,8 @@ namespace :objects do
         'objects:exright_intellprop:destination:mss_objects:drop___link_intellprop_sp',
         'objects:exright_intellprop:destination:mss_objects:drop___func_nazn_ei',
         'objects:exright_intellprop:destination:mss_objects:drop___link_func_nazn_ei',
-        #'objects:exright_intellprop:destination:mss_objects:drop___section',
-        #'objects:exright_intellprop:destination:mss_objects:drop___link_section',
+        'objects:exright_intellprop:destination:mss_objects:drop___storage_authority_ei',
+        'objects:exright_intellprop:destination:mss_objects:drop___link_storage_authority_ei',
       ]
     end
   end

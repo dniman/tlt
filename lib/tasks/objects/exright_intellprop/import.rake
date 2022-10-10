@@ -6,13 +6,16 @@ namespace :objects do
         Rake.invoke_task 'objects:exright_intellprop:source:ids:insert'
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___intellprop_sp' 
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___func_nazn_ei' 
-        #Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___section' 
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___storage_authority_ei' 
 
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:insert'
         Rake.invoke_task 'objects:exright_intellprop:source:ids:update_link'
 
         # История наименования
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects_app:link_param:obj_name_hist:insert'
+        
+        # История инвентарного номера
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects_app:link_param:obj_invnum_hist:insert'
         
         # ID объекта из Сауми
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects_app:link_param:id_obj:insert'
@@ -37,12 +40,12 @@ namespace :objects do
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:drop___func_nazn_ei' 
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:drop___link_func_nazn_ei' 
         
-        # Разделы
-        #Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___link_section' 
-        #Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:update___link_section' 
-        #Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects_app:link_param:section:insert'
-        #Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:drop___section' 
-        #Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:drop___link_section' 
+        # Орган, осуществлюящий хранение
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___link_storage_authority_ei' 
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:update___link_storage_authority_ei' 
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects_app:link_param:storage_authority_ei:insert'
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:drop___storage_authority_ei' 
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:drop___link_storage_authority_ei' 
         
 
         # Счет учета ОС
