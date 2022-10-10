@@ -8,8 +8,12 @@ namespace :objects do
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___func_nazn_ei' 
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___storage_authority_ei' 
 
+        Rake.invoke_task 'objects:exright_intellprop:source:ids:add___link_adr'
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:insert'
         Rake.invoke_task 'objects:exright_intellprop:source:ids:update_link'
+        Rake.invoke_task 'objects:exright_intellprop:source:ids:update___link_adr'
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects_adr:insert'
+        Rake.invoke_task 'objects:exright_intellprop:source:ids:drop___link_adr'
 
         # История наименования
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects_app:link_param:obj_name_hist:insert'
