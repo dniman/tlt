@@ -14,6 +14,7 @@ namespace :objects do
         # Примечание 
         'objects:partnership:destination:mss_objects_app:link_param:note_obj:delete',
         
+
         # Счет учета ОС
         'objects:partnership:destination:mss_objects_app:link_param:fixed_assets_account:delete',
         

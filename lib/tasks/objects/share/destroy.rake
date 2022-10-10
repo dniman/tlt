@@ -14,16 +14,7 @@ namespace :objects do
         # Примечание 
         'objects:share:destination:mss_objects_app:link_param:note_obj:delete',
         
-        # Значение из справочника наименований
-        #'objects:share:destination:mss_objects_app:link_param:dict_name:delete',
         
-        # Группы
-        #'objects:share:destination:mss_objects_app:link_param:group:delete',
-        
-        # Разделы
-        #'objects:share:destination:mss_objects_app:link_param:section:delete',
-        
-
         # Счет учета ОС
         'objects:share:destination:mss_objects_app:link_param:fixed_assets_account:delete',
         
@@ -49,16 +40,11 @@ namespace :objects do
         'objects:share:destination:mss_objects_app:object:mss_od_remaining_useful_life_y:delete',
 
 
+        # Удалим ссылку на тип Хозяйственное общество или товарищество 
+        'objects:share:destination:t_corr_dict:reference_corr_type:emmitstock:delete',
+
         # Удаление основного объекта
         'objects:share:destination:mss_objects:delete',
-
-         # Удаление дополнительных колонок
-        #'objects:share:destination:mss_objects:drop___dict_name',
-        #'objects:share:destination:mss_objects:drop___link_dict_name',
-        #'objects:share:destination:mss_objects:drop___group',
-        #'objects:share:destination:mss_objects:drop___link_group',
-        #'objects:share:destination:mss_objects:drop___section',
-        #'objects:share:destination:mss_objects:drop___link_section',
       ]
     end
   end

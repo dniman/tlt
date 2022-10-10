@@ -4,12 +4,10 @@ namespace :objects do
 
       task :tasks do 
         Rake.invoke_task 'objects:share:source:ids:insert'
-        #Rake.invoke_task 'objects:share:destination:mss_objects:add___dict_name' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects:add___group' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects:add___section' 
 
         Rake.invoke_task 'objects:share:destination:mss_objects:insert'
         Rake.invoke_task 'objects:share:source:ids:update_link'
+        Rake.invoke_task 'objects:share:destination:t_corr_dict:reference_corr_type:emmitstock:insert'
 
         # История наименования
         Rake.invoke_task 'objects:share:destination:mss_objects_app:link_param:obj_name_hist:insert'
@@ -22,77 +20,31 @@ namespace :objects do
         
         # Примечание 
         Rake.invoke_task 'objects:share:destination:mss_objects_app:link_param:note_obj:insert'
-        
-        # Значение из справочника наименований
-        #Rake.invoke_task 'objects:share:destination:mss_objects:add___link_dict_name' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects:update___link_dict_name' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects_app:link_param:dict_name:insert'
-        #Rake.invoke_task 'objects:share:destination:mss_objects:drop___dict_name' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects:drop___link_dict_name' 
-        
-        # Группы
-namespace :objects do
-  namespace :share do
-    namespace :import do
 
-      task :tasks do 
-        Rake.invoke_task 'objects:share:source:ids:insert'
-        #Rake.invoke_task 'objects:share:destination:mss_objects:add___dict_name' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects:add___group' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects:add___section' 
+        
+        # Счет учета ОС
+        Rake.invoke_task 'objects:share:destination:mss_objects_app:link_param:fixed_assets_account:insert'
+        
+        # Нормы амортизации
+        Rake.invoke_task 'objects:share:destination:mss_objects_app:object:mss_depre_rates:insert'
 
-        Rake.invoke_task 'objects:share:destination:mss_objects:insert'
-        Rake.invoke_task 'objects:share:source:ids:update_link'
-
-        # История наименования
-        Rake.invoke_task 'objects:share:destination:mss_objects_app:obj_name_hist:insert'
+        # Амортизационные группы
+        Rake.invoke_task 'objects:share:destination:mss_objects_app:object:mss_depre_groups:insert'
         
-        # ID объекта из Сауми
-        Rake.invoke_task 'objects:share:destination:mss_objects_app:id_obj:insert'
+        # Дата начала начисления амортизации
+        Rake.invoke_task 'objects:share:destination:mss_objects_app:object:mss_od_date_begin_depre:insert'
         
-        # Старый реестровый номер
-        Rake.invoke_task 'objects:share:destination:mss_objects_app:rn_old:insert'
+        # Амортизация до принятия к учету
+        Rake.invoke_task 'objects:share:destination:mss_objects_app:object:mss_od_depre_init_cost:insert'
         
-        # Примечание 
-        Rake.invoke_task 'objects:share:destination:mss_objects_app:note_obj:insert'
+        # Метод начисления амортизации 
+        Rake.invoke_task 'objects:share:destination:mss_objects_app:object:mss_od_depre_method:insert'
         
-        # Значение из справочника наименований
-        #Rake.invoke_task 'objects:share:destination:mss_objects:add___link_dict_name' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects:update___link_dict_name' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects_app:dict_name:insert'
-        #Rake.invoke_task 'objects:share:destination:mss_objects:drop___dict_name' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects:drop___link_dict_name' 
+        # Оставшийся срок полезного использования в месяцах 
+        Rake.invoke_task 'objects:share:destination:mss_objects_app:object:mss_od_remaining_useful_life_m:insert'
         
-        # Группы
-        #Rake.invoke_task 'objects:share:destination:mss_objects:add___link_group' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects:update___link_group' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects_app:group:insert'
-        #Rake.invoke_task 'objects:share:destination:mss_objects:drop___group' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects:drop___link_group' 
-        
-        # Разделы
-        #Rake.invoke_task 'objects:share:destination:mss_objects:add___link_section' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects:update___link_section' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects_app:section:insert'
-        #Rake.invoke_task 'objects:share:destination:mss_objects:drop___section' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects:drop___link_section' 
-      end 
-
-    end
-  end
-end
-        #Rake.invoke_task 'objects:share:destination:mss_objects:add___link_group' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects:update___link_group' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects_app:link_param:group:insert'
-        #Rake.invoke_task 'objects:share:destination:mss_objects:drop___group' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects:drop___link_group' 
-        
-        # Разделы
-        #Rake.invoke_task 'objects:share:destination:mss_objects:add___link_section' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects:update___link_section' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects_app:link_param:section:insert'
-        #Rake.invoke_task 'objects:share:destination:mss_objects:drop___section' 
-        #Rake.invoke_task 'objects:share:destination:mss_objects:drop___link_section' 
+        # Оставшийся срок полезного использования в годах
+        Rake.invoke_task 'objects:share:destination:mss_objects_app:object:mss_od_remaining_useful_life_y:insert'
       end 
 
     end
