@@ -23,6 +23,9 @@ namespace :objects do
         'objects:land:destination:mss_objects_app:obj_zkx:delete',
         'objects:land:destination:mss_objects_app:vid_obj_zkx:delete',
         'objects:land:destination:mss_objects_app:note_obj:delete',
+       
+        # Удельный показатель кадастровой стоимости
+        'objects:land:destination:mss_objects_app:udelnij_pokazatel:delete',
 
         'objects:land:destination:mss_objects:delete',
         'objects:land:destination:mss_objects:drop___cad_quorter',

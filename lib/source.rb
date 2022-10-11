@@ -55,6 +55,7 @@ module Source
     :manufacturers,
     :intellectualtypes,
     :intellect,
+    :states,
   ]
   
   class << self

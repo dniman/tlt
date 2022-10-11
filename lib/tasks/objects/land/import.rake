@@ -157,6 +157,9 @@ namespace :objects do
 
         # примечание
         Rake.invoke_task 'objects:land:destination:mss_objects_app:note_obj:insert'
+        
+        # Удельный показатель кадастровой стоимости
+        Rake.invoke_task 'objects:land:destination:mss_objects_app:udelnij_pokazatel:insert'
       end 
 
     end
