@@ -17,6 +17,9 @@ namespace :objects do
         # Первоначальная стоимость
         'objects:share:destination:mss_objects_app:link_param:price_first:delete',
         
+        # Остаточная стоимость
+        'objects:share:destination:mss_objects_app:link_param:price_remain:delete',
+        
         
         # Счет учета ОС
         'objects:share:destination:mss_objects_app:link_param:fixed_assets_account:delete',
