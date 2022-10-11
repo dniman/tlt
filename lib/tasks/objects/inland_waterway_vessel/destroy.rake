@@ -58,6 +58,9 @@ namespace :objects do
         
         # Изготовитель(страна)
         'objects:inland_waterway_vessel:destination:mss_objects_app:link_param:auto_country:delete',
+        
+        # Первоначальная стоимость
+        'objects:inland_waterway_vessel:destination:mss_objects_app:link_param:price_first:delete',
 
 
         # Счет учета ОС

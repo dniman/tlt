@@ -85,6 +85,10 @@ namespace :objects do
         Rake.invoke_task 'objects:inland_waterway_vessel:destination:mss_objects:drop___auto_country' 
         Rake.invoke_task 'objects:inland_waterway_vessel:destination:mss_objects:drop___link_auto_country' 
         
+        # Первоначальная стоимость
+        Rake.invoke_task 'objects:inland_waterway_vessel:destination:mss_objects_app:link_param:price_first:insert'
+
+        
         # Счет учета ОС
         Rake.invoke_task 'objects:inland_waterway_vessel:destination:mss_objects_app:link_param:fixed_assets_account:insert'
         
