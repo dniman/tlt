@@ -85,6 +85,10 @@ namespace :objects do
         
         # Отделение ГИБДД
         'objects:transport:destination:mss_objects_app:link_param:ps_gibdd:delete',
+        
+        # Первоначальная стоимость
+        'objects:transport:destination:mss_objects_app:link_param:price_first:delete',
+
 
         # Счет учета ОС
         'objects:transport:destination:mss_objects_app:link_param:fixed_assets_account:delete',

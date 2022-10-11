@@ -26,6 +26,9 @@ namespace :objects do
         # Разделы
         'objects:movable_other:destination:mss_objects_app:link_param:section:delete',
         
+        # Первоначальная стоимость
+        'objects:movable_other:destination:mss_objects_app:link_param:price_first:delete',
+        
 
         # Счет учета ОС
         'objects:movable_other:destination:mss_objects_app:link_param:fixed_assets_account:delete',

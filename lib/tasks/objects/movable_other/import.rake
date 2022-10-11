@@ -50,6 +50,9 @@ namespace :objects do
         Rake.invoke_task 'objects:movable_other:destination:mss_objects:drop___section' 
         Rake.invoke_task 'objects:movable_other:destination:mss_objects:drop___link_section' 
         
+        # Первоначальная стоимость
+        Rake.invoke_task 'objects:movable_other:destination:mss_objects_app:link_param:price_first:insert'
+
 
         # Счет учета ОС
         Rake.invoke_task 'objects:movable_other:destination:mss_objects_app:link_param:fixed_assets_account:insert'

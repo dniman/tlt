@@ -122,6 +122,9 @@ namespace :objects do
         # Отделение ГИБДД
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:link_param:ps_gibdd:insert'
         
+        # Первоначальная стоимость
+        Rake.invoke_task 'objects:transport:destination:mss_objects_app:link_param:price_first:insert'
+        
 
         # Счет учета ОС
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:link_param:fixed_assets_account:insert'

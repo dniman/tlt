@@ -14,6 +14,9 @@ namespace :objects do
         # Примечание 
         'objects:partnership:destination:mss_objects_app:link_param:note_obj:delete',
         
+        # Первоначальная стоимость
+        'objects:partnership:destination:mss_objects_app:link_param:price_first:delete',
+        
 
         # Счет учета ОС
         'objects:partnership:destination:mss_objects_app:link_param:fixed_assets_account:delete',

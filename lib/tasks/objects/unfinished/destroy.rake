@@ -134,6 +134,9 @@ namespace :objects do
         # Кадастровая стоимость
         'objects:unfinished:destination:mss_objects_app:link_param:kadastr_price:delete',
         
+        # Первоначальная стоимость
+        'objects:unfinished:destination:mss_objects_app:link_param:price_first:delete',
+        
 
         # Счет учета ОС
         'objects:unfinished:destination:mss_objects_app:link_param:fixed_assets_account:delete',
