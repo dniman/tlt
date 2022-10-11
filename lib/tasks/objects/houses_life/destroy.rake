@@ -116,6 +116,9 @@ namespace :objects do
         # Остаточная стоимость
         'objects:houses_life:destination:mss_objects_app:link_param:price_remain:delete',
         
+        # Процент износа
+        'objects:houses_life:destination:mss_objects_app:link_param:iznos:delete',
+        
 
         # Счет учета ОС
         'objects:houses_life:destination:mss_objects_app:link_param:fixed_assets_account:delete',
