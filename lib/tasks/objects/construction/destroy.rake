@@ -153,6 +153,9 @@ namespace :objects do
         # Процент износа
         'objects:construction:destination:mss_objects_app:link_param:iznos:delete',
         
+        # Состояние
+        'objects:construction:destination:mss_objects_app:link_param:state:delete',
+        
 
         # Счет учета ОС
         'objects:construction:destination:mss_objects_app:link_param:fixed_assets_account:delete',
@@ -213,6 +216,9 @@ namespace :objects do
         'objects:construction:destination:mss_objects:drop___link_kateg_avtodor',
         'objects:construction:destination:mss_objects:drop___group_im',
         'objects:construction:destination:mss_objects:drop___link_group_im',
+        'objects:construction:destination:mss_objects:drop___state',
+        'objects:construction:destination:mss_objects:drop___link_state',
+        'objects:construction:destination:mss_objects:drop___state_date',
       ]
 
     end

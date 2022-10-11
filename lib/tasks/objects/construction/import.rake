@@ -16,6 +16,8 @@ namespace :objects do
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___klass_avtodor' 
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___kateg_avtodor' 
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___group_im' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___state' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___state_date' 
 
         Rake.invoke_task 'objects:construction:destination:mss_objects:add___kadastrno'
         Rake.invoke_task 'objects:construction:source:ids:add___link_adr'
@@ -235,6 +237,14 @@ namespace :objects do
         
         # Процент износа
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:link_param:iznos:insert'
+
+        # Состояние
+        Rake.invoke_task 'objects:construction:destination:mss_objects:add___link_state' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:update___link_state' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:link_param:state:insert'
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___state' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___link_state' 
+        Rake.invoke_task 'objects:construction:destination:mss_objects:drop___state_date' 
 
 
         # Счет учета ОС

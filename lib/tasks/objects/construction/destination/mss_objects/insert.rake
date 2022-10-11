@@ -45,16 +45,18 @@ namespace :objects do
                 Arel.sql("null as ___klass_avtodor"),
                 Arel.sql("null as ___kateg_avtodor"),
                 Arel.sql("null as ___group_im"),
+                Source.statetypes[:name].as("___state"),
+                Source.states[:calcdate].as("___state_date"),
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
               .join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.objects[:id]))
               .join(Source.buildtypes, Arel::Nodes::OuterJoin).on(Source.buildtypes[:id].eq(Source.buildings[:buildtypes_id]))
               .join(Source.buildmaterials, Arel::Nodes::OuterJoin).on(Source.buildmaterials[:id].eq(Source.buildings[:buildmaterial_id]))
-              .join(Source.spr_zhkh_vid, Arel::Nodes::OuterJoin)
-                .on(Source.spr_zhkh_vid[:id].eq(Source.objects[:vid_zhkh_id]))
-              .join(Source.monumenttypes, Arel::Nodes::OuterJoin)
-                .on(Source.monumenttypes[:id].eq(Source.objects[:mntype_id]))
+              .join(Source.spr_zhkh_vid, Arel::Nodes::OuterJoin).on(Source.spr_zhkh_vid[:id].eq(Source.objects[:vid_zhkh_id]))
+              .join(Source.monumenttypes, Arel::Nodes::OuterJoin).on(Source.monumenttypes[:id].eq(Source.objects[:mntype_id]))
+              .join(Source.states, Arel::Nodes::OuterJoin).on(Source.states[:objects_id].eq(Source.objects[:id]))
+              .join(Source.statetypes, Arel::Nodes::OuterJoin).on(Source.statetypes[:id].eq(Source.states[:statetypes_id]))
               .where(Source.ids[:link_type].eq(link_type))
             
             select_two = 
@@ -90,23 +92,21 @@ namespace :objects do
                 Source.road_classes[:name].as("___klass_avtodor"),
                 Source.road_category[:name].as("___kateg_avtodor"),
                 Source.infgroups[:name].as("___group_im"),
+                Source.statetypes[:name].as("___state"),
+                Source.states[:calcdate].as("___state_date"),
               ])
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
               .join(Source.enginf).on(Source.enginf[:objects_id].eq(Source.objects[:id]))
               .join(Source.enginftypes, Arel::Nodes::OuterJoin).on(Source.enginftypes[:id].eq(Source.enginf[:enginftypes_id]))
-              .join(Source.spr_zhkh_vid, Arel::Nodes::OuterJoin)
-                .on(Source.spr_zhkh_vid[:id].eq(Source.objects[:vid_zhkh_id]))
-              .join(Source.monumenttypes, Arel::Nodes::OuterJoin)
-                .on(Source.monumenttypes[:id].eq(Source.objects[:mntype_id]))
-              .join(Source.road_use, Arel::Nodes::OuterJoin)
-                .on(Source.road_use[:id].eq(Source.enginf[:road_use_id]))
-              .join(Source.road_classes, Arel::Nodes::OuterJoin)
-                .on(Source.road_classes[:id].eq(Source.enginf[:road_classes_id]))
-              .join(Source.road_category, Arel::Nodes::OuterJoin)
-                .on(Source.road_category[:id].eq(Source.enginf[:road_category_id]))
-              .join(Source.infgroups, Arel::Nodes::OuterJoin)
-                .on(Source.infgroups[:id].eq(Source.enginf[:infgroups_id]))
+              .join(Source.spr_zhkh_vid, Arel::Nodes::OuterJoin).on(Source.spr_zhkh_vid[:id].eq(Source.objects[:vid_zhkh_id]))
+              .join(Source.monumenttypes, Arel::Nodes::OuterJoin).on(Source.monumenttypes[:id].eq(Source.objects[:mntype_id]))
+              .join(Source.road_use, Arel::Nodes::OuterJoin).on(Source.road_use[:id].eq(Source.enginf[:road_use_id]))
+              .join(Source.road_classes, Arel::Nodes::OuterJoin).on(Source.road_classes[:id].eq(Source.enginf[:road_classes_id]))
+              .join(Source.road_category, Arel::Nodes::OuterJoin).on(Source.road_category[:id].eq(Source.enginf[:road_category_id]))
+              .join(Source.infgroups, Arel::Nodes::OuterJoin).on(Source.infgroups[:id].eq(Source.enginf[:infgroups_id]))
+              .join(Source.states, Arel::Nodes::OuterJoin).on(Source.states[:objects_id].eq(Source.objects[:id]))
+              .join(Source.statetypes, Arel::Nodes::OuterJoin).on(Source.statetypes[:id].eq(Source.states[:statetypes_id]))
               .where(Source.ids[:link_type].eq(link_type))
               
             union = select_one.union :all, select_two
@@ -184,6 +184,8 @@ namespace :objects do
                   ___klass_avtodor: row["___klass_avtodor"]&.strip,
                   ___kateg_avtodor: row["___kateg_avtodor"]&.strip,
                   ___group_im: row["___group_im"]&.strip,
+                  ___state: row["___state"]&.strip,
+                  ___state_date: row["___state_date"],
                 }
               end
               sql = Destination::MssObjects.insert_query(rows: insert, condition: "mss_objects.row_id = values_table.row_id")
