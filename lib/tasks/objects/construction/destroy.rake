@@ -139,7 +139,7 @@ namespace :objects do
         'objects:construction:destination:mss_objects_app:link_param:group_im:delete',
         
         # Кадастровая стоимость
-        'objects:land:destination:mss_objects_app:link_param:construction:delete',
+        'objects:construction:destination:mss_objects_app:link_param:kadastr_price:delete',
         
 
         # Счет учета ОС
