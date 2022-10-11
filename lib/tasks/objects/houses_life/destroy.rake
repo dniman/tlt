@@ -110,6 +110,9 @@ namespace :objects do
         # Кадастровая стоимость
         'objects:houses_life:destination:mss_objects_app:link_param:kadastr_price:delete',
         
+        # Первоначальная стоимость
+        'objects:houses_life:destination:mss_objects_app:link_param:price_first:delete',
+        
 
         # Счет учета ОС
         'objects:houses_life:destination:mss_objects_app:link_param:fixed_assets_account:delete',
