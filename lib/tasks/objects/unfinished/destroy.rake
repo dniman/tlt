@@ -140,6 +140,9 @@ namespace :objects do
         # Остаточная стоимость
         'objects:unfinished:destination:mss_objects_app:link_param:price_remain:delete',
         
+        # Оценочная стоимость
+        'objects:unfinished:destination:mss_objects_app:link_param:assessed_val:delete',
+        
 
         # Счет учета ОС
         'objects:unfinished:destination:mss_objects_app:link_param:fixed_assets_account:delete',
