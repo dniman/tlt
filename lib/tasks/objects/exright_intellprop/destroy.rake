@@ -27,6 +27,9 @@ namespace :objects do
         # Орган, осуществлюящий хранение
         'objects:exright_intellprop:destination:mss_objects_app:link_param:storage_authority_ei:delete',
         
+        # Первоначальная стоимость
+        'objects:exright_intellprop:destination:mss_objects_app:link_param:price_first:delete',
+        
         # Счет учета ОС
         'objects:exright_intellprop:destination:mss_objects_app:link_param:fixed_assets_account:delete',
         
