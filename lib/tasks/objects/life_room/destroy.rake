@@ -112,6 +112,9 @@ namespace :objects do
         
         # Первоначальная стоимость
         'objects:life_room:destination:mss_objects_app:link_param:price_first:delete',
+        
+        # Остаточная стоимость
+        'objects:life_room:destination:mss_objects_app:link_param:price_remain:delete',
 
 
         

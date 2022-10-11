@@ -177,6 +177,8 @@ namespace :objects do
         # Первоначальная стоимость
         Rake.invoke_task 'objects:life_room:destination:mss_objects_app:link_param:price_first:insert'
 
+        # Остаточная стоимость
+        Rake.invoke_task 'objects:life_room:destination:mss_objects_app:link_param:price_remain:insert'
 
 
         # Счет учета ОС
