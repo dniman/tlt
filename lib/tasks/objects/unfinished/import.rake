@@ -195,6 +195,9 @@ namespace :objects do
         # Сумма инвестиций
         Rake.invoke_task 'objects:unfinished:destination:mss_objects_app:link_param:kossm_investsum:insert'
         
+        # Кадастровая стоимость
+        Rake.invoke_task 'objects:unfinished_room:destination:mss_objects_app:link_param:kadastr_price:insert'
+        
 
         # Счет учета ОС
         Rake.invoke_task 'objects:unfinished:destination:mss_objects_app:link_param:fixed_assets_account:insert'

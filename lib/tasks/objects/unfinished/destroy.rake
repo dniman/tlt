@@ -131,6 +131,9 @@ namespace :objects do
         # Сумма инвестиций
         'objects:unfinished:destination:mss_objects_app:link_param:kossm_investsum:delete',
         
+        # Кадастровая стоимость
+        'objects:unfinished:destination:mss_objects_app:link_param:kadastr_price:delete',
+        
 
         # Счет учета ОС
         'objects:unfinished:destination:mss_objects_app:link_param:fixed_assets_account:delete',
