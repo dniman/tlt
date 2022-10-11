@@ -112,6 +112,9 @@ namespace :objects do
 
         # Первоначальная стоимость
         'objects:houses_unlife:destination:mss_objects_app:link_param:price_first:delete',
+        
+        # Остаточная стоимость
+        'objects:houses_unlife:destination:mss_objects_app:link_param:price_remain:delete',
 
 
         # Счет учета ОС
