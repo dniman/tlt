@@ -201,6 +201,9 @@ namespace :objects do
         # Первоначальная стоимость
         Rake.invoke_task 'objects:unfinished:destination:mss_objects_app:link_param:price_first:insert'
         
+        # Остаточная стоимость
+        Rake.invoke_task 'objects:unfinished:destination:mss_objects_app:link_param:price_remain:insert'
+        
 
         # Счет учета ОС
         Rake.invoke_task 'objects:unfinished:destination:mss_objects_app:link_param:fixed_assets_account:insert'
