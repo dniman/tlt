@@ -35,6 +35,9 @@ namespace :objects do
         
         # Оценочная стоимость
         'objects:land:destination:mss_objects_app:link_param:assessed_val:delete',
+        
+        # Процент износа
+        'objects:land:destination:mss_objects_app:link_param:iznos:delete',
 
         'objects:land:destination:mss_objects:delete',
         'objects:land:destination:mss_objects:drop___cad_quorter',
