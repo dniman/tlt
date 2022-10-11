@@ -56,6 +56,7 @@ module Source
     :intellectualtypes,
     :intellect,
     :states,
+    :statetypes,
   ]
   
   class << self
