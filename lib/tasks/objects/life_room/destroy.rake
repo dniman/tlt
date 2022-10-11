@@ -109,6 +109,9 @@ namespace :objects do
 
         # Кадастровая стоимость
         'objects:life_room:destination:mss_objects_app:link_param:kadastr_price:delete',
+        
+        # Первоначальная стоимость
+        'objects:life_room:destination:mss_objects_app:link_param:price_first:delete',
 
 
         
