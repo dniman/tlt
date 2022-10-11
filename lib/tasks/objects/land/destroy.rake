@@ -26,6 +26,9 @@ namespace :objects do
        
         # Удельный показатель кадастровой стоимости
         'objects:land:destination:mss_objects_app:udelnij_pokazatel:delete',
+        
+        # Кадастровая стоимость
+        'objects:land:destination:mss_objects_app:kadastr_price:delete',
 
         'objects:land:destination:mss_objects:delete',
         'objects:land:destination:mss_objects:drop___cad_quorter',

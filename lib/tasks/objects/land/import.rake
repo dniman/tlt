@@ -160,6 +160,9 @@ namespace :objects do
         
         # Удельный показатель кадастровой стоимости
         Rake.invoke_task 'objects:land:destination:mss_objects_app:udelnij_pokazatel:insert'
+        
+        # Кадастровая стоимость
+        Rake.invoke_task 'objects:land:destination:mss_objects_app:kadastr_price:insert'
       end 
 
     end
