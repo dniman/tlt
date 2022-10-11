@@ -173,6 +173,9 @@ namespace :objects do
         
         # Кадастровая стоимость
         Rake.invoke_task 'objects:houses_unlife:destination:mss_objects_app:link_param:kadastr_price:insert'
+        
+        # Первоначальная стоимость
+        Rake.invoke_task 'objects:houses_unlife:destination:mss_objects_app:link_param:price_first:insert'
 
 
         # Счет учета ОС
