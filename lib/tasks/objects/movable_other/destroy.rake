@@ -29,6 +29,9 @@ namespace :objects do
         # Первоначальная стоимость
         'objects:movable_other:destination:mss_objects_app:link_param:price_first:delete',
         
+        # Остаточная стоимость
+        'objects:movable_other:destination:mss_objects_app:link_param:price_remain:delete',
+        
 
         # Счет учета ОС
         'objects:movable_other:destination:mss_objects_app:link_param:fixed_assets_account:delete',
