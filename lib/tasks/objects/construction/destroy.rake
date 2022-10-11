@@ -138,6 +138,9 @@ namespace :objects do
         # Группа сооружений
         'objects:construction:destination:mss_objects_app:link_param:group_im:delete',
         
+        # Кадастровая стоимость
+        'objects:land:destination:mss_objects_app:link_param:construction:delete',
+        
 
         # Счет учета ОС
         'objects:construction:destination:mss_objects_app:link_param:fixed_assets_account:delete',

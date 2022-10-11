@@ -221,6 +221,9 @@ namespace :objects do
         Rake.invoke_task 'objects:construction:destination:mss_objects:drop___group_im' 
         Rake.invoke_task 'objects:construction:destination:mss_objects:drop___link_group_im' 
         
+        # Кадастровая стоимость
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:link_param:kadastr_price:insert'
+
 
         # Счет учета ОС
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:link_param:fixed_assets_account:insert'
