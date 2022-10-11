@@ -143,6 +143,9 @@ namespace :objects do
         # Оценочная стоимость
         'objects:unfinished:destination:mss_objects_app:link_param:assessed_val:delete',
         
+        # Процент износа
+        'objects:unfinished:destination:mss_objects_app:link_param:iznos:delete',
+        
 
         # Счет учета ОС
         'objects:unfinished:destination:mss_objects_app:link_param:fixed_assets_account:delete',
