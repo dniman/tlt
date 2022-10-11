@@ -32,6 +32,9 @@ namespace :objects do
         
         # Первоначальная стоимость
         'objects:land:destination:mss_objects_app:link_param:price_first:delete',
+        
+        # Оценочная стоимость
+        'objects:land:destination:mss_objects_app:link_param:assessed_val:delete',
 
         'objects:land:destination:mss_objects:delete',
         'objects:land:destination:mss_objects:drop___cad_quorter',

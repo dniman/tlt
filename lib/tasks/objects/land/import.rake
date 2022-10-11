@@ -166,6 +166,9 @@ namespace :objects do
         
         # Первоначальная стоимость
         Rake.invoke_task 'objects:land:destination:mss_objects_app:link_param:price_first:insert'
+        
+        # Оценочная стоимость
+        Rake.invoke_task 'objects:land:destination:mss_objects_app:link_param:assessed_val:insert'
       end 
 
     end
