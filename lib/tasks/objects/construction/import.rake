@@ -229,6 +229,9 @@ namespace :objects do
         
         # Остаточная стоимость
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:link_param:price_remain:insert'
+        
+        # Оценочная стоимость
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:link_param:assessed_val:insert'
 
 
         # Счет учета ОС
