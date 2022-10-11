@@ -51,9 +51,12 @@ namespace :objects do
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:drop___storage_authority_ei' 
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:drop___link_storage_authority_ei' 
         
-
         # Первоначальная стоимость
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects_app:link_param:price_first:insert'
+
+        # Остаточная стоимость
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects_app:link_param:price_remain:insert'
+
 
         # Счет учета ОС
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects_app:link_param:fixed_assets_account:insert'
