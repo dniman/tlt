@@ -232,6 +232,9 @@ namespace :objects do
         
         # Оценочная стоимость
         Rake.invoke_task 'objects:construction:destination:mss_objects_app:link_param:assessed_val:insert'
+        
+        # Процент износа
+        Rake.invoke_task 'objects:construction:destination:mss_objects_app:link_param:iznos:insert'
 
 
         # Счет учета ОС
