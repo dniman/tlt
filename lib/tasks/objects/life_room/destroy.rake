@@ -106,6 +106,11 @@ namespace :objects do
 
         # Жилая площадь
         'objects:life_room:destination:mss_objects_app:link_param:house_pl_gil:delete',
+
+        # Кадастровая стоимость
+        'objects:life_room:destination:mss_objects_app:link_param:kadastr_price:delete',
+
+
         
         # Счет учета ОС
         'objects:life_room:destination:mss_objects_app:link_param:fixed_assets_account:delete',

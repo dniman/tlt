@@ -171,6 +171,10 @@ namespace :objects do
         # Жилая площадь
         Rake.invoke_task 'objects:life_room:destination:mss_objects_app:link_param:house_pl_gil:insert'
         
+        # Кадастровая стоимость
+        Rake.invoke_task 'objects:life_room:destination:mss_objects_app:link_param:kadastr_price:insert'
+
+
 
         # Счет учета ОС
         Rake.invoke_task 'objects:life_room:destination:mss_objects_app:link_param:fixed_assets_account:insert'
