@@ -2,7 +2,7 @@ namespace :objects do
   namespace :land do
     namespace :destination do
       namespace :mss_objects_app do
-        namespace :link_param
+        namespace :link_param do
           namespace :adr_str do
             
             task :delete do |t|
