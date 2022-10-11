@@ -179,6 +179,9 @@ namespace :objects do
 
         # Остаточная стоимость
         Rake.invoke_task 'objects:life_room:destination:mss_objects_app:link_param:price_remain:insert'
+        
+        # Процент износа
+        Rake.invoke_task 'objects:life_room:destination:mss_objects_app:link_param:iznos:insert'
 
 
         # Счет учета ОС
