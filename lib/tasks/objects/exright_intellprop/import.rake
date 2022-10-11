@@ -7,6 +7,8 @@ namespace :objects do
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___intellprop_sp' 
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___func_nazn_ei' 
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___storage_authority_ei' 
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___state' 
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___state_date' 
 
         Rake.invoke_task 'objects:exright_intellprop:source:ids:add___link_adr'
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:insert'
@@ -59,6 +61,14 @@ namespace :objects do
         
         # Процент износа
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects_app:link_param:iznos:insert'
+
+        # Состояние
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___link_state' 
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:update___link_state' 
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects_app:link_param:state:insert'
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:drop___state' 
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:drop___link_state' 
+        Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:drop___state_date' 
 
 
         # Счет учета ОС

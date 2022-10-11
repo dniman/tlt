@@ -36,6 +36,9 @@ namespace :objects do
         # Процент износа
         'objects:exright_intellprop:destination:mss_objects_app:link_param:iznos:delete',
         
+        # Состояние
+        'objects:exright_intellprop:destination:mss_objects_app:link_param:state:delete',
+        
 
         # Счет учета ОС
         'objects:exright_intellprop:destination:mss_objects_app:link_param:fixed_assets_account:delete',
@@ -75,6 +78,9 @@ namespace :objects do
         'objects:exright_intellprop:destination:mss_objects:drop___link_func_nazn_ei',
         'objects:exright_intellprop:destination:mss_objects:drop___storage_authority_ei',
         'objects:exright_intellprop:destination:mss_objects:drop___link_storage_authority_ei',
+        'objects:exright_intellprop:destination:mss_objects:drop___state',
+        'objects:exright_intellprop:destination:mss_objects:drop___link_state',
+        'objects:exright_intellprop:destination:mss_objects:drop___state_date',
       ]
     end
   end
