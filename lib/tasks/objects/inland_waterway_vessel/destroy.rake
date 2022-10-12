@@ -67,6 +67,9 @@ namespace :objects do
         
         # Процент износа
         'objects:inland_waterway_vessel:destination:mss_objects_app:link_param:iznos:delete',
+        
+        # Состояние
+        'objects:inland_waterway_vessel:destination:mss_objects_app:link_param:state:delete',
 
 
         # Счет учета ОС
@@ -105,6 +108,9 @@ namespace :objects do
         'objects:inland_waterway_vessel:destination:mss_objects:drop___link_engine_type',
         'objects:inland_waterway_vessel:destination:mss_objects:drop___auto_country',
         'objects:inland_waterway_vessel:destination:mss_objects:drop___link_auto_country',
+        'objects:inland_waterway_vessel:destination:mss_objects:drop___state',
+        'objects:inland_waterway_vessel:destination:mss_objects:drop___link_state',
+        'objects:inland_waterway_vessel:destination:mss_objects:drop___state_date',
       ]
     end
   end

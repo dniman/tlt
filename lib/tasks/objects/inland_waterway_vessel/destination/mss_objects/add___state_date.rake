@@ -1,6 +1,6 @@
 namespace :objects do
-  namespace :construction do
-    namespace:destination do
+  namespace :inland_waterway_vessel do
+    namespace :destination do
       namespace :mss_objects do
 
         task :add___state_date do |t|
