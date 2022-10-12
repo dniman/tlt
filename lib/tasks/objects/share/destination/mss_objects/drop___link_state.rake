@@ -3,11 +3,12 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects do
 
-        task :add___state do |t|
+        task :drop___link_state do |t|
           begin
             sql = Arel.sql(
-              "alter table #{ Destination.mss_objects.name }
-                add ___state varchar(1000)
+              "if (col_length('#{ Destination.mss_objects.name }','___link_state') is not null)
+              alter table #{ Destination.mss_objects.name }
+                drop column ___link_state
               "
             )
             Destination.execute_query(sql).do

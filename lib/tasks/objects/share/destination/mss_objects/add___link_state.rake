@@ -1,6 +1,6 @@
 namespace :objects do
-  namespace :construction do
-    namespace:destination do
+  namespace :share do
+    namespace :destination do
       namespace :mss_objects do
         
         task :add___link_state do |t|

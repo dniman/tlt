@@ -4,6 +4,8 @@ namespace :objects do
 
       task :tasks do 
         Rake.invoke_task 'objects:share:source:ids:insert'
+        Rake.invoke_task 'objects:share:destination:mss_objects:add___state' 
+        Rake.invoke_task 'objects:share:destination:mss_objects:add___state_date' 
 
         Rake.invoke_task 'objects:share:destination:mss_objects:insert'
         Rake.invoke_task 'objects:share:source:ids:update_link'
@@ -26,6 +28,14 @@ namespace :objects do
         
         # Остаточная стоимость
         Rake.invoke_task 'objects:share:destination:mss_objects_app:link_param:price_remain:insert'
+        
+        # Состояние
+        Rake.invoke_task 'objects:share:destination:mss_objects:add___link_state' 
+        Rake.invoke_task 'objects:share:destination:mss_objects:update___link_state' 
+        Rake.invoke_task 'objects:share:destination:mss_objects_app:link_param:state:insert'
+        Rake.invoke_task 'objects:share:destination:mss_objects:drop___state' 
+        Rake.invoke_task 'objects:share:destination:mss_objects:drop___link_state' 
+        Rake.invoke_task 'objects:share:destination:mss_objects:drop___state_date' 
 
         
         # Счет учета ОС
