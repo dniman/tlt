@@ -20,6 +20,10 @@ namespace :objects do
         # Остаточная стоимость
         'objects:partnership:destination:mss_objects_app:link_param:price_remain:delete',
         
+        # Состояние
+        'objects:partnership:destination:mss_objects_app:link_param:state:delete',
+
+        
         # Счет учета ОС
         'objects:partnership:destination:mss_objects_app:link_param:fixed_assets_account:delete',
         
@@ -49,6 +53,11 @@ namespace :objects do
 
         # Удаление основного объекта
         'objects:partnership:destination:mss_objects:delete',
+        
+        # Удаление доп колонок
+        'objects:partnership:destination:mss_objects:drop___state',
+        'objects:partnership:destination:mss_objects:drop___link_state',
+        'objects:partnership:destination:mss_objects:drop___state_date',
       ]
     end
   end
