@@ -119,6 +119,9 @@ namespace :objects do
         # Процент износа
         'objects:unlife_room:destination:mss_objects_app:link_param:iznos:delete',
         
+        # Состояние
+        'objects:unlife_room:destination:mss_objects_app:link_param:state:delete',
+
 
         # Счет учета ОС
         'objects:unlife_room:destination:mss_objects_app:link_param:fixed_assets_account:delete',
@@ -172,6 +175,9 @@ namespace :objects do
         'objects:unlife_room:destination:mss_objects:drop___link_culturial_sense',
         'objects:unlife_room:destination:mss_objects:drop___unmovable_used',
         'objects:unlife_room:destination:mss_objects:drop___link_unmovable_used',
+        'objects:unlife_room:destination:mss_objects:drop___state',
+        'objects:unlife_room:destination:mss_objects:drop___link_state',
+        'objects:unlife_room:destination:mss_objects:drop___state_date',
       ]
     end
   end
