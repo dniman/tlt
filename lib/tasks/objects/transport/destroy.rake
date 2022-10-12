@@ -94,6 +94,9 @@ namespace :objects do
         
         # Процент износа
         'objects:transport:destination:mss_objects_app:link_param:iznos:delete',
+        
+        # Состояние
+        'objects:transport:destination:mss_objects_app:link_param:state:delete',
 
 
         # Счет учета ОС
@@ -137,6 +140,9 @@ namespace :objects do
         'objects:transport:destination:mss_objects:drop___link_auto_country',
         'objects:transport:destination:mss_objects:drop___auto_country_export',
         'objects:transport:destination:mss_objects:drop___link_auto_country_export',
+        'objects:transport:destination:mss_objects:drop___state',
+        'objects:transport:destination:mss_objects:drop___link_state',
+        'objects:transport:destination:mss_objects:drop___state_date',
       ]
     end
   end
