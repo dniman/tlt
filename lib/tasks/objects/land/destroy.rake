@@ -38,6 +38,9 @@ namespace :objects do
         
         # Процент износа
         'objects:land:destination:mss_objects_app:link_param:iznos:delete',
+        
+        # Состояние
+        'objects:land:destination:mss_objects_app:link_param:state:delete',
 
         'objects:land:destination:mss_objects:delete',
         'objects:land:destination:mss_objects:drop___cad_quorter',
@@ -69,6 +72,9 @@ namespace :objects do
         'objects:land:destination:mss_objects:drop___link_obj_zkx',
         'objects:land:destination:mss_objects:drop___vid_obj_zkx',
         'objects:land:destination:mss_objects:drop___link_vid_obj_zkx',
+        'objects:land:destination:mss_objects:drop___state',
+        'objects:land:destination:mss_objects:drop___link_state',
+        'objects:land:destination:mss_objects:drop___state_date',
         'objects:land:destination:mss_objects_dicts:object:dictionary_land_kvartals:delete',
         'objects:land:destination:mss_objects_adr:delete',
         'objects:land:source:ids:drop___link_adr',
