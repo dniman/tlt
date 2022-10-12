@@ -35,6 +35,9 @@ namespace :objects do
         # Процент износа
         'objects:movable_other:destination:mss_objects_app:link_param:iznos:delete',
         
+        # Состояние
+        'objects:movable_other:destination:mss_objects_app:link_param:state:delete',
+        
 
         # Счет учета ОС
         'objects:movable_other:destination:mss_objects_app:link_param:fixed_assets_account:delete',
@@ -72,6 +75,9 @@ namespace :objects do
         'objects:movable_other:destination:mss_objects:drop___link_group',
         'objects:movable_other:destination:mss_objects:drop___section',
         'objects:movable_other:destination:mss_objects:drop___link_section',
+        'objects:movable_other:destination:mss_objects:drop___state',
+        'objects:movable_other:destination:mss_objects:drop___link_state',
+        'objects:movable_other:destination:mss_objects:drop___state_date',
       ]
     end
   end

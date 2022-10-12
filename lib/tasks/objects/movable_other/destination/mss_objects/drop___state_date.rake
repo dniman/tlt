@@ -3,12 +3,12 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects do
 
-        task :drop___state do |t|
+        task :drop___state_date do |t|
           begin
             sql = Arel.sql(
-              "if (col_length('#{ Destination.mss_objects.name }','___state') is not null)
+              "if (col_length('#{ Destination.mss_objects.name }','___state_date') is not null)
               alter table #{ Destination.mss_objects.name }
-                drop column ___state
+                drop column ___state_date
               "
             )
             Destination.execute_query(sql).do

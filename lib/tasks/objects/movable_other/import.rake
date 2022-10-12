@@ -7,6 +7,8 @@ namespace :objects do
         Rake.invoke_task 'objects:movable_other:destination:mss_objects:add___dict_name' 
         Rake.invoke_task 'objects:movable_other:destination:mss_objects:add___group' 
         Rake.invoke_task 'objects:movable_other:destination:mss_objects:add___section' 
+        Rake.invoke_task 'objects:movable_other:destination:mss_objects:add___state' 
+        Rake.invoke_task 'objects:movable_other:destination:mss_objects:add___state_date' 
 
         Rake.invoke_task 'objects:movable_other:destination:mss_objects:insert'
         Rake.invoke_task 'objects:movable_other:source:ids:update_link'
@@ -58,6 +60,14 @@ namespace :objects do
 
         # Процент износа
         Rake.invoke_task 'objects:movable_other:destination:mss_objects_app:link_param:iznos:insert'
+        
+        # Состояние
+        Rake.invoke_task 'objects:movable_other:destination:mss_objects:add___link_state' 
+        Rake.invoke_task 'objects:movable_other:destination:mss_objects:update___link_state' 
+        Rake.invoke_task 'objects:movable_other:destination:mss_objects_app:link_param:state:insert'
+        Rake.invoke_task 'objects:movable_other:destination:mss_objects:drop___state' 
+        Rake.invoke_task 'objects:movable_other:destination:mss_objects:drop___link_state' 
+        Rake.invoke_task 'objects:movable_other:destination:mss_objects:drop___state_date' 
 
 
         # Счет учета ОС
