@@ -3,7 +3,7 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects do
 
-        task :drop___link_state do |t|
+        task :drop___state do |t|
           begin
             sql = Arel.sql(
               "if (col_length('#{ Destination.mss_objects.name }','___state') is not null)
