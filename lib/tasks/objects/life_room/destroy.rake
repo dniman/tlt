@@ -119,6 +119,8 @@ namespace :objects do
         # Процент износа
         'objects:life_room:destination:mss_objects_app:link_param:iznos:delete',
 
+        # Состояние
+        'objects:life_room:destination:mss_objects_app:link_param:state:delete',
 
         
         # Счет учета ОС
@@ -173,6 +175,9 @@ namespace :objects do
         'objects:life_room:destination:mss_objects:drop___link_culturial_sense',
         'objects:life_room:destination:mss_objects:drop___unmovable_used',
         'objects:life_room:destination:mss_objects:drop___link_unmovable_used',
+        'objects:life_room:destination:mss_objects:drop___state',
+        'objects:life_room:destination:mss_objects:drop___link_state',
+        'objects:life_room:destination:mss_objects:drop___state_date',
       ]
     end
   end
