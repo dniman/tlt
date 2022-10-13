@@ -1,17 +1,16 @@
 namespace :objects do
   namespace :houses_life do
-    namespace :destination do
-      namespace :mss_objects do
+    namespace :source do
+      namespace :states do
 
-        task :drop___state do |t|
+        task :add___link_state do |t|
           begin
             sql = Arel.sql(
-              "if (col_length('#{ Destination.mss_objects.name }','___state') is not null)
-              alter table #{ Destination.mss_objects.name }
-                drop column ___state
+              "alter table #{ Source.states.name }
+                add ___link_state int
               "
             )
-            Destination.execute_query(sql).do
+            Source.execute_query(sql).do
             Rake.info "Задача '#{ t }' успешно выполнена."
           rescue StandardError => e
             Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."
