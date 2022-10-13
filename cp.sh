@@ -38,11 +38,11 @@
 #cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/transport/source/states/
 #cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/transport/source/states/
 
-cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/unfinished/source/states/
-cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/unfinished/source/states/
-cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/unfinished/source/states/
+#cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/unfinished/source/states/
+#cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/unfinished/source/states/
+#cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/unfinished/source/states/
 
-cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/unlife_room/source/states/add___link_state.rake
-cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/unlife_room/source/states/drop_link_state.rake
-cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/unlife_room/source/states/update___link_state.rake
+cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/unlife_room/source/states/
+cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/unlife_room/source/states/
+cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/unlife_room/source/states/
 
