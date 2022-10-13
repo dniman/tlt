@@ -10,6 +10,8 @@ alter table dbo.mss_objects_dicts
 CREATE NONCLUSTERED INDEX [IX_REM1_REG_CORR] ON [dbo].[REM1] ([REG_CORR])
 CREATE NONCLUSTERED INDEX [IX_MSS_LIST_DOCS_SCOPE_CORR] ON [dbo].[MSS_LISTS_DOCS] ([scope_corr])
 
+create nonclustered index ix_states_calc_date_objects_id on [dbo].[states] ([calcdate],[objects_id])
+
 # Перед загрузкой необходимо удалить данные 
 delete from sys_links
 delete from mss_docs
