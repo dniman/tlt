@@ -5,17 +5,14 @@ namespace :dictionaries do
 
         task :delete do |t|
           def link_base_query
-            Destination.set_engine!
-            query = 
-              Destination.mss_objcorr_types
-              .project(Destination.mss_objcorr_types[:link])
-              .where(Destination.mss_objcorr_types[:code].eq('doc'))
+            Destination.mss_objcorr_types
+            .project(Destination.mss_objcorr_types[:link])
+            .where(Destination.mss_objcorr_types[:code].eq('doc'))
           end
 
           begin
             link_base = Destination.execute_query(link_base_query.to_sql).entries.first["link"]
 
-            Destination.set_engine!
             subquery = 
               Destination.mss_objcorr_types
               .project(Destination.mss_objcorr_types[:link])

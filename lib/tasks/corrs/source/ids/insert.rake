@@ -4,7 +4,6 @@ namespace :corrs do
 
       task :insert do |t|
         def query
-          Source.set_engine!
           select_one = 
             Source.clients
             .project([

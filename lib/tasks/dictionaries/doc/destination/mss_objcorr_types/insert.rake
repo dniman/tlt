@@ -6,22 +6,18 @@ namespace :dictionaries do
         task :insert do |t|
           
           def link_base_query
-            Destination.set_engine!
-            query = 
-              Destination.mss_objcorr_types
-              .project(Destination.mss_objcorr_types[:link])
-              .where(Destination.mss_objcorr_types[:code].eq('doc'))
+            Destination.mss_objcorr_types
+            .project(Destination.mss_objcorr_types[:link])
+            .where(Destination.mss_objcorr_types[:code].eq('doc'))
           end
 
           def query
-            Source.set_engine!
-            query = 
-              Source.doctypes
-              .project([
-                Source.doctypes[:name],
-              ])
-              .distinct
-              .where(Source.doctypes[:name].not_eq(nil))
+            Source.doctypes
+            .project([
+              Source.doctypes[:name],
+            ])
+            .distinct
+            .where(Source.doctypes[:name].not_eq(nil))
           end
 
           begin

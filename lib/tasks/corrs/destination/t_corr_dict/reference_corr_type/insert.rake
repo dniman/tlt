@@ -5,21 +5,17 @@ namespace :corrs do
 
         task :insert do |t|
           def link_type_query(code)
-            Destination.set_engine!
-            query = 
-              Destination.s_corr
-              .project(Destination.s_corr[:link])
-              .where(Destination.s_corr[:inn].eq(code)
-                .and(Destination.s_corr[:object].eq(Destination::SCorr::DICTIONARY_CORR_TYPE))
-              )
+            Destination.s_corr
+            .project(Destination.s_corr[:link])
+            .where(Destination.s_corr[:inn].eq(code)
+              .and(Destination.s_corr[:object].eq(Destination::SCorr::DICTIONARY_CORR_TYPE))
+            )
           end
 
           def query
             fl_pers = Destination.execute_query(link_type_query('FL_PERS').to_sql).entries.first["link"]
             fl = Destination.execute_query(link_type_query('FL').to_sql).entries.first["link"]
             ul = Destination.execute_query(link_type_query('UL').to_sql).entries.first["link"]
-
-            Source.set_engine!
 
             select_one = 
               Source.clients

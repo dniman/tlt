@@ -4,16 +4,14 @@ namespace :corrs do
 
       task :update_link do |t|
         def query
-          Destination.set_engine!
-          query =
-            Destination.s_corr
-            .project(
-              Destination.s_corr[:link], 
-              Destination.s_corr[:row_id], 
-              Destination.mss_objcorr[:link].as("___link")
-            )
-            .join(Destination.mss_objcorr).on(Destination.mss_objcorr[:link_s_corr].eq(Destination.s_corr[:link]))
-            .where(Destination.s_corr[:object].eq(Destination::SCorr::DICTIONARY_CORR))
+          Destination.s_corr
+          .project(
+            Destination.s_corr[:link], 
+            Destination.s_corr[:row_id], 
+            Destination.mss_objcorr[:link].as("___link")
+          )
+          .join(Destination.mss_objcorr).on(Destination.mss_objcorr[:link_s_corr].eq(Destination.s_corr[:link]))
+          .where(Destination.s_corr[:object].eq(Destination::SCorr::DICTIONARY_CORR))
         end
 
         begin

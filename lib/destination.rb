@@ -35,12 +35,15 @@ module Destination
       Database.set_engine(Database.destination_engine)
     end
     
+    def engine_owner?
+      Arel::Table.engine == Database.destination_engine
+    end
+    
     def tables_instantiate!
-      set_engine!
-
       TABLES.each do |table| 
         instance_eval "@#{table} ||= Arel::Table.new(:#{table})"
         define_singleton_method(table) do
+          set_engine! unless engine_owner?
           instance_variable_get("@#{table}")
         end
       end

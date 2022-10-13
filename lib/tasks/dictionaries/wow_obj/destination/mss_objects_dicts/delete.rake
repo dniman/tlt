@@ -5,17 +5,14 @@ namespace :dictionaries do
 
         task :delete do |t|
           def link_param_query(code)
-            Destination.set_engine!
-            query = 
-              Destination.mss_objects_params
-              .project(Destination.mss_objects_params[:link])
-              .where(Destination.mss_objects_params[:code].eq(code))
+            Destination.mss_objects_params
+            .project(Destination.mss_objects_params[:link])
+            .where(Destination.mss_objects_params[:code].eq(code))
           end
 
           begin
             link_param = Destination.execute_query(link_param_query('WOW_OBJ').to_sql).entries.first["link"]
 
-            Destination.set_engine!
             subquery = 
               Destination.mss_objects_dicts
               .project(Destination.mss_objects_dicts[:link])

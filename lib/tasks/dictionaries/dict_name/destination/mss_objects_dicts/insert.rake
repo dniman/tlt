@@ -5,22 +5,18 @@ namespace :dictionaries do
 
         task :insert do |t|
           def link_param_query(code)
-            Destination.set_engine!
-            query = 
-              Destination.mss_objects_params
-              .project(Destination.mss_objects_params[:link])
-              .where(Destination.mss_objects_params[:code].eq(code))
+            Destination.mss_objects_params
+            .project(Destination.mss_objects_params[:link])
+            .where(Destination.mss_objects_params[:code].eq(code))
           end
           
           def query
-            Source.set_engine!
-            query = 
-              Source.propnames
-              .project([
-                Source.propnames[:name],
-              ])
-              .distinct
-              .where(Source.propnames[:name].not_eq(nil))
+            Source.propnames
+            .project([
+              Source.propnames[:name],
+            ])
+            .distinct
+            .where(Source.propnames[:name].not_eq(nil))
           end
 
           begin

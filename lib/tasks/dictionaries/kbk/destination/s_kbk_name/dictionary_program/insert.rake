@@ -6,8 +6,6 @@ namespace :dictionaries do
 
           task :insert do |t|
             def query
-              Source.set_engine!
-
               Source.cls_kbk
               .project([
                 Source.cls_kbk[:___link_program],

@@ -5,11 +5,9 @@ namespace :dictionaries do
 
         task :delete do |t|
           def link_param_query(code)
-            Destination.set_engine!
-            query = 
-              Destination.mss_objects_params
-              .project(Destination.mss_objects_params[:link])
-              .where(Destination.mss_objects_params[:code].eq(code))
+            Destination.mss_objects_params
+            .project(Destination.mss_objects_params[:link])
+            .where(Destination.mss_objects_params[:code].eq(code))
           end
 
           begin

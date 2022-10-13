@@ -5,16 +5,12 @@ namespace :dictionaries do
 
         task :insert do |t|
           def link_param_query(code)
-            Destination.set_engine!
-
             Destination.mss_objects_params
             .project(Destination.mss_objects_params[:link])
             .where(Destination.mss_objects_params[:code].eq(code))
           end
           
           def query
-            Source.set_engine!
-            
             Source.transptype
             .project([
               Source.transptype[:name],

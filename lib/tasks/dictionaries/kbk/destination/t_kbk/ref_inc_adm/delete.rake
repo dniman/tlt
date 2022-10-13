@@ -6,8 +6,6 @@ namespace :dictionaries do
 
           task :delete do |t|
             def query
-              Source.set_engine!
-
               Source.ids
                 .project(Source.ids[:link])
                 .where(Source.ids[:table_id].eq(Source::ClsKbk.table_id)

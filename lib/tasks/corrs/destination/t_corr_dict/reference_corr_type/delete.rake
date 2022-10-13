@@ -5,11 +5,9 @@ namespace :corrs do
 
         task :delete do |t|
           def query
-            Source.set_engine!
-            query = 
-              Source.ids
-              .project(Source.ids[:link])
-              .where(Source.ids[:table_id].eq(Source::Clients.table_id))
+            Source.ids
+            .project(Source.ids[:link])
+            .where(Source.ids[:table_id].eq(Source::Clients.table_id))
           end
 
           begin

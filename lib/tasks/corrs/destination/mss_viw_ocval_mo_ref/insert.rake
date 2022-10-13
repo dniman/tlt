@@ -4,22 +4,17 @@ namespace :corrs do
 
       task :insert do |t|
         def link_app_prop_query
-          Destination.set_engine!
-          query = 
-            Destination.mss_objcorr_props
-            .project(Destination.mss_objcorr_props[:link])
-            .where(Destination.mss_objcorr_props[:code].eq('MO_REF'))
+          Destination.mss_objcorr_props
+          .project(Destination.mss_objcorr_props[:link])
+          .where(Destination.mss_objcorr_props[:code].eq('MO_REF'))
         end
 
         def query
-          Source.set_engine!
-
-          query = 
-            Source.ids
-            .project([
-              Source.ids[:___link],
-            ])
-            .where(Source.ids[:table_id].eq(Source::Clients.table_id))
+          Source.ids
+          .project([
+            Source.ids[:___link],
+          ])
+          .where(Source.ids[:table_id].eq(Source::Clients.table_id))
         end
 
         begin

@@ -5,15 +5,12 @@ namespace :dictionaries do
 
         task :update___link_item do |t|
           def query
-            Destination.set_engine!
-            query =
-              Destination.s_kbk
-              .project(
-                Destination.s_kbk[:code], 
-                Destination.s_kbk[:link]
-              )
-              .where(Destination.s_kbk[:object].eq(Destination::SKbk::DICTIONARY_ITEM))
-            query
+            Destination.s_kbk
+            .project(
+              Destination.s_kbk[:code], 
+              Destination.s_kbk[:link]
+            )
+            .where(Destination.s_kbk[:object].eq(Destination::SKbk::DICTIONARY_ITEM))
           end
 
           begin

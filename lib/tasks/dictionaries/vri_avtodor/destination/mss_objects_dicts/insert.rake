@@ -5,21 +5,17 @@ namespace :dictionaries do
 
         task :insert do |t|
           def link_param_query(code)
-            Destination.set_engine!
-            query = 
-              Destination.mss_objects_params
-              .project(Destination.mss_objects_params[:link])
-              .where(Destination.mss_objects_params[:code].eq(code))
+            Destination.mss_objects_params
+            .project(Destination.mss_objects_params[:link])
+            .where(Destination.mss_objects_params[:code].eq(code))
           end
           
           def query
-            Source.set_engine!
-            query = 
-              Source.road_use
-              .project([
-                Source.road_use[:name],
-              ])
-              .where(Source.road_use[:name].not_eq(nil))
+            Source.road_use
+            .project([
+              Source.road_use[:name],
+            ])
+            .where(Source.road_use[:name].not_eq(nil))
           end
 
           begin
