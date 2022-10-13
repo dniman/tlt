@@ -4,8 +4,6 @@ namespace :objects do
 
       task :tasks do 
         Rake.invoke_task 'objects:partnership:source:ids:insert'
-        Rake.invoke_task 'objects:partnership:destination:mss_objects:add___state' 
-        Rake.invoke_task 'objects:partnership:destination:mss_objects:add___state_date' 
 
         Rake.invoke_task 'objects:partnership:destination:mss_objects:insert'
         Rake.invoke_task 'objects:partnership:source:ids:update_link'
@@ -30,12 +28,10 @@ namespace :objects do
         Rake.invoke_task 'objects:partnership:destination:mss_objects_app:link_param:price_remain:insert'
         
         # Состояние
-        Rake.invoke_task 'objects:partnership:destination:mss_objects:add___link_state' 
-        Rake.invoke_task 'objects:partnership:destination:mss_objects:update___link_state' 
+        Rake.invoke_task 'objects:partnership:source:states:add___link_state' 
+        Rake.invoke_task 'objects:partnership:source:states:update___link_state' 
         Rake.invoke_task 'objects:partnership:destination:mss_objects_app:link_param:state:insert'
-        Rake.invoke_task 'objects:partnership:destination:mss_objects:drop___state' 
-        Rake.invoke_task 'objects:partnership:destination:mss_objects:drop___link_state' 
-        Rake.invoke_task 'objects:partnership:destination:mss_objects:drop___state_date' 
+        Rake.invoke_task 'objects:partnership:source:states:drop___link_state' 
 
         # Счет учета ОС
         Rake.invoke_task 'objects:partnership:destination:mss_objects_app:link_param:fixed_assets_account:insert'

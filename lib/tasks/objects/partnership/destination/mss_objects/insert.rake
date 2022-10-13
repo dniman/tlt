@@ -25,8 +25,6 @@ namespace :objects do
               Source.ids[:row_id],
               Source.ids[:link_type],
               ids2[:link].as("link_corr"),
-              Source.statetypes[:name].as("___state"),
-              Source.states[:calcdate].as("___state_date"),
             ])
             .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
             .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
@@ -37,8 +35,6 @@ namespace :objects do
               .on(ids2[:id].eq(Source.clients[:id])
                 .and(ids2[:table_id].eq(Source::Clients.table_id))
               )
-            .join(Source.states, Arel::Nodes::OuterJoin).on(Source.states[:objects_id].eq(Source.objects[:id]))
-            .join(Source.statetypes, Arel::Nodes::OuterJoin).on(Source.statetypes[:id].eq(Source.states[:statetypes_id]))
             .where(Source.ids[:link_type].eq(link_type))
           end
 
@@ -58,8 +54,6 @@ namespace :objects do
                   object: Destination::MssObjects::DICTIONARY_MSS_OBJECTS,
                   row_id: row["row_id"],
                   link_corr: row["link_corr"],
-                  ___state: row["___state"]&.strip,
-                  ___state_date: row["___state_date"],
                 }
               end
 
