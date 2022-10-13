@@ -78,9 +78,7 @@ namespace :objects do
         'objects:exright_intellprop:destination:mss_objects:drop___link_func_nazn_ei',
         'objects:exright_intellprop:destination:mss_objects:drop___storage_authority_ei',
         'objects:exright_intellprop:destination:mss_objects:drop___link_storage_authority_ei',
-        'objects:exright_intellprop:destination:mss_objects:drop___state',
-        'objects:exright_intellprop:destination:mss_objects:drop___link_state',
-        'objects:exright_intellprop:destination:mss_objects:drop___state_date',
+        'objects:exright_intellprop:source:states:drop___link_state',
       ]
     end
   end

@@ -1,6 +1,6 @@
-cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/exright_intellprop/source/states/add___link_state.rake
-cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/exright_intellprop/source/states/drop_link_state.rake
-cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/exright_intellprop/source/states/update___link_state.rake
+cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/exright_intellprop/source/states/
+cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/exright_intellprop/source/states/
+cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/exright_intellprop/source/states/
 
 cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/houses_life/source/states/add___link_state.rake
 cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/houses_life/source/states/drop_link_state.rake
