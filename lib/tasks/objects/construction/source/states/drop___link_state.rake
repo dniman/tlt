@@ -1,5 +1,5 @@
 namespace :objects do
-  namespace :land do
+  namespace :construction do
     namespace :source do
       namespace :states do
 

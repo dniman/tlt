@@ -1,5 +1,5 @@
 namespace :objects do
-  namespace :land do
+  namespace :construction do
     namespace :source do
       namespace :states do
         
@@ -9,7 +9,7 @@ namespace :objects do
             query = 
               Destination.mss_objects_types 
               .project(Destination.mss_objects_types[:link])
-              .where(Destination.mss_objects_types[:code].eq("LAND"))
+              .where(Destination.mss_objects_types[:code].eq("CONSTRUCTION"))
           end
 
           def link_param_query(code)
