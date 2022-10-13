@@ -202,9 +202,7 @@ namespace :objects do
         'objects:unfinished:destination:mss_objects:drop___link_culturial_sense',
         'objects:unfinished:destination:mss_objects:drop___unmovable_used',
         'objects:unfinished:destination:mss_objects:drop___link_unmovable_used',
-        'objects:unfinished:destination:mss_objects:drop___state',
-        'objects:unfinished:destination:mss_objects:drop___link_state',
-        'objects:unfinished:destination:mss_objects:drop___state_date',
+        'objects:unfinished:source:states:drop___link_state',
       ]
     end
   end

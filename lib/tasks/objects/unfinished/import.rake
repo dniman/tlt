@@ -12,8 +12,6 @@ namespace :objects do
         Rake.invoke_task 'objects:unfinished:destination:mss_objects:add___vid_obj_zkx' 
         Rake.invoke_task 'objects:unfinished:destination:mss_objects:add___culturial_sense' 
         Rake.invoke_task 'objects:unfinished:destination:mss_objects:add___unmovable_used' 
-        Rake.invoke_task 'objects:unfinished:destination:mss_objects:add___state' 
-        Rake.invoke_task 'objects:unfinished:destination:mss_objects:add___state_date' 
 
         Rake.invoke_task 'objects:unfinished:destination:mss_objects:add___kadastrno'
         Rake.invoke_task 'objects:unfinished:source:ids:add___link_adr'
@@ -213,12 +211,10 @@ namespace :objects do
         Rake.invoke_task 'objects:unfinished:destination:mss_objects_app:link_param:iznos:insert'
         
         # Состояние
-        Rake.invoke_task 'objects:unfinished:destination:mss_objects:add___link_state' 
-        Rake.invoke_task 'objects:unfinished:destination:mss_objects:update___link_state' 
+        Rake.invoke_task 'objects:unfinished:source:states:add___link_state' 
+        Rake.invoke_task 'objects:unfinished:source:states:update___link_state' 
         Rake.invoke_task 'objects:unfinished:destination:mss_objects_app:link_param:state:insert'
-        Rake.invoke_task 'objects:unfinished:destination:mss_objects:drop___state' 
-        Rake.invoke_task 'objects:unfinished:destination:mss_objects:drop___link_state' 
-        Rake.invoke_task 'objects:unfinished:destination:mss_objects:drop___state_date' 
+        Rake.invoke_task 'objects:unfinished:source:states:drop___link_state' 
 
 
         # Счет учета ОС
