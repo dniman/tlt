@@ -45,7 +45,7 @@ namespace :objects do
               begin
                 sql = ""
                 insert = []
-                link_param = Destination.execute_query(link_param_query('WEAR').to_sql).entries.first["link"]
+                link_param = Destination.execute_query(link_param_query('IZNOS').to_sql).entries.first["link"]
                 
                 sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
                 sliced_rows.each do |rows|
