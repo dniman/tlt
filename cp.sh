@@ -26,13 +26,13 @@
 #cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/movable_other/source/states/
 #cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/movable_other/source/states/
 
-cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/partnership/source/states/
-cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/partnership/source/states/
-cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/partnership/source/states/
+#cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/partnership/source/states/
+#cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/partnership/source/states/
+#cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/partnership/source/states/
 
-cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/share/source/states/add___link_state.rake
-cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/share/source/states/drop_link_state.rake
-cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/share/source/states/update___link_state.rake
+cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/share/source/states/
+cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/share/source/states/
+cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/share/source/states/
 
 cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/transport/source/states/add___link_state.rake
 cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/transport/source/states/drop_link_state.rake

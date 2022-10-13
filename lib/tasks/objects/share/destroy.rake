@@ -56,9 +56,7 @@ namespace :objects do
         'objects:share:destination:mss_objects:delete',
         
         # Удаление доп колонок
-        'objects:share:destination:mss_objects:drop___state',
-        'objects:share:destination:mss_objects:drop___link_state',
-        'objects:share:destination:mss_objects:drop___state_date',
+        'objects:share:source:states:drop___link_state',
       ]
     end
   end
