@@ -9,7 +9,7 @@ namespace :objects do
             query = 
               Destination.mss_objects_types 
               .project(Destination.mss_objects_types[:link])
-              .where(Destination.mss_objects_types[:code].eq("LAND"))
+              .where(Destination.mss_objects_types[:code].eq("EXRIGHT_INTELLPROP"))
           end
 
           def link_param_query(code)
