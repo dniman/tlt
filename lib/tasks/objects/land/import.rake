@@ -19,8 +19,6 @@ namespace :objects do
         Rake.invoke_task 'objects:land:destination:mss_objects:add___soc_zn_obj' 
         Rake.invoke_task 'objects:land:destination:mss_objects:add___obj_zkx' 
         Rake.invoke_task 'objects:land:destination:mss_objects:add___vid_obj_zkx' 
-        Rake.invoke_task 'objects:land:destination:mss_objects:add___state' 
-        Rake.invoke_task 'objects:land:destination:mss_objects:add___state_date' 
         Rake.invoke_task 'objects:land:source:ids:add___link_adr'
 
         Rake.invoke_task 'objects:land:destination:mss_objects:insert' 
@@ -176,12 +174,10 @@ namespace :objects do
         Rake.invoke_task 'objects:land:destination:mss_objects_app:link_param:iznos:insert'
         
         # Состояние
-        Rake.invoke_task 'objects:land:destination:mss_objects:add___link_state' 
-        Rake.invoke_task 'objects:land:destination:mss_objects:update___link_state' 
+        Rake.invoke_task 'objects:land:source:states:add___link_state' 
+        Rake.invoke_task 'objects:land:source:states:update___link_state' 
         Rake.invoke_task 'objects:land:destination:mss_objects_app:link_param:state:insert'
-        Rake.invoke_task 'objects:land:destination:mss_objects:drop___state' 
-        Rake.invoke_task 'objects:land:destination:mss_objects:drop___link_state' 
-        Rake.invoke_task 'objects:land:destination:mss_objects:drop___state_date' 
+        Rake.invoke_task 'objects:land:source:states:drop___link_state' 
       end 
 
     end

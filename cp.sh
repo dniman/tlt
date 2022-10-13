@@ -1,84 +1,48 @@
-cp lib/tasks/objects/construction/destination/mss_objects/add___link_state.rake lib/tasks/objects/exright_intellprop/destination/mss_objects/add___link_state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state.rake lib/tasks/objects/exright_intellprop/destination/mss_objects/add___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state_date.rake lib/tasks/objects/exright_intellprop/destination/mss_objects/add___state_date.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___link_state.rake lib/tasks/objects/exright_intellprop/destination/mss_objects/drop___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___state_date.rake lib/tasks/objects/exright_intellprop/destination/mss_objects/update___link_state.rake
-cp -R lib/tasks/objects/construction/destination/mss_objects_app/link_param/state lib/tasks/objects/exright_intellprop/destination/mss_objects_app/link_param/state
+cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/exright_intellprop/source/states/add___link_state.rake
+cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/exright_intellprop/source/states/drop_link_state.rake
+cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/exright_intellprop/source/states/update___link_state.rake
 
+cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/houses_life/source/states/add___link_state.rake
+cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/houses_life/source/states/drop_link_state.rake
+cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/houses_life/source/states/update___link_state.rake
 
-cp lib/tasks/objects/construction/destination/mss_objects/add___link_state.rake lib/tasks/objects/houses_life/destination/mss_objects/add___link_state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state.rake lib/tasks/objects/houses_life/destination/mss_objects/add___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state_date.rake lib/tasks/objects/houses_life/destination/mss_objects/add___state_date.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___link_state.rake lib/tasks/objects/houses_life/destination/mss_objects/drop___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___state_date.rake lib/tasks/objects/houses_life/destination/mss_objects/update___link_state.rake
-cp -R lib/tasks/objects/construction/destination/mss_objects_app/link_param/state lib/tasks/objects/houses_life/destination/mss_objects_app/link_param/state
+cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/houses_unlife/source/states/add___link_state.rake
+cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/houses_unlife/source/states/drop_link_state.rake
+cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/houses_unlife/source/states/update___link_state.rake
 
-cp lib/tasks/objects/construction/destination/mss_objects/add___link_state.rake lib/tasks/objects/houses_unlife/destination/mss_objects/add___link_state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state.rake lib/tasks/objects/houses_unlife/destination/mss_objects/add___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state_date.rake lib/tasks/objects/houses_unlife/destination/mss_objects/add___state_date.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___link_state.rake lib/tasks/objects/houses_unlife/destination/mss_objects/drop___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___state_date.rake lib/tasks/objects/houses_unlife/destination/mss_objects/update___link_state.rake
-cp -R lib/tasks/objects/construction/destination/mss_objects_app/link_param/state lib/tasks/objects/houses_unlife/destination/mss_objects_app/link_param/state
+cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/inland_waterway_vessel/source/states/add___link_state.rake
+cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/inland_waterway_vessel/source/states/drop_link_state.rake
+cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/inland_waterway_vessel/source/states/update___link_state.rake
 
-cp lib/tasks/objects/construction/destination/mss_objects/add___link_state.rake lib/tasks/objects/inland_waterway_vessel/destination/mss_objects/add___link_state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state.rake lib/tasks/objects/inland_waterway_vessel/destination/mss_objects/add___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state_date.rake lib/tasks/objects/inland_waterway_vessel/destination/mss_objects/add___state_date.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___link_state.rake lib/tasks/objects/inland_waterway_vessel/destination/mss_objects/drop___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___state_date.rake lib/tasks/objects/inland_waterway_vessel/destination/mss_objects/update___link_state.rake
-cp -R lib/tasks/objects/construction/destination/mss_objects_app/link_param/state lib/tasks/objects/inland_waterway_vessel/destination/mss_objects_app/link_param/state
+cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/construction/source/states/add___link_state.rake
+cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/construction/source/states/drop_link_state.rake
+cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/construction/source/states/update___link_state.rake
 
-cp lib/tasks/objects/construction/destination/mss_objects/add___link_state.rake lib/tasks/objects/land/destination/mss_objects/add___link_state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state.rake lib/tasks/objects/land/destination/mss_objects/add___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state_date.rake lib/tasks/objects/land/destination/mss_objects/add___state_date.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___link_state.rake lib/tasks/objects/land/destination/mss_objects/drop___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___state_date.rake lib/tasks/objects/land/destination/mss_objects/update___link_state.rake
-cp -R lib/tasks/objects/construction/destination/mss_objects_app/link_param/state lib/tasks/objects/land/destination/mss_objects_app/link_param/state
+cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/life_room/source/states/add___link_state.rake
+cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/life_room/source/states/drop_link_state.rake
+cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/life_room/source/states/update___link_state.rake
 
-cp lib/tasks/objects/construction/destination/mss_objects/add___link_state.rake lib/tasks/objects/life_room/destination/mss_objects/add___link_state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state.rake lib/tasks/objects/life_room/destination/mss_objects/add___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state_date.rake lib/tasks/objects/life_room/destination/mss_objects/add___state_date.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___link_state.rake lib/tasks/objects/life_room/destination/mss_objects/drop___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___state_date.rake lib/tasks/objects/life_room/destination/mss_objects/update___link_state.rake
-cp -R lib/tasks/objects/construction/destination/mss_objects_app/link_param/state lib/tasks/objects/life_room/destination/mss_objects_app/link_param/state
+cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/movabel_other/source/states/add___link_state.rake
+cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/movable_other/source/states/drop_link_state.rake
+cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/movable_other/source/states/update___link_state.rake
 
-cp lib/tasks/objects/construction/destination/mss_objects/add___link_state.rake lib/tasks/objects/movable_other/destination/mss_objects/add___link_state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state.rake lib/tasks/objects/movable_other/destination/mss_objects/add___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state_date.rake lib/tasks/objects/movable_other/destination/mss_objects/add___state_date.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___link_state.rake lib/tasks/objects/movable_other/destination/mss_objects/drop___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___state_date.rake lib/tasks/objects/movable_other/destination/mss_objects/update___link_state.rake
-cp -R lib/tasks/objects/construction/destination/mss_objects_app/link_param/state lib/tasks/objects/movable_other/destination/mss_objects_app/link_param/state
+cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/partnership/source/states/add___link_state.rake
+cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/partnership/source/states/drop_link_state.rake
+cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/partnership/source/states/update___link_state.rake
 
-cp lib/tasks/objects/construction/destination/mss_objects/add___link_state.rake lib/tasks/objects/partnership/destination/mss_objects/add___link_state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state.rake lib/tasks/objects/partnership/destination/mss_objects/add___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state_date.rake lib/tasks/objects/partnership/destination/mss_objects/add___state_date.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___link_state.rake lib/tasks/objects/partnership/destination/mss_objects/drop___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___state_date.rake lib/tasks/objects/partnership/destination/mss_objects/update___link_state.rake
-cp -R lib/tasks/objects/construction/destination/mss_objects_app/link_param/state lib/tasks/objects/partnership/destination/mss_objects_app/link_param/state
+cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/share/source/states/add___link_state.rake
+cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/share/source/states/drop_link_state.rake
+cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/share/source/states/update___link_state.rake
 
-cp lib/tasks/objects/construction/destination/mss_objects/add___link_state.rake lib/tasks/objects/share/destination/mss_objects/add___link_state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state.rake lib/tasks/objects/share/destination/mss_objects/add___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state_date.rake lib/tasks/objects/share/destination/mss_objects/add___state_date.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___link_state.rake lib/tasks/objects/share/destination/mss_objects/drop___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___state_date.rake lib/tasks/objects/share/destination/mss_objects/update___link_state.rake
-cp -R lib/tasks/objects/construction/destination/mss_objects_app/link_param/state lib/tasks/objects/share/destination/mss_objects_app/link_param/state
+cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/transport/source/states/add___link_state.rake
+cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/transport/source/states/drop_link_state.rake
+cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/transport/source/states/update___link_state.rake
 
-cp lib/tasks/objects/construction/destination/mss_objects/add___link_state.rake lib/tasks/objects/transport/destination/mss_objects/add___link_state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state.rake lib/tasks/objects/transport/destination/mss_objects/add___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state_date.rake lib/tasks/objects/transport/destination/mss_objects/add___state_date.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___link_state.rake lib/tasks/objects/transport/destination/mss_objects/drop___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___state_date.rake lib/tasks/objects/transport/destination/mss_objects/update___link_state.rake
-cp -R lib/tasks/objects/construction/destination/mss_objects_app/link_param/state lib/tasks/objects/transport/destination/mss_objects_app/link_param/state
+cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/unfinished/source/states/add___link_state.rake
+cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/unfinished/source/states/drop_link_state.rake
+cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/unfineshed/source/states/update___link_state.rake
 
-cp lib/tasks/objects/construction/destination/mss_objects/add___link_state.rake lib/tasks/objects/unfinished/destination/mss_objects/add___link_state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state.rake lib/tasks/objects/unfinished/destination/mss_objects/add___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state_date.rake lib/tasks/objects/unfinished/destination/mss_objects/add___state_date.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___link_state.rake lib/tasks/objects/unfinished/destination/mss_objects/drop___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___state_date.rake lib/tasks/objects/unfinished/destination/mss_objects/update___link_state.rake
-cp -R lib/tasks/objects/construction/destination/mss_objects_app/link_param/state lib/tasks/objects/unfinished/destination/mss_objects_app/link_param/state
+cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/unlife_room/source/states/add___link_state.rake
+cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/unlife_room/source/states/drop_link_state.rake
+cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/unlife_room/source/states/update___link_state.rake
 
-cp lib/tasks/objects/construction/destination/mss_objects/add___link_state.rake lib/tasks/objects/unlife_room/destination/mss_objects/add___link_state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state.rake lib/tasks/objects/unlife_room/destination/mss_objects/add___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/add___state_date.rake lib/tasks/objects/unlife_room/destination/mss_objects/add___state_date.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___link_state.rake lib/tasks/objects/unlife_room/destination/mss_objects/drop___state.rake
-cp lib/tasks/objects/construction/destination/mss_objects/drop___state_date.rake lib/tasks/objects/unlife_room/destination/mss_objects/update___link_state.rake
-cp -R lib/tasks/objects/construction/destination/mss_objects_app/link_param/state lib/tasks/objects/unlife_room/destination/mss_objects_app/link_param/state
