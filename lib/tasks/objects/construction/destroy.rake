@@ -216,9 +216,7 @@ namespace :objects do
         'objects:construction:destination:mss_objects:drop___link_kateg_avtodor',
         'objects:construction:destination:mss_objects:drop___group_im',
         'objects:construction:destination:mss_objects:drop___link_group_im',
-        'objects:construction:destination:mss_objects:drop___state',
-        'objects:construction:destination:mss_objects:drop___link_state',
-        'objects:construction:destination:mss_objects:drop___state_date',
+        'objects:construction:source:states:drop___link_state',
       ]
 
     end
