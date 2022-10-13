@@ -175,9 +175,7 @@ namespace :objects do
         'objects:houses_unlife:destination:mss_objects:drop___link_culturial_sense',
         'objects:houses_unlife:destination:mss_objects:drop___unmovable_used',
         'objects:houses_unlife:destination:mss_objects:drop___link_unmovable_used',
-        'objects:houses_unlife:destination:mss_objects:drop___state',
-        'objects:houses_unlife:destination:mss_objects:drop___link_state',
-        'objects:houses_unlife:destination:mss_objects:drop___state_date',
+        'objects:houses_unlife:source:states:drop___link_state',
       ]
     end
   end
