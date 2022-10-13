@@ -55,8 +55,6 @@ namespace :objects do
                   ___dict_name: row["___dict_name"]&.strip,
                   ___group: row["___group"]&.strip,
                   ___section: row["___section"]&.strip,
-                  ___state: row["___state"]&.strip,
-                  ___state_date: row["___state_date"],
                 }
               end
 
