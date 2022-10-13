@@ -14,13 +14,13 @@
 #cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/inland_waterway_vessel/source/states/
 #cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/inland_waterway_vessel/source/states/
 
-cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/construction/source/states/
-cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/construction/source/states/
-cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/construction/source/states/
+#cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/construction/source/states/
+#cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/construction/source/states/
+#cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/construction/source/states/
 
-cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/life_room/source/states/add___link_state.rake
-cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/life_room/source/states/drop_link_state.rake
-cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/life_room/source/states/update___link_state.rake
+cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/life_room/source/states/
+cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/life_room/source/states/
+cp lib/tasks/objects/land/source/states/update___link_state.rake lib/tasks/objects/life_room/source/states/
 
 cp lib/tasks/objects/land/source/states/add___link_state.rake lib/tasks/objects/movabel_other/source/states/add___link_state.rake
 cp lib/tasks/objects/land/source/states/drop___link_state.rake lib/tasks/objects/movable_other/source/states/drop_link_state.rake
