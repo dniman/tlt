@@ -10,8 +10,6 @@ namespace :objects do
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___engine_type' 
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___auto_country' 
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___auto_country_export' 
-        Rake.invoke_task 'objects:transport:destination:mss_objects:add___state' 
-        Rake.invoke_task 'objects:transport:destination:mss_objects:add___state_date' 
 
         Rake.invoke_task 'objects:transport:destination:mss_objects:insert'
         Rake.invoke_task 'objects:transport:source:ids:update_link'
@@ -134,12 +132,10 @@ namespace :objects do
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:link_param:iznos:insert'
         
         # Состояние
-        Rake.invoke_task 'objects:transport:destination:mss_objects:add___link_state' 
-        Rake.invoke_task 'objects:transport:destination:mss_objects:update___link_state' 
+        Rake.invoke_task 'objects:transport:source:states:add___link_state' 
+        Rake.invoke_task 'objects:transport:source:states:update___link_state' 
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:link_param:state:insert'
-        Rake.invoke_task 'objects:tranpsort:destination:mss_objects:drop___state' 
-        Rake.invoke_task 'objects:transport:destination:mss_objects:drop___link_state' 
-        Rake.invoke_task 'objects:transport:destination:mss_objects:drop___state_date' 
+        Rake.invoke_task 'objects:transport:source:states:drop___link_state' 
 
 
         # Счет учета ОС

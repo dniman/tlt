@@ -140,9 +140,7 @@ namespace :objects do
         'objects:transport:destination:mss_objects:drop___link_auto_country',
         'objects:transport:destination:mss_objects:drop___auto_country_export',
         'objects:transport:destination:mss_objects:drop___link_auto_country_export',
-        'objects:transport:destination:mss_objects:drop___state',
-        'objects:transport:destination:mss_objects:drop___link_state',
-        'objects:transport:destination:mss_objects:drop___state_date',
+        'objects:transport:source:states:drop___link_state',
       ]
     end
   end
