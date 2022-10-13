@@ -25,18 +25,21 @@ namespace :objects do
               def query
                 link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
 
-                Destination.set_engine!
-                query = 
-                  Destination.mss_objects
-                  .project([
-                    Destination.mss_objects[:link],
-                    Destination.mss_objects[:___link_state],
-                    Destination.mss_objects[:___state_date],
-                  ])
-                  .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin).on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
-                  .where(Destination.mss_objects[:link_type].eq(link_type)
-                    .and(Destination.mss_objects[:___link_state].not_eq(nil))
+                Source.set_engine!
+
+                Source.ids
+                .project([
+                  Source.ids[:link],
+                  Source.states[:___link_state],
+                  Source.states[:calcdate],
+                ])
+                .join(Source.states, Arel::Nodes::OuterJoin)
+                  .on(Source.states[:objects_id].eq(Source.ids[:id])
+                    .and(Source.ids[:table_id].eq(Source::Objects.table_id))
                   )
+                .where(Source.ids[:link_type].eq(link_type)
+                  .and(Source.states[:___link_state].not_eq(nil))
+                )
               end
 
               begin
@@ -44,14 +47,14 @@ namespace :objects do
                 insert = []
                 link_param = Destination.execute_query(link_param_query('STATE').to_sql).entries.first["link"]
                 
-                sliced_rows = Destination.execute_query(query.to_sql).each_slice(1000).to_a
+                sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
                 sliced_rows.each do |rows|
                   rows.each do |row|
                     insert << {
                       link_up: row["link"],
                       link_param: link_param,
                       link_dict: row["___link_state"],
-                      real_date: row["___state_date"].strftime("%Y%m%d")
+                      real_date: row["calcdate"].strftime("%Y%m%d")
                     }
                   end
                   

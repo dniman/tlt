@@ -75,9 +75,7 @@ namespace :objects do
         'objects:movable_other:destination:mss_objects:drop___link_group',
         'objects:movable_other:destination:mss_objects:drop___section',
         'objects:movable_other:destination:mss_objects:drop___link_section',
-        'objects:movable_other:destination:mss_objects:drop___state',
-        'objects:movable_other:destination:mss_objects:drop___link_state',
-        'objects:movable_other:destination:mss_objects:drop___state_date',
+        'objects:movable_other:source:states:drop___link_state',
       ]
     end
   end

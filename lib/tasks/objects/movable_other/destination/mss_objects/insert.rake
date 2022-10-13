@@ -27,8 +27,6 @@ namespace :objects do
               Source.propnames[:name].as("___dict_name"),
               Source.propgroups[:name].as("___group"),
               Source.propsections[:name].as("___section"),
-              Source.statetypes[:name].as("___state"),
-              Source.states[:calcdate].as("___state_date"),
             ])
             .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
             .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
@@ -36,8 +34,6 @@ namespace :objects do
             .join(Source.propnames, Arel::Nodes::OuterJoin).on(Source.propnames[:id].eq(Source.property[:propnames_id]))
             .join(Source.propgroups, Arel::Nodes::OuterJoin).on(Source.propgroups[:id].eq(Source.property[:propgroups_id]))
             .join(Source.propsections, Arel::Nodes::OuterJoin).on(Source.propsections[:id].eq(Source.property[:propsections_id]))
-            .join(Source.states, Arel::Nodes::OuterJoin).on(Source.states[:objects_id].eq(Source.objects[:id]))
-            .join(Source.statetypes, Arel::Nodes::OuterJoin).on(Source.statetypes[:id].eq(Source.states[:statetypes_id]))
             .where(Source.ids[:link_type].eq(link_type))
           end
 
