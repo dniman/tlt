@@ -108,9 +108,7 @@ namespace :objects do
         'objects:inland_waterway_vessel:destination:mss_objects:drop___link_engine_type',
         'objects:inland_waterway_vessel:destination:mss_objects:drop___auto_country',
         'objects:inland_waterway_vessel:destination:mss_objects:drop___link_auto_country',
-        'objects:inland_waterway_vessel:destination:mss_objects:drop___state',
-        'objects:inland_waterway_vessel:destination:mss_objects:drop___link_state',
-        'objects:inland_waterway_vessel:destination:mss_objects:drop___state_date',
+        'objects:inland_waterway_vessel:source:states:drop___link_state',
       ]
     end
   end
