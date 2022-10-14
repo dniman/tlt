@@ -5,17 +5,14 @@ namespace :objects do
 
         task :update___adr_str do |t|
           def link_type_query(code)
-            Destination.set_engine!
-            query = 
-              Destination.mss_objects_types 
-              .project(Destination.mss_objects_types[:link])
-              .where(Destination.mss_objects_types[:code].eq(code))
+            Destination.mss_objects_types 
+            .project(Destination.mss_objects_types[:link])
+            .where(Destination.mss_objects_types[:code].eq(code))
           end
 
           def query
             link_type = Destination.execute_query(link_type_query("HOUSES_UNLIFE").to_sql).entries.first["link"]
             
-            Source.set_engine!
             attributes = [
               "link = ids.link",
               "country_name = isnull(countries.name, '')",
