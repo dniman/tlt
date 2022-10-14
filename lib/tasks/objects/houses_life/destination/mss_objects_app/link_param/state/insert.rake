@@ -7,25 +7,20 @@ namespace :objects do
 
             task :insert do |t|
               def link_type_query
-                Destination.set_engine!
-                query = 
-                  Destination.mss_objects_types 
-                  .project(Destination.mss_objects_types[:link])
-                  .where(Destination.mss_objects_types[:code].eq("HOUSES_LIFE"))
+                Destination.mss_objects_types 
+                .project(Destination.mss_objects_types[:link])
+                .where(Destination.mss_objects_types[:code].eq("HOUSES_LIFE"))
               end
               
               def link_param_query(code)
-                Destination.set_engine!
-                query = 
-                  Destination.mss_objects_params
-                  .project(Destination.mss_objects_params[:link])
-                  .where(Destination.mss_objects_params[:code].eq(code))
+                Destination.mss_objects_params
+                .project(Destination.mss_objects_params[:link])
+                .where(Destination.mss_objects_params[:code].eq(code))
               end
 
               def query
                 link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
 
-                Source.set_engine!
                 aliased_table = Source.states.alias('aliased_table')
 
                 manager = Arel::SelectManager.new(Database.source_engine)

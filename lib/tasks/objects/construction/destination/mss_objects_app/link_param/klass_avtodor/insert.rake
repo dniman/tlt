@@ -7,35 +7,29 @@ namespace :objects do
 
             task :insert do |t|
               def link_type_query
-                Destination.set_engine!
-                query = 
-                  Destination.mss_objects_types 
-                  .project(Destination.mss_objects_types[:link])
-                  .where(Destination.mss_objects_types[:code].eq("CONSTRUCTION"))
+                Destination.mss_objects_types 
+                .project(Destination.mss_objects_types[:link])
+                .where(Destination.mss_objects_types[:code].eq("CONSTRUCTION"))
               end
               
               def link_param_query(code)
-                Destination.set_engine!
-                query = 
-                  Destination.mss_objects_params
-                  .project(Destination.mss_objects_params[:link])
-                  .where(Destination.mss_objects_params[:code].eq(code))
+                Destination.mss_objects_params
+                .project(Destination.mss_objects_params[:link])
+                .where(Destination.mss_objects_params[:code].eq(code))
               end
 
               def query
                 link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
 
-                Destination.set_engine!
-                query = 
-                  Destination.mss_objects
-                  .project([
-                    Destination.mss_objects[:link],
-                    Destination.mss_objects[:___link_klass_avtodor],
-                  ])
-                  .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin).on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
-                  .where(Destination.mss_objects[:link_type].eq(link_type)
-                    .and(Destination.mss_objects[:___link_klass_avtodor].not_eq(nil))
-                  )
+                Destination.mss_objects
+                .project([
+                  Destination.mss_objects[:link],
+                  Destination.mss_objects[:___link_klass_avtodor],
+                ])
+                .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin).on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
+                .where(Destination.mss_objects[:link_type].eq(link_type)
+                  .and(Destination.mss_objects[:___link_klass_avtodor].not_eq(nil))
+                )
               end
 
               begin

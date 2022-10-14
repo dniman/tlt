@@ -4,13 +4,11 @@ namespace :documents do
 
       task :update_link do |t|
         def query
-          Destination.set_engine!
-          query =
-            Destination.mss_docs
-            .project(
-              Destination.mss_docs[:link], 
-              Destination.mss_docs[:row_id], 
-            )
+          Destination.mss_docs
+          .project(
+            Destination.mss_docs[:link], 
+            Destination.mss_docs[:row_id], 
+          )
         end
 
         begin

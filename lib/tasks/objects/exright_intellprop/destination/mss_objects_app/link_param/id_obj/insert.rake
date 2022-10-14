@@ -7,35 +7,29 @@ namespace :objects do
 
             task :insert do |t|
               def link_type_query
-                Destination.set_engine!
-                query = 
-                  Destination.mss_objects_types 
-                  .project(Destination.mss_objects_types[:link])
-                  .where(Destination.mss_objects_types[:code].eq("EXRIGHT_INTELLPROP"))
+                Destination.mss_objects_types 
+                .project(Destination.mss_objects_types[:link])
+                .where(Destination.mss_objects_types[:code].eq("EXRIGHT_INTELLPROP"))
               end
               
               def link_param_query(code)
-                Destination.set_engine!
-                query = 
-                  Destination.mss_objects_params
-                  .project(Destination.mss_objects_params[:link])
-                  .where(Destination.mss_objects_params[:code].eq(code))
+                Destination.mss_objects_params
+                .project(Destination.mss_objects_params[:link])
+                .where(Destination.mss_objects_params[:code].eq(code))
               end
 
               def query
                 link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
 
-                Source.set_engine!
-                query = 
-                  Source.objects
-                  .project([
-                    Source.ids[:id],
-                    Source.ids[:link_type],
-                    Source.ids[:link] 
-                  ])
-                  .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-                  .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
-                  .where(Source.ids[:link_type].eq(link_type))
+                Source.objects
+                .project([
+                  Source.ids[:id],
+                  Source.ids[:link_type],
+                  Source.ids[:link] 
+                ])
+                .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
+                .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+                .where(Source.ids[:link_type].eq(link_type))
               end
 
               begin

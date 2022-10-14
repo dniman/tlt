@@ -5,17 +5,14 @@ namespace :objects do
 
         task :insert do |t|
           def link_type_query
-            Destination.set_engine!
-            query = 
-              Destination.mss_objects_types 
-              .project(Destination.mss_objects_types[:link])
-              .where(Destination.mss_objects_types[:code].eq("EXRIGHT_INTELLPROP"))
+            Destination.mss_objects_types 
+            .project(Destination.mss_objects_types[:link])
+            .where(Destination.mss_objects_types[:code].eq("EXRIGHT_INTELLPROP"))
           end
           
           def query
             link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
             
-            Source.set_engine!
             attributes = [
               "___link_adr = ids.___link_adr",
               "country_name = 'Российская Федерация'",
@@ -31,10 +28,9 @@ namespace :objects do
               "addition = null",
             ]
             
-            query =
-              Source.ids
-              .project(attributes.join(', '))
-              .where(Source.ids[:link_type].eq(link_type))
+            Source.ids
+            .project(attributes.join(', '))
+            .where(Source.ids[:link_type].eq(link_type))
           end
           begin
             sql = ""

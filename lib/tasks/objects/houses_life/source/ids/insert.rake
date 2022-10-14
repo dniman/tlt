@@ -5,50 +5,46 @@ namespace :objects do
 
         task :insert do |t|
           def link_type_query
-            Destination.set_engine!
-            query = 
-              Destination.mss_objects_types 
-              .project(Destination.mss_objects_types[:link])
-              .where(Destination.mss_objects_types[:code].eq("HOUSES_LIFE"))
+            Destination.mss_objects_types 
+            .project(Destination.mss_objects_types[:link])
+            .where(Destination.mss_objects_types[:code].eq("HOUSES_LIFE"))
           end
 
           def query
-            Source.set_engine!
-            query = 
-              Source.objects
-              .project([
-                Arel.sql("table_id = #{Source::Objects.table_id}"),
-                Source.objects[:id],
-                Arel.sql("row_id = newid()")
-              ])
-                .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-                .join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.objects[:id]))
-                .join(Source.buildtypes, Arel::Nodes::OuterJoin).on(Source.buildtypes[:id].eq(Source.buildings[:buildtypes_id]))
-                .where(Source.objtypes[:name].eq('Здания и помещения')
-                  .and(Source.buildtypes[:name].in(['Жилой дом','Модуль'])
-                    .or(Source.buildtypes[:name].eq('Отдельностоящее здание')
-                      .and(Source.buildings[:levelname].in([
-                        'Жилой дом', 
-                        'спальный корпус № 12', 
-                        'спальный корус № 3', 
-                        'Индивидуальный жилой дом', 
-                        'Жилой дом поз. 2 с пристроенным нежилым помещением', 
-                        'Дом ветеранов (I пусковой комплекс)',
-                        'Жилой дом со встроенными нежилыми помещениями',
-                        'Жилой дом, Общежитие',
-                        'Жилой домик, Трудовой лагерь "Гвардеец"',
-                        'Жилой комплекс № 1',
-                        'Жилой комплекс № 2',
-                        'Жилой комплекс № 3', 
-                        'Здание (Жилой дом, общежитие)', 
-                        'Многоквартирный многоэтажный жилой дом с встроенными офисными помещениями',
-                        'Общежитие',
-                        'Общежитие  (3,4,5- этажи и подсобное помещение на 1 этаже)',
-                        'Общежитие № 1'
-                      ]))
-                    )
+            Source.objects
+            .project([
+              Arel.sql("table_id = #{Source::Objects.table_id}"),
+              Source.objects[:id],
+              Arel.sql("row_id = newid()")
+            ])
+              .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
+              .join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.objects[:id]))
+              .join(Source.buildtypes, Arel::Nodes::OuterJoin).on(Source.buildtypes[:id].eq(Source.buildings[:buildtypes_id]))
+              .where(Source.objtypes[:name].eq('Здания и помещения')
+                .and(Source.buildtypes[:name].in(['Жилой дом','Модуль'])
+                  .or(Source.buildtypes[:name].eq('Отдельностоящее здание')
+                    .and(Source.buildings[:levelname].in([
+                      'Жилой дом', 
+                      'спальный корпус № 12', 
+                      'спальный корус № 3', 
+                      'Индивидуальный жилой дом', 
+                      'Жилой дом поз. 2 с пристроенным нежилым помещением', 
+                      'Дом ветеранов (I пусковой комплекс)',
+                      'Жилой дом со встроенными нежилыми помещениями',
+                      'Жилой дом, Общежитие',
+                      'Жилой домик, Трудовой лагерь "Гвардеец"',
+                      'Жилой комплекс № 1',
+                      'Жилой комплекс № 2',
+                      'Жилой комплекс № 3', 
+                      'Здание (Жилой дом, общежитие)', 
+                      'Многоквартирный многоэтажный жилой дом с встроенными офисными помещениями',
+                      'Общежитие',
+                      'Общежитие  (3,4,5- этажи и подсобное помещение на 1 этаже)',
+                      'Общежитие № 1'
+                    ]))
                   )
                 )
+              )
           end
 
           begin

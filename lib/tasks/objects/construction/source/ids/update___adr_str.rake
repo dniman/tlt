@@ -5,17 +5,14 @@ namespace :objects do
 
         task :update___adr_str do |t|
           def link_type_query(code)
-            Destination.set_engine!
-            query = 
-              Destination.mss_objects_types 
-              .project(Destination.mss_objects_types[:link])
-              .where(Destination.mss_objects_types[:code].eq(code))
+            Destination.mss_objects_types 
+            .project(Destination.mss_objects_types[:link])
+            .where(Destination.mss_objects_types[:code].eq(code))
           end
 
           def query
             link_type = Destination.execute_query(link_type_query("CONSTRUCTION").to_sql).entries.first["link"]
             
-            Source.set_engine!
             attributes = [
               "link = ids.link",
               "country_name = isnull(countries.name, '')",
@@ -36,19 +33,18 @@ namespace :objects do
               "no_view_townarea = address.no_view_townarea"
             ]
             
-            query =
-              Source.address
-              .project(attributes.join(', '))
-              .join(Source.countries, Arel::Nodes::OuterJoin).on(Source.countries[:id].eq(Source.address[:country_id]))
-              .join(Source.regions, Arel::Nodes::OuterJoin).on(Source.regions[:id].eq(Source.address[:regions_id]))
-              .join(Source.provincearea, Arel::Nodes::OuterJoin).on(Source.provincearea[:id].eq(Source.address[:provincearea_id]))
-              .join(Source.townnames, Arel::Nodes::OuterJoin).on(Source.townnames[:id].eq(Source.address[:townnames_id]))
-              .join(Source.streets, Arel::Nodes::OuterJoin).on(Source.streets[:id].eq(Source.address[:streets_id]))
-              .join(Source.townarea, Arel::Nodes::OuterJoin).on(Source.townarea[:id].eq(Source.address[:townarea_id]))
-              .join(Source.microarea, Arel::Nodes::OuterJoin).on(Source.microarea[:id].eq(Source.address[:microarea_id]))
-              .join(Source.objects).on(Source.objects[:address_id].eq(Source.address[:id]))
-              .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
-              .where(Source.ids[:link_type].eq(link_type))
+            Source.address
+            .project(attributes.join(', '))
+            .join(Source.countries, Arel::Nodes::OuterJoin).on(Source.countries[:id].eq(Source.address[:country_id]))
+            .join(Source.regions, Arel::Nodes::OuterJoin).on(Source.regions[:id].eq(Source.address[:regions_id]))
+            .join(Source.provincearea, Arel::Nodes::OuterJoin).on(Source.provincearea[:id].eq(Source.address[:provincearea_id]))
+            .join(Source.townnames, Arel::Nodes::OuterJoin).on(Source.townnames[:id].eq(Source.address[:townnames_id]))
+            .join(Source.streets, Arel::Nodes::OuterJoin).on(Source.streets[:id].eq(Source.address[:streets_id]))
+            .join(Source.townarea, Arel::Nodes::OuterJoin).on(Source.townarea[:id].eq(Source.address[:townarea_id]))
+            .join(Source.microarea, Arel::Nodes::OuterJoin).on(Source.microarea[:id].eq(Source.address[:microarea_id]))
+            .join(Source.objects).on(Source.objects[:address_id].eq(Source.address[:id]))
+            .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+            .where(Source.ids[:link_type].eq(link_type))
           end
 
           begin

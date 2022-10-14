@@ -4,37 +4,29 @@ namespace :documents do
 
       task :insert do |t|
         def link_type_query
-          Destination.set_engine!
-          
-          query = 
-            Destination.mss_objcorr_types
-            .project(Destination.mss_objcorr_types[:link])
-            .where(Destination.mss_objcorr_types[:code].eq('doc'))
+          Destination.mss_objcorr_types
+          .project(Destination.mss_objcorr_types[:link])
+          .where(Destination.mss_objcorr_types[:code].eq('doc'))
         end
 
         def link_scd_state_query
-          Destination.set_engine!
-          query = 
-            Destination.mss_oac_rowstates
-            .project(Destination.mss_oac_rowstates[:link])
-            .where(Destination.mss_oac_rowstates[:code].eq("current"))
+          Destination.mss_oac_rowstates
+          .project(Destination.mss_oac_rowstates[:link])
+          .where(Destination.mss_oac_rowstates[:code].eq("current"))
         end
 
         def query
-          Source.set_engine!
-          
-          query = 
-            Source.documents
-            .project([
-              Source.documents[:docno],
-              Source.documents[:docser],
-              Source.documents[:docdate],
-              Source.documents[:explanation],
-              Source.doctypes[:name],
-              Source.ids[:row_id],
-            ])
-            .join(Source.ids).on(Source.ids[:id].eq(Source.documents[:id]).and(Source.ids[:table_id].eq(Source::Documents.table_id)))
-            .join(Source.doctypes, Arel::Nodes::OuterJoin).on(Source.doctypes[:id].eq(Source.documents[:doctypes_id]))
+          Source.documents
+          .project([
+            Source.documents[:docno],
+            Source.documents[:docser],
+            Source.documents[:docdate],
+            Source.documents[:explanation],
+            Source.doctypes[:name],
+            Source.ids[:row_id],
+          ])
+          .join(Source.ids).on(Source.ids[:id].eq(Source.documents[:id]).and(Source.ids[:table_id].eq(Source::Documents.table_id)))
+          .join(Source.doctypes, Arel::Nodes::OuterJoin).on(Source.doctypes[:id].eq(Source.documents[:doctypes_id]))
         end
 
         begin

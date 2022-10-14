@@ -7,26 +7,20 @@ namespace :objects do
 
             task :insert do |t|
               def link_type_query
-                Destination.set_engine!
-                
                 Destination.mss_objects_types 
                 .project(Destination.mss_objects_types[:link])
                 .where(Destination.mss_objects_types[:code].eq("EXRIGHT_INTELLPROP"))
               end
               
               def link_param_query(code)
-                Destination.set_engine!
-                query = 
-                  Destination.mss_objects_params
-                  .project(Destination.mss_objects_params[:link])
-                  .where(Destination.mss_objects_params[:code].eq(code))
+                Destination.mss_objects_params
+                .project(Destination.mss_objects_params[:link])
+                .where(Destination.mss_objects_params[:code].eq(code))
               end
 
               def query
                 link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
 
-                Destination.set_engine!
-                
                 Destination.mss_objects
                 .project([
                   Destination.mss_objects[:link],

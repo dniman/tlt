@@ -4,15 +4,12 @@ namespace :documents do
 
       task :insert do |t|
         def query
-          Source.set_engine!
-
-          query = 
-            Source.documents
-            .project([
-              Arel.sql("table_id = #{Source::Documents.table_id}"),
-              Source.documents[:id],
-              Arel.sql("row_id = newid()")
-            ])
+          Source.documents
+          .project([
+            Arel.sql("table_id = #{Source::Documents.table_id}"),
+            Source.documents[:id],
+            Arel.sql("row_id = newid()")
+          ])
         end
 
         begin
