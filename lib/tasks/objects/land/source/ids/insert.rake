@@ -5,25 +5,21 @@ namespace :objects do
 
         task :insert do |t|
           def link_type_query
-            Destination.set_engine!
-            query = 
-              Destination.mss_objects_types 
-              .project(Destination.mss_objects_types[:link])
-              .where(Destination.mss_objects_types[:code].eq("LAND"))
+            Destination.mss_objects_types 
+            .project(Destination.mss_objects_types[:link])
+            .where(Destination.mss_objects_types[:code].eq("LAND"))
           end
 
           def query
-            Source.set_engine!
-            query = 
-              Source.objects
-              .project([
-                Arel.sql("table_id = #{Source::Objects.table_id}"),
-                Source.objects[:id],
-                Arel.sql("row_id = newid()")
-              ])
-              .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-              .join(Source.grounds).on(Source.grounds[:objects_id].eq(Source.objects[:id]))
-              .where(Source.objtypes[:name].eq("Земельные участки"))
+            Source.objects
+            .project([
+              Arel.sql("table_id = #{Source::Objects.table_id}"),
+              Source.objects[:id],
+              Arel.sql("row_id = newid()")
+            ])
+            .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
+            .join(Source.grounds).on(Source.grounds[:objects_id].eq(Source.objects[:id]))
+            .where(Source.objtypes[:name].eq("Земельные участки"))
           end
 
           begin

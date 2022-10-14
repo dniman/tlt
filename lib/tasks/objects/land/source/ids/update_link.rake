@@ -5,15 +5,13 @@ namespace :objects do
 
         task :update_link do |t|
           def query
-            Destination.set_engine!
-            query =
-              Destination.mss_objects
-              .project(
-                Destination.mss_objects[:link], 
-                Destination.mss_objects[:row_id]
-              )
-              .join(Destination.mss_objects_types).on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
-              .where(Destination.mss_objects_types[:code].eq('LAND'))
+            Destination.mss_objects
+            .project(
+              Destination.mss_objects[:link], 
+              Destination.mss_objects[:row_id]
+            )
+            .join(Destination.mss_objects_types).on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
+            .where(Destination.mss_objects_types[:code].eq('LAND'))
           end
 
           begin

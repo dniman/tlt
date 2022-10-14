@@ -5,14 +5,13 @@ namespace :objects do
 
         task :update do |t|
           begin
-          Destination.set_engine!
-          subquery = 
-            Destination.mss_objects
-            .project(Destination.mss_objects[:link_adr])
-            .distinct
-            .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin)
-              .on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
-            .where(Destination.mss_objects_types[:code].eq('LAND'))
+            subquery = 
+              Destination.mss_objects
+              .project(Destination.mss_objects[:link_adr])
+              .distinct
+              .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin)
+                .on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
+              .where(Destination.mss_objects_types[:code].eq('LAND'))
 
             update = [ 
               adr: Arel.sql("(select isnull(adr,'') from mss_objects_adr where link_up = mss_adr.link)"),

@@ -7,7 +7,6 @@ namespace :objects do
 
             task :delete do |t|
               begin
-                Destination.set_engine!
                 subquery = 
                   Destination.mss_objects_app
                   .project(Destination.mss_objects_app[:link])

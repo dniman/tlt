@@ -5,11 +5,9 @@ namespace :objects do
 
         task :update___link_gr_rel_groups_gr_rel_group_id do |t|
           def link_param_query(code)
-            Destination.set_engine!
-            query = 
-              Destination.mss_objects_params
-              .project(Destination.mss_objects_params[:link])
-              .where(Destination.mss_objects_params[:code].eq(code))
+            Destination.mss_objects_params
+            .project(Destination.mss_objects_params[:link])
+            .where(Destination.mss_objects_params[:code].eq(code))
           end
 
           begin
