@@ -15,8 +15,6 @@ namespace :objects do
           def query
             link_type = Destination.execute_query(link_type_query("MOVABLE_OTHER").to_sql).entries.first["link"]
             
-            Source.set_engine!
-
             attributes = [
               "link = ids.link",
               "country_name = isnull(countries.name, '')",
