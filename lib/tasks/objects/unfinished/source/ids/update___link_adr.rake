@@ -5,16 +5,13 @@ namespace :objects do
 
         task :update___link_adr do |t|
           def query
-            Destination.set_engine!
-            query =
-              Destination.mss_objects
-              .project(
-                Destination.mss_objects[:row_id], 
-                Destination.mss_objects[:link_adr]
-              )
-              .join(Destination.mss_objects_types).on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
-              .where(Destination.mss_objects_types[:code].eq('UNFINISHED'))
-            query
+            Destination.mss_objects
+            .project(
+              Destination.mss_objects[:row_id], 
+              Destination.mss_objects[:link_adr]
+            )
+            .join(Destination.mss_objects_types).on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
+            .where(Destination.mss_objects_types[:code].eq('UNFINISHED'))
           end
 
           begin

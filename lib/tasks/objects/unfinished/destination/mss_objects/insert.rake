@@ -5,17 +5,13 @@ namespace :objects do
 
         task :insert do |t|
           def link_type_query
-            Destination.set_engine!
-            query = 
-              Destination.mss_objects_types 
-              .project(Destination.mss_objects_types[:link])
-              .where(Destination.mss_objects_types[:code].eq("UNFINISHED"))
+            Destination.mss_objects_types 
+            .project(Destination.mss_objects_types[:link])
+            .where(Destination.mss_objects_types[:code].eq("UNFINISHED"))
           end
 
           def query
             link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
-
-            Source.set_engine!
 
             select_one = 
               Source.objects
