@@ -7,16 +7,12 @@ namespace :objects do
 
             task :insert do |t|
               def link_type_query
-                Destination.set_engine!
-                
                 Destination.mss_objects_types 
                 .project(Destination.mss_objects_types[:link])
                 .where(Destination.mss_objects_types[:code].eq("PARTNERSHIP"))
               end
               
               def link_corr_type_query(code)
-                Destination.set_engine!
-                
                 Destination.s_corr
                 .project(Destination.s_corr[:link])
                 .where(Destination.s_corr[:inn].eq(code)
@@ -27,8 +23,6 @@ namespace :objects do
               def query
                 link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
                 partnership = Destination.execute_query(link_corr_type_query('PARTNERSHIP').to_sql).entries.first["link"]
-
-                Source.set_engine!
 
                 ids2 = Source.ids.alias('ids2')
 
