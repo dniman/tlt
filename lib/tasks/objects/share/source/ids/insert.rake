@@ -5,16 +5,12 @@ namespace :objects do
 
         task :insert do |t|
           def link_type_query
-            Destination.set_engine!
-            query = 
-              Destination.mss_objects_types 
-              .project(Destination.mss_objects_types[:link])
-              .where(Destination.mss_objects_types[:code].eq("SHARE"))
+            Destination.mss_objects_types 
+            .project(Destination.mss_objects_types[:link])
+            .where(Destination.mss_objects_types[:code].eq("SHARE"))
           end
 
           def query
-            Source.set_engine!
-
             Source.objects
             .project([
               Arel.sql("table_id = #{Source::Objects.table_id}"),
