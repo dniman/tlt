@@ -5,26 +5,20 @@ namespace :objects do
         
         task :update___link_state do |t|
           def link_type_query
-            Destination.set_engine!
-            query = 
-              Destination.mss_objects_types 
-              .project(Destination.mss_objects_types[:link])
-              .where(Destination.mss_objects_types[:code].eq("LIFE_ROOM"))
+            Destination.mss_objects_types 
+            .project(Destination.mss_objects_types[:link])
+            .where(Destination.mss_objects_types[:code].eq("LIFE_ROOM"))
           end
 
           def link_param_query(code)
-            Destination.set_engine!
-            query = 
-              Destination.mss_objects_params
-              .project(Destination.mss_objects_params[:link])
-              .where(Destination.mss_objects_params[:code].eq(code))
+            Destination.mss_objects_params
+            .project(Destination.mss_objects_params[:link])
+            .where(Destination.mss_objects_params[:code].eq(code))
           end
 
           def query
             link_param = Destination.execute_query(link_param_query('STATE').to_sql).entries.first["link"]
 
-            Destination.set_engine!
-            
             Destination.mss_objects_dicts
             .project(
               Destination.mss_objects_dicts[:name], 
