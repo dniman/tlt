@@ -5,56 +5,52 @@ namespace :objects do
 
         task :insert do |t|
           def link_type_query
-            Destination.set_engine!
-            query = 
-              Destination.mss_objects_types 
-              .project(Destination.mss_objects_types[:link])
-              .where(Destination.mss_objects_types[:code].eq("UNLIFE_ROOM"))
+            Destination.mss_objects_types 
+            .project(Destination.mss_objects_types[:link])
+            .where(Destination.mss_objects_types[:code].eq("UNLIFE_ROOM"))
           end
 
           def query
             link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
 
-            Source.set_engine!
-            query = 
-              Source.objects
-              .project([
-                Source.objects[:description],
-                Source.objects[:invno],
-                Source.buildings[:kadastrno],
-                Source.ids[:row_id],
-                Source.ids[:link_type],
-                Source.buildings[:levelname].as("name"),
-                Arel.sql(
-                  "ltrim(rtrim(
-                      replace(replace([buildmaterials].[name], char(9), ''), char(10), '')
-                    ))"
-                ).as("___house_wall_type"),
-                Source.buildings[:isrealestate],
-                Source.objects[:is_sign],
-                Source.objects[:is_social],
-                Source.objects[:is_zhkh],
-                Arel.sql(
-                  "ltrim(rtrim(
-                      replace(replace([spr_zhkh_vid].[name], char(9), ''), char(10), '')
-                    ))"
-                ).as("___vid_obj_zkx"),
-                Source.monumenttypes[:name].as("___culturial_sense"),
-                Arel.sql(
-                  "ltrim(rtrim(
-                      replace(replace([buildings].[purpose], char(9), ''), char(10), '')
-                    ))"
-                ).as("___unmovable_used"),
-                
-              ])
-              .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-              .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
-              .join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.objects[:id]))
-              .join(Source.buildtypes, Arel::Nodes::OuterJoin).on(Source.buildtypes[:id].eq(Source.buildings[:buildtypes_id]))
-              .join(Source.buildmaterials, Arel::Nodes::OuterJoin).on(Source.buildmaterials[:id].eq(Source.buildings[:buildmaterial_id]))
-              .join(Source.spr_zhkh_vid, Arel::Nodes::OuterJoin).on(Source.spr_zhkh_vid[:id].eq(Source.objects[:vid_zhkh_id]))
-              .join(Source.monumenttypes, Arel::Nodes::OuterJoin).on(Source.monumenttypes[:id].eq(Source.objects[:mntype_id]))
-              .where(Source.ids[:link_type].eq(link_type))
+            Source.objects
+            .project([
+              Source.objects[:description],
+              Source.objects[:invno],
+              Source.buildings[:kadastrno],
+              Source.ids[:row_id],
+              Source.ids[:link_type],
+              Source.buildings[:levelname].as("name"),
+              Arel.sql(
+                "ltrim(rtrim(
+                    replace(replace([buildmaterials].[name], char(9), ''), char(10), '')
+                  ))"
+              ).as("___house_wall_type"),
+              Source.buildings[:isrealestate],
+              Source.objects[:is_sign],
+              Source.objects[:is_social],
+              Source.objects[:is_zhkh],
+              Arel.sql(
+                "ltrim(rtrim(
+                    replace(replace([spr_zhkh_vid].[name], char(9), ''), char(10), '')
+                  ))"
+              ).as("___vid_obj_zkx"),
+              Source.monumenttypes[:name].as("___culturial_sense"),
+              Arel.sql(
+                "ltrim(rtrim(
+                    replace(replace([buildings].[purpose], char(9), ''), char(10), '')
+                  ))"
+              ).as("___unmovable_used"),
+              
+            ])
+            .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
+            .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+            .join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.objects[:id]))
+            .join(Source.buildtypes, Arel::Nodes::OuterJoin).on(Source.buildtypes[:id].eq(Source.buildings[:buildtypes_id]))
+            .join(Source.buildmaterials, Arel::Nodes::OuterJoin).on(Source.buildmaterials[:id].eq(Source.buildings[:buildmaterial_id]))
+            .join(Source.spr_zhkh_vid, Arel::Nodes::OuterJoin).on(Source.spr_zhkh_vid[:id].eq(Source.objects[:vid_zhkh_id]))
+            .join(Source.monumenttypes, Arel::Nodes::OuterJoin).on(Source.monumenttypes[:id].eq(Source.objects[:mntype_id]))
+            .where(Source.ids[:link_type].eq(link_type))
           end
 
           begin

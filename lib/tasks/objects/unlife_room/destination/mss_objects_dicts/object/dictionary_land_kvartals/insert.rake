@@ -7,16 +7,13 @@ namespace :objects do
 
             task :insert do |t|
               def query
-                Destination.set_engine!
-                
-                query = 
-                  Destination.mss_objects
-                  .project([
-                    Destination.mss_objects[:___cad_quorter]
-                  ])
-                  .distinct
-                  .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin).on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
-                  .where(Destination.mss_objects_types[:code].eq("UNLIFE_ROOM"))
+                Destination.mss_objects
+                .project([
+                  Destination.mss_objects[:___cad_quorter]
+                ])
+                .distinct
+                .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin).on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
+                .where(Destination.mss_objects_types[:code].eq("UNLIFE_ROOM"))
               end
 
               begin
