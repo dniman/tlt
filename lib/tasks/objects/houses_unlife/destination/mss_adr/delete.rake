@@ -5,11 +5,12 @@ namespace :objects do
 
         task :delete do |t|
           begin
-            Destination.mss_objects
-            .project(Destination.mss_objects[:link_adr])
-            .join(Destination.mss_objects_types)
-            .on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type])
-            .and(Destination.mss_objects_types[:code].eq('HOUSES_UNLIFE')))
+            subquery =
+              Destination.mss_objects
+              .project(Destination.mss_objects[:link_adr])
+              .join(Destination.mss_objects_types)
+              .on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
+              .where(Destination.mss_objects_types[:code].eq('HOUSES_UNLIFE'))
 
             manager = Arel::DeleteManager.new(Database.destination_engine)
             manager.from (Destination.mss_adr)
