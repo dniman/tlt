@@ -7,16 +7,17 @@ namespace :objects do
             
             task :delete do |t|
               begin
-                Destination.mss_objects_app
-                .project(Destination.mss_objects_app[:link])
-                .distinct
-                .join(Destination.mss_objects).on(Destination.mss_objects[:link].eq(Destination.mss_objects_app[:link_up]))
-                .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin)
-                  .on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
-                .join(Destination.mss_objects_params, Arel::Nodes::OuterJoin)
-                  .on(Destination.mss_objects_params[:link].eq(Destination.mss_objects_app[:link_param]))
-                .where(Destination.mss_objects_types[:code].eq('CONSTRUCTION')
-                  .and(Destination.mss_objects_params[:code].eq('ASSESSED_VAL')))
+                subquery =
+                  Destination.mss_objects_app
+                  .project(Destination.mss_objects_app[:link])
+                  .distinct
+                  .join(Destination.mss_objects).on(Destination.mss_objects[:link].eq(Destination.mss_objects_app[:link_up]))
+                  .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin)
+                    .on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
+                  .join(Destination.mss_objects_params, Arel::Nodes::OuterJoin)
+                    .on(Destination.mss_objects_params[:link].eq(Destination.mss_objects_app[:link_param]))
+                  .where(Destination.mss_objects_types[:code].eq('CONSTRUCTION')
+                    .and(Destination.mss_objects_params[:code].eq('ASSESSED_VAL')))
 
                 manager = Arel::DeleteManager.new(Database.destination_engine)
                 manager.from (Destination.mss_objects_app)
