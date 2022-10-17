@@ -148,6 +148,10 @@ namespace :objects do
         'objects:houses_unlife:destination:mss_objects_app:object:mss_od_remaining_useful_life_y:delete',
 
 
+        # Земельные участки, в пределах которого находится объект
+        'objects:houses_unlife:destination:mss_objects_parentland:delete',
+
+
         'objects:houses_unlife:destination:mss_objects:delete',
         'objects:houses_unlife:destination:mss_objects:drop___cad_quorter',
         'objects:houses_unlife:destination:mss_objects:drop___kadastrno',
