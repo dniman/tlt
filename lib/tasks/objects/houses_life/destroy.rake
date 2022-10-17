@@ -146,6 +146,9 @@ namespace :objects do
         
         # Оставшийся срок полезного использования в годах
         'objects:houses_life:destination:mss_objects_app:object:mss_od_remaining_useful_life_y:delete',
+        
+        # Земельные участки, в пределах которого находится объект
+        'objects:houses_life:destination:mss_objects_parentland:delete',
 
 
         'objects:houses_life:destination:mss_objects:delete',
