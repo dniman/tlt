@@ -57,6 +57,8 @@ module Source
     :intellect,
     :states,
     :statetypes,
+    :links_grounds_buildings,
+    :links_grounds_enginf,
   ]
   
   class << self

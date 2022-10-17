@@ -24,6 +24,7 @@ module Destination
     :s_kbk,
     :s_kbk_name,
     :t_kbk,
+    :mss_objects_parentland,
   ]
 
   class << self
