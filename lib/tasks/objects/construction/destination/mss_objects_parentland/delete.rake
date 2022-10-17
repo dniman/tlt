@@ -8,14 +8,12 @@ namespace :objects do
             subquery = 
               Destination.mss_objects
               .project(Destination.mss_objects[:link])
-              .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin).on(
-                Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type])
-                 .and(Destination.mss_objects_types[:code].eq('CONSTRUCTION'))
-              )
+              .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin).on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
+              .where(Destination.mss_objects_types[:code].eq('CONSTRUCTION'))
 
             manager = Arel::DeleteManager.new(Database.destination_engine)
             manager.from (Destination.mss_objects_parentland)
-            manager.where(Arel::Nodes::In.new(Destination.mss_objects_parentland[:link_child], subquery))
+            manager.where(Destination.mss_objects_parentland[:link_child].in(subquery))
                 
             Destination.execute_query(manager.to_sql).do
             Rake.info "Задача '#{ t }' успешно выполнена."
