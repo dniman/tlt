@@ -240,6 +240,9 @@ namespace :objects do
         
         # Оставшийся срок полезного использования в годах
         Rake.invoke_task 'objects:unfinished:destination:mss_objects_app:object:mss_od_remaining_useful_life_y:insert'
+        
+        # Земельные участки, в пределах которого находится объект
+        Rake.invoke_task 'objects:unfinished:destination:mss_objects_parentland:insert'
       end 
 
     end
