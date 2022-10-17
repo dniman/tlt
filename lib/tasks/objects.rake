@@ -31,13 +31,13 @@ namespace :objects do
   ] 
   
   task :destroy => [
-    'objects:land:destroy',
     'objects:houses_life:destroy',
     'objects:houses_unlife:destroy',
     'objects:construction:destroy',
     'objects:unfinished:destroy',
     'objects:life_room:destroy',
     'objects:unlife_room:destroy',
+    'objects:land:destroy',
     'objects:movable_other:destroy',
     'objects:transport:destroy',
     'objects:share:destroy',
