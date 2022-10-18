@@ -6,7 +6,7 @@ Download
 
 Decompress it to C:\freetds-1.00
 
-git clone https://github.com/dniman/tlt
+git clone https://github.com/dniman/tlt &&
 cd tlt
 
 gem install tiny_tds -- --with-freetds-dir=C:\freetds-1.00
