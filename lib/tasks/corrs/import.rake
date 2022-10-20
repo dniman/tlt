@@ -14,6 +14,9 @@ namespace :corrs do
       # Фамилия
       Rake.invoke_task 'corrs:destination:s_corr_app:object:column_person_fm:insert'
 
+      # Имя 
+      Rake.invoke_task 'corrs:destination:s_corr_app:object:column_person_im:insert'
+
 
     end
 
