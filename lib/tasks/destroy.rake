@@ -397,6 +397,7 @@ namespace :destroy do
           'corrs:destination:s_corr_app:object:column_person_fm:delete',
           'corrs:destination:s_corr_app:object:column_person_im:delete',
           'corrs:destination:s_corr_app:object:column_person_ot:delete',
+          'corrs:destination:s_corr_app:object:column_person_birthdate:delete',
         ] do 
 
           Rake::Task['destroy:delete_completed_tasks'].invoke("corrs:destination:s_corr_app:object:%")

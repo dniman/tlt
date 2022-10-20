@@ -20,6 +20,8 @@ namespace :corrs do
       # Отчество
       Rake.invoke_task 'corrs:destination:s_corr_app:object:column_person_ot:insert'
 
+      # Дата рождения
+      Rake.invoke_task 'corrs:destination:s_corr_app:object:column_person_birthdate:insert'
     end
 
   end

@@ -144,6 +144,11 @@ module Destination
         :COLUMN_PERSON_OT,
         Destination::SObjects.obj_id('COLUMN_PERSON_OT')
       )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_PERSON_BIRTHDATE,
+        Destination::SObjects.obj_id('COLUMN_PERSON_BIRTHDATE')
+      )
 
       nil
     end
