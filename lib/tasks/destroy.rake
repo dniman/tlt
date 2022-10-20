@@ -396,10 +396,10 @@ namespace :destroy do
 
           'corrs:destination:s_corr_app:object:column_person_fm:delete',
           'corrs:destination:s_corr_app:object:column_person_im:delete',
+          'corrs:destination:s_corr_app:object:column_person_ot:delete',
         ] do 
 
-          Rake::Task['destroy:delete_completed_tasks'].invoke("corrs:destination:s_corr_app:object:column_person_fm:insert")
-          Rake::Task['destroy:delete_completed_tasks'].invoke("corrs:destination:s_corr_app:object:column_person_im:insert")
+          Rake::Task['destroy:delete_completed_tasks'].invoke("corrs:destination:s_corr_app:object:%")
           Rake::Task['destroy:final_message'].invoke("Удаление параметров корреспондентов в базе назначения завершено.")
         end
       end

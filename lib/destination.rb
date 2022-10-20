@@ -139,6 +139,11 @@ module Destination
         :COLUMN_PERSON_IM,
         Destination::SObjects.obj_id('COLUMN_PERSON_IM')
       )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_PERSON_OT,
+        Destination::SObjects.obj_id('COLUMN_PERSON_OT')
+      )
 
       nil
     end

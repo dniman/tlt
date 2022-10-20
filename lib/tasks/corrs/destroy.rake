@@ -8,6 +8,9 @@ namespace :corrs do
 
       # Имя
       'corrs:destination:s_corr_app:object:column_person_im:delete',
+      
+      # Отчество
+      'corrs:destination:s_corr_app:object:column_person_ot:delete',
 
       # Типы корреспондентов
       'corrs:destination:t_corr_dict:reference_corr_type:delete',
