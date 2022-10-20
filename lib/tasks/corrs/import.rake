@@ -9,6 +9,12 @@ namespace :corrs do
       Rake.invoke_task 'corrs:destination:mss_viw_ocval_mo_ref:insert'
       Rake.invoke_task 'corrs:source:ids:drop___link'
       Rake.invoke_task 'corrs:destination:t_corr_dict:reference_corr_type:insert'
+
+      # Параметры физического лица
+      # Фамилия
+      Rake.invoke_task 'corrs:destination:s_corr_app:object:column_person_fm:insert'
+
+
     end
 
   end

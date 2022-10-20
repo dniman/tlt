@@ -385,6 +385,23 @@ namespace :destroy do
       Rake::Task['destroy:delete_completed_tasks'].invoke("corrs:%")
       Rake::Task['destroy:final_message'].invoke("Удаление корреспондентов в базе назначения завершено.")
     end
+
+    namespace :appendix do
+      namespace :delete do
+        desc 'Запуск задачи удаления параметров корреспондентов в базе назначения'
+        task :start => [
+          'set_logger', 
+          'source:initialize', 
+          'destination:initialize',
+
+          'corrs:destination:s_corr_app:object:column_person_fm:delete',
+        ] do 
+
+          Rake::Task['destroy:delete_completed_tasks'].invoke("corrs:destination:s_corr_app:object:column_person_fm:insert")
+          Rake::Task['destroy:final_message'].invoke("Удаление параметров корреспондентов в базе назначения завершено.")
+        end
+      end
+    end
   end
 
   # Удаление документов

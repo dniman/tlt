@@ -25,6 +25,7 @@ module Destination
     :s_kbk_name,
     :t_kbk,
     :mss_objects_parentland,
+    :s_corr_app,
   ]
 
   class << self
@@ -127,6 +128,11 @@ module Destination
       Destination::TKbk.const_set(
         :REF_INC_ITEM,
         Destination::SObjects.obj_id('REF_INC_ITEM')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_PERSON_FM,
+        Destination::SObjects.obj_id('COLUMN_PERSON_FM')
       )
 
       nil
