@@ -22,6 +22,9 @@ namespace :corrs do
 
       # Дата рождения
       Rake.invoke_task 'corrs:destination:s_corr_app:object:column_person_birthdate:insert'
+      
+      # Пол
+      Rake.invoke_task 'corrs:destination:s_corr_app:object:column_person_sex:insert'
     end
 
   end

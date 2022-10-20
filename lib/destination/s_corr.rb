@@ -31,11 +31,9 @@ module Destination
     end
 
     def self.delete_query(links:)
-      Destination.set_engine!
-     
       manager = Arel::DeleteManager.new(Database.destination_engine)
       manager.from (Destination.s_corr)
-      manager.where(Arel::Nodes::In.new(Destination.s_corr[:link],links))
+      manager.where(Arel::Nodes::In.new(Destination.s_corr[:link], links))
       manager.to_sql
     end
     

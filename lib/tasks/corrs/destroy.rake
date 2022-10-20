@@ -14,6 +14,10 @@ namespace :corrs do
       
       # Дата рождения
       'corrs:destination:s_corr_app:object:column_person_birthdate:delete',
+      
+      # Пол
+      'corrs:destination:s_corr_app:object:column_person_sex:delete',
+
 
       # Типы корреспондентов
       'corrs:destination:t_corr_dict:reference_corr_type:delete',
