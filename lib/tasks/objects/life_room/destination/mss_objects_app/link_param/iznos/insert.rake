@@ -21,19 +21,33 @@ namespace :objects do
               def query
                 link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
 
-                Source.objects
+                aliased_table = Source.states.alias('aliased_table')
+
+                manager = Arel::SelectManager.new(Database.source_engine)
+                manager.project(aliased_table[:wear])
+                manager.from(aliased_table)
+                manager.where(
+                  aliased_table[:objects_id].eq(Source.ids[:id])
+                    .and(Source.ids[:table_id].eq(Source::Objects.table_id))
+                    .and(aliased_table[:calcdate].eq(Source.states[:calcdate]))
+                )
+                manager.order(aliased_table[:wear].desc)
+                manager.take(1)
+
+                Source.ids
                 .project([
-                  Source.states[:wear],
+                  Source.ids[:link],
+                  manager.as("wear"),
                   Source.states[:calcdate],
-                  Source.ids[:link_type],
-                  Source.ids[:link] 
                 ])
-                .distinct
-                .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
-                .join(Source.states).on(Source.states[:objects_id].eq(Source.objects[:id]))
+                .join(Source.states, Arel::Nodes::OuterJoin)
+                  .on(Source.states[:objects_id].eq(Source.ids[:id])
+                    .and(Source.ids[:table_id].eq(Source::Objects.table_id))
+                  )
                 .where(Source.ids[:link_type].eq(link_type)
                   .and(Source.states[:wear].not_eq(nil))
                 )
+                .group(Source.ids[:link], Source.ids[:id], Source.ids[:table_id], Source.states[:calcdate])
               end
 
               begin
