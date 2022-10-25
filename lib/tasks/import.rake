@@ -21,6 +21,7 @@ namespace :import do
     'destination:initialize',
 
     'dictionaries:import',
+    'documents:import',
     'corrs:import',
     'objects:import',
   ] do
