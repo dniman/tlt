@@ -35,6 +35,7 @@ namespace :destroy do
     'source:initialize', 
     'destination:initialize',
 
+    'agreements:destroy',
     'objects:destroy',
     'documents:destroy',
     'dictionaries:destroy',
@@ -42,6 +43,23 @@ namespace :destroy do
 
     Rake::Task['destroy:delete_completed_tasks'].invoke()
     Rake::Task['destroy:final_message'].invoke("Удаление данных в базе назначения завершено.")
+  end
+
+
+  # Удаление договоров 
+  namespace :agreements do
+    desc 'Запуск задачи удаления договоров в базе назначения'
+    task :start => [
+      'set_logger', 
+      'source:initialize', 
+      'destination:initialize',
+
+      'agreements:destroy',
+    ] do 
+
+      Rake::Task['destroy:delete_completed_tasks'].invoke("agreements:%")
+      Rake::Task['destroy:final_message'].invoke("Удаление договоров в базе назначения завершено.")
+    end
   end
   
   # Удаление объектов
