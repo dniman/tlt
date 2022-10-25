@@ -60,6 +60,11 @@ module Source
     :links_grounds_buildings,
     :links_grounds_enginf,
     :links_grounds_unconstr,
+    :docset_members,
+    :movesets,
+    :movetype,
+    :___agreements,
+    :docroles,
   ]
   
   class << self
