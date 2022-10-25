@@ -37,6 +37,7 @@ namespace :destroy do
 
     'agreements:destroy',
     'objects:destroy',
+    'corrs:destroy',
     'documents:destroy',
     'dictionaries:destroy',
   ] do 
