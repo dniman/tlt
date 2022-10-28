@@ -65,6 +65,8 @@ module Source
     :movetype,
     :___agreements,
     :docroles,
+    :moveperiods,
+    :moveitems,
   ]
   
   class << self

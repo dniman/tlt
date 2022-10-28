@@ -1,16 +1,26 @@
 module Source
   class Agreements
-    def self.agreements
+    def self.table
       Source.___agreements
+    end
+    
+    def self.table_id
+      @table_id ||= begin
+        sql = <<~SQL
+          select object_id('#{ table.name }')
+        SQL
+
+        Source.execute_query(sql).entries.first.values.first
+      end
     end
     
     def self.insert_query(rows:, condition: nil)
       manager = Arel::InsertManager.new
-      manager.into(agreements)
+      manager.into(table)
 
       columns = rows.map(&:keys).uniq.flatten
       columns.each do |column|
-        manager.columns << agreements[column]
+        manager.columns << table[column]
       end
 
       manager.values = manager.create_values_list(rows.map(&:values))
@@ -20,7 +30,7 @@ module Source
       
       if condition
         query =
-          agreements
+          table
           .project(Arel.star)
           .where(Arel.sql(condition)).exists.not
         sql << " where #{query.to_sql}"
@@ -30,7 +40,7 @@ module Source
 
     def self.update_query(row:)
       manager = Arel::UpdateManager.new Database.source_engine
-      manager.table(agreements)
+      manager.table(table)
       manager.set([row.map(&:to_a).flatten])
       manager.to_sql
     end

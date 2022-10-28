@@ -2,11 +2,11 @@ namespace :agreements do
   namespace :source do
     namespace :movesets do
 
-      task :add___agreement_id do |t|
+      task :add___ground_owner do |t|
         begin
           sql = Arel.sql(
             "alter table #{ Source.movesets.name }
-              add ___agreement_id int
+              add ___ground_owner varchar(50)
             "
           )
           Source.execute_query(sql).do

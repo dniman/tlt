@@ -3,6 +3,7 @@ require 'logger'
 import 'lib/tasks/dictionaries.rake'
 import 'lib/tasks/corrs.rake'
 import 'lib/tasks/objects.rake'
+import 'lib/tasks/agreements.rake'
 
 namespace :import do
   task :set_logger do
@@ -24,6 +25,7 @@ namespace :import do
     'documents:import',
     'corrs:import',
     'objects:import',
+    'agreements:import',
   ] do
 
     Rake::Task['import:final_message'].invoke("Импорт данных в базу назначения завершен.")
