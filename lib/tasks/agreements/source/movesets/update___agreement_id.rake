@@ -3,39 +3,101 @@ namespace :agreements do
     namespace :movesets do
 
       task :update___agreement_id do |t|
-        def query1
-          <<~SQL
-            update movesets  
-              set movesets.___agreement_id = ___agreements.id
-            from movesets
-              join (
-              select 
-                docset_id,
-                coalesce(
-                (select t.document_id from docset_members t where t.docrole_id = 1 and t.docset_id = docset_members.docset_id order by id asc offset 0 rows fetch next 1 rows only),
-                (select t.document_id from docset_members t where isnull(t.docrole_id, 0) <> 1 and t.docset_id = docset_members.docset_id order by id asc offset 0 rows fetch next 1 rows only)
-                ) as document_id
-              from docset_members
-              group by docset_id
-              )t on t.docset_id = movesets.docset_id
-              left join ___agreements on ___agreements.document_id = t.document_id and ___agreements.document_id is not null
-            where movesets.___agreement_id is null
-          SQL
+        def docrole_id_query
+          Source.docroles
+          .project(Source.docroles[:id])
+          .where(Source.docroles[:name].eq("Основной документ"))
         end
 
-        def query2
-          <<~SQL
-            update movesets  
-              set movesets.___agreement_id = ___agreements.id
-            from movesets
-              left join ___agreements on cast(___agreements.number as int) = movesets.id and ___agreements.document_id is null
-            where movesets.___agreement_id is null
-          SQL
+        def query
+          mainrole_id = Source.execute_query(docrole_id_query.to_sql).entries.first["id"]
+
+          t1 = Source.docset_members.alias('t1')
+
+          select1 = Arel::SelectManager.new
+          select1.project(t1[:document_id])
+          select1.from(t1)
+          select1.where(
+            t1[:docrole_id].eq(mainrole_id)
+            .and(t1[:docset_id].eq(Source.docset_members[:docset_id]))
+          )
+          select1.order(t1[:id].asc)
+          select1.take(1)
+          
+          t2 = Source.docset_members.alias('t2')
+          docrole_id = Arel::Nodes::NamedFunction.new('isnull', [ t2[:docrole_id], 0 ])
+          
+          select2 = Arel::SelectManager.new
+          select2.project(t2[:document_id])
+          select2.from(t2)
+          select2.where(
+            docrole_id.not_eq(mainrole_id)
+            .and(t2[:docset_id].eq(Source.docset_members[:docset_id]))
+          )
+          select2.order(t2[:id].asc)
+          select2.take(1)
+
+          document_id = Arel::Nodes::NamedFunction.new('coalesce', [select1, select2], 'document_id')
+
+          manager = Arel::SelectManager.new
+          manager.project([
+            Source.docset_members[:docset_id],
+            document_id,
+          ])
+          manager.from(Source.docset_members)
+          manager.group(Source.docset_members[:docset_id])
+          t = manager.as('t')
+
+          docno = Arel::Nodes::NamedFunction.new("cast", [ Source.movesets[:id].as("varchar(100)") ])
+          name = Arel::Nodes::NamedFunction.new("cast", [ Source.movetype[:name].as("varchar(150)") ])
+          movetype_name = Arel::Nodes::NamedFunction.new("ltrim", [ Arel::Nodes::NamedFunction.new("rtrim", [ name ]) ])
+
+          select_one = Arel::SelectManager.new
+          select_one.project([
+              Source.movesets[:id],
+              Source.___agreements[:id].as("___agreement_id")
+            ])
+          select_one.distinct
+          select_one.from(t)
+          select_one.join(Source.movesets).on(Source.movesets[:docset_id].eq(t[:docset_id]))
+          select_one.join(Source.___agreements).on(Source.___agreements[:document_id].eq(t[:document_id]))
+          select_one.where(Source.movesets[:___agreement_id].eq(nil))
+
+          number = Arel::Nodes::NamedFunction.new('cast', [Source.___agreements[:number].as('int')])
+
+          select_two =
+            Source.movesets
+            .project([
+              Source.movesets[:id],
+              Source.___agreements[:id].as("___agreement_id")
+            ])
+            .distinct
+            .join(Source.___agreements).on(number.eq(Source.movesets[:id]).and(Source.___agreements[:document_id].eq(nil)))
+            .where(Source.movesets[:___agreement_id].eq(nil))
+            
+          union = select_one.union :all, select_two
+          union_table = Arel::Table.new :union_table
+
+          manager = Arel::SelectManager.new
+          manager.project(Arel.star)
+          manager.from(union_table.create_table_alias(union,:union_table))
+          
         end
 
         begin
-          [ query1, query2 ].each do |query|
-            result = Source.execute_query(query)
+          sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
+          sliced_rows.each do |rows|
+            columns = rows.map(&:keys).uniq.flatten
+            values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
+        
+            sql = <<~SQL
+              update movesets set 
+                movesets.___agreement_id = values_table.___agreement_id
+              from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
+              where movesets.id = values_table.id  
+            SQL
+
+            result = Source.execute_query(sql)
             result.do
           end
           
