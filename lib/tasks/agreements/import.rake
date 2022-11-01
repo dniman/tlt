@@ -10,12 +10,15 @@ namespace :agreements do
       Rake.invoke_task 'agreements:source:movesets:update___ground_owner'
       Rake.invoke_task 'agreements:source:___agreements:add___ground_owner_count'
       Rake.invoke_task 'agreements:source:___agreements:update___ground_owner_count'
+      Rake.invoke_task 'agreements:source:___agreements:add___link_type'
+      Rake.invoke_task 'agreements:source:___agreements:update___link_type'
       #Rake.invoke_task 'agreements:source:ids:insert'
       
 
       #Rake.invoke_task 'agreements:source:movesets:drop___agreement_id'
       #Rake.invoke_task 'agreements:source:movesets:drop___ground_owner'
       #Rake.invoke_task 'agreements:source:___agreements:drop___ground_owner_count'
+      #Rake.invoke_task 'agreements:source:___agreements:drop___link_type'
     end
 
   end
