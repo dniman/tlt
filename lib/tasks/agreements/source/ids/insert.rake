@@ -7,7 +7,7 @@ namespace :agreements do
           Source.___agreements
           .project([
             Arel.sql("table_id = #{Source::Agreements.table_id}"),
-            Source.agreements[:id],
+            Source.___agreements[:id],
             Arel.sql("row_id = newid()")
           ])
           .join(Source.documents, Arel::Nodes::OuterJoin).on(Source.documents[:id].eq(Source.___agreements[:document_id]))
