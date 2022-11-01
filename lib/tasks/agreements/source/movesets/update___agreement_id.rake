@@ -60,7 +60,8 @@ namespace :agreements do
           select_one.distinct
           select_one.from(t)
           select_one.join(Source.movesets).on(Source.movesets[:docset_id].eq(t[:docset_id]))
-          select_one.join(Source.___agreements).on(Source.___agreements[:document_id].eq(t[:document_id]))
+          select_one.join(Source.movetype, Arel::Nodes::OuterJoin).on(Source.movetype[:id].eq(Source.movesets[:movetype_id]))
+          select_one.join(Source.___agreements).on(Source.___agreements[:document_id].eq(t[:document_id]).and(Source.___agreements[:movetype_name].eq(movetype_name)))
           select_one.where(Source.movesets[:___agreement_id].eq(nil))
 
           number = Arel::Nodes::NamedFunction.new('cast', [Source.___agreements[:number].as('int')])
@@ -72,7 +73,8 @@ namespace :agreements do
               Source.___agreements[:id].as("___agreement_id")
             ])
             .distinct
-            .join(Source.___agreements).on(number.eq(Source.movesets[:id]).and(Source.___agreements[:document_id].eq(nil)))
+            .join(Source.movetype, Arel::Nodes::OuterJoin).on(Source.movetype[:id].eq(Source.movesets[:movetype_id]))
+            .join(Source.___agreements).on(number.eq(Source.movesets[:id]).and(Source.___agreements[:document_id].eq(nil)).and(Source.___agreements[:movetype_name].eq(movetype_name)))
             .where(Source.movesets[:___agreement_id].eq(nil))
             
           union = select_one.union :all, select_two

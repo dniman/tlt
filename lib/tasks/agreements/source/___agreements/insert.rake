@@ -64,6 +64,19 @@ namespace :agreements do
           .join(t, Arel::Nodes::OuterJoin).on(t[:docset_id].eq(Source.movesets[:docset_id]))
           .join(Source.documents, Arel::Nodes::OuterJoin).on(Source.documents[:id].eq(t[:document_id]))
           .join(Source.doctypes, Arel::Nodes::OuterJoin).on(Source.doctypes[:id].eq(Source.documents[:doctypes_id]))
+          .where(Source.movetype[:name].in([
+            'Аренда', 
+            'Аренда балансодержателей', 
+            'Аренда ОРПР', 
+            'Купля-продажа', 
+            'Собственность', 
+            'Фактическое пользование', 
+            'Сервитут', 
+            'Безвозмездное пользование', 
+            'Безв.польз.балансодержателей', 
+            'Приватизация', 
+            'Концессия'
+          ]))
         end
 
         begin
