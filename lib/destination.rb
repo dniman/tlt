@@ -26,6 +26,7 @@ module Destination
     :t_kbk,
     :mss_objects_parentland,
     :s_corr_app,
+    :v_mss_agreements_types,
   ]
 
   class << self
