@@ -67,6 +67,7 @@ module Source
     :docroles,
     :moveperiods,
     :moveitems,
+    :transferbasis,
   ]
   
   class << self
