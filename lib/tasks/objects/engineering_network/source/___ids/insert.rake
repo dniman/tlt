@@ -47,7 +47,7 @@ namespace :objects do
                   'Сети телефонные',
                   'Сети бытовой канализации',
                   'Сети ливневой канализации',
-                ])
+                ]))
               )
 
             union = select_one.union :all, select_two

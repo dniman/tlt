@@ -39,7 +39,7 @@ namespace :objects do
                 .and(Source.infgroups[:name].in([
                   'Дорога автомобильная',
                   'Дорога автомобильная кольцевая'
-                ])
+                ]))
               )
 
             union = select_one.union :all, select_two

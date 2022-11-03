@@ -49,7 +49,7 @@ namespace :objects do
                   'Сети ливневой канализации',
                   'Дорога автомобильная',
                   'Дорога автомобильная кольцевая',
-                ]).not
+                ]).not)
               )
 
             union = select_one.union :all, select_two
