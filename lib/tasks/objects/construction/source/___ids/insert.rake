@@ -34,7 +34,21 @@ namespace :objects do
               .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
               .join(Source.enginf).on(Source.enginf[:objects_id].eq(Source.objects[:id]))
               .join(Source.enginftypes, Arel::Nodes::OuterJoin).on(Source.enginftypes[:id].eq(Source.enginf[:enginftypes_id]))
-              .where(Source.objtypes[:name].eq('Инженерная инфраструктура'))
+              .join(Source.infgroups, Arel::Nodes::OuterJoin).on(Source.infgroups[:id].eq(Source.enginf[:infgroups_id]))
+              .where(Source.objtypes[:name].eq('Инженерная инфраструктура')
+                .and(Source.infgroups[:name].in([
+                  'Сети',
+                  'Сети электроснабжения',
+                  'Сети водоснабжения',
+                  'Сети теплоснабжения',
+                  'Сети канализационные',
+                  'Сети газовые',
+                  'Сети радиотрансляционные',
+                  'Сети телефонные',
+                  'Сети бытовой канализации',
+                  'Сети ливневой канализации',
+                ]).not
+              )
 
             union = select_one.union :all, select_two
             union_table = Arel::Table.new :union_table

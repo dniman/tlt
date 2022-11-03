@@ -120,6 +120,21 @@ namespace :import do
       end
     end
     
+    # Импорт инженерных сетей 
+    namespace :engineering_network do
+      desc 'Запуск задачи импорта инженерных сетей в базу назначения'
+      task :start => [
+        'set_logger', 
+        'source:initialize', 
+        'destination:initialize',
+
+        'objects:engineering_network:import',
+      ] do 
+
+        Rake::Task['import:final_message'].invoke("Импорт объектов в базу назначения завершен.")
+      end
+    end
+    
     # Импорт жилых зданий
     namespace :houses_life do
       desc 'Запуск задачи импорта жилых зданий в базу назначения'
