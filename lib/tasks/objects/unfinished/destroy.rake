@@ -184,11 +184,11 @@ namespace :objects do
         'objects:unfinished:destination:mss_objects:drop___kadastrno',
         'objects:unfinished:destination:mss_objects_dicts:object:dictionary_land_kvartals:delete',
         'objects:unfinished:destination:mss_objects_adr:delete',
-        'objects:unfinished:source:ids:drop___link_adr',
+        'objects:unfinished:source:___ids:drop___link_adr',
         'objects:unfinished:destination:mss_adr:delete',
         
-        'objects:unfinished:source:ids:drop___add_hist',
-        'objects:unfinished:source:ids:drop___adr_str',
+        'objects:unfinished:source:___ids:drop___add_hist',
+        'objects:unfinished:source:___ids:drop___adr_str',
         
         'objects:unfinished:destination:mss_objects:drop___house_wall_type',
         'objects:unfinished:destination:mss_objects:drop___link_house_wall_type',

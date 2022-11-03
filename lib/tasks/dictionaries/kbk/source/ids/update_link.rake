@@ -1,7 +1,7 @@
 namespace :dictionaries do
   namespace :kbk do
     namespace :source do
-      namespace :ids do
+      namespace :___ids do
 
         task :update_link do |t|
           def query
@@ -20,10 +20,10 @@ namespace :dictionaries do
               values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
           
               sql = <<~SQL
-                update ids set 
-                  ids.link = values_table.link
+                update ___ids set 
+                  ___ids.link = values_table.link
                 from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
-                where ids.row_id = values_table.row_id
+                where ___ids.row_id = values_table.row_id
               SQL
               result = Source.execute_query(sql)
               result.do

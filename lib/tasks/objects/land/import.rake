@@ -3,7 +3,7 @@ namespace :objects do
     namespace :import do
 
       task :tasks do
-        Rake.invoke_task 'objects:land:source:ids:insert'
+        Rake.invoke_task 'objects:land:source:___ids:insert'
         Rake.invoke_task 'objects:land:destination:mss_objects:add___oktmo' 
         Rake.invoke_task 'objects:land:destination:mss_objects:add___kadastrno' 
         Rake.invoke_task 'objects:land:destination:mss_objects:add___land_ownership' 
@@ -19,11 +19,11 @@ namespace :objects do
         Rake.invoke_task 'objects:land:destination:mss_objects:add___soc_zn_obj' 
         Rake.invoke_task 'objects:land:destination:mss_objects:add___obj_zkx' 
         Rake.invoke_task 'objects:land:destination:mss_objects:add___vid_obj_zkx' 
-        Rake.invoke_task 'objects:land:source:ids:add___link_adr'
+        Rake.invoke_task 'objects:land:source:___ids:add___link_adr'
 
         Rake.invoke_task 'objects:land:destination:mss_objects:insert' 
-        Rake.invoke_task 'objects:land:source:ids:update_link' 
-        Rake.invoke_task 'objects:land:source:ids:update___link_adr' 
+        Rake.invoke_task 'objects:land:source:___ids:update_link' 
+        Rake.invoke_task 'objects:land:source:___ids:update___link_adr' 
         Rake.invoke_task 'objects:land:destination:mss_objects:update_link_oktmo'
         Rake.invoke_task 'objects:land:destination:mss_objects:update_inventar_num'
         Rake.invoke_task 'objects:land:destination:mss_objects:drop___oktmo'
@@ -35,13 +35,13 @@ namespace :objects do
         Rake.invoke_task 'objects:land:destination:mss_objects:drop___kadastrno'
         Rake.invoke_task 'objects:land:destination:mss_objects_adr:insert'
         Rake.invoke_task 'objects:land:destination:mss_adr:update'
-        Rake.invoke_task 'objects:land:source:ids:drop___link_adr'
+        Rake.invoke_task 'objects:land:source:___ids:drop___link_adr'
 
         # История адреса
-        Rake.invoke_task 'objects:land:source:ids:add___add_hist'
-        Rake.invoke_task 'objects:land:source:ids:update___add_hist'
+        Rake.invoke_task 'objects:land:source:___ids:add___add_hist'
+        Rake.invoke_task 'objects:land:source:___ids:update___add_hist'
         Rake.invoke_task 'objects:land:destination:mss_objects_app:link_param:add_hist:insert'
-        Rake.invoke_task 'objects:land:source:ids:drop___add_hist'
+        Rake.invoke_task 'objects:land:source:___ids:drop___add_hist'
         
         # История наименования
         Rake.invoke_task 'objects:land:destination:mss_objects_app:link_param:obj_name_hist:insert'
@@ -50,10 +50,10 @@ namespace :objects do
         Rake.invoke_task 'objects:land:destination:mss_objects_app:link_param:land_pl:insert'
 
         # Официальный адрес
-        Rake.invoke_task 'objects:land:source:ids:add___adr_str'
-        Rake.invoke_task 'objects:land:source:ids:update___adr_str'
+        Rake.invoke_task 'objects:land:source:___ids:add___adr_str'
+        Rake.invoke_task 'objects:land:source:___ids:update___adr_str'
         Rake.invoke_task 'objects:land:destination:mss_objects_app:link_param:adr_str:insert'
-        Rake.invoke_task 'objects:land:source:ids:drop___adr_str'
+        Rake.invoke_task 'objects:land:source:___ids:drop___adr_str'
 
         # ID объекта из Сауми
         Rake.invoke_task 'objects:land:destination:mss_objects_app:link_param:id_obj:insert'

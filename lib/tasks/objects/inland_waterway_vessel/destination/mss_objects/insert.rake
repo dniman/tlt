@@ -17,21 +17,21 @@ namespace :objects do
             .project([
               Source.objects[:description],
               Source.objects[:invno],
-              Source.ids[:row_id],
-              Source.ids[:link_type],
+              Source.___ids[:row_id],
+              Source.___ids[:link_type],
               Source.transptype[:name].as("___type_transport"),
               Source.brandnames[:name].as("___automaker"),
               Source.engtype[:name].as("___engine_type"),
               Source.manufacturers[:name].as("___auto_country"),
             ])
             .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-            .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+            .join(Source.___ids).on(Source.___ids[:id].eq(Source.objects[:id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
             .join(Source.transport, Arel::Nodes::OuterJoin).on(Source.transport[:objects_id].eq(Source.objects[:id]))
             .join(Source.transptype, Arel::Nodes::OuterJoin).on(Source.transptype[:id].eq(Source.transport[:transptype_id]))
             .join(Source.brandnames, Arel::Nodes::OuterJoin).on(Source.brandnames[:id].eq(Source.transport[:brandnames_id]))
             .join(Source.engtype, Arel::Nodes::OuterJoin).on(Source.engtype[:id].eq(Source.transport[:ps_engtype_id]))
             .join(Source.manufacturers, Arel::Nodes::OuterJoin).on(Source.manufacturers[:id].eq(Source.transport[:ps_manufacturer_id]))
-            .where(Source.ids[:link_type].eq(link_type))
+            .where(Source.___ids[:link_type].eq(link_type))
           end
 
           begin

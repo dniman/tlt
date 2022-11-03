@@ -40,9 +40,9 @@ namespace :objects do
                   states.___link_state = values_table.link_state
                 from states 
                   join statetypes on statetypes.id = states.statetypes_id
-                  join ids on ids.id = states.objects_id and ids.table_id = #{ Source::Objects.table_id }
+                  join ___ids on ___ids.id = states.objects_id and ___ids.table_id = #{ Source::Objects.table_id }
                   left join (#{values_list.to_sql}) values_table(#{columns.join(', ')}) on values_table.name = ltrim(rtrim(statetypes.name))  
-                where ids.link_type = #{ link_type }
+                where ___ids.link_type = #{ link_type }
               SQL
               result = Source.execute_query(sql)
               result.do

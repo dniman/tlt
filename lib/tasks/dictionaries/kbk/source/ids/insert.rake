@@ -1,7 +1,7 @@
 namespace :dictionaries do
   namespace :kbk do
     namespace:source do
-      namespace :ids do
+      namespace :___ids do
 
         task :insert do |t|
 
@@ -28,7 +28,7 @@ namespace :dictionaries do
                   row_id: row["row_id"],
                 }
               end
-              sql = Source::Ids.insert_query(rows: insert, condition: "ids.id = values_table.id and ids.table_id = values_table.table_id")
+              sql = Source::Ids.insert_query(rows: insert, condition: "___ids.id = values_table.id and ___ids.table_id = values_table.table_id")
               result = Source.execute_query(sql)
               result.do
               insert.clear

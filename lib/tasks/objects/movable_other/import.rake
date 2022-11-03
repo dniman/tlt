@@ -3,19 +3,19 @@ namespace :objects do
     namespace :import do
 
       task :tasks do 
-        Rake.invoke_task 'objects:movable_other:source:ids:insert'
+        Rake.invoke_task 'objects:movable_other:source:___ids:insert'
         Rake.invoke_task 'objects:movable_other:destination:mss_objects:add___dict_name' 
         Rake.invoke_task 'objects:movable_other:destination:mss_objects:add___group' 
         Rake.invoke_task 'objects:movable_other:destination:mss_objects:add___section' 
 
         Rake.invoke_task 'objects:movable_other:destination:mss_objects:insert'
-        Rake.invoke_task 'objects:movable_other:source:ids:update_link'
+        Rake.invoke_task 'objects:movable_other:source:___ids:update_link'
 
         # Адрес последнего местоположения
-        Rake.invoke_task 'objects:movable_other:source:ids:add___last_loc_addr'
-        Rake.invoke_task 'objects:movable_other:source:ids:update___last_loc_addr'
+        Rake.invoke_task 'objects:movable_other:source:___ids:add___last_loc_addr'
+        Rake.invoke_task 'objects:movable_other:source:___ids:update___last_loc_addr'
         Rake.invoke_task 'objects:movable_other:destination:mss_objects_app:link_param:last_loc_addr:insert'
-        Rake.invoke_task 'objects:movable_other:source:ids:drop___last_loc_addr'
+        Rake.invoke_task 'objects:movable_other:source:___ids:drop___last_loc_addr'
         
         # История наименования
         Rake.invoke_task 'objects:movable_other:destination:mss_objects_app:link_param:obj_name_hist:insert'

@@ -9,11 +9,11 @@ namespace :dictionaries do
               Source.cls_kbk
               .project([
                 Source.cls_kbk[:name],
-                Source.ids[:row_id],
+                Source.___ids[:row_id],
               ])
-              .join(Source.ids).on(
-                Source.ids[:id].eq(Source.cls_kbk[:id])
-                .and(Source.ids[:table_id].eq(Source::ClsKbk.table_id))
+              .join(Source.___ids).on(
+                Source.___ids[:id].eq(Source.cls_kbk[:id])
+                .and(Source.___ids[:table_id].eq(Source::ClsKbk.table_id))
               )
             end
 

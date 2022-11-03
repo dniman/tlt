@@ -157,11 +157,11 @@ namespace :objects do
         'objects:unlife_room:destination:mss_objects:drop___kadastrno',
         'objects:unlife_room:destination:mss_objects_dicts:object:dictionary_land_kvartals:delete',
         'objects:unlife_room:destination:mss_objects_adr:delete',
-        'objects:unlife_room:source:ids:drop___link_adr',
+        'objects:unlife_room:source:___ids:drop___link_adr',
         'objects:unlife_room:destination:mss_adr:delete',
         
-        'objects:unlife_room:source:ids:drop___add_hist',
-        'objects:unlife_room:source:ids:drop___adr_str',
+        'objects:unlife_room:source:___ids:drop___add_hist',
+        'objects:unlife_room:source:___ids:drop___adr_str',
         
         'objects:unlife_room:destination:mss_objects:drop___house_wall_type',
         'objects:unlife_room:destination:mss_objects:drop___link_house_wall_type',

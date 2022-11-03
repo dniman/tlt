@@ -3,10 +3,10 @@ namespace :objects do
     namespace :import do
 
       task :tasks do 
-        Rake.invoke_task 'objects:partnership:source:ids:insert'
+        Rake.invoke_task 'objects:partnership:source:___ids:insert'
 
         Rake.invoke_task 'objects:partnership:destination:mss_objects:insert'
-        Rake.invoke_task 'objects:partnership:source:ids:update_link'
+        Rake.invoke_task 'objects:partnership:source:___ids:update_link'
         Rake.invoke_task 'objects:partnership:destination:t_corr_dict:reference_corr_type:partnership:insert'
 
         # История наименования

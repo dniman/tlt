@@ -4,9 +4,9 @@ namespace :corrs do
 
       task :delete do |t|
         def query
-          Source.ids
-          .project(Source.ids[:link])
-          .where(Source.ids[:table_id].eq(Source::Clients.table_id))
+          Source.___ids
+          .project(Source.___ids[:link])
+          .where(Source.___ids[:table_id].eq(Source::Clients.table_id))
         end
 
         begin

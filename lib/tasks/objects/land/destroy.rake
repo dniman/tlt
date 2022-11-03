@@ -74,9 +74,9 @@ namespace :objects do
         'objects:land:destination:mss_objects:drop___link_vid_obj_zkx',
         'objects:land:destination:mss_objects_dicts:object:dictionary_land_kvartals:delete',
         'objects:land:destination:mss_objects_adr:delete',
-        'objects:land:source:ids:drop___link_adr',
-        'objects:land:source:ids:drop___add_hist',
-        'objects:land:source:ids:drop___adr_str',
+        'objects:land:source:___ids:drop___link_adr',
+        'objects:land:source:___ids:drop___add_hist',
+        'objects:land:source:___ids:drop___adr_str',
         'objects:land:destination:mss_adr:delete',
         'objects:land:source:states:drop___link_state',
       ]

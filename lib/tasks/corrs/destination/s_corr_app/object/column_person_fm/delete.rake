@@ -6,11 +6,11 @@ namespace :corrs do
 
           task :delete do |t|
             def query
-              Source.ids
-              .project(Source.ids[:link])
-              .join(Source.clients).on(Source.clients[:id].eq(Source.ids[:id]))
+              Source.___ids
+              .project(Source.___ids[:link])
+              .join(Source.clients).on(Source.clients[:id].eq(Source.___ids[:id]))
               .join(Source.client_types, Arel::Nodes::OuterJoin).on(Source.client_types[:id].eq(Source.clients[:client_types_id]))
-              .where(Source.ids[:table_id].eq(Source::Clients.table_id)
+              .where(Source.___ids[:table_id].eq(Source::Clients.table_id)
                 .and(Source.client_types[:name].eq('Физическое лицо'))
               )
             end

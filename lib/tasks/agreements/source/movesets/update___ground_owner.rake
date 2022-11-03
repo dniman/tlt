@@ -42,10 +42,10 @@ namespace :agreements do
           .with(moveperiods_cte)
           .join(cte_table).on(cte_table[:moveset_id].eq(Source.movesets[:id]))
           .join(Source.moveitems, Arel::Nodes::OuterJoin).on(Source.moveitems[:moveperiod_id].eq(cte_table[:id]))
-          .join(Source.ids).on(Source.ids[:id].eq(Source.moveitems[:object_id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
-          .join(Source.grounds).on(Source.grounds[:objects_id].eq(Source.ids[:id]))
+          .join(Source.___ids).on(Source.___ids[:id].eq(Source.moveitems[:object_id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
+          .join(Source.grounds).on(Source.grounds[:objects_id].eq(Source.___ids[:id]))
           .join(Source.grounds_noknum_own, Arel::Nodes::OuterJoin).on(Source.grounds_noknum_own[:id].eq(Source.grounds[:ground_owner]))
-          .where(Source.ids[:link_type].eq(link_type))
+          .where(Source.___ids[:link_type].eq(link_type))
         end
 
         begin

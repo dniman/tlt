@@ -24,13 +24,13 @@ namespace :objects do
                 Source.objects
                 .project([
                   Source.transport[:motorno],
-                  Source.ids[:link],
-                  Source.ids[:link_type],
+                  Source.___ids[:link],
+                  Source.___ids[:link_type],
                 ])
                 .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-                .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+                .join(Source.___ids).on(Source.___ids[:id].eq(Source.objects[:id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
                 .join(Source.transport).on(Source.transport[:objects_id].eq(Source.objects[:id]))
-                .where(Source.ids[:link_type].eq(link_type)
+                .where(Source.___ids[:link_type].eq(link_type)
                   .and(Source.transport[:motorno].not_eq(nil))
                 )
               end

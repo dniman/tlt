@@ -6,10 +6,10 @@ namespace :dictionaries do
 
           task :delete do |t|
             def query
-              Source.ids
-                .project(Source.ids[:link])
-                .where(Source.ids[:table_id].eq(Source::ClsKbk.table_id)
-                  .and(Source.ids[:link].not_eq(nil))
+              Source.___ids
+                .project(Source.___ids[:link])
+                .where(Source.___ids[:table_id].eq(Source::ClsKbk.table_id)
+                  .and(Source.___ids[:link].not_eq(nil))
                 )
             end
 

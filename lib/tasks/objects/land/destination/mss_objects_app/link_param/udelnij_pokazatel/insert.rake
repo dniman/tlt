@@ -25,13 +25,13 @@ namespace :objects do
                 .project([
                   Source.states[:kadastr_cost],
                   Source.states[:calcdate],
-                  Source.ids[:link_type],
-                  Source.ids[:link] 
+                  Source.___ids[:link_type],
+                  Source.___ids[:link] 
                 ])
                 .distinct
-                .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+                .join(Source.___ids).on(Source.___ids[:id].eq(Source.objects[:id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
                 .join(Source.states).on(Source.states[:objects_id].eq(Source.objects[:id]))
-                .where(Source.ids[:link_type].eq(link_type)
+                .where(Source.___ids[:link_type].eq(link_type)
                   .and(Source.states[:kadastr_cost].not_eq(nil))
                 )
               end

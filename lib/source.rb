@@ -2,7 +2,7 @@ Dir[File.expand_path('../source/*.rb', __FILE__)].each {|path| require path}
 
 module Source
   TABLES = [
-    :ids,
+    :___ids,
     :objects,
     :objtypes,
     :grounds,
@@ -39,7 +39,7 @@ module Source
     :documents,
     :doctypes,
     :cls_kbk,
-    :additional_ids,
+    :additional____ids,
     :unconstr,
     :property,
     :propnames,

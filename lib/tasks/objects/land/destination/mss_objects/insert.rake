@@ -19,8 +19,8 @@ namespace :objects do
               Source.objects[:invno],
               Source.grounds[:oktmo],
               Source.grounds[:kadastrno],
-              Source.ids[:row_id],
-              Source.ids[:link_type],
+              Source.___ids[:row_id],
+              Source.___ids[:link_type],
               Source.grounds_noknum_own[:name].as("___land_ownership"),
               Source.grounds[:in_transition],
               Source.groundtypes[:name].as("___land_kateg"),
@@ -60,7 +60,7 @@ namespace :objects do
               ).as("___vid_obj_zkx"),
             ])
             .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-            .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+            .join(Source.___ids).on(Source.___ids[:id].eq(Source.objects[:id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
             .join(Source.grounds).on(Source.grounds[:objects_id].eq(Source.objects[:id]))
             .join(Source.groundtypes, Arel::Nodes::OuterJoin).on(Source.groundtypes[:id].eq(Source.grounds[:groundtypes_id]))
             .join(Source.grounds_noknum_own, Arel::Nodes::OuterJoin).on(Source.grounds_noknum_own[:id].eq(Source.grounds[:ground_owner]))
@@ -70,7 +70,7 @@ namespace :objects do
             .join(Source.target_doc, Arel::Nodes::OuterJoin).on(Source.target_doc[:id].eq(Source.grounds[:target_doc_id]))
             .join(Source.grounds_funk_using, Arel::Nodes::OuterJoin).on(Source.grounds_funk_using[:id].eq(Source.grounds[:grounds_funk_using_id]))
             .join(Source.spr_zhkh_vid, Arel::Nodes::OuterJoin).on(Source.spr_zhkh_vid[:id].eq(Source.objects[:vid_zhkh_id]))
-            .where(Source.ids[:link_type].eq(link_type))
+            .where(Source.___ids[:link_type].eq(link_type))
           end
 
           begin

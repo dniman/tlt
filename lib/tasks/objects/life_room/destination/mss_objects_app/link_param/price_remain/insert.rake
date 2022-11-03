@@ -27,27 +27,27 @@ namespace :objects do
                 manager.project(aliased_table[:pay])
                 manager.from(aliased_table)
                 manager.where(
-                  aliased_table[:objects_id].eq(Source.ids[:id])
-                    .and(Source.ids[:table_id].eq(Source::Objects.table_id))
+                  aliased_table[:objects_id].eq(Source.___ids[:id])
+                    .and(Source.___ids[:table_id].eq(Source::Objects.table_id))
                     .and(aliased_table[:calcdate].eq(Source.states[:calcdate]))
                 )
                 manager.order(aliased_table[:pay].desc)
                 manager.take(1)
 
-                Source.ids
+                Source.___ids
                 .project([
-                  Source.ids[:link],
+                  Source.___ids[:link],
                   manager.as("pay"),
                   Source.states[:calcdate],
                 ])
                 .join(Source.states, Arel::Nodes::OuterJoin)
-                  .on(Source.states[:objects_id].eq(Source.ids[:id])
-                    .and(Source.ids[:table_id].eq(Source::Objects.table_id))
+                  .on(Source.states[:objects_id].eq(Source.___ids[:id])
+                    .and(Source.___ids[:table_id].eq(Source::Objects.table_id))
                   )
-                .where(Source.ids[:link_type].eq(link_type)
+                .where(Source.___ids[:link_type].eq(link_type)
                   .and(Source.states[:pay].not_eq(nil))
                 )
-                .group(Source.ids[:link], Source.ids[:id], Source.ids[:table_id], Source.states[:calcdate])
+                .group(Source.___ids[:link], Source.___ids[:id], Source.___ids[:table_id], Source.states[:calcdate])
               end
 
               begin

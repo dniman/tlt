@@ -14,7 +14,7 @@ namespace :objects do
             link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
             
             attributes = [
-              "___link_adr = ids.___link_adr",
+              "___link_adr = ___ids.___link_adr",
               "country_name = isnull(countries.name, '')",
               "post_index = isnull(address.postcode, '')",
               "region_name = isnull(regions.name, '')",
@@ -43,8 +43,8 @@ namespace :objects do
             .join(Source.townarea, Arel::Nodes::OuterJoin).on(Source.townarea[:id].eq(Source.address[:townarea_id]))
             .join(Source.microarea, Arel::Nodes::OuterJoin).on(Source.microarea[:id].eq(Source.address[:microarea_id]))
             .join(Source.objects).on(Source.objects[:address_id].eq(Source.address[:id]))
-            .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
-            .where(Source.ids[:link_type].eq(link_type))
+            .join(Source.___ids).on(Source.___ids[:id].eq(Source.objects[:id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
+            .where(Source.___ids[:link_type].eq(link_type))
           end
 
           begin

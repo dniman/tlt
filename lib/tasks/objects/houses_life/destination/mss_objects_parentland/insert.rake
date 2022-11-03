@@ -16,26 +16,26 @@ namespace :objects do
 
             land_manager = Arel::SelectManager.new(Database.source_engine)
             land_manager.project([
-              Source.ids[:link].as("link_parent"),
+              Source.___ids[:link].as("link_parent"),
               Source.grounds[:id],
             ])
-            land_manager.from(Source.ids)
-            land_manager.join(Source.grounds).on(Source.grounds[:objects_id].eq(Source.ids[:id]))
+            land_manager.from(Source.___ids)
+            land_manager.join(Source.grounds).on(Source.grounds[:objects_id].eq(Source.___ids[:id]))
             land_manager.where(
-              Source.ids[:table_id].eq(Source::Objects.table_id)
-                .and(Source.ids[:link_type].eq(link_land_type))
+              Source.___ids[:table_id].eq(Source::Objects.table_id)
+                .and(Source.___ids[:link_type].eq(link_land_type))
             )
                       
             build_manager = Arel::SelectManager.new(Database.source_engine)
             build_manager.project([
-              Source.ids[:link].as("link_child"),
+              Source.___ids[:link].as("link_child"),
               Source.buildings[:id],
             ])
-            build_manager.from(Source.ids)
-            build_manager.join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.ids[:id]))
+            build_manager.from(Source.___ids)
+            build_manager.join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.___ids[:id]))
             build_manager.where(
-              Source.ids[:table_id].eq(Source::Objects.table_id)
-                .and(Source.ids[:link_type].eq(link_houses_life_type))
+              Source.___ids[:table_id].eq(Source::Objects.table_id)
+                .and(Source.___ids[:link_type].eq(link_houses_life_type))
             )
             
             o1 = land_manager.as('o1')

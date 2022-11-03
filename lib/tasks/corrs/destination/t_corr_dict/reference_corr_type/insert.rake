@@ -20,10 +20,10 @@ namespace :corrs do
             select_one = 
               Source.clients
               .project([
-                Source.ids[:link],
+                Source.___ids[:link],
                 Arel.sql(fl_pers.to_s).as("corr_dict"),
               ])
-              .join(Source.ids).on(Source.ids[:id].eq(Source.clients[:id]).and(Source.ids[:table_id].eq(Source::Clients.table_id)))
+              .join(Source.___ids).on(Source.___ids[:id].eq(Source.clients[:id]).and(Source.___ids[:table_id].eq(Source::Clients.table_id)))
               .join(Source.client_types, Arel::Nodes::OuterJoin).on(Source.client_types[:id].eq(Source.clients[:client_types_id]))
               .join(Source.privates, Arel::Nodes::OuterJoin).on(Source.privates[:clients_id].eq(Source.clients[:id]))
               .where(Source.client_types[:name].eq('Физическое лицо'))
@@ -31,10 +31,10 @@ namespace :corrs do
             select_two =
               Source.clients
               .project([
-                Source.ids[:link],
+                Source.___ids[:link],
                 Arel.sql(ul.to_s).as("corr_dict"),
               ])
-              .join(Source.ids).on(Source.ids[:id].eq(Source.clients[:id]).and(Source.ids[:table_id].eq(Source::Clients.table_id)))
+              .join(Source.___ids).on(Source.___ids[:id].eq(Source.clients[:id]).and(Source.___ids[:table_id].eq(Source::Clients.table_id)))
               .join(Source.client_types, Arel::Nodes::OuterJoin).on(Source.client_types[:id].eq(Source.clients[:client_types_id]))
               .join(Source.organisations, Arel::Nodes::OuterJoin).on(Source.organisations[:clients_id].eq(Source.clients[:id]))
               .where(Source.client_types[:name].eq('Юридическое лицо'))
@@ -42,10 +42,10 @@ namespace :corrs do
             select_three = 
               Source.clients
               .project([
-                Source.ids[:link],
+                Source.___ids[:link],
                 Arel.sql(fl.to_s).as("corr_dict"),
               ])
-              .join(Source.ids).on(Source.ids[:id].eq(Source.clients[:id]).and(Source.ids[:table_id].eq(Source::Clients.table_id)))
+              .join(Source.___ids).on(Source.___ids[:id].eq(Source.clients[:id]).and(Source.___ids[:table_id].eq(Source::Clients.table_id)))
               .join(Source.client_types, Arel::Nodes::OuterJoin).on(Source.client_types[:id].eq(Source.clients[:client_types_id]))
               .join(Source.privates, Arel::Nodes::OuterJoin).on(Source.privates[:clients_id].eq(Source.clients[:id]))
               .where(Source.client_types[:name].eq('Физическое лицо')

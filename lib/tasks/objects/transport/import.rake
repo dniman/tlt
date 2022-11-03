@@ -3,7 +3,7 @@ namespace :objects do
     namespace :import do
 
       task :tasks do 
-        Rake.invoke_task 'objects:transport:source:ids:insert'
+        Rake.invoke_task 'objects:transport:source:___ids:insert'
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___type_transport' 
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___automaker' 
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___color_kuzov' 
@@ -12,7 +12,7 @@ namespace :objects do
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___auto_country_export' 
 
         Rake.invoke_task 'objects:transport:destination:mss_objects:insert'
-        Rake.invoke_task 'objects:transport:source:ids:update_link'
+        Rake.invoke_task 'objects:transport:source:___ids:update_link'
 
         # История наименования
         Rake.invoke_task 'objects:transport:destination:mss_objects_app:link_param:obj_name_hist:insert'

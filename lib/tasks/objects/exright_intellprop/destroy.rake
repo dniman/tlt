@@ -68,7 +68,7 @@ namespace :objects do
         # Удаление основного объекта
         'objects:exright_intellprop:destination:mss_objects:delete',
         'objects:exright_intellprop:destination:mss_objects_adr:delete',
-        'objects:exright_intellprop:source:ids:drop___link_adr',
+        'objects:exright_intellprop:source:___ids:drop___link_adr',
         'objects:exright_intellprop:destination:mss_adr:delete',
 
          # Удаление дополнительных колонок

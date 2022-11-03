@@ -3,14 +3,14 @@ namespace :objects do
     namespace :import do
 
       task :tasks do 
-        Rake.invoke_task 'objects:inland_waterway_vessel:source:ids:insert'
+        Rake.invoke_task 'objects:inland_waterway_vessel:source:___ids:insert'
         Rake.invoke_task 'objects:inland_waterway_vessel:destination:mss_objects:add___type_transport' 
         Rake.invoke_task 'objects:inland_waterway_vessel:destination:mss_objects:add___automaker' 
         Rake.invoke_task 'objects:inland_waterway_vessel:destination:mss_objects:add___engine_type' 
         Rake.invoke_task 'objects:inland_waterway_vessel:destination:mss_objects:add___auto_country' 
 
         Rake.invoke_task 'objects:inland_waterway_vessel:destination:mss_objects:insert'
-        Rake.invoke_task 'objects:inland_waterway_vessel:source:ids:update_link'
+        Rake.invoke_task 'objects:inland_waterway_vessel:source:___ids:update_link'
 
         # История наименования
         Rake.invoke_task 'objects:inland_waterway_vessel:destination:mss_objects_app:link_param:obj_name_hist:insert'

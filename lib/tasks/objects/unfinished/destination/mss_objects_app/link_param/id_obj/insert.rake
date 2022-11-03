@@ -23,13 +23,13 @@ namespace :objects do
 
                 Source.objects
                 .project([
-                  Source.ids[:id],
-                  Source.ids[:link_type],
-                  Source.ids[:link] 
+                  Source.___ids[:id],
+                  Source.___ids[:link_type],
+                  Source.___ids[:link] 
                 ])
                 .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-                .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
-                .where(Source.ids[:link_type].eq(link_type))
+                .join(Source.___ids).on(Source.___ids[:id].eq(Source.objects[:id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
+                .where(Source.___ids[:link_type].eq(link_type))
               end
 
               begin

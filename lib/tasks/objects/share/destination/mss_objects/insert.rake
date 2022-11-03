@@ -13,26 +13,26 @@ namespace :objects do
           def query
             link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
 
-            ids2 = Source.ids.alias('ids2')
+            ___ids2 = Source.___ids.alias('___ids2')
 
             Source.objects
             .project([
               Source.objects[:description],
               Source.objects[:invno],
-              Source.ids[:row_id],
-              Source.ids[:link_type],
-              ids2[:link].as("link_corr"),
+              Source.___ids[:row_id],
+              Source.___ids[:link_type],
+              ___ids2[:link].as("link_corr"),
             ])
             .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-            .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+            .join(Source.___ids).on(Source.___ids[:id].eq(Source.objects[:id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
             .join(Source.objshares).on(Source.objshares[:objects_id].eq(Source.objects[:id]))
             .join(Source.organisations, Arel::Nodes::OuterJoin).on(Source.organisations[:id].eq(Source.objshares[:organisations_id]))
             .join(Source.clients, Arel::Nodes::OuterJoin).on(Source.clients[:id].eq(Source.organisations[:clients_id]))
-            .join(ids2, Arel::Nodes::OuterJoin)
-              .on(ids2[:id].eq(Source.clients[:id])
-                .and(ids2[:table_id].eq(Source::Clients.table_id))
+            .join(___ids2, Arel::Nodes::OuterJoin)
+              .on(___ids2[:id].eq(Source.clients[:id])
+                .and(___ids2[:table_id].eq(Source::Clients.table_id))
               )
-            .where(Source.ids[:link_type].eq(link_type))
+            .where(Source.___ids[:link_type].eq(link_type))
           end
 
           begin

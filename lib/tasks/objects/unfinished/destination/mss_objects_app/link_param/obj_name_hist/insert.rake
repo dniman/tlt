@@ -25,26 +25,26 @@ namespace :objects do
                   Source.objects
                   .project([
                     Source.objects[:description],
-                    Source.ids[:link],
+                    Source.___ids[:link],
                     Source.buildings[:levelname].as("name"),
                   ])
                   .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-                  .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+                  .join(Source.___ids).on(Source.___ids[:id].eq(Source.objects[:id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
                   .join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.objects[:id]))
                   .join(Source.buildtypes, Arel::Nodes::OuterJoin).on(Source.buildtypes[:id].eq(Source.buildings[:buildtypes_id]))
-                  .where(Source.ids[:link_type].eq(link_type))
+                  .where(Source.___ids[:link_type].eq(link_type))
                 
                 select_two = 
                   Source.objects
                   .project([
                     Source.objects[:description],
-                    Source.ids[:link],
+                    Source.___ids[:link],
                     Source.unconstr[:name],
                   ])
                   .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-                  .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+                  .join(Source.___ids).on(Source.___ids[:id].eq(Source.objects[:id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
                   .join(Source.unconstr).on(Source.unconstr[:objects_id].eq(Source.objects[:id]))
-                  .where(Source.ids[:link_type].eq(link_type))
+                  .where(Source.___ids[:link_type].eq(link_type))
                   
                 union = select_one.union :all, select_two
                 union_table = Arel::Table.new :union_table

@@ -3,7 +3,7 @@ Dir[File.expand_path('../kbk/**/*.rake', __FILE__)].each {|path| import path}
 namespace :dictionaries do
   namespace :kbk do
     task :import do
-      Rake.invoke_task 'dictionaries:kbk:source:ids:insert'
+      Rake.invoke_task 'dictionaries:kbk:source:___ids:insert'
       Rake.invoke_task 'dictionaries:kbk:destination:s_kbk:dictionary_department:insert'
       Rake.invoke_task 'dictionaries:kbk:destination:s_kbk:dictionary_income:insert'
       Rake.invoke_task 'dictionaries:kbk:destination:s_kbk:dictionary_program:insert'
@@ -21,7 +21,7 @@ namespace :dictionaries do
       Rake.invoke_task 'dictionaries:kbk:source:cls_kbk:update___link_program'
       Rake.invoke_task 'dictionaries:kbk:source:cls_kbk:update___link_item'
       Rake.invoke_task 'dictionaries:kbk:source:cls_kbk:update___link_kbk_inc'
-      Rake.invoke_task 'dictionaries:kbk:source:ids:update_link'
+      Rake.invoke_task 'dictionaries:kbk:source:___ids:update_link'
 
       Rake.invoke_task 'dictionaries:kbk:destination:s_kbk_name:dictionary_department:insert'
       Rake.invoke_task 'dictionaries:kbk:destination:s_kbk_name:dictionary_income:insert'

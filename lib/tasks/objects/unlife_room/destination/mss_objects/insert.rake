@@ -18,8 +18,8 @@ namespace :objects do
               Source.objects[:description],
               Source.objects[:invno],
               Source.buildings[:kadastrno],
-              Source.ids[:row_id],
-              Source.ids[:link_type],
+              Source.___ids[:row_id],
+              Source.___ids[:link_type],
               Source.buildings[:levelname].as("name"),
               Arel.sql(
                 "ltrim(rtrim(
@@ -44,13 +44,13 @@ namespace :objects do
               
             ])
             .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-            .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+            .join(Source.___ids).on(Source.___ids[:id].eq(Source.objects[:id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
             .join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.objects[:id]))
             .join(Source.buildtypes, Arel::Nodes::OuterJoin).on(Source.buildtypes[:id].eq(Source.buildings[:buildtypes_id]))
             .join(Source.buildmaterials, Arel::Nodes::OuterJoin).on(Source.buildmaterials[:id].eq(Source.buildings[:buildmaterial_id]))
             .join(Source.spr_zhkh_vid, Arel::Nodes::OuterJoin).on(Source.spr_zhkh_vid[:id].eq(Source.objects[:vid_zhkh_id]))
             .join(Source.monumenttypes, Arel::Nodes::OuterJoin).on(Source.monumenttypes[:id].eq(Source.objects[:mntype_id]))
-            .where(Source.ids[:link_type].eq(link_type))
+            .where(Source.___ids[:link_type].eq(link_type))
           end
 
           begin

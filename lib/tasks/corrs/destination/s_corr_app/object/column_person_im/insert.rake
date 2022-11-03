@@ -8,10 +8,10 @@ namespace :corrs do
             def query
               Source.clients
               .project([
-                Source.ids[:link],
+                Source.___ids[:link],
                 Source.privates[:fullname]
               ])
-              .join(Source.ids).on(Source.ids[:id].eq(Source.clients[:id]).and(Source.ids[:table_id].eq(Source::Clients.table_id)))
+              .join(Source.___ids).on(Source.___ids[:id].eq(Source.clients[:id]).and(Source.___ids[:table_id].eq(Source::Clients.table_id)))
               .join(Source.client_types, Arel::Nodes::OuterJoin).on(Source.client_types[:id].eq(Source.clients[:client_types_id]))
               .join(Source.privates, Arel::Nodes::OuterJoin).on(Source.privates[:clients_id].eq(Source.clients[:id]))
               .where(Source.client_types[:name].eq('Физическое лицо')

@@ -14,7 +14,7 @@ namespace :objects do
             link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
             
             attributes = [
-              "___link_adr = ids.___link_adr",
+              "___link_adr = ___ids.___link_adr",
               "country_name = 'Российская Федерация'",
               "post_index = null",
               "region_name = 'Самарская обл'",
@@ -28,9 +28,9 @@ namespace :objects do
               "addition = null",
             ]
             
-            Source.ids
+            Source.___ids
             .project(attributes.join(', '))
-            .where(Source.ids[:link_type].eq(link_type))
+            .where(Source.___ids[:link_type].eq(link_type))
           end
           begin
             sql = ""

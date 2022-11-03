@@ -32,12 +32,12 @@ namespace :agreements do
             Source.movesets
             .project(
               Source.movesets[:___agreement_id],
-              Source.ids[:link_type],
+              Source.___ids[:link_type],
             )
             .distinct
             .join(cte_table).on(cte_table[:moveset_id].eq(Source.movesets[:id]))
             .join(Source.moveitems, Arel::Nodes::OuterJoin).on(Source.moveitems[:moveperiod_id].eq(cte_table[:id]))
-            .join(Source.ids).on(Source.ids[:id].eq(Source.moveitems[:object_id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+            .join(Source.___ids).on(Source.___ids[:id].eq(Source.moveitems[:object_id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
             
           t = select.as('t')
           ___link_type = Arel::Nodes::NamedFunction.new('min', [ t[:link_type] ], '___link_type')

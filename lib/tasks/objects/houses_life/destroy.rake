@@ -156,11 +156,11 @@ namespace :objects do
         'objects:houses_life:destination:mss_objects:drop___kadastrno',
         'objects:houses_life:destination:mss_objects_dicts:object:dictionary_land_kvartals:delete',
         'objects:houses_life:destination:mss_objects_adr:delete',
-        'objects:houses_life:source:ids:drop___link_adr',
+        'objects:houses_life:source:___ids:drop___link_adr',
         'objects:houses_life:destination:mss_adr:delete',
         
-        'objects:houses_life:source:ids:drop___add_hist',
-        'objects:houses_life:source:ids:drop___adr_str',
+        'objects:houses_life:source:___ids:drop___add_hist',
+        'objects:houses_life:source:___ids:drop___adr_str',
         
         'objects:houses_life:destination:mss_objects:drop___house_wall_type',
         'objects:houses_life:destination:mss_objects:drop___link_house_wall_type',

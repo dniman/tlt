@@ -10,11 +10,11 @@ namespace :corrs do
         end
 
         def query
-          Source.ids
+          Source.___ids
           .project([
-            Source.ids[:___link],
+            Source.___ids[:___link],
           ])
-          .where(Source.ids[:table_id].eq(Source::Clients.table_id))
+          .where(Source.___ids[:table_id].eq(Source::Clients.table_id))
         end
 
         begin

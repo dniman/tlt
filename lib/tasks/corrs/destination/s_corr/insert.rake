@@ -10,9 +10,9 @@ namespace :corrs do
               Source.clients[:inn],
               Source.clients[:name].as("sname"),
               Source.privates[:fullname].as("name"),
-              Source.ids[:row_id],
+              Source.___ids[:row_id],
             ])
-            .join(Source.ids).on(Source.ids[:id].eq(Source.clients[:id]).and(Source.ids[:table_id].eq(Source::Clients.table_id)))
+            .join(Source.___ids).on(Source.___ids[:id].eq(Source.clients[:id]).and(Source.___ids[:table_id].eq(Source::Clients.table_id)))
             .join(Source.client_types, Arel::Nodes::OuterJoin).on(Source.client_types[:id].eq(Source.clients[:client_types_id]))
             .join(Source.privates, Arel::Nodes::OuterJoin).on(Source.privates[:clients_id].eq(Source.clients[:id]))
             .where(Source.client_types[:name].eq('Физическое лицо'))
@@ -23,9 +23,9 @@ namespace :corrs do
               Source.clients[:inn],
               Source.clients[:name].as("sname"),
               Source.organisations[:name],
-              Source.ids[:row_id],
+              Source.___ids[:row_id],
             ])
-            .join(Source.ids).on(Source.ids[:id].eq(Source.clients[:id]).and(Source.ids[:table_id].eq(Source::Clients.table_id)))
+            .join(Source.___ids).on(Source.___ids[:id].eq(Source.clients[:id]).and(Source.___ids[:table_id].eq(Source::Clients.table_id)))
             .join(Source.client_types, Arel::Nodes::OuterJoin).on(Source.client_types[:id].eq(Source.clients[:client_types_id]))
             .join(Source.organisations, Arel::Nodes::OuterJoin).on(Source.organisations[:clients_id].eq(Source.clients[:id]))
             .where(Source.client_types[:name].eq('Юридическое лицо'))

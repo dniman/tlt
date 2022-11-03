@@ -23,9 +23,9 @@ namespace :documents do
             Source.documents[:docdate],
             Source.documents[:explanation],
             Source.doctypes[:name],
-            Source.ids[:row_id],
+            Source.___ids[:row_id],
           ])
-          .join(Source.ids).on(Source.ids[:id].eq(Source.documents[:id]).and(Source.ids[:table_id].eq(Source::Documents.table_id)))
+          .join(Source.___ids).on(Source.___ids[:id].eq(Source.documents[:id]).and(Source.___ids[:table_id].eq(Source::Documents.table_id)))
           .join(Source.doctypes, Arel::Nodes::OuterJoin).on(Source.doctypes[:id].eq(Source.documents[:doctypes_id]))
         end
 

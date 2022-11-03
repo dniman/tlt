@@ -17,8 +17,8 @@ namespace :objects do
             .project([
               Source.objects[:description],
               Source.objects[:invno],
-              Source.ids[:row_id],
-              Source.ids[:link_type],
+              Source.___ids[:row_id],
+              Source.___ids[:link_type],
               Source.intellect[:name],
               Source.intellectualtypes[:name].as("___intellprop_sp"),
               Arel.sql(
@@ -29,11 +29,11 @@ namespace :objects do
               Source.clients[:name].as("___storage_authority_ei"),
             ])
             .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-            .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+            .join(Source.___ids).on(Source.___ids[:id].eq(Source.objects[:id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
             .join(Source.intellect, Arel::Nodes::OuterJoin).on(Source.intellect[:objects_id].eq(Source.objects[:id]))
             .join(Source.intellectualtypes, Arel::Nodes::OuterJoin).on(Source.intellectualtypes[:id].eq(Source.intellect[:intell_type_id]))
             .join(Source.clients, Arel::Nodes::OuterJoin).on(Source.clients[:id].eq(Source.intellect[:clients_id]))
-            .where(Source.ids[:link_type].eq(link_type))
+            .where(Source.___ids[:link_type].eq(link_type))
           end
 
           begin

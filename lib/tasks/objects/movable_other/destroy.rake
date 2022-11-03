@@ -68,7 +68,7 @@ namespace :objects do
         'objects:movable_other:destination:mss_objects:delete',
 
          # Удаление дополнительных колонок
-        'objects:movable_other:source:ids:drop___last_loc_addr',
+        'objects:movable_other:source:___ids:drop___last_loc_addr',
         'objects:movable_other:destination:mss_objects:drop___dict_name',
         'objects:movable_other:destination:mss_objects:drop___link_dict_name',
         'objects:movable_other:destination:mss_objects:drop___group',

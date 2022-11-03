@@ -25,27 +25,27 @@ namespace :objects do
                   Source.objects
                   .project([
                     Source.buildings[:bl_electric],
-                    Source.ids[:link],
-                    Source.ids[:link_type],
+                    Source.___ids[:link],
+                    Source.___ids[:link_type],
                   ])
                   .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-                  .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+                  .join(Source.___ids).on(Source.___ids[:id].eq(Source.objects[:id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
                   .join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.objects[:id]))
                   .join(Source.buildtypes, Arel::Nodes::OuterJoin).on(Source.buildtypes[:id].eq(Source.buildings[:buildtypes_id]))
-                  .where(Source.ids[:link_type].eq(link_type))
+                  .where(Source.___ids[:link_type].eq(link_type))
                 
                 select_two = 
                   Source.objects
                   .project([
                     Arel.sql("null as bl_electric"),
-                    Source.ids[:link],
-                    Source.ids[:link_type],
+                    Source.___ids[:link],
+                    Source.___ids[:link_type],
                   ])
                   .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-                  .join(Source.ids).on(Source.ids[:id].eq(Source.objects[:id]).and(Source.ids[:table_id].eq(Source::Objects.table_id)))
+                  .join(Source.___ids).on(Source.___ids[:id].eq(Source.objects[:id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
                   .join(Source.enginf).on(Source.enginf[:objects_id].eq(Source.objects[:id]))
                   .join(Source.enginftypes, Arel::Nodes::OuterJoin).on(Source.enginftypes[:id].eq(Source.enginf[:enginftypes_id]))
-                  .where(Source.ids[:link_type].eq(link_type))
+                  .where(Source.___ids[:link_type].eq(link_type))
                   
                 union = select_one.union :all, select_two
                 union_table = Arel::Table.new :union_table
