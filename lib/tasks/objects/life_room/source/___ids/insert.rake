@@ -21,7 +21,7 @@ namespace :objects do
             .join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.objects[:id]))
             .join(Source.buildtypes, Arel::Nodes::OuterJoin).on(Source.buildtypes[:id].eq(Source.buildings[:buildtypes_id]))
             .where(Source.objtypes[:name].eq('Здания и помещения')
-              .and(Source.buildtypes[:name].in(['Квартира', 'Жилое помещение', 'Часть жилого дома'])))
+              .and(Source.buildtypes[:name].in(['Квартира', 'Жилое помещение', 'Часть жилого дома', 'Часть квартиры'])))
          end
 
           begin

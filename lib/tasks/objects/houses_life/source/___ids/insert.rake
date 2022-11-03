@@ -43,6 +43,12 @@ namespace :objects do
                       'Общежитие № 1'
                     ]))
                   )
+                  .or(Source.buildtypes[:name].eq('Отдельностоящее здание')
+                    .and(Source.buildings[:purpose].in([
+                      'Жилой дом', 
+                      'Индивидуальный жилой дом', 
+                    ]))
+                  )
                 )
               )
           end
