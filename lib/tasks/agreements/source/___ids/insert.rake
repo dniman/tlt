@@ -805,6 +805,120 @@ namespace :agreements do
           select13.from(Source.___agreements)
           select13.where(Source.___agreements[:___link_type].eq(nil))
 
+          # Инженерная сеть
+          engineering_network = Destination.execute_query(link_type_query('ENGINEERING_NETWORK').to_sql).entries.first["link"]
+
+          select14 = Arel::SelectManager.new
+          select14.project([
+            Arel.sql("table_id = #{Source::Agreements.table_id}"),
+            Source.___agreements[:id],
+            Arel.sql("row_id = newid()"),
+            Arel::Nodes::Case.new()
+            .when(
+              movetype_name.eq('Аренда')
+                .and(name.in(['Договор аренды недвижимого имущества', 'МУ аренда']))
+            ).then(link26)
+            .when(
+              movetype_name.eq('Аренда')
+                .and(name.eq('Договор аренды движимого имущества'))
+            ).then(link27)
+            .when(
+              movetype_name.eq('Аренда')
+                .and(name.in(['Договор безвозмездного пользования', 'Договор срочного безвозмездного пользования', 'МУ безвозмездное пользование']))
+            ).then(link33)
+            .when(
+              movetype_name.eq('Аренда')
+                .and(name.eq('Договор купли-продажи'))
+            ).then(link37)
+            .when(
+              movetype_name.eq('Аренда')
+                .and(name.not_in([
+                  'Договор безвозмездного пользования', 
+                  'Договор срочного безвозмездного пользования', 
+                  'МУ безвозмездное пользование',
+                  'Договор аренды недвижимого имущества', 
+                  'МУ аренда',
+                  'Договор аренды движимого имущества',
+                  'Договор купли-продажи',
+                ]))
+            ).then(link26)
+            .when(
+              movetype_name.eq('Аренда балансодержателей')
+            ).then(link29)
+            .when(
+              movetype_name.eq('Собственность')
+            ).then(link30)
+            .when(
+              movetype_name.eq('Фактическое пользование')
+            ).then(link16)
+            .when(
+              movetype_name.eq('Безвозмездное пользование')
+            ).then(link33)
+            .when(
+              movetype_name.eq('Безв.польз.балансодержателей')
+            ).then(link34)
+            .as('link_type'),
+          ])
+          select14.from(Source.___agreements)
+          select14.where(Source.___agreements[:___link_type].eq(engineering_network))
+
+          # Автомобильная дорога
+          automobile_road = Destination.execute_query(link_type_query('AUTOMOBILE_ROAD').to_sql).entries.first["link"]
+
+          select15 = Arel::SelectManager.new
+          select15.project([
+            Arel.sql("table_id = #{Source::Agreements.table_id}"),
+            Source.___agreements[:id],
+            Arel.sql("row_id = newid()"),
+            Arel::Nodes::Case.new()
+            .when(
+              movetype_name.eq('Аренда')
+                .and(name.in(['Договор аренды недвижимого имущества', 'МУ аренда']))
+            ).then(link26)
+            .when(
+              movetype_name.eq('Аренда')
+                .and(name.eq('Договор аренды движимого имущества'))
+            ).then(link27)
+            .when(
+              movetype_name.eq('Аренда')
+                .and(name.in(['Договор безвозмездного пользования', 'Договор срочного безвозмездного пользования', 'МУ безвозмездное пользование']))
+            ).then(link33)
+            .when(
+              movetype_name.eq('Аренда')
+                .and(name.eq('Договор купли-продажи'))
+            ).then(link37)
+            .when(
+              movetype_name.eq('Аренда')
+                .and(name.not_in([
+                  'Договор безвозмездного пользования', 
+                  'Договор срочного безвозмездного пользования', 
+                  'МУ безвозмездное пользование',
+                  'Договор аренды недвижимого имущества', 
+                  'МУ аренда',
+                  'Договор аренды движимого имущества',
+                  'Договор купли-продажи',
+                ]))
+            ).then(link26)
+            .when(
+              movetype_name.eq('Аренда балансодержателей')
+            ).then(link29)
+            .when(
+              movetype_name.eq('Собственность')
+            ).then(link30)
+            .when(
+              movetype_name.eq('Фактическое пользование')
+            ).then(link16)
+            .when(
+              movetype_name.eq('Безвозмездное пользование')
+            ).then(link33)
+            .when(
+              movetype_name.eq('Безв.польз.балансодержателей')
+            ).then(link34)
+            .as('link_type'),
+          ])
+          select15.from(Source.___agreements)
+          select15.where(Source.___agreements[:___link_type].eq(automobile_road))
+
           union = 
             Arel::Nodes::Union.new(
               Arel::Nodes::Union.new(
@@ -817,17 +931,21 @@ namespace :agreements do
                             Arel::Nodes::Union.new(
                               Arel::Nodes::Union.new(
                                 Arel::Nodes::Union.new(
-                                  Arel::Nodes::Union.new(select1, select2), select3
-                                ), select4
-                              ), select5
-                            ), select6
-                          ), select7
-                        ), select8
-                      ), select9
-                    ), select10
-                  ), select11
-                ),select12
-              ),select13
+                                  Arel::Nodes::Union.new(
+                                    Arel::Nodes::Union.new(
+                                      Arel::Nodes::Union.new(select1, select2), select3
+                                    ), select4
+                                  ), select5
+                                ), select6
+                              ), select7
+                            ), select8
+                          ), select9
+                        ), select10
+                      ), select11
+                    ),select12
+                  ),select13
+                ),select14
+              ),select15
             )
 
           union_table = Arel::Table.new :union_table
