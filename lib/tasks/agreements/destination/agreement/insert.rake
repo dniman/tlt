@@ -10,6 +10,7 @@ namespace :agreements do
             Source.___agreements[:name],
             Source.___ids[:link_type],
             Source.___ids[:row_id],
+            Source.___ids[:___object],
           ])
           .join(Source.___ids).on(Source.___ids[:id].eq(Source.___agreements[:id]).and(Source.___ids[:table_id].eq(Source::Agreements.table_id)))
         end
@@ -24,6 +25,8 @@ namespace :agreements do
                 type: row["link_type"],
                 number: row["number"].strip[0,50],
                 row_id: row["row_id"],
+                object: row["___object"],
+                link_mo: Destination.link_mo,
               }
             end
             sql = Destination::Agreement.insert_query(rows: insert, condition: "agreement.row_id = values_table.row_id")

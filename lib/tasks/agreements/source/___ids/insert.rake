@@ -19,7 +19,6 @@ namespace :agreements do
           movetype_name = Source.___agreements[:movetype_name]
           name = Arel::Nodes::NamedFunction.new("ltrim", [ Arel::Nodes::NamedFunction.new("rtrim", [ Source.___agreements[:name] ]) ])
           ___ground_owner = Source.___agreements[:___ground_owner]
-          #___ground_owner = Arel::Nodes::NamedFunction.new("isnull", [ Source.___agreements[:___ground_owner], Arel.sql("''") ])
           ___ground_owner_count = Source.___agreements[:___ground_owner_count]
           ___transferbasis_name = Source.___agreements[:___transferbasis_name]
           
@@ -949,9 +948,14 @@ namespace :agreements do
             )
 
           union_table = Arel::Table.new :union_table
-
+          
           manager = Arel::SelectManager.new
-          manager.project(Arel.star)
+          manager.project([
+            union_table[:table_id],
+            union_table[:id],
+            union_table[:row_id],
+            union_table[:link_type],
+          ])
           manager.from(union_table.create_table_alias(union,:union_table))
           manager.where(union_table[:link_type].not_eq(nil))
         end
@@ -959,6 +963,16 @@ namespace :agreements do
         begin
           sql = ""
           insert = []
+          
+          object = Arel::Nodes::NamedFunction.new("dbo.obj_id", [ Destination.v_mss_agreements_types[:obj_code] ], 'object')
+          agreements_types_query =
+            Destination.v_mss_agreements_types 
+            .project([
+              Destination.v_mss_agreements_types[:link],
+              object,
+            ])
+
+          agreements_types = Destination.execute_query(agreements_types_query.to_sql).to_a
           
           sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
           sliced_rows.each do |rows|
@@ -968,6 +982,7 @@ namespace :agreements do
                 id: row["id"],
                 row_id: row["row_id"],
                 link_type: row["link_type"],
+                ___object: agreements_types.select{|r| r["link"] == row["link_type"]}.first["object"],
               }
             end
             sql = Source::Ids.insert_query(rows: insert, condition: "___ids.id = values_table.id and ___ids.table_id = values_table.table_id")
