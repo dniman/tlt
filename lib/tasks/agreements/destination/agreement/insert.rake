@@ -21,12 +21,14 @@ namespace :agreements do
             Source.documents[:gr_num],
             Source.documents[:gr_date],
             Source.documents[:date_archiv],
-            Source.documents[:comments],
+            Source.documents[:explanation],
             Source.___agreements[:___transferbasis_link],
+            Source.per_dog[:per_in_month],
           ])
           .join(Source.___ids).on(Source.___ids[:id].eq(Source.___agreements[:id]).and(Source.___ids[:table_id].eq(Source::Agreements.table_id)))
           .join(Source.documents, Arel::Nodes::OuterJoin).on(Source.documents[:id].eq(Source.___agreements[:document_id]))
           .join(___ids2, Arel::Nodes::OuterJoin).on(___ids2[:id].eq(Source.___agreements[:document_id]).and(___ids2[:table_id].eq(Source::Documents.table_id)))
+          .join(Source.per_dog, Arel::Nodes::OuterJoin).on(Source.per_dog[:id].eq(Source.documents[:per_dog_id]))
         end
 
         begin
@@ -51,8 +53,9 @@ namespace :agreements do
                 link_doc_osn: row["document_link"],
                 number_osn: row["number"].strip[0,50],
                 date_osn: row["docdate"].nil? ? nil : row["docdate"].strftime("%Y%m%d"),
-                note_osn: row["comments"],
+                note_osn: row["explanation"],
                 mode: row["___transferbasis_link"],
+                term: row["per_in_month"],
               }
             end
             sql = Destination::Agreement.insert_query(rows: insert, condition: "agreement.row_id = values_table.row_id")

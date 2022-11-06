@@ -68,6 +68,7 @@ module Source
     :moveperiods,
     :moveitems,
     :transferbasis,
+    :per_dog,
   ]
   
   class << self
