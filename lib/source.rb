@@ -69,6 +69,7 @@ module Source
     :moveitems,
     :transferbasis,
     :per_dog,
+    :docstate,
   ]
   
   class << self

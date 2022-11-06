@@ -24,6 +24,7 @@ namespace :agreements do
             Source.documents[:explanation],
             Source.___agreements[:___transferbasis_link],
             Source.per_dog[:per_in_month],
+            Source.___agreements[:___docstate_link],
           ])
           .join(Source.___ids).on(Source.___ids[:id].eq(Source.___agreements[:id]).and(Source.___ids[:table_id].eq(Source::Agreements.table_id)))
           .join(Source.documents, Arel::Nodes::OuterJoin).on(Source.documents[:id].eq(Source.___agreements[:document_id]))
@@ -56,6 +57,7 @@ namespace :agreements do
                 note_osn: row["explanation"],
                 mode: row["___transferbasis_link"],
                 term: row["per_in_month"],
+                status: row["___docstate_link"],
               }
             end
             sql = Destination::Agreement.insert_query(rows: insert, condition: "agreement.row_id = values_table.row_id")
