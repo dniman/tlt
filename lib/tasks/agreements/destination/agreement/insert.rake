@@ -22,6 +22,7 @@ namespace :agreements do
             Source.documents[:gr_date],
             Source.documents[:date_archiv],
             Source.documents[:comments],
+            Source.___agreements[:___transferbasis_link],
           ])
           .join(Source.___ids).on(Source.___ids[:id].eq(Source.___agreements[:id]).and(Source.___ids[:table_id].eq(Source::Agreements.table_id)))
           .join(Source.documents, Arel::Nodes::OuterJoin).on(Source.documents[:id].eq(Source.___agreements[:document_id]))
@@ -51,6 +52,7 @@ namespace :agreements do
                 number_osn: row["number"].strip[0,50],
                 date_osn: row["docdate"].nil? ? nil : row["docdate"].strftime("%Y%m%d"),
                 note_osn: row["comments"],
+                mode: row["___transferbasis_link"],
               }
             end
             sql = Destination::Agreement.insert_query(rows: insert, condition: "agreement.row_id = values_table.row_id")

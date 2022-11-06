@@ -10,6 +10,8 @@ namespace :agreements do
       'agreements:source:___agreements:drop___link_type',
       'agreements:source:___agreements:drop___ground_owner',
       'agreements:source:___agreements:drop___transferbasis_name',
+      'agreements:source:___agreements:drop___transferbasis_link',
+      'agreements:source:___ids:drop___object',
     ]
 
   end
