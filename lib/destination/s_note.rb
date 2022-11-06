@@ -1,18 +1,18 @@
 module Destination
   class SNote
 
-    def self.s_note
+    def self.table
       Destination.s_note
     end
     
     def self.insert_query(rows:, condition: nil)
       Destination.set_engine!
       manager = Arel::InsertManager.new
-      manager.into(Destination.s_note)
+      manager.into(table)
 
       columns = rows.map(&:keys).uniq.flatten
       columns.each do |column|
-        manager.columns << s_note[column]
+        manager.columns << table[column]
       end
 
       manager.values = manager.create_values_list(rows.map(&:values))
@@ -22,7 +22,7 @@ module Destination
       
       if condition
         query =
-          Destination.s_note
+          table
           .project(Arel.star)
           .where(Arel.sql(condition)).exists.not
         sql << " where #{query.to_sql}"
@@ -32,11 +32,11 @@ module Destination
     
     def self.task_exists?(name)
       query =
-        Destination.s_note
-          .project(Arel.star)
-          .where(Destination.s_note[:value].eq(name)
-            .and(Destination.s_note[:object].eq(COMPLETED_TASKS))
-          )
+        table
+        .project(Arel.star)
+        .where(Destination.s_note[:value].eq(name)
+          .and(Destination.s_note[:object].eq(COMPLETED_TASKS))
+        )
       
       res = Destination.execute_query(query.to_sql)
       result = res.entries.size > 0 ? true : false
