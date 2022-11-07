@@ -71,6 +71,7 @@ module Source
     :per_dog,
     :docstate,
     :registeredusers,
+    :docendprich,
   ]
   
   class << self

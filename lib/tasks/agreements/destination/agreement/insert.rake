@@ -26,12 +26,14 @@ namespace :agreements do
             Source.per_dog[:per_in_month],
             Source.___agreements[:___docstate_link],
             Source.registeredusers[:fullname],
+            Source.docendprich[:name].as("termination_contract"),
           ])
           .join(Source.___ids).on(Source.___ids[:id].eq(Source.___agreements[:id]).and(Source.___ids[:table_id].eq(Source::Agreements.table_id)))
           .join(Source.documents, Arel::Nodes::OuterJoin).on(Source.documents[:id].eq(Source.___agreements[:document_id]))
           .join(___ids2, Arel::Nodes::OuterJoin).on(___ids2[:id].eq(Source.___agreements[:document_id]).and(___ids2[:table_id].eq(Source::Documents.table_id)))
           .join(Source.per_dog, Arel::Nodes::OuterJoin).on(Source.per_dog[:id].eq(Source.documents[:per_dog_id]))
           .join(Source.registeredusers, Arel::Nodes::OuterJoin).on(Source.registeredusers[:username].eq(Source.documents[:moved_user]))
+          .join(Source.docendprich, Arel::Nodes::OuterJoin).on(Source.docendprich[:id].eq(Source.documents[:docendprich_id]))
         end
 
         begin
@@ -61,6 +63,7 @@ namespace :agreements do
                 term: row["per_in_month"],
                 status: row["___docstate_link"],
                 isp: row["fullname"],
+                termination_contract: row["termination_contract"],
               }
             end
             sql = Destination::Agreement.insert_query(rows: insert, condition: "agreement.row_id = values_table.row_id")
