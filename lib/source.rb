@@ -70,6 +70,7 @@ module Source
     :transferbasis,
     :per_dog,
     :docstate,
+    :registeredusers,
   ]
   
   class << self
