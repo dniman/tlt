@@ -24,6 +24,8 @@ namespace :agreements do
       Rake.invoke_task 'agreements:source:___agreements:update___docstate_link'
       Rake.invoke_task 'agreements:source:___ids:add___object'
       Rake.invoke_task 'agreements:source:___ids:insert'
+      Rake.invoke_task 'agreements:source:movesets:add___client_id'
+      Rake.invoke_task 'agreements:source:movesets:update___client_id'
 
       Rake.invoke_task 'agreements:destination:agreement:insert'
       Rake.invoke_task 'agreements:source:___ids:update_link'
@@ -39,6 +41,7 @@ namespace :agreements do
 
       #Rake.invoke_task 'agreements:source:movesets:drop___agreement_id'
       Rake.invoke_task 'agreements:source:movesets:drop___ground_owner'
+      #Rake.invoke_task 'agreements:source:movesets:drop___client_id'
     end
 
   end
