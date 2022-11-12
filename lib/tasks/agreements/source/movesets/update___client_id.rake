@@ -15,7 +15,8 @@ namespace :agreements do
           .where(Destination.v_mss_agreements_types[:name].eq(name))
         end
 
-        def query
+        # Балансодержание, договор аренды балансодержателей, безвозмездное пользование балансодержателей
+        def query1
           cte_table = Arel::Table.new(:cte_table)
           ___ids2 = Source.___ids.alias('___ids2')
           basebuildings = Source.buildings.alias('basebuildings')
@@ -45,7 +46,7 @@ namespace :agreements do
             .join(Source.objects).on(Source.objects[:id].eq(___ids2[:id]))
             .join(Source.objtypes).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
             .where(Source.movetype[:name].eq('Балансодержание'))
-
+          
           type1 = 'Договор безвозмездного пользования на имущество (балансодержателей)'
           type2 = 'Договор аренды недвижимого имущества (аренда балансодержателей)'
           type3 = 'Договор аренды движимого имущества (аренда балансодержателей)'
@@ -54,11 +55,18 @@ namespace :agreements do
           link_type2 = Destination.execute_query(link_agreement_type_query(type2).to_sql).entries.first["link"]
           link_type3 = Destination.execute_query(link_agreement_type_query(type3).to_sql).entries.first["link"]
           
-          enddate = Arel::Nodes::NamedFunction.new('isnull', [ cte_table[:enddate], '99991231' ])
-
+          enddate = Arel::Nodes::NamedFunction.new('isnull', [ cte_table[:enddate], Arel.sql("'99991231'") ])
+          between = Arel::Nodes::Between.new(
+            Source.moveperiods[:sincedate],
+            Arel::Nodes::And.new([
+              cte_table[:sincedate],
+              enddate
+            ])
+          )
+          
           select_two = 
             Source.moveperiods
-            .project(
+            .project([
               Source.objtypes[:name].as("objtypes_name"),
               ___ids2[:link_type],
               Source.moveperiods[:id],
@@ -68,19 +76,19 @@ namespace :agreements do
               Source.moveperiods[:moveset_id],
               cte_table[:client_id],
               Source.moveitems[:object_id],
-              Arel.sql(cte_table[:level] + 1).as("level"),
+              Arel.sql('cte_table.level + 1').as("level"),
               Source.movesets[:___agreement_id],
-            )
+            ])
             .join(Source.movesets).on(Source.movesets[:id].eq(Source.moveperiods[:moveset_id]))
             .join(Source.movetype).on(Source.movetype[:id].eq(Source.movesets[:movetype_id]))
             .join(Source.moveitems).on(Source.moveitems[:moveperiod_id].eq(Source.moveperiods[:id]))
             .join(cte_table).on(
-              Source.moveperiods[:sincedate].between(cte_table[:sincedate], enddate)
+              between
               .and(cte_table[:level].eq(0))
               .and(cte_table[:object_id].eq(Source.moveitems[:object_id]))
             )
             .join(Source.___ids).on(
-              Source.___ids[:id].eq(Source.movesets[:agreement_id])
+              Source.___ids[:id].eq(Source.movesets[:___agreement_id])
               .and(Source.___ids[:table_id].eq(Source::Agreements.table_id))
             )
             .join(___ids2).on(
@@ -89,7 +97,7 @@ namespace :agreements do
             )
             .join(Source.objects).on(Source.objects[:id].eq(___ids2[:id]))
             .join(Source.objtypes).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-            .where(Source.ids[:link_type].in([link_type1, link_type2, link_type3]))
+            .where(Source.___ids[:link_type].in([link_type1, link_type2, link_type3]))
           
           select_three = 
             Source.moveperiods
@@ -103,7 +111,7 @@ namespace :agreements do
               Source.moveperiods[:moveset_id],
               cte_table[:client_id],
               Source.moveitems[:object_id],
-              Arel.sql(cte_table[:level] + 1).as("level"),
+              Arel.sql('cte_table.level + 1').as("level"),
               Source.movesets[:___agreement_id],
             )
             .join(Source.movesets).on(Source.movesets[:id].eq(Source.moveperiods[:moveset_id]))
@@ -112,12 +120,12 @@ namespace :agreements do
             .join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.moveitems[:object_id]))
             .join(basebuildings).on(basebuildings[:id].eq(Source.buildings[:basebuilding]))
             .join(cte_table).on(
-              Source.moveperiods[:sincedate].between(cte_table[:sincedate], enddate)
+              between
               .and(cte_table[:level].eq(0))
               .and(cte_table[:object_id].eq(basebuildings[:objects_id]))
             )
             .join(Source.___ids).on(
-              Source.___ids[:id].eq(Source.movesets[:agreement_id])
+              Source.___ids[:id].eq(Source.movesets[:___agreement_id])
               .and(Source.___ids[:table_id].eq(Source::Agreements.table_id))
             )
             .join(___ids2).on(
@@ -126,19 +134,19 @@ namespace :agreements do
             )
             .join(Source.objects).on(Source.objects[:id].eq(___ids2[:id]))
             .join(Source.objtypes).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
-            .where(Source.ids[:link_type].in([link_type1, link_type2, link_type3]))
+            .where(Source.___ids[:link_type].in([link_type1, link_type2, link_type3]))
 
           union =
-            Arel::Nodes::Union.new(
-              Arel::Nodes::Union.new(select_one, select_two), select_three
+            Arel::Nodes::UnionAll.new(
+              Arel::Nodes::UnionAll.new(select_one, select_two), select_three
             )
-
+          
           moveperiods_cte = Arel::Nodes::As.new(cte_table, union)
 
           Source.movesets
           .project(
             Source.movesets[:id],
-            Source.cte_table[:clients_id],
+            cte_table[:client_id].as("___client_id"),
           )
           .distinct
           .with(moveperiods_cte)
@@ -146,8 +154,13 @@ namespace :agreements do
           .where(cte_table[:level].eq(1))
         end
 
+        # Договор аренды
+        def query2
+
+        end
+
         begin
-          sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
+          sliced_rows = Source.execute_query(query1.to_sql).each_slice(1000).to_a
           sliced_rows.each do |rows|
             columns = rows.map(&:keys).uniq.flatten
             values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
