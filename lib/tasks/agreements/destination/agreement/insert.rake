@@ -5,6 +5,7 @@ namespace :agreements do
       task :insert do |t|
         def query
           ___ids2 = Source.___ids.alias("___ids2")
+          ___ids3 = Source.___ids.alias("___ids3")
 
           Source.___agreements
           .project([
@@ -27,6 +28,7 @@ namespace :agreements do
             Source.___agreements[:___docstate_link],
             Source.registeredusers[:fullname],
             Source.docendprich[:name].as("termination_contract"),
+            ___ids3[:link].as("client_link"),
           ])
           .join(Source.___ids).on(Source.___ids[:id].eq(Source.___agreements[:id]).and(Source.___ids[:table_id].eq(Source::Agreements.table_id)))
           .join(Source.documents, Arel::Nodes::OuterJoin).on(Source.documents[:id].eq(Source.___agreements[:document_id]))
@@ -34,6 +36,7 @@ namespace :agreements do
           .join(Source.per_dog, Arel::Nodes::OuterJoin).on(Source.per_dog[:id].eq(Source.documents[:per_dog_id]))
           .join(Source.registeredusers, Arel::Nodes::OuterJoin).on(Source.registeredusers[:username].eq(Source.documents[:moved_user]))
           .join(Source.docendprich, Arel::Nodes::OuterJoin).on(Source.docendprich[:id].eq(Source.documents[:docendprich_id]))
+          .join(___ids3).on(___ids3[:id].eq(Source.clients[:id]).and(___ids3[:table_id].eq(Source::Clients.table_id)))
         end
 
         begin
@@ -64,6 +67,7 @@ namespace :agreements do
                 status: row["___docstate_link"],
                 isp: row["fullname"],
                 termination_contract: row["termination_contract"],
+                corr_link: row["client_link"],
               }
             end
             sql = Destination::Agreement.insert_query(rows: insert, condition: "agreement.row_id = values_table.row_id")

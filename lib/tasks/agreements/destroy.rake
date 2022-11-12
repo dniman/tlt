@@ -14,6 +14,7 @@ namespace :agreements do
       'agreements:source:___agreements:drop___transferbasis_link',
       'agreements:source:___agreements:drop___docstate_name',
       'agreements:source:___agreements:drop___docstate_link',
+      'agreements:source:___agreements:drop___client_id',
       'agreements:source:___ids:drop___object',
     ]
 
