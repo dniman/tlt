@@ -36,7 +36,7 @@ namespace :agreements do
           .join(Source.per_dog, Arel::Nodes::OuterJoin).on(Source.per_dog[:id].eq(Source.documents[:per_dog_id]))
           .join(Source.registeredusers, Arel::Nodes::OuterJoin).on(Source.registeredusers[:username].eq(Source.documents[:moved_user]))
           .join(Source.docendprich, Arel::Nodes::OuterJoin).on(Source.docendprich[:id].eq(Source.documents[:docendprich_id]))
-          .join(___ids3).on(___ids3[:id].eq(Source.clients[:id]).and(___ids3[:table_id].eq(Source::Clients.table_id)))
+          .join(___ids3, Arel::Nodes::OuterJoin).on(___ids3[:id].eq(Source.___agreements[:___client_id]).and(___ids3[:table_id].eq(Source::Clients.table_id)))
         end
 
         begin

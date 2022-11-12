@@ -23,7 +23,7 @@ namespace :agreements do
           
               sql = <<~SQL
                 update ___agreements set 
-                  ___agreements.___ground_owner = values_table.___ground_owner
+                  ___agreements.___client_id = values_table.___client_id
                 from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
                 where ___agreements.id = values_table.___agreement_id  
               SQL
