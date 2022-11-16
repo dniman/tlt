@@ -4,13 +4,11 @@ namespace :documents do
 
       task :delete do |t|
         def query
-          Source.set_engine!
-          query = 
-            Source.___ids
-            .project(Source.___ids[:link])
-            .where(Source.___ids[:table_id].eq(Source::Documents.table_id)
-              .and(Source.___ids[:link].not_eq(nil))
-            )
+          Source.___ids
+          .project(Source.___ids[:link])
+          .where(Source.___ids[:table_id].eq(Source::Documents.table_id)
+            .and(Source.___ids[:link].not_eq(nil))
+          )
         end
 
         begin
