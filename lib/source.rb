@@ -72,6 +72,10 @@ module Source
     :docstate,
     :registeredusers,
     :docendprich,
+    :obligations,
+    :obligationtype,
+    :paydocs,
+    :___paycards,
   ]
   
   class << self
