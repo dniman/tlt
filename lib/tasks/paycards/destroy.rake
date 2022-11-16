@@ -2,7 +2,8 @@ namespace :paycards do
   namespace :destroy do
 
     task :tasks => [
-      'paycards:destination:paycard:delete',
+      'paycards:destination:paycard:delete1',
+      'paycards:destination:paycard:delete2',
 #
 #      'agreements:source:movesets:drop___agreement_id',
 #      'agreements:source:movesets:drop___ground_owner',

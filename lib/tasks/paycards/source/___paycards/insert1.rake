@@ -152,8 +152,8 @@ namespace :paycards do
 
             condition =<<~SQL
               isnull(___paycards.number,0) = isnull(values_table.number,0)
-                and ___paycards.sincedate = values_table.sincedate
-                and ___paycards.enddate = values_table.enddate
+                and isnull(___paycards.sincedate, '19000101') = isnull(values_table.sincedate, '19000101')
+                and isnull(___paycards.enddate, '19000101') = isnull(values_table.enddate, '19000101')
                 and ___paycards.moveperiod_id = values_table.moveperiod_id
                 and ___paycards.moveset_id = values_table.moveset_id
             SQL
