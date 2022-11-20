@@ -327,6 +327,25 @@ namespace :agreements do
               movetype_name.eq('Безвозмездное пользование')
                 .and(___ground_owner_count.gt(1))
             ).then(link25)
+            .when(
+              movetype_name.in(['Бессрочное пользование', 'Пользование'])
+                .and(___ground_owner.eq('ГС').or(___ground_owner.eq('РФ')))
+                .and(___ground_owner_count.eq(1))
+            ).then(link23)
+            .when(
+              movetype_name.in(['Бессрочное пользование', 'Пользование'])
+                .and(___ground_owner.eq('МС'))
+                .and(___ground_owner_count.eq(1))
+            ).then(link24)
+            .when(
+              movetype_name.in(['Бессрочное пользование', 'Пользование'])
+                .and(___ground_owner.not_eq('ГС').or(___ground_owner.not_eq('РФ').or(___ground_owner.not_eq('МС').or(___ground_owner.eq(nil)))))
+                .and(___ground_owner_count.eq(1))
+            ).then(link25)
+            .when(
+              movetype_name.in(['Бессрочное пользование', 'Пользование'])
+                .and(___ground_owner_count.gt(1))
+            ).then(link25)
             .as('link_type'),
           ])
           select1.from(Source.___agreements)
@@ -377,6 +396,9 @@ namespace :agreements do
             .when(
               movetype_name.eq('Безв.польз.балансодержателей')
             ).then(link34)
+            .when(
+              movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            ).then(link33)
             .as('link_type'),
           ])
           select2.from(Source.___agreements)
@@ -457,6 +479,9 @@ namespace :agreements do
             .when(
               movetype_name.eq('Безв.польз.балансодержателей')
             ).then(link34)
+            .when(
+              movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            ).then(link33)
             .as('link_type'),
           ])
           select4.from(Source.___agreements)
@@ -494,6 +519,9 @@ namespace :agreements do
             .when(
               movetype_name.eq('Безв.польз.балансодержателей')
             ).then(link34)
+            .when(
+              movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            ).then(link33)
             .as('link_type'),
           ])
           select5.from(Source.___agreements)
@@ -551,6 +579,9 @@ namespace :agreements do
             .when(
               movetype_name.eq('Безв.польз.балансодержателей')
             ).then(link34)
+            .when(
+              movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            ).then(link33)
             .as('link_type'),
           ])
           select6.from(Source.___agreements)
@@ -574,6 +605,9 @@ namespace :agreements do
             .when(
               movetype_name.eq('Безв.польз.балансодержателей')
             ).then(link34)
+            .when(
+              movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            ).then(link33)
             .as('link_type'),
           ])
           select7.from(Source.___agreements)
@@ -799,6 +833,9 @@ namespace :agreements do
             .when(
               movetype_name.eq('Безв.польз.балансодержателей')
             ).then(link34)
+            .when(
+              movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            ).then(link33)
             .as('link_type'),
           ])
           select13.from(Source.___agreements)
@@ -856,6 +893,9 @@ namespace :agreements do
             .when(
               movetype_name.eq('Безв.польз.балансодержателей')
             ).then(link34)
+            .when(
+              movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            ).then(link33)
             .as('link_type'),
           ])
           select14.from(Source.___agreements)
@@ -913,6 +953,9 @@ namespace :agreements do
             .when(
               movetype_name.eq('Безв.польз.балансодержателей')
             ).then(link34)
+            .when(
+              movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            ).then(link33)
             .as('link_type'),
           ])
           select15.from(Source.___agreements)

@@ -28,7 +28,9 @@ namespace :agreements do
             Source.___agreements[:___docstate_link],
             Source.registeredusers[:fullname],
             Source.docendprich[:name].as("termination_contract"),
-            ___ids3[:link].as("client_link"),
+            Arel::Nodes::Case.new()
+              .when(Source.___agreements[:___client_id].eq(Destination.link_mo)).then(Source.___agreements[:___client_id])
+              .else(___ids3[:link]).as("client_link"),
           ])
           .join(Source.___ids).on(Source.___ids[:id].eq(Source.___agreements[:id]).and(Source.___ids[:table_id].eq(Source::Agreements.table_id)))
           .join(Source.documents, Arel::Nodes::OuterJoin).on(Source.documents[:id].eq(Source.___agreements[:document_id]))
