@@ -518,7 +518,7 @@ namespace :destroy do
       'documents:destroy',
     ] do 
 
-      Rake::Task['destroy:delete_completed_tasks'].invoke("corrs:%")
+      Rake::Task['destroy:delete_completed_tasks'].invoke("documents:%")
       Rake::Task['destroy:final_message'].invoke("Удаление документов в базе назначения завершено.")
     end
   end
