@@ -26,6 +26,7 @@ namespace :paycards do
             Arel.sql("#{ Destination.link_oktmo }").as("ate"),
             Arel.sql("'NO'").as("first_period"),
             Source.___paycards[:nach_p],
+            Source.___paycards[:___sum_rtype],
           ])
           .join(Source.___ids).on(Source.___ids[:id].eq(Source.___paycards[:id]).and(Source.___ids[:table_id].eq(Source::Paycards.table_id)))
           .where(Source.___paycards[:prev_moveperiod_id].eq(nil))
@@ -57,6 +58,7 @@ namespace :paycards do
                 ate: row["ate"],
                 first_period: row["first_period"],
                 nach_p: row["nach_p"],
+                sum_rtype: row["___sum_rtype"],
               }
             end
             sql = Destination::Paycard.insert_query(rows: insert, condition: "paycard.row_id = values_table.row_id")
