@@ -31,6 +31,8 @@ namespace :paycards do
       Rake.invoke_task 'paycards:source:___paycards:update___inc_pr'
       Rake.invoke_task 'paycards:source:___paycards:add___sum_rtype'
       Rake.invoke_task 'paycards:source:___paycards:update___sum_rtype'
+      Rake.invoke_task 'paycards:source:___paycards:add___account'
+      Rake.invoke_task 'paycards:source:___paycards:update___account'
       
       Rake.invoke_task 'paycards:destination:paycard:insert1'
       Rake.invoke_task 'paycards:source:___ids:update_link1'

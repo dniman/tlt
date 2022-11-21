@@ -16,6 +16,7 @@ namespace :paycards do
       'paycards:source:___paycards:drop___inc_p',
       'paycards:source:___paycards:drop___inc_pr',
       'paycards:source:___paycards:drop___sum_rtype',
+      'paycards:source:___paycards:drop___account',
     ]
 
   end

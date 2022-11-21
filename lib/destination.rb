@@ -29,6 +29,7 @@ module Destination
     :v_mss_agreements_types,
     :agreement,
     :paycard,
+    :s_account,
   ]
 
   class << self
