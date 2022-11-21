@@ -2,7 +2,7 @@ namespace :paycards do
   namespace :source do
     namespace :___paycards do
 
-      task :insert2 do |t|
+      task :insert do |t|
         def query
           cte_table = Arel::Table.new(:cte_table)
           
@@ -32,16 +32,16 @@ namespace :paycards do
 
           union = Arel::Nodes::UnionAll.new(select_one, select_two)
           moveperiods_cte = Arel::Nodes::As.new(cte_table, union)
-  
+          
           number = 
             Arel::Nodes::Concat.new(
               Arel::Nodes::NamedFunction.new('isnull', [ Source.___agreements[:number], Arel.sql("'б/н'") ]), 
               Arel.sql("'/'")
             )
-          
+  
           window = Arel::Nodes::Window.new.tap do |w|
-            w.partition(Source.___ids[:link])
-            w.order(cte_table[:sincedate], Source.obligationtype[:name])
+            w.partition(Source.___agreements[:id])
+            w.order(cte_table[:sincedate], cte_table[:moveset_id], Source.obligationtype[:id])
           end
 
           row_number = Arel::Nodes::Over.new \
@@ -70,14 +70,28 @@ namespace :paycards do
                 )
               ]
             )
-          
-          clients = Source.___ids.alias("clients")
+
+          number = 
+            Arel::Nodes::Case.new()
+            .when(cte_table[:prev_moveperiod_id].eq(nil)).then(concat)
+            .else(Arel.sql("null"))
+
+          nach_p =
+            Arel::Nodes::Case.new()
+            .when(Source.paydocs[:periodical].eq('Y')).then(1)
+            .when(Source.paydocs[:periodical].eq('Q')).then(2)
+            .when(Source.paydocs[:periodical].eq('H')).then(3)
+            .when(Source.paydocs[:periodical].eq('G')).then(4)
+            .when(Source.paydocs[:periodical].eq('T')).then(5)
+            .when(Source.paydocs[:periodical].eq('N')).then(6)
+
+          kbk_inc_a = Source.cls_kbk.alias("kbk_inc_a")
+          kbk_inc_p = Source.cls_kbk.alias("kbk_inc_p")
 
           Source.movesets
             .project(
               Source.movesets[:___agreement_id],
-              Source.___ids[:link].as("link_a"),
-              concat.as("number"),
+              number.as("number"),
               cte_table[:sincedate],
               cte_table[:enddate],
               cte_table[:id].as("moveperiod_id"),
@@ -88,15 +102,15 @@ namespace :paycards do
               Source.obligations[:obligationtype_id],
               Source.obligationtype[:name].as("obligationtype_name"),
               Source.paydocs[:id].as("paydoc_id"),
-              clients[:link].as("corr1"),
+              Source.movesets[:client_id].as("client_id1"),
+              Source.___agreements[:___client_id].as("client_id2"),
+              Source.paydocs[:paysize].as("summa2"),
+              kbk_inc_a[:name].as("cinc_a"),
+              kbk_inc_p[:name].as("cinc_p"),
+              nach_p.as("nach_p"),
             )
-            .distinct
             .with(moveperiods_cte)
             .join(cte_table, Arel::Nodes::OuterJoin).on(cte_table[:moveset_id].eq(Source.movesets[:id]))
-            .join(Source.___ids, Arel::Nodes::OuterJoin).on(
-              Source.___ids[:id].eq(Source.movesets[:___agreement_id])
-              .and(Source.___ids[:table_id].eq(Source::Agreements.table_id))
-            )
             .join(Source.___agreements, Arel::Nodes::OuterJoin).on(Source.___agreements[:id].eq(Source.movesets[:___agreement_id]))
             .join(Source.obligations, Arel::Nodes::OuterJoin).on(Source.obligations[:moveset_id].eq(Source.movesets[:id]))
             .join(Source.obligationtype, Arel::Nodes::OuterJoin).on(Source.obligationtype[:id].eq(Source.obligations[:obligationtype_id]))
@@ -105,10 +119,10 @@ namespace :paycards do
               .and(Source.paydocs[:obligationtype_id].eq(Source.obligationtype[:id]))
             )
             .join(Source.movetype, Arel::Nodes::OuterJoin).on(Source.movetype[:id].eq(Source.movesets[:movetype_id]))
-            .join(clients, Arel::Nodes::OuterJoin).on(clients[:id].eq(Source.movesets[:client_id]).and(clients[:table_id].eq(Source::Clients.table_id)))
+            .join(kbk_inc_a, Arel::Nodes::OuterJoin).on(kbk_inc_a[:id].eq(Source.paydocs[:main_cls_kbk_id]))
+            .join(kbk_inc_p, Arel::Nodes::OuterJoin).on(kbk_inc_p[:id].eq(Source.paydocs[:fine_cls_kbk_id]))
             .where(
               Source.movesets[:___agreement_id].not_eq(nil)
-              .and(cte_table[:prev_moveperiod_id].not_eq(nil))          
               .and(Source.movetype[:name].in([
                     'Аренда', 
                     'Аренда балансодержателей', 
@@ -120,21 +134,23 @@ namespace :paycards do
                     'Безвозмездное пользование', 
                     'Безв.польз.балансодержателей', 
                     'Приватизация', 
-                    'Концессия'
+                    'Концессия',
+                    'Пользование',
+                    'Бессрочное пользование'
               ]))
             )
+            .order(Source.___agreements[:id], cte_table[:sincedate],cte_table[:moveset_id], Source.obligationtype[:id])
         end
 
         begin
           sql = ""
           insert = []
-          
+
           sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
           sliced_rows.each do |rows|
             rows.each do |row|
               insert << {
                 ___agreement_id: row["___agreement_id"],
-                link_a: row["link_a"],
                 number: row["number"],
                 sincedate: row["sincedate"].nil? ? nil : row["sincedate"].strftime("%Y%m%d"),
                 enddate: row["enddate"].nil? ? nil : row["enddate"].strftime("%Y%m%d"),
@@ -146,16 +162,24 @@ namespace :paycards do
                 obligationtype_id: row["obligationtype_id"],
                 obligationtype_name: row["obligationtype_name"],
                 paydoc_id: row["paydoc_id"],
-                corr1: row["corr1"],
+                client_id1: row["client_id1"],
+                client_id2: row["client_id2"],
+                summa2: row["summa2"].nil? ? 0 : row["summa2"],
+                cinc_a: row["cinc_a"],
+                cinc_p: row["cinc_p"],
+                nach_p: row["nach_p"],
               }
             end
 
             condition =<<~SQL
-              isnull(___paycards.number,0) = isnull(values_table.number,0)
-                and ___paycards.sincedate = values_table.sincedate
-                and ___paycards.enddate = values_table.enddate
-                and ___paycards.moveperiod_id = values_table.moveperiod_id
-                and ___paycards.moveset_id = values_table.moveset_id
+              ___paycards.___agreement_id = values_table.___agreement_id
+                and isnull(___paycards.number,'') = isnull(values_table.number,'')
+                and isnull(___paycards.sincedate, '19000101') = isnull(values_table.sincedate, '19000101')
+                and isnull(___paycards.enddate, '19000101') = isnull(values_table.enddate, '19000101')
+                and isnull(___paycards.moveperiod_id, 0) = isnull(values_table.moveperiod_id, 0)
+                and isnull(___paycards.moveset_id, 0) = isnull(values_table.moveset_id, 0)
+                and isnull(___paycards.obligation_id, 0) = isnull(values_table.obligation_id, 0)
+                and isnull(___paycards.paydoc_id, 0) = isnull(values_table.paydoc_id, 0)
             SQL
 
             sql = Source::Paycards.insert_query(rows: insert, condition: condition)

@@ -15,17 +15,14 @@ namespace :paycards do
           
           Source.___ids
           .project(Source.___ids[:link])
-          .where(
-            Source.___ids[:table_id].eq(Source::Paycards.table_id)
-            .and(Arel::Nodes::In.new(Source.___ids[:id], subquery))
-          )
+          .where(Arel::Nodes::In.new(Source.___ids[:id], subquery))
         end
 
         begin
           sql = ""
           sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
           sliced_rows.each do |rows|
-            sql = Destination::Paycards.delete_query(links: rows.map(&:values))
+            sql = Destination::Paycard.delete_query(links: rows.map(&:values))
             result = Destination.execute_query(sql)
             result.do
             sql.clear

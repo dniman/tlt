@@ -7,7 +7,6 @@ namespace :paycards do
           create table ___paycards(
             id int identity(1,1) 
             ,___agreement_id int
-            ,link_a int
             ,number varchar(100)
             ,sincedate datetime
             ,enddate datetime
@@ -19,7 +18,13 @@ namespace :paycards do
             ,obligationtype_id int
             ,obligationtype_name varchar(50)
             ,paydoc_id int
-            ,corr1 int
+            ,client_id1 int
+            ,client_id2 int
+            ,summa2 numeric(20,2)
+            ,cinc_a varchar(50)
+            ,cinc_p varchar(50)
+            ,cinc_pr varchar(50)
+            ,nach_p int
           )
         SQL
         

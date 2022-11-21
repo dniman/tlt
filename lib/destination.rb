@@ -173,5 +173,12 @@ module Destination
         execute_query(sql).entries.first["link"]
       end
     end
+    
+    def link_oktmo
+      @link_oktmo ||= begin
+        sql = "select oktmo from mss_mo where mo_link = (select link from mss_current_user_mo_access())"
+        execute_query(sql).entries.first["oktmo"]
+      end
+    end
   end
 end

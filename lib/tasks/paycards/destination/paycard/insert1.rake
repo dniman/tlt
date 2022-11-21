@@ -10,34 +10,53 @@ namespace :paycards do
         def query 
           Source.___paycards
           .project([
-            Source.___paycards[:link_a],
+            Arel.sql("#{ Destination::SObjects.obj_id('DOCUMENTS_PC') }").as("object"),
+            Source.___paycards[:___link_a],
             Source.___paycards[:number],
             Source.___ids[:row_id],
             Source.___paycards[:sincedate],
             Source.___paycards[:enddate],
-            Source.___paycards[:corr1],
+            Source.___paycards[:___corr1],
+            Source.___paycards[:___payer_type],
+            Source.___paycards[:___corr2],
+            Source.___paycards[:summa2],
+            Source.___paycards[:___inc_a],
+            Source.___paycards[:___inc_p],
+            Source.___paycards[:___inc_pr],
+            Arel.sql("#{ Destination.link_oktmo }").as("ate"),
+            Arel.sql("'NO'").as("first_period"),
+            Source.___paycards[:nach_p],
           ])
           .join(Source.___ids).on(Source.___ids[:id].eq(Source.___paycards[:id]).and(Source.___ids[:table_id].eq(Source::Paycards.table_id)))
           .where(Source.___paycards[:prev_moveperiod_id].eq(nil))
-          .order([Source.___paycards[:link_a], Source.___paycards[:sincedate], len, Source.___paycards[:number]]) 
+          .order([Source.___paycards[:___link_a], Source.___paycards[:sincedate], len, Source.___paycards[:number]]) 
         end
         
         begin
           sql = ""
           insert = []
-          object = Destination::SObjects.obj_id('DOCUMENTS_PC')
 
           sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
           sliced_rows.each do |rows|
             rows.each do |row|
               insert << {
-                object: object,
-                link_a: row["link_a"],
+                object: row["object"],
+                link_a: row["___link_a"],
                 number: row["number"].strip[0,50],
                 row_id: row["row_id"],
                 date_b: row["sincedate"].nil? ? nil : row["sincedate"].strftime("%Y%m%d"),
                 date_e: row["enddate"].nil? ? nil : row["enddate"].strftime("%Y%m%d"),
-                corr1: row["corr1"],
+                corr1: row["___corr1"],
+                payer_type: row["___payer_type"],
+                corr2: row["___corr2"],
+                summa2: row["summa2"],
+                autocalcsum: 0,
+                inc_a: row["___inc_a"],
+                inc_p: row["___inc_p"],
+                inc_pr: row["___inc_pr"],
+                ate: row["ate"],
+                first_period: row["first_period"],
+                nach_p: row["nach_p"],
               }
             end
             sql = Destination::Paycard.insert_query(rows: insert, condition: "paycard.row_id = values_table.row_id")

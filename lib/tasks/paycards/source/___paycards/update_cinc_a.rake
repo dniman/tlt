@@ -1,0 +1,95 @@
+namespace :paycards do
+  namespace :source do
+    namespace :___paycards do
+
+      task :update_cinc_a do |t|
+        def query
+          cinc_a =
+            Arel::Nodes::Case.new()
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Договор аренды недвижимого имущества')))
+              .then('90311105074040000120')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Договор аренды земельного участка под строительство (ГС)')))
+              .then('91411105012040000120')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Договор аренды земельного участка под строительство (МС)')))
+              .then('91411105024040000120')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Договор аренды земельного участка под временными объектами (ГС)')))
+              .then('91411105012040000120')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Договор аренды земельного участка под капитальными объектами (ГС)')))
+              .then('91411105012040000120')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Договор аренды земельного участка под временными объектами (МС)')))
+              .then('91411105024040000120')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Договор аренды земельного участка под капитальными объектами (МС)')))
+              .then('91411105024040000120')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Соглашение об установлении сервитута (ГС)')))
+              .then('91411105312040000120')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Публичный сервитут (ГС)')))
+              .then('91411105312040000120')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Соглашение об установлении сервитута (МС)')))
+              .then('91411105324040000120')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Публичный сервитут (МС)')))
+              .then('91411105324040000120')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Договор купли-продажи земельного участка (ГС)')))
+              .then('91411406012040000430')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Соглашение о перераспределении (ГС)')))
+              .then('91411406012040000430')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Договор купли-продажи земельного участка (МС)')))
+              .then('91411406024040000430')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Соглашение о перераспределении (МС)')))
+              .then('91411406024040000430')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Неосновательное обогащение (ГС)')))
+              .then('91411105012040000120')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Неосновательное обогащение (МС)')))
+              .then('91411105024040000120')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Договор аренды недвижимого имущества (аренда балансодержателей)')))
+              .then('нар/счетб/д0000000')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Договор аренды движимого имущества (аренда балансодержателей)')))
+              .then('нар/счетб/д0000000')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Договор безвозмездного пользования на имущество')))
+              .then('нар/счетб/д0000000')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Договор безвозмездного пользования земельным участком')))
+              .then('нар/счетб/д0000000')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Договор безвозмездного пользования на имущество (балансодержателей)')))
+              .then('нар/счетб/д0000000')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Договор безвозмездного пользования земельным участком (ГС)')))
+              .then('нар/счетб/д0000000')
+            .when(Source.___paycards[:cinc_a].eq(nil).and(Source.___paycards[:___name_type_a].eq('Договор безвозмездного пользования земельным участком (МС)')))
+              .then('нар/счетб/д0000000')
+            .else(Source.___paycards[:cinc_a])
+
+          manager = Arel::SelectManager.new(Database.source_engine)
+          manager.project([
+            Source.___paycards[:id],
+            cinc_a.as("cinc_a"),
+          ])
+          manager.from(Source.___paycards)
+        end
+
+        begin
+          sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
+          sliced_rows.each do |rows|
+            columns = rows.map(&:keys).uniq.flatten
+            values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
+        
+            sql = <<~SQL
+              update ___paycards set 
+                ___paycards.cinc_a = values_table.cinc_a
+              from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
+              where ___paycards.id = values_table.id
+            SQL
+
+            result = Source.execute_query(sql)
+            result.do
+          end
+          
+          Rake.info "Задача '#{ t }' успешно выполнена."
+        rescue StandardError => e
+          Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."
+          Rake.info "Текст запроса \"#{ sql }\""
+
+          exit
+        end
+      end
+
+    end
+  end
+end
