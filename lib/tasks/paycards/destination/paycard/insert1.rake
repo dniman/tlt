@@ -78,6 +78,7 @@ namespace :paycards do
                 de_d: row["de_d"],
                 de_m: row["de_m"],
                 de_t: row["de_t"],
+                date_f: row["date_f"].strftime("%Y%m%d"),
               }
             end
             sql = Destination::Paycard.insert_query(rows: insert, condition: "paycard.row_id = values_table.row_id")

@@ -115,7 +115,8 @@ namespace :paycards do
               .then(Source.paydocs[:calendar_type_id])
 
           su_d = Source.paydocs[:finedate]
-          su_t = Source.paydocs[:finemonth]
+          su_t = Source.paydocs[:finemonths]
+          su_m =
             Arel::Nodes::Case.new()
             .when(Source.paydocs[:kind].eq('A'))
             .then(1)
@@ -134,7 +135,7 @@ namespace :paycards do
           Source.movesets
             .project(
               Source.movesets[:___agreement_id],
-              row_number.as("order"),
+              row_number.as("___order"),
               number.as("number"),
               cte_table[:sincedate],
               cte_table[:enddate],
@@ -154,7 +155,7 @@ namespace :paycards do
               kbk_inc_pr[:name].as("cinc_pr"),
               nach_p.as("nach_p"),
               peny_t.as("peny_t"),
-              peny_distibution.as("peny_distribution"),
+              peny_distribution.as("peny_distribution"),
               peny_f.as("peny_f"),
               su_d.as("su_d"),
               su_m.as("su_m"),
@@ -207,7 +208,7 @@ namespace :paycards do
             rows.each do |row|
               insert << {
                 ___agreement_id: row["___agreement_id"],
-                order: row["order"],
+                ___order: row["___order"],
                 number: row["number"],
                 sincedate: row["sincedate"].nil? ? nil : row["sincedate"].strftime("%Y%m%d"),
                 enddate: row["enddate"].nil? ? nil : row["enddate"].strftime("%Y%m%d"),
@@ -227,15 +228,15 @@ namespace :paycards do
                 cinc_pr: row["cinc_pr"],
                 nach_p: row["nach_p"],
                 peny_t: row["peny_t"],
-                peny_distribution: row["peny_distibution"],
+                peny_distribution: row["peny_distribution"],
                 peny_f: row["peny_f"],
                 su_d: row["su_d"],
                 su_m: row["su_m"],
                 su_t: row["su_t"],
-                su_d: row["de_d"],
-                su_m: row["de_m"],
-                su_t: row["de_t"],
-                date_f: row["date_f"],
+                de_d: row["de_d"],
+                de_m: row["de_m"],
+                de_t: row["de_t"],
+                date_f: row["date_f"].strftime("%Y%m%d"),
               }
             end
 

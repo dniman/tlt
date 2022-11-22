@@ -7,6 +7,7 @@ namespace :paycards do
           create table ___paycards(
             id int identity(1,1) 
             ,___agreement_id int
+            ,___order int
             ,number varchar(100)
             ,sincedate datetime
             ,enddate datetime
@@ -33,7 +34,7 @@ namespace :paycards do
             ,su_d int
             ,de_t int
             ,de_m int
-            ,de_t int
+            ,de_d int
             ,date_f datetime
           )
         SQL
