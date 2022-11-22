@@ -25,6 +25,16 @@ namespace :paycards do
             ,cinc_p varchar(50)
             ,cinc_pr varchar(50)
             ,nach_p int
+            ,peny_t int
+            ,peny_distribution int
+            ,peny_f numeric(20,6)
+            ,su_t int
+            ,su_m int
+            ,su_d int
+            ,de_t int
+            ,de_m int
+            ,de_t int
+            ,date_f datetime
           )
         SQL
         

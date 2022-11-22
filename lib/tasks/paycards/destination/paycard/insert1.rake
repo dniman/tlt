@@ -27,6 +27,16 @@ namespace :paycards do
             Arel.sql("'NO'").as("first_period"),
             Source.___paycards[:nach_p],
             Source.___paycards[:___sum_rtype],
+            Source.___paycards[:peny_t],
+            Source.___paycards[:peny_distribution],
+            Source.___paycards[:peny_f],
+            Source.___paycards[:su_d],
+            Source.___paycards[:su_m],
+            Source.___paycards[:su_t],
+            Source.___paycards[:de_d],
+            Source.___paycards[:de_m],
+            Source.___paycards[:de_t],
+            Source.___paycards[:date_f],
           ])
           .join(Source.___ids).on(Source.___ids[:id].eq(Source.___paycards[:id]).and(Source.___ids[:table_id].eq(Source::Paycards.table_id)))
           .where(Source.___paycards[:prev_moveperiod_id].eq(nil))
@@ -59,6 +69,15 @@ namespace :paycards do
                 first_period: row["first_period"],
                 nach_p: row["nach_p"],
                 sum_rtype: row["___sum_rtype"],
+                peny_t: row["peny_t"],
+                peny_distribution: row["peny_distribution"],
+                peny_f: row["peny_f"],
+                su_d: row["su_d"],
+                su_m: row["su_m"],
+                su_t: row["su_t"],
+                de_d: row["de_d"],
+                de_m: row["de_m"],
+                de_t: row["de_t"],
               }
             end
             sql = Destination::Paycard.insert_query(rows: insert, condition: "paycard.row_id = values_table.row_id")

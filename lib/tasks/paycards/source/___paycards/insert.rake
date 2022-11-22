@@ -85,13 +85,56 @@ namespace :paycards do
             .when(Source.paydocs[:periodical].eq('T')).then(5)
             .when(Source.paydocs[:periodical].eq('N')).then(6)
 
+          peny_t =
+            Arel::Nodes::Case.new()
+            .when(Source.paydocs[:fine_kind].in(['F', 'P']))
+              .then(1)
+            .when(Source.paydocs[:fine_kind].eq('R'))
+              .then(2)
+
+          peny_distribution = 
+            Arel::Nodes::Case.new()
+            .when(Source.paydocs[:fine_kind].eq('F'))
+              .then(
+                Arel::Nodes::Case.new()
+                .when(Source.paydocs[:calendar_type_id].eq(360)).then(2)
+                .when(Source.paydocs[:calendar_type_id].eq(365)).then(3)
+              )
+            .when(Source.paydocs[:fine_kind].eq('P'))
+              .then(1)
+            .when(Source.paydocs[:fine_kind].eq('R'))
+              .then(1)
+
+          peny_f =
+            Arel::Nodes::Case.new()
+            .when(Source.paydocs[:fine_kind].eq('F'))
+              .then(nil)
+            .when(Source.paydocs[:fine_kind].eq('P'))
+              .then(Source.paydocs[:finepercent])
+            .when(Source.paydocs[:fine_kind].eq('R'))
+              .then(Source.paydocs[:calendar_type_id])
+
+          su_d = Source.paydocs[:finedate]
+          su_t = Source.paydocs[:finemonth]
+            Arel::Nodes::Case.new()
+            .when(Source.paydocs[:kind].eq('A'))
+            .then(1)
+            .when(Source.paydocs[:kind].eq('B'))
+            .then(2)
+            .when(Source.paydocs[:kind].eq('P'))
+            .then(3)
+            .else(2)
+          
+          date_f = Arel::Nodes::NamedFunction.new('isnull', [ Source.paydocs[:creditfirstpaydate], cte_table[:sincedate] ]) 
+
           kbk_inc_a = Source.cls_kbk.alias("kbk_inc_a")
           kbk_inc_p = Source.cls_kbk.alias("kbk_inc_p")
           kbk_inc_pr = Source.cls_kbk.alias("kbk_inc_pr")
-
+          
           Source.movesets
             .project(
               Source.movesets[:___agreement_id],
+              row_number.as("order"),
               number.as("number"),
               cte_table[:sincedate],
               cte_table[:enddate],
@@ -110,6 +153,16 @@ namespace :paycards do
               kbk_inc_p[:name].as("cinc_p"),
               kbk_inc_pr[:name].as("cinc_pr"),
               nach_p.as("nach_p"),
+              peny_t.as("peny_t"),
+              peny_distibution.as("peny_distribution"),
+              peny_f.as("peny_f"),
+              su_d.as("su_d"),
+              su_m.as("su_m"),
+              su_t.as("su_t"),
+              su_d.as("de_d"),
+              su_m.as("de_m"),
+              su_t.as("de_t"),
+              date_f.as("date_f"),
             )
             .with(moveperiods_cte)
             .join(cte_table, Arel::Nodes::OuterJoin).on(cte_table[:moveset_id].eq(Source.movesets[:id]))
@@ -154,6 +207,7 @@ namespace :paycards do
             rows.each do |row|
               insert << {
                 ___agreement_id: row["___agreement_id"],
+                order: row["order"],
                 number: row["number"],
                 sincedate: row["sincedate"].nil? ? nil : row["sincedate"].strftime("%Y%m%d"),
                 enddate: row["enddate"].nil? ? nil : row["enddate"].strftime("%Y%m%d"),
@@ -172,6 +226,16 @@ namespace :paycards do
                 cinc_p: row["cinc_p"],
                 cinc_pr: row["cinc_pr"],
                 nach_p: row["nach_p"],
+                peny_t: row["peny_t"],
+                peny_distribution: row["peny_distibution"],
+                peny_f: row["peny_f"],
+                su_d: row["su_d"],
+                su_m: row["su_m"],
+                su_t: row["su_t"],
+                su_d: row["de_d"],
+                su_m: row["de_m"],
+                su_t: row["de_t"],
+                date_f: row["date_f"],
               }
             end
 
