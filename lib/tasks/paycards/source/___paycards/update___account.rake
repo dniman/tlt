@@ -82,6 +82,7 @@ namespace :paycards do
               'Неосновательное обогащение (ГС)',
               'Неосновательное обогащение (МС)',
               'Неосновательное обогащение',
+              'Договор аренды земельного участка',
             ]))).then(link2)
             .when(Source.___paycards[:___account].eq(nil).and(Source.___paycards[:___name_type_a].matches("%ОРПР%")))
               .then(link3)
