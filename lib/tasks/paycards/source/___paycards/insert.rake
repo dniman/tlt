@@ -87,6 +87,7 @@ namespace :paycards do
 
           kbk_inc_a = Source.cls_kbk.alias("kbk_inc_a")
           kbk_inc_p = Source.cls_kbk.alias("kbk_inc_p")
+          kbk_inc_pr = Source.cls_kbk.alias("kbk_inc_pr")
 
           Source.movesets
             .project(
@@ -107,6 +108,7 @@ namespace :paycards do
               Source.paydocs[:paysize].as("summa2"),
               kbk_inc_a[:name].as("cinc_a"),
               kbk_inc_p[:name].as("cinc_p"),
+              kbk_inc_pr[:name].as("cinc_pr"),
               nach_p.as("nach_p"),
             )
             .with(moveperiods_cte)
@@ -121,6 +123,7 @@ namespace :paycards do
             .join(Source.movetype, Arel::Nodes::OuterJoin).on(Source.movetype[:id].eq(Source.movesets[:movetype_id]))
             .join(kbk_inc_a, Arel::Nodes::OuterJoin).on(kbk_inc_a[:id].eq(Source.paydocs[:main_cls_kbk_id]))
             .join(kbk_inc_p, Arel::Nodes::OuterJoin).on(kbk_inc_p[:id].eq(Source.paydocs[:fine_cls_kbk_id]))
+            .join(kbk_inc_pr, Arel::Nodes::OuterJoin).on(kbk_inc_pr[:id].eq(Source.paydocs[:percent_cls_kbk_id]))
             .where(
               Source.movesets[:___agreement_id].not_eq(nil)
               .and(Source.movetype[:name].in([
@@ -167,6 +170,7 @@ namespace :paycards do
                 summa2: row["summa2"].nil? ? 0 : row["summa2"],
                 cinc_a: row["cinc_a"],
                 cinc_p: row["cinc_p"],
+                cinc_pr: row["cinc_pr"],
                 nach_p: row["nach_p"],
               }
             end
