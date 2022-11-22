@@ -551,7 +551,7 @@ namespace :agreements do
             .when(
               movetype_name.eq('Аренда')
                 .and(name.eq('Договор купли-продажи'))
-            ).then(link37)
+            ).then(link30)
             .when(
               movetype_name.eq('Аренда')
                 .and(name.not_in([
@@ -865,7 +865,7 @@ namespace :agreements do
             .when(
               movetype_name.eq('Аренда')
                 .and(name.eq('Договор купли-продажи'))
-            ).then(link37)
+            ).then(link30)
             .when(
               movetype_name.eq('Аренда')
                 .and(name.not_in([
@@ -925,7 +925,7 @@ namespace :agreements do
             .when(
               movetype_name.eq('Аренда')
                 .and(name.eq('Договор купли-продажи'))
-            ).then(link37)
+            ).then(link30)
             .when(
               movetype_name.eq('Аренда')
                 .and(name.not_in([
