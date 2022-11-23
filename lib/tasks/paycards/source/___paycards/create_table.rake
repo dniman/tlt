@@ -36,6 +36,12 @@ namespace :paycards do
             ,de_m int
             ,de_d int
             ,date_f datetime
+            ,amount_period int
+            ,credit_rev_sum numeric(20,2)
+            ,date_f_pay datetime
+            ,summa_f numeric(20,2)
+            ,prc decimal(4,2)
+            ,credit_year_days int
           )
         SQL
         

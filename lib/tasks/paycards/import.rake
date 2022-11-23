@@ -3,7 +3,8 @@ namespace :paycards do
 
     task :tasks do
       Rake.invoke_task 'paycards:source:___paycards:create_table'
-      Rake.invoke_task 'paycards:source:___paycards:insert'
+      Rake.invoke_task 'paycards:source:___paycards:insert1'
+      Rake.invoke_task 'paycards:source:___paycards:insert2'
       Rake.invoke_task 'paycards:source:___ids:insert1'
       Rake.invoke_task 'paycards:source:___ids:insert2'
       

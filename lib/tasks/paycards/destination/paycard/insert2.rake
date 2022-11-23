@@ -38,6 +38,12 @@ namespace :paycards do
             Source.___paycards[:de_m],
             Source.___paycards[:de_t],
             Source.___paycards[:date_f],
+            Source.___paycards[:amount_period],
+            Source.___paycards[:credit_rev_sum],
+            Source.___paycards[:date_f_pay],
+            Source.___paycards[:prc],
+            Source.___paycards[:summa_f],
+            Source.___paycards[:credit_year_days],
           ])
           .join(Source.___ids).on(
             Source.___ids[:id].eq(Source.___paycards[:id])
@@ -82,7 +88,15 @@ namespace :paycards do
                 de_d: row["de_d"],
                 de_m: row["de_m"],
                 de_t: row["de_t"],
-                date_f: row["date_f"].strftime("%Y%m%d"),
+                date_f: row["date_f"].nil? ? nil : row["date_f"].strftime("%Y%m%d"),
+                sum_recalc: 1,
+                date_e_inclusive: 1,
+                amount_period: row["amount_period"],
+                credit_rev_sum: row["credit_rev_sum"],
+                date_f_pay: row["date_f_pay"].nil? ? nil : row["date_f_pay"].strftime("%Y%m%d"),
+                prc: row["prc"],
+                summa_f: row["summa_f"],
+                credit_year_days: row["credit_year_days"],
               }
             end
             sql = Destination::Paycard.insert_query(rows: insert, condition: "paycard.row_id = values_table.row_id")

@@ -2,7 +2,7 @@ namespace :paycards do
   namespace :source do
     namespace :___paycards do
 
-      task :insert do |t|
+      task :insert2 do |t|
         def query
           cte_table = Arel::Table.new(:cte_table)
           
@@ -124,9 +124,34 @@ namespace :paycards do
             .then(2)
             .when(Source.paydocs[:kind].eq('P'))
             .then(3)
-            .else(2)
           
           date_f = Arel::Nodes::NamedFunction.new('isnull', [ Source.paydocs[:creditfirstpaydate], cte_table[:sincedate] ]) 
+  
+          prc =
+            Arel::Nodes::Case.new()
+            .when(
+              Source.paydocs[:creditpercent].not_eq(nil)
+            ).then(
+              Arel::Nodes::Multiplication.new(
+                Source.paydocs[:creditpercent],
+                Arel::Nodes::SqlLiteral.new('3')
+              )
+            )
+
+          credit_year_days =
+            Arel::Nodes::Case.new()
+            .when(Source.paydocs[:calendar_type_id].eq(365)).then(2)
+            .when(Source.paydocs[:calendar_type_id].eq(366)).then(3)
+
+          summa_f =
+            Arel::Nodes::Case.new()
+            .when(
+              Arel::Nodes::NamedFunction.new('isnull', [ Source.paydocs[:paysize], Arel::Nodes::SqlLiteral.new('0') ]).gt(0)
+              .and(Arel::Nodes::NamedFunction.new('isnull', [ Source.paydocs[:creditsize], Arel::Nodes::SqlLiteral.new('0') ]).gteq(0))
+              .and(Arel::Nodes::NamedFunction.new('isnull', [ Source.paydocs[:paysize], Arel::Nodes::SqlLiteral.new('0') ]).gteq(
+                Arel::Nodes::NamedFunction.new('isnull', [ Source.paydocs[:creditsize], Arel::Nodes::SqlLiteral.new('0') ])
+              ))
+            ).then(Arel::Nodes::Subtraction.new(Source.paydocs[:paysize], Source.paydocs[:creditsize]))
 
           kbk_inc_a = Source.cls_kbk.alias("kbk_inc_a")
           kbk_inc_p = Source.cls_kbk.alias("kbk_inc_p")
@@ -164,6 +189,12 @@ namespace :paycards do
               su_m.as("de_m"),
               su_t.as("de_t"),
               date_f.as("date_f"),
+              Source.paydocs[:creditcountmonth].as("amount_period"),
+              Source.paydocs[:creditsize].as("credit_rev_sum"),
+              Source.paydocs[:oncepaydate].as("date_f_pay"),
+              prc.as("prc"),
+              summa_f.as("summa_f"),
+              credit_year_days.as("credit_year_days"),
             )
             .with(moveperiods_cte)
             .join(cte_table, Arel::Nodes::OuterJoin).on(cte_table[:moveset_id].eq(Source.movesets[:id]))
@@ -180,6 +211,7 @@ namespace :paycards do
             .join(kbk_inc_pr, Arel::Nodes::OuterJoin).on(kbk_inc_pr[:id].eq(Source.paydocs[:percent_cls_kbk_id]))
             .where(
               Source.movesets[:___agreement_id].not_eq(nil)
+              .and(cte_table[:prev_moveperiod_id].not_eq(nil))
               .and(Source.movetype[:name].in([
                     'Аренда', 
                     'Аренда балансодержателей', 
@@ -236,7 +268,13 @@ namespace :paycards do
                 de_d: row["de_d"],
                 de_m: row["de_m"],
                 de_t: row["de_t"],
-                date_f: row["date_f"].strftime("%Y%m%d"),
+                date_f: row["date_f"].nil? ? nil : row["date_f"].strftime("%Y%m%d"),
+                amount_period: row["amount_period"],
+                credit_rev_sum: row["credit_rev_sum"],
+                date_f_pay: row["date_f_pay"].nil? ? nil : row["date_f_pay"].strftime("%Y%m%d"),
+                prc: row["prc"],
+                summa_f: row["summa_f"],
+                credit_year_days: row["credit_year_days"],
               }
             end
 
