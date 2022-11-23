@@ -82,7 +82,7 @@ namespace :paycards do
             .when(Source.paydocs[:periodical].eq('Q')).then(2)
             .when(Source.paydocs[:periodical].eq('H')).then(3)
             .when(Source.paydocs[:periodical].eq('G')).then(4)
-            .when(Source.paydocs[:periodical].eq('T')).then(5)
+            .when(Source.paydocs[:periodical].eq('T')).then(1)
             .when(Source.paydocs[:periodical].eq('N')).then(6)
 
           peny_t =
