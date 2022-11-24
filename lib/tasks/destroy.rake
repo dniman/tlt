@@ -35,6 +35,8 @@ namespace :destroy do
     'source:initialize', 
     'destination:initialize',
 
+    'paycardobjects:destroy',
+    'paycards:destroy',
     'agreements:destroy',
     'objects:destroy',
     'corrs:destroy',
