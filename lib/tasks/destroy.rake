@@ -45,6 +45,22 @@ namespace :destroy do
     Rake::Task['destroy:delete_completed_tasks'].invoke()
     Rake::Task['destroy:final_message'].invoke("Удаление данных в базе назначения завершено.")
   end
+  
+  # Удаление объектов карточек договоров 
+  namespace :paycardobjects do
+    desc 'Запуск задачи удаления объектов карточек договоров в базе назначения'
+    task :start => [
+      'set_logger', 
+      'source:initialize', 
+      'destination:initialize',
+
+      'paycardobjects:destroy',
+    ] do 
+
+      Rake::Task['destroy:delete_completed_tasks'].invoke("paycardobjects:%")
+      Rake::Task['destroy:final_message'].invoke("Удаление объектов карточек договоров в базе назначения завершено.")
+    end
+  end
 
   # Удаление карточек договоров 
   namespace :paycards do

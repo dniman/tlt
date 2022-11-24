@@ -31,6 +31,7 @@ module Destination
     :paycard,
     :s_account,
     :s_nazn,
+    :paycardobjects,
   ]
 
   class << self

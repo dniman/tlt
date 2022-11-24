@@ -77,6 +77,9 @@ module Source
     :paydocs,
     :___paycards,
     :func_using,
+    :___paycardobjects,
+    :objectusing,
+    :usingprupose,
   ]
   
   class << self
