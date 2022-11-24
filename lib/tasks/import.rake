@@ -255,21 +255,6 @@ namespace :import do
       end
     end
    
-    # Импорт судов внутреннего плавания
-    namespace :inland_waterway_vessel do
-      desc 'Запуск задачи импорта судов внутреннего плавания в базу назначения'
-      task :start => [
-        'set_logger', 
-        'source:initialize', 
-        'destination:initialize',
-
-        'objects:inland_waterway_vessel:import',
-      ] do 
-
-        Rake::Task['import:final_message'].invoke("Импорт объектов в базу назначения завершен.")
-      end
-    end
-   
     # Импорт объектов интеллектуальной собственности
     namespace :exright_intellprop do
       desc 'Запуск задачи импорта объектов интеллектуальной собственности в базу назначения'
