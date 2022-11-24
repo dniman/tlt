@@ -76,6 +76,7 @@ module Source
     :obligationtype,
     :paydocs,
     :___paycards,
+    :func_using,
   ]
   
   class << self

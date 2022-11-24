@@ -30,6 +30,7 @@ module Destination
     :agreement,
     :paycard,
     :s_account,
+    :s_nazn,
   ]
 
   class << self
