@@ -55,7 +55,8 @@ namespace :paycards do
               'Договор социального найма',
               'Договор специализированного найма',
               'Неосновательное обогащение (Здания)',
-              'Концессия'
+              'Концессия',
+              'Договор купли-продажи'
             ]))).then(link1)
             .when(Source.___paycards[:___account].eq(nil).and(Source.___paycards[:___name_type_a].in([
               'Соглашение об установлении сервитута (ГС)',
@@ -83,6 +84,7 @@ namespace :paycards do
               'Неосновательное обогащение (МС)',
               'Неосновательное обогащение',
               'Договор аренды земельного участка',
+              'Договор аренды'
             ]))).then(link2)
             .when(Source.___paycards[:___account].eq(nil).and(Source.___paycards[:___name_type_a].matches("%ОРПР%")))
               .then(link3)
