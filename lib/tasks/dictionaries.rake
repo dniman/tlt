@@ -119,7 +119,7 @@ namespace :dictionaries do
     'dictionaries:func_nazn_ei:destroy',
     'dictionaries:storage_authority_ei:destroy',
     'dictionaries:state:destroy',
-    'dictionaries:dictionary_nazn_rent:destroy',
+    #'dictionaries:dictionary_nazn_rent:destroy',
   ] 
 
 end 
