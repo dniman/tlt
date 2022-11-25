@@ -363,6 +363,21 @@ namespace :import do
       Rake::Task['import:final_message'].invoke("Импорт начислений в базу назначения завершен.")
     end
   end
+  
+  # Импорт платежей
+  namespace :payments do
+    desc 'Запуск задачи импорта платежей в базу назначения'
+    task :start => [
+      'set_logger', 
+      'source:initialize', 
+      'destination:initialize',
+
+      'payments:import',
+    ] do 
+
+      Rake::Task['import:final_message'].invoke("Импорт платежей в базу назначения завершен.")
+    end
+  end
 
 end
 
