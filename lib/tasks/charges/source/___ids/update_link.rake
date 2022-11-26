@@ -4,14 +4,15 @@ namespace :charges do
 
       task :update_link do |t|
         def query
-          Destination.paycardobjects
+          Destination.charge
           .project(
-            Destination.paycardobjects[:link], 
-            Destination.paycardobjects[:row_id], 
+            Destination.charge[:link], 
+            Destination.charge[:row_id], 
           )
         end
 
         begin
+          sql = ""
           sliced_rows = Destination.execute_query(query.to_sql).each_slice(1000).to_a
           sliced_rows.each do |rows|
             columns = rows.map(&:keys).uniq.flatten
