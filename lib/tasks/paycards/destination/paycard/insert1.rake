@@ -43,6 +43,7 @@ namespace :paycards do
             Source.___paycards[:prc],
             Source.___paycards[:summa_f],
             Source.___paycards[:credit_year_days],
+            Source.___paycards[:___account],
           ])
           .join(Source.___ids).on(Source.___ids[:id].eq(Source.___paycards[:id]).and(Source.___ids[:table_id].eq(Source::Paycards.table_id)))
           .where(Source.___paycards[:prev_moveperiod_id].eq(nil))
@@ -94,6 +95,7 @@ namespace :paycards do
                 prc: row["prc"],
                 summa_f: row["summa_f"],
                 credit_year_days: row["credit_year_days"],
+                account: row["___account"],
               }
             end
             sql = Destination::Paycard.insert_query(rows: insert, condition: "paycard.row_id = values_table.row_id")
