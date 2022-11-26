@@ -80,6 +80,7 @@ module Source
     :___paycardobjects,
     :objectusing,
     :usingprupose,
+    :charges,
   ]
   
   class << self

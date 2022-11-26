@@ -54,7 +54,11 @@ namespace :paycards do
               .then('нар/счетб/д0000000')
             .when(Source.___paycards[:cinc_p].eq(nil).and(Source.___paycards[:___name_type_a].eq('Договор безвозмездного пользования земельным участком (МС)')))
               .then('нар/счетб/д0000000')
-            .else(Source.___paycards[:cinc_p])
+            .else(
+              Arel::Nodes::Case.new()
+              .when(Source.___paycards[:cinc_p].eq(nil)).then('93811607090050000140')
+              .else(Source.___paycards[:cinc_p])
+            )
 
           manager = Arel::SelectManager.new(Database.source_engine)
           manager.project([

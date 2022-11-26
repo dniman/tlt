@@ -32,6 +32,13 @@ module Destination
     :s_account,
     :s_nazn,
     :paycardobjects,
+    :s_baccount,
+    :___charge_save,
+    :rem3,
+    :rem2_app,
+    :rem2,
+    :rem1,
+    :charge,
   ]
 
   class << self
@@ -182,6 +189,15 @@ module Destination
         sql = "select oktmo from mss_mo where mo_link = (select link from mss_current_user_mo_access())"
         execute_query(sql).entries.first["oktmo"]
       end
+    end
+    
+    def table_exists?(name)
+      sql =<<~SQL
+        select case when object_id(N'[dbo].[#{ name }]') is null then 0 else 1 end
+      SQL
+
+      result = execute_query(sql).entries.first.values.first
+      result == 1
     end
   end
 end

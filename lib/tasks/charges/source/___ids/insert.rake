@@ -4,10 +4,10 @@ namespace :charges do
 
       task :insert do |t|
         def query
-          Source.___paycardobjects
+          Source.charges
           .project([
-            Arel.sql("table_id = #{Source::Paycardobjects.table_id}"),
-            Source.___paycardobjects[:id],
+            Arel.sql("table_id = #{Source::Charges.table_id}"),
+            Source.charges[:id],
             Arel.sql("row_id = newid()")
           ])
         end
