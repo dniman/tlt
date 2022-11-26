@@ -1,14 +1,11 @@
 namespace :charges do
   namespace :destination do
-    namespace :rem2_app do
+    namespace :rem1 do
 
-      task :delete do |t|
+      task :disable_trigger_rem1_insert_entry do |t|
         def query
           <<~QUERY
-            delete rem2_app
-            from ___charge_save
-              join rem2 on rem2.row_id = ___charge_save.row_id
-              join rem2_app on rem2_app.link_up = rem2.link
+            disable trigger rem1_insert_entry on rem1
           QUERY
         end
 

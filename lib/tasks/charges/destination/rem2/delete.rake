@@ -4,25 +4,20 @@ namespace :charges do
 
       task :delete do |t|
         def query
-          Source.___ids
-          .project(Source.___ids[:row_id])
-          where(Source.___ids[:table_id].eq(Source::Charges.table_id))
+          <<~QUERY
+            delete rem2
+            from ___charge_save
+              join rem2 on rem2.row_id = ___charge_save.row_id
+          QUERY
         end
 
         begin
-          sql = ""
-          sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-          sliced_rows.each do |rows|
-            sql = Destination::Rem2.delete_query(rows)
-            result = Destination.execute_query(sql)
-            result.do
-            sql.clear
-          end
+          Destination.execute_query(query).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e
           Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."
-          Rake.info "Текст запроса \"#{ sql }\""
+          Rake.info "Текст запроса \"#{ query }\""
 
           exit
         end

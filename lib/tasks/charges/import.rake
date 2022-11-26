@@ -11,6 +11,7 @@ namespace :charges do
       Rake.invoke_task 'charges:destination:___charge_save:update_imns'
       Rake.invoke_task 'charges:destination:___charge_save:update_ccorr1'
       Rake.invoke_task 'charges:destination:___charge_save:update_corr_n1'
+      Rake.invoke_task 'charges:destination:rem1:disable_trigger_rem1_insert_entry'
       Rake.invoke_task 'charges:destination:charge:insert'
       Rake.invoke_task 'charges:source:___ids:update_link'
       Rake.invoke_task 'charges:destination:___charge_save:drop_table'

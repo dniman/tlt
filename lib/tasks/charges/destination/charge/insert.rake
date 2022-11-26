@@ -22,13 +22,12 @@ namespace :charges do
         end
         
         begin
-          res = Destination.execute_query(query)
-          res.do
+          Destination.execute_query(query).do
 
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e
           Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."
-          Rake.info "Текст запроса \"#{ sql }\""
+          Rake.info "Текст запроса \"#{ query }\""
 
           exit
         end

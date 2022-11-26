@@ -56,7 +56,7 @@ namespace :paycards do
               .then('нар/счетб/д0000000')
             .else(
               Arel::Nodes::Case.new()
-              .when(Source.___paycards[:cinc_a].eq(nil)).then('90311406012040000430')
+              .when(Source.___paycards[:cinc_a].eq(nil)).then('нар/счетб/д0000000')
               .else(Source.___paycards[:cinc_a])
             )
             
