@@ -2,6 +2,8 @@ namespace :objects do
   namespace :land do
     namespace :destroy do
       task :tasks => [
+        'objects:land:destination:___del_ids:insert',
+
         'objects:land:destination:mss_objects_app:link_param:add_hist:delete',
         'objects:land:destination:mss_objects_app:link_param:land_pl:delete',
         'objects:land:destination:mss_objects_app:link_param:obj_name_hist:delete',
@@ -79,6 +81,7 @@ namespace :objects do
         'objects:land:source:___ids:drop___adr_str',
         'objects:land:destination:mss_adr:delete',
         'objects:land:source:states:drop___link_state',
+        'objects:land:destination:___del_ids:delete',
       ]
     end
   end

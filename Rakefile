@@ -36,7 +36,7 @@ module Rake
       @logger.info message
     end
 
-    def invoke_task(task_name)
+    def invoke_task(task_name, flag='DELETABLE')
       args = []
       args.insert 0, SecureRandom.uuid.to_s 
 
@@ -49,7 +49,7 @@ module Rake
         Rake.application.invoke_task task_name
         
 
-        Destination::SNote.task_insert(task_name)
+        Destination::SNote.task_insert(task_name, flag)
       }
       task = Rake::Task.define_task(*args, &body)
       task.invoke(task_name)

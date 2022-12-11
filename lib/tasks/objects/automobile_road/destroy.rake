@@ -3,6 +3,8 @@ namespace :objects do
     namespace :destroy do
 
       task :tasks => [
+        'objects:automobile_road:destination:___del_ids:insert',
+
         # История адреса
         'objects:automobile_road:destination:mss_objects_app:link_param:add_hist:delete',
         
@@ -194,6 +196,7 @@ namespace :objects do
         'objects:automobile_road:destination:mss_adr:delete',
         'objects:automobile_road:source:___ids:drop___add_hist',
         'objects:automobile_road:source:___ids:drop___adr_str',
+        'objects:automobile_road:destination:___del_ids:delete',
         
         'objects:automobile_road:destination:mss_objects:drop___house_material',
         'objects:automobile_road:destination:mss_objects:drop___link_house_material',

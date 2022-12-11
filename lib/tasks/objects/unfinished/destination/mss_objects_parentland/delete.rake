@@ -4,22 +4,32 @@ namespace :objects do
       namespace :mss_objects_parentland do
 
         task :delete do |t|
-          begin
-            subquery = 
-              Destination.mss_objects
-              .project(Destination.mss_objects[:link])
-              .join(Destination.mss_objects_types, Arel::Nodes::OuterJoin).on(Destination.mss_objects_types[:link].eq(Destination.mss_objects[:link_type]))
-              .where(Destination.mss_objects_types[:code].eq('UNFINISHED'))
+          def query
+            condition1 = Destination.mss_objects_parentland.create_on(Destination.mss_objects[:link].eq(Destination.mss_objects_parentland[:link_child]))
+            condition2 = Destination.___del_ids.create_on(
+              Destination.___del_ids[:row_id].eq(Destination.mss_objects[:row_id])
+              .and(Destination.___del_ids[:table_id].eq(Source::Objects.table_id))
+            )
 
-            manager = Arel::DeleteManager.new(Database.destination_engine)
-            manager.from (Destination.mss_objects_parentland)
-            manager.where(Destination.mss_objects_parentland[:link_child].in(subquery))
-                
-            Destination.execute_query(manager.to_sql).do
+            source = Arel::Nodes::JoinSource.new(
+              Destination.mss_objects_parentland, [
+                Destination.mss_objects_parentland.create_join(Destination.mss_objects, condition1),
+                Destination.mss_objects.create_join(Destination.___del_ids, condition2),
+              ]
+            )
+            
+            manager = Arel::DeleteManager.new Database.destination_engine
+            manager.from(source)
+            manager.to_sql
+          end
+
+          begin
+            Destination.execute_query(query).do
+
             Rake.info "Задача '#{ t }' успешно выполнена."
           rescue StandardError => e
             Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."
-            Rake.info "Текст запроса \"#{ sql }\""
+            Rake.info "Текст запроса \"#{ query }\""
 
             exit
           end

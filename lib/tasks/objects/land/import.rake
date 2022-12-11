@@ -3,7 +3,7 @@ namespace :objects do
     namespace :import do
 
       task :tasks do
-        Rake.invoke_task 'objects:land:source:___ids:insert'
+        Rake.invoke_task 'objects:land:source:___ids:insert', 'UNDELETABLE'
         Rake.invoke_task 'objects:land:destination:mss_objects:add___oktmo' 
         Rake.invoke_task 'objects:land:destination:mss_objects:add___kadastrno' 
         Rake.invoke_task 'objects:land:destination:mss_objects:add___land_ownership' 

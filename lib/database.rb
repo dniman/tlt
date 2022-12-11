@@ -51,8 +51,32 @@ module Database
     @connections.first
   end
 
+  def self.source2
+    @source2 ||= 
+      begin
+      connection_settings = config["source"].each_with_object({}) do |i,h| 
+        h[i[0].to_sym] = i[1]
+        h[:mode] = :dblib
+        h
+        end
+        ActiveRecord::ConnectionAdapters::SQLServerAdapter.new_client(connection_settings)
+      end
+  end
+
   def self.destination
     @connections.last
+  end
+
+  def self.destination2
+    @destination2 ||= 
+      begin
+      connection_settings = config["destination"].each_with_object({}) do |i,h| 
+        h[i[0].to_sym] = i[1]
+        h[:mode] = :dblib
+        h
+        end
+        ActiveRecord::ConnectionAdapters::SQLServerAdapter.new_client(connection_settings)
+      end
   end
 
   def self.source_engine

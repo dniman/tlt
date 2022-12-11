@@ -2,6 +2,8 @@ namespace :corrs do
   namespace :destroy do
 
     task :tasks => [
+      'corrs:destination:___del_ids:insert',
+
       # Параметры физического лица
       # Фамилия
       'corrs:destination:s_corr_app:object:column_person_fm:delete',
@@ -24,6 +26,7 @@ namespace :corrs do
 
       'corrs:destination:mss_objcorr:delete',
       'corrs:destination:s_corr:delete',
+      'corrs:destination:___del_ids:delete',
       'corrs:source:___ids:drop___link',
     ]
 

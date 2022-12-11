@@ -35,7 +35,7 @@ module Source
           .where(Arel.sql(condition)).exists.not
         sql << " where #{query.to_sql}"
       end
-      sql
+      sql << " OPTION (QUERYTRACEON 8780)"
     end
 
     def self.update_query(row:)

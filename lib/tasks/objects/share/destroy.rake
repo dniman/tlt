@@ -2,6 +2,8 @@ namespace :objects do
   namespace :share do
     namespace :destroy do
       task :tasks => [
+        'objects:share:destination:___del_ids:insert',
+
         # История наименования
         'objects:share:destination:mss_objects_app:link_param:obj_name_hist:delete',
 
@@ -54,6 +56,7 @@ namespace :objects do
 
         # Удаление основного объекта
         'objects:share:destination:mss_objects:delete',
+        'objects:share:destination:___del_ids:delete',
         
         # Удаление доп колонок
         'objects:share:source:states:drop___link_state',

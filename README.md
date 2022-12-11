@@ -13,3 +13,5 @@ cd tlt
 gem install tiny_tds -- --with-freetds-dir=C:\freetds-1.00
 
 bundle install
+
+During the development was added the trace flag 8649 forces the query optimizer to generate a parallel plan for the same query.

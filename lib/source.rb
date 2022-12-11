@@ -81,11 +81,18 @@ module Source
     :objectusing,
     :usingprupose,
     :charges,
+    :payments,
+    :ifs_assigned_payments,
+    :ifs_payments,
+    :___moving_operations,
+    :___mss_movescausesb_di,
+    :___mss_dict_decommission_causes,
   ]
   
   class << self
     def execute_query(query)
-      Database.execute_query(Database.source, query)
+      connection = Database.source.sqlsent? ? Database.source2 : Database.source
+      Database.execute_query(connection, query)
     end
 
     def set_engine!

@@ -3,7 +3,7 @@ namespace :objects do
     namespace :import do
 
       task :tasks do 
-        Rake.invoke_task 'objects:movable_other:source:___ids:insert'
+        Rake.invoke_task 'objects:movable_other:source:___ids:insert', 'UNDELETABLE'
         Rake.invoke_task 'objects:movable_other:destination:mss_objects:add___dict_name' 
         Rake.invoke_task 'objects:movable_other:destination:mss_objects:add___group' 
         Rake.invoke_task 'objects:movable_other:destination:mss_objects:add___section' 

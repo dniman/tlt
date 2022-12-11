@@ -2,8 +2,12 @@ namespace :paycards do
   namespace :destroy do
 
     task :tasks => [
-      'paycards:destination:paycard:delete1',
+      'paycards:destination:___del_ids:insert',
+      'paycards:destination:paycard:admin_fk_disable',
       'paycards:destination:paycard:delete2',
+      'paycards:destination:paycard:delete1',
+      'paycards:destination:paycard:admin_fk_enable',
+      'paycards:destination:___del_ids:delete',
 
       'paycards:source:___paycards:drop___link_up',
       'paycards:source:___paycards:drop___link_a',

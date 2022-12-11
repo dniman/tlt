@@ -2,7 +2,7 @@ namespace :corrs do
   namespace :import do
 
     task :tasks do
-      Rake.invoke_task 'corrs:source:___ids:insert'
+      Rake.invoke_task 'corrs:source:___ids:insert', 'UNDELETABLE'
       Rake.invoke_task 'corrs:source:___ids:add___link'
       Rake.invoke_task 'corrs:destination:s_corr:insert'
       Rake.invoke_task 'corrs:source:___ids:update_link'

@@ -58,8 +58,7 @@ namespace :charges do
           sql = ""
           insert = []
 
-          sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-          sliced_rows.each do |rows|
+          Source.execute_query(query.to_sql).each_slice(1000) do |rows|
             rows.each do |row|
               insert << {
                 link: row["link"],
@@ -80,6 +79,7 @@ namespace :charges do
                 row_id: row["row_id"],
               }
             end
+            
             sql = Destination::ChargeSave.insert_query(rows: insert, condition: "___charge_save.row_id = values_table.row_id")
             result = Destination.execute_query(sql)
             result.do

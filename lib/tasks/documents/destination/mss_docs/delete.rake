@@ -4,33 +4,27 @@ namespace :documents do
 
       task :delete do |t|
         def query
-          Source.___ids
-          .project(Source.___ids[:link])
-          .where(Source.___ids[:table_id].eq(Source::Documents.table_id)
-            .and(Source.___ids[:link].not_eq(nil))
+          condition = Destination.___del_ids.create_on(
+            Destination.___del_ids[:row_id].eq(Destination.mss_docs[:row_id])
+            .and(Destination.___del_ids[:table_id].eq(Source::Documents.table_id))
           )
+          source = Arel::Nodes::JoinSource.new(Destination.mss_docs,
+                                               [Destination.mss_docs.create_join(Destination.___del_ids, condition)])
+          
+          manager = Arel::DeleteManager.new Database.destination_engine
+          manager.from(source)
+          manager.to_sql
         end
 
         begin
-          Destination.execute_query('disable trigger mss_docs_mrchng on mss_docs')
-
-          sql = ""
-          sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-          sliced_rows.each do |rows|
-            sql = Destination::MssDocs.delete_query(links: rows.map(&:values))
-            result = Destination.execute_query(sql)
-            result.do
-            sql.clear
-          end
+          Destination.execute_query(query)
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e
           Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."
-          Rake.info "Текст запроса \"#{ sql }\""
+          Rake.info "Текст запроса \"#{ query }\""
 
           exit
-        ensure
-          Destination.execute_query('enable trigger mss_docs_mrchng on mss_docs')
         end
       end
 

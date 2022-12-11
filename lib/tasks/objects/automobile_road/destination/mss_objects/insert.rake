@@ -109,8 +109,7 @@ namespace :objects do
           begin
             sql = ""
             insert = []
-            sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-            sliced_rows.each do |rows|
+            Source.execute_query(query.to_sql).each_slice(1000) do |rows|
               rows.each do |row|
                 insert << {
                   name: (row["name"].nil? || row["name"].strip.empty?) ? row["description"]&.strip : row["name"]&.strip,
@@ -175,6 +174,7 @@ namespace :objects do
                   ___group_im: row["___group_im"]&.strip,
                 }
               end
+
               sql = Destination::MssObjects.insert_query(rows: insert, condition: "mss_objects.row_id = values_table.row_id")
               result = Destination.execute_query(sql)
               result.do

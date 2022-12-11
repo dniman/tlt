@@ -9,7 +9,8 @@ namespace :corrs do
               Source.clients
               .project([
                 Source.___ids[:link],
-                Source.privates[:born_date]
+                Source.privates[:born_date],
+                Arel.sql("#{ Destination::SCorrApp::COLUMN_PERSON_BIRTHDATE }").as("object"),
               ])
               .join(Source.___ids).on(Source.___ids[:id].eq(Source.clients[:id]).and(Source.___ids[:table_id].eq(Source::Clients.table_id)))
               .join(Source.client_types, Arel::Nodes::OuterJoin).on(Source.client_types[:id].eq(Source.clients[:client_types_id]))
@@ -22,21 +23,20 @@ namespace :corrs do
             begin
               sql = ""
               insert = []
-              sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-              sliced_rows.each do |rows|
+              condition =<<~SQL
+                s_corr_app.link_up = values_table.link_up
+                  and s_corr_app.value = values_table.value
+                  and s_corr_app.object = values_table.object
+              SQL
+
+              Source.execute_query(query.to_sql).each_slice(1000) do |rows|
                 rows.each do |row|
                   insert << {
                     link_up: row["link"],
                     value: row["born_date"].strftime("%Y%m%d"),
-                    object: Destination::SCorrApp::COLUMN_PERSON_BIRTHDATE,
+                    object: row["object"],
                   }
                 end
-
-                condition =<<~SQL
-                  s_corr_app.link_up = values_table.link_up
-                    and s_corr_app.value = values_table.value
-                    and s_corr_app.object = values_table.object
-                SQL
 
                 sql = Destination::SCorrApp.insert_query(rows: insert, condition: condition)
                 result = Destination.execute_query(sql)

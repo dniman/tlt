@@ -22,6 +22,7 @@ namespace :corrs do
               .project([
                 Source.___ids[:link],
                 Arel.sql(fl_pers.to_s).as("corr_dict"),
+                Arel.sql("#{ Destination::TCorrDict::REFERENCE_CORR_TYPE }").as("object"),
               ])
               .join(Source.___ids).on(Source.___ids[:id].eq(Source.clients[:id]).and(Source.___ids[:table_id].eq(Source::Clients.table_id)))
               .join(Source.client_types, Arel::Nodes::OuterJoin).on(Source.client_types[:id].eq(Source.clients[:client_types_id]))
@@ -33,6 +34,7 @@ namespace :corrs do
               .project([
                 Source.___ids[:link],
                 Arel.sql(ul.to_s).as("corr_dict"),
+                Arel.sql("#{ Destination::TCorrDict::REFERENCE_CORR_TYPE }").as("object"),
               ])
               .join(Source.___ids).on(Source.___ids[:id].eq(Source.clients[:id]).and(Source.___ids[:table_id].eq(Source::Clients.table_id)))
               .join(Source.client_types, Arel::Nodes::OuterJoin).on(Source.client_types[:id].eq(Source.clients[:client_types_id]))
@@ -44,6 +46,7 @@ namespace :corrs do
               .project([
                 Source.___ids[:link],
                 Arel.sql(fl.to_s).as("corr_dict"),
+                Arel.sql("#{ Destination::TCorrDict::REFERENCE_CORR_TYPE }").as("object"),
               ])
               .join(Source.___ids).on(Source.___ids[:id].eq(Source.clients[:id]).and(Source.___ids[:table_id].eq(Source::Clients.table_id)))
               .join(Source.client_types, Arel::Nodes::OuterJoin).on(Source.client_types[:id].eq(Source.clients[:client_types_id]))
@@ -67,21 +70,20 @@ namespace :corrs do
           begin
             sql = ""
             insert = []
-            sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-            sliced_rows.each do |rows|
+            condition =<<~SQL
+              t_corr_dict.corr_dict = values_table.corr_dict
+                and t_corr_dict.corr = values_table.corr
+                and t_corr_dict.object = values_table.object
+            SQL
+
+            Source.execute_query(query.to_sql).each_slice(1000) do |rows|
               rows.each do |row|
                 insert << {
                   corr_dict: row["corr_dict"],
                   corr: row["link"],
-                  object: Destination::TCorrDict::REFERENCE_CORR_TYPE,
+                  object: row["object"],
                 }
               end
-
-              condition =<<~SQL
-                t_corr_dict.corr_dict = values_table.corr_dict
-                  and t_corr_dict.corr = values_table.corr
-                  and t_corr_dict.object = values_table.object
-              SQL
 
               sql = Destination::TCorrDict.insert_query(rows: insert, condition: condition)
               result = Destination.execute_query(sql)

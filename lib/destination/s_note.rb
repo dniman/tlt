@@ -27,6 +27,7 @@ module Destination
           .where(Arel.sql(condition)).exists.not
         sql << " where #{query.to_sql}"
       end
+      sql << " OPTION (QUERYTRACEON 8780)"
       sql
     end
     
@@ -44,13 +45,14 @@ module Destination
       result
     end
 
-    def self.task_insert(task_name)
+    def self.task_insert(task_name, flag)
       condition =<<~SQL
         s_note.value = values_table.value
           and s_note.object = values_table.object
       SQL
       
       insert = [{
+        code: flag,
         value: task_name,
         object: COMPLETED_TASKS,
         row_id: Arel.sql('newid()'),

@@ -4,16 +4,16 @@ namespace :payments do
 
       task :update_link do |t|
         def query
-          Destination.paycardobjects
+          Destination.extrem
           .project(
-            Destination.paycardobjects[:link], 
-            Destination.paycardobjects[:row_id], 
+            Destination.extrem[:link], 
+            Destination.extrem[:row_id], 
           )
         end
 
         begin
-          sliced_rows = Destination.execute_query(query.to_sql).each_slice(1000).to_a
-          sliced_rows.each do |rows|
+          Destination.execute_query(query.to_sql).each_slice(1000) do |rows|
+          
             columns = rows.map(&:keys).uniq.flatten
             values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
         

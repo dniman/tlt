@@ -10,6 +10,7 @@ namespace :corrs do
               Source.clients[:inn],
               Source.clients[:name].as("sname"),
               Source.privates[:fullname].as("name"),
+              Arel.sql("#{ Destination::SCorr::DICTIONARY_CORR }").as("object"),
               Source.___ids[:row_id],
             ])
             .join(Source.___ids).on(Source.___ids[:id].eq(Source.clients[:id]).and(Source.___ids[:table_id].eq(Source::Clients.table_id)))
@@ -23,6 +24,7 @@ namespace :corrs do
               Source.clients[:inn],
               Source.clients[:name].as("sname"),
               Source.organisations[:name],
+              Arel.sql("#{ Destination::SCorr::DICTIONARY_CORR }").as("object"),
               Source.___ids[:row_id],
             ])
             .join(Source.___ids).on(Source.___ids[:id].eq(Source.clients[:id]).and(Source.___ids[:table_id].eq(Source::Clients.table_id)))
@@ -41,17 +43,17 @@ namespace :corrs do
         begin
           sql = ""
           insert = []
-          sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-          sliced_rows.each do |rows|
+          Source.execute_query(query.to_sql).each_slice(1000) do |rows|
             rows.each do |row|
               insert << {
                 inn: row["inn"].nil? ? nil : row["inn"].strip[0,13],
                 sname: row["sname"].nil? ? row["name"].strip[0, 160] : row["sname"].strip[0,160],
                 name: row["name"].nil? ? row["sname"].strip[0, 250] : row["name"].strip[0,250],
-                object: Destination::SCorr::DICTIONARY_CORR,
+                object: row["object"],
                 row_id: row["row_id"],
               }
             end
+
             sql = Destination::SCorr.insert_query(rows: insert, condition: "s_corr.row_id = values_table.row_id")
             result = Destination.execute_query(sql)
             result.do

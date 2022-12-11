@@ -6,12 +6,6 @@ namespace :objects do
           namespace :emmitstock do
 
             task :delete do |t|
-              def link_type_query
-                Destination.mss_objects_types 
-                .project(Destination.mss_objects_types[:link])
-                .where(Destination.mss_objects_types[:code].eq("SHARE"))
-              end
-              
               def link_corr_type_query(code)
                 Destination.s_corr
                 .project(Destination.s_corr[:link])
@@ -21,42 +15,37 @@ namespace :objects do
               end
 
               def query
-                link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
+                emmitstock = Destination.execute_query(link_corr_type_query('EMMITSTOCK').to_sql).entries.first["link"]
 
-                ___ids2 = Source.___ids.alias('___ids2')
+                condition1 = Destination.t_corr_dict.create_on(Destination.mss_objects[:link_corr].eq(Destination.t_corr_dict[:corr]))
+                condition2 = Destination.___del_ids.create_on(
+                  Destination.___del_ids[:row_id].eq(Destination.mss_objects[:row_id])
+                  .and(Destination.___del_ids[:table_id].eq(Source::Objects.table_id))
+                )
 
-                Source.objects
-                .project([
-                  ___ids2[:link].as("corr"),
-                ])
-                .join(Source.___ids).on(Source.___ids[:id].eq(Source.objects[:id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
-                .join(Source.objshares).on(Source.objshares[:objects_id].eq(Source.objects[:id]))
-                .join(Source.organisations, Arel::Nodes::OuterJoin).on(Source.organisations[:id].eq(Source.objshares[:organisations_id]))
-                .join(Source.clients, Arel::Nodes::OuterJoin).on(Source.clients[:id].eq(Source.organisations[:clients_id]))
-                .join(___ids2, Arel::Nodes::OuterJoin).on(___ids2[:id].eq(Source.clients[:id]).and(___ids2[:table_id].eq(Source::Clients.table_id)))
-                .where(Source.___ids[:link_type].eq(link_type))
+                source = Arel::Nodes::JoinSource.new(
+                  Destination.t_corr_dict, [
+                    Destination.t_corr_dict.create_join(Destination.mss_objects, condition1),
+                    Destination.mss_objects.create_join(Destination.___del_ids, condition2),
+                  ]
+                )
+                
+                manager = Arel::DeleteManager.new Database.destination_engine
+                manager.from(source)
+                manager.where(
+                  Destination.t_corr_dict[:corr_dict].eq(emmitstock)
+                  .and(Destination.t_corr_dict[:object].eq(Destination::SObjects.obj_id('REFERENCE_CORR_TYPE')))
+                )
+                manager.to_sql
               end
 
               begin
-                emmitstock = Destination.execute_query(link_corr_type_query('EMMITSTOCK').to_sql).entries.first["link"]
-                sql = ""
-                sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-                sliced_rows.each do |rows|
-                  condition =<<~SQL
-                    t_corr_dict.corr_dict = #{ emmitstock }
-                      and t_corr_dict.object = #{ Destination::SObjects.obj_id('REFERENCE_CORR_TYPE') }
-                  SQL
-
-                  sql = Destination::TCorrDict.delete_query(links: rows.map(&:values), condition: condition)
-                  result = Destination.execute_query(sql)
-                  result.do
-                  sql.clear
-                end
+                Destination.execute_query(query).do
                 
                 Rake.info "Задача '#{ t }' успешно выполнена."
               rescue StandardError => e
                 Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."
-                Rake.info "Текст запроса \"#{ sql }\""
+                Rake.info "Текст запроса \"#{ query }\""
 
                 exit
               end

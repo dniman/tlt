@@ -22,6 +22,10 @@ namespace :destroy do
       manager
         .where(Destination.s_note[:object].eq(Destination::SNote::COMPLETED_TASKS)
           .and(Destination.s_note[:value].matches(args[:like]))
+          .and(
+            Destination.s_note[:code].eq('DELETABLE')
+            .or(Destination.s_note[:code].eq(nil))
+          )
         )
     end
 
@@ -34,7 +38,9 @@ namespace :destroy do
     'destroy:set_logger',
     'source:initialize', 
     'destination:initialize',
-
+    
+    'payments:destroy',
+    'charges:destroy',
     'paycardobjects:destroy',
     'paycards:destroy',
     'agreements:destroy',

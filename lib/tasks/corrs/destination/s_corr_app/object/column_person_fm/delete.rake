@@ -6,33 +6,31 @@ namespace :corrs do
 
           task :delete do |t|
             def query
-              Source.___ids
-              .project(Source.___ids[:link])
-              .join(Source.clients).on(Source.clients[:id].eq(Source.___ids[:id]))
-              .join(Source.client_types, Arel::Nodes::OuterJoin).on(Source.client_types[:id].eq(Source.clients[:client_types_id]))
-              .where(Source.___ids[:table_id].eq(Source::Clients.table_id)
-                .and(Source.client_types[:name].eq('Физическое лицо'))
+              condition1 = Destination.s_corr_app.create_on(Destination.s_corr[:link].eq(Destination.s_corr_app[:link_up]))
+              condition2 = Destination.___del_ids.create_on(
+                Destination.___del_ids[:row_id].eq(Destination.s_corr[:row_id])
+                .and(Destination.___del_ids[:table_id].eq(Source::Clients.table_id))
               )
+              source = Arel::Nodes::JoinSource.new(
+                Destination.s_corr_app, [
+                  Destination.s_corr_app.create_join(Destination.s_corr, condition1),
+                  Destination.s_corr.create_join(Destination.___del_ids, condition2)
+                ]
+              )
+              
+              manager = Arel::DeleteManager.new Database.destination_engine
+              manager.from(source)
+              manager.where(Destination.s_corr_app[:object].eq(Destination::SCorrApp::COLUMN_PERSON_FM))
+              manager.to_sql
             end
 
             begin
-              sql = ""
-              sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-              sliced_rows.each do |rows|
-                condition =<<~SQL
-                  s_corr_app.object = #{ Destination::SCorrApp::COLUMN_PERSON_FM }
-                SQL
-
-                sql = Destination::SCorrApp.delete_query(links: rows.map(&:values), condition: condition)
-                result = Destination.execute_query(sql)
-                result.do
-                sql.clear
-              end
+              Destination.execute_query(query).do
               
               Rake.info "Задача '#{ t }' успешно выполнена."
             rescue StandardError => e
               Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."
-              Rake.info "Текст запроса \"#{ sql }\""
+              Rake.info "Текст запроса \"#{ query }\""
 
               exit
             end

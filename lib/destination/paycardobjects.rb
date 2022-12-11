@@ -28,6 +28,7 @@ module Destination
         sql << " where #{query.to_sql}"
       end
       sql
+      sql << " OPTION (QUERYTRACEON 8780)"
     end
 
     def self.delete_query(links:)

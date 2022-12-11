@@ -20,6 +20,8 @@ namespace :destination do
             Rake.info "Объект 'COMPLETED_TASKS' в базе данных '#{ Database.config['destination']['database'] }' успешно создан."
           rescue StandardError => e
             Rake.error "Ошибка при создании объекта 'COMPLETED_TASKS' в базе данных '#{ Database.config['destination']['database'] }' - #{e}."
+
+            exit
           end
         else
           Rake.info "Объект 'COMPLETED_TASKS' в базе данных '#{ Database.config['destination']['database'] }' уже существует."

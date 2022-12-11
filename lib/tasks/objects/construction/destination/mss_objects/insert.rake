@@ -5,7 +5,7 @@ namespace :objects do
 
         task :insert do |t|
           def link_type_query
-            Destination.mss_objects_types 
+            Destination.mss_objects_types
             .project(Destination.mss_objects_types[:link])
             .where(Destination.mss_objects_types[:code].eq("CONSTRUCTION"))
           end
@@ -13,7 +13,7 @@ namespace :objects do
           def query
             link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
 
-            select_one = 
+            select_one =
               Source.objects
               .project([
                 Source.objects[:description],
@@ -51,8 +51,8 @@ namespace :objects do
               .join(Source.spr_zhkh_vid, Arel::Nodes::OuterJoin).on(Source.spr_zhkh_vid[:id].eq(Source.objects[:vid_zhkh_id]))
               .join(Source.monumenttypes, Arel::Nodes::OuterJoin).on(Source.monumenttypes[:id].eq(Source.objects[:mntype_id]))
               .where(Source.___ids[:link_type].eq(link_type))
-            
-            select_two = 
+
+            select_two =
               Source.objects
               .project([
                 Source.objects[:description],
@@ -97,7 +97,7 @@ namespace :objects do
               .join(Source.road_category, Arel::Nodes::OuterJoin).on(Source.road_category[:id].eq(Source.enginf[:road_category_id]))
               .join(Source.infgroups, Arel::Nodes::OuterJoin).on(Source.infgroups[:id].eq(Source.enginf[:infgroups_id]))
               .where(Source.___ids[:link_type].eq(link_type))
-              
+
             union = select_one.union :all, select_two
             union_table = Arel::Table.new :union_table
 
@@ -109,8 +109,8 @@ namespace :objects do
           begin
             sql = ""
             insert = []
-            sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-            sliced_rows.each do |rows|
+            Source.execute_query(query.to_sql).each_slice(1000) do |rows|
+
               rows.each do |row|
                 insert << {
                   name: (row["name"].nil? || row["name"].strip.empty?) ? row["description"]&.strip : row["name"]&.strip,
@@ -122,46 +122,46 @@ namespace :objects do
                   object: Destination::MssObjects::DICTIONARY_MSS_OBJECTS,
                   row_id: row["row_id"],
                   ___kadastrno:
-                    begin 
-                      if (row["kadastrno"]&.index('/').nil? & row["kadastrno"]&.index('-').nil?) 
-                        row["kadastrno"]&.strip 
-                      else 
+                    begin
+                      if (row["kadastrno"]&.index('/').nil? & row["kadastrno"]&.index('-').nil?)
+                        row["kadastrno"]&.strip
+                      else
                         nil
                       end
                     end,
                   ___house_material: row["___house_material"]&.strip,
-                  ___is_immovable: 
+                  ___is_immovable:
                     begin
-                      case row["isrealestate"]&.strip 
-                      when 'Y' 
-                        'Да' 
+                      case row["isrealestate"]&.strip
+                      when 'Y'
+                        'Да'
                       when 'N'
                         'Нет'
                       end
                     end,
-                  ___wow_obj: 
+                  ___wow_obj:
                     begin
-                      case row["is_sign"]&.strip 
-                      when 'Y' 
-                        'Да' 
+                      case row["is_sign"]&.strip
+                      when 'Y'
+                        'Да'
                       when 'N'
                         'Нет'
                       end
                     end,
-                  ___soc_zn_obj: 
+                  ___soc_zn_obj:
                     begin
                       case row["is_social"]&.strip
-                      when 'Y' 
-                        'Да' 
+                      when 'Y'
+                        'Да'
                       when 'N'
                         'Нет'
                       end
                     end,
-                  ___obj_zkx: 
+                  ___obj_zkx:
                     begin
                       case row["is_zhkh"]&.strip
-                      when 'Y' 
-                        'Да' 
+                      when 'Y'
+                        'Да'
                       when 'N'
                         'Нет'
                       end
@@ -181,7 +181,7 @@ namespace :objects do
               insert.clear
               sql.clear
             end
-            
+
             Rake.info "Задача '#{ t }' успешно выполнена."
           rescue StandardError => e
             Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."

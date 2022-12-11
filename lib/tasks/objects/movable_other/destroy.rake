@@ -2,6 +2,8 @@ namespace :objects do
   namespace :movable_other do
     namespace :destroy do
       task :tasks => [
+        'objects:movable_other:destination:___del_ids:insert',
+
         # Адрес последнего местоположения
         'objects:movable_other:destination:mss_objects_app:link_param:last_loc_addr:delete',
         
@@ -66,6 +68,7 @@ namespace :objects do
 
         # Удаление основного объекта
         'objects:movable_other:destination:mss_objects:delete',
+        'objects:movable_other:destination:___del_ids:delete',
 
          # Удаление дополнительных колонок
         'objects:movable_other:source:___ids:drop___last_loc_addr',

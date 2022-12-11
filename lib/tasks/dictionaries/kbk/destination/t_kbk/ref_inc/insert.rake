@@ -21,8 +21,8 @@ namespace :dictionaries do
               insert = []
               index = 1
               
-              sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-              sliced_rows.each do |rows|
+              Source.execute_query(query.to_sql).each_slice(1000) do |rows|
+              
                 rows.each do |row|
                   insert << {
                     ref1: row["___link_kbk_inc"],

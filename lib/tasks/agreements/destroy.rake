@@ -2,7 +2,9 @@ namespace :agreements do
   namespace :destroy do
 
     task :tasks => [
+      'agreements:destination:___del_ids:insert',
       'agreements:destination:agreement:delete',
+      'agreements:destination:___del_ids:delete',
 
       'agreements:source:movesets:drop___agreement_id',
       'agreements:source:movesets:drop___ground_owner',

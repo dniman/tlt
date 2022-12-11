@@ -3,7 +3,7 @@ namespace :objects do
     namespace :import do
 
       task :tasks do 
-        Rake.invoke_task 'objects:transport:source:___ids:insert'
+        Rake.invoke_task 'objects:transport:source:___ids:insert', 'UNDELETABLE'
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___type_transport' 
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___automaker' 
         Rake.invoke_task 'objects:transport:destination:mss_objects:add___color_kuzov' 

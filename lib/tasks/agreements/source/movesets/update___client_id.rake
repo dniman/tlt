@@ -210,8 +210,8 @@ namespace :agreements do
           sql = ''
 
           [query2, query1].each do |query|
-            sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-            sliced_rows.each do |rows|
+            Source.execute_query(query.to_sql).each_slice(1000) do |rows|
+            
               columns = rows.map(&:keys).uniq.flatten
               values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
           

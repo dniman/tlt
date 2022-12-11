@@ -2,6 +2,8 @@ namespace :objects do
   namespace :transport do
     namespace :destroy do
       task :tasks => [
+        'objects:transport:destination:___del_ids:insert',
+
         # История наименования
         'objects:transport:destination:mss_objects_app:link_param:obj_name_hist:delete',
         
@@ -126,6 +128,7 @@ namespace :objects do
         ###
         # Удаление основного объекта
         'objects:transport:destination:mss_objects:delete',
+        'objects:transport:destination:___del_ids:delete',
 
          # Удаление дополнительных колонок
         'objects:transport:destination:mss_objects:drop___type_transport',

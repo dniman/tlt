@@ -39,11 +39,23 @@ module Destination
     :rem2,
     :rem1,
     :charge,
+    :___sys_extrem,
+    :extrem,
+    :mss_moves_key,
+    :mss_v_moves_types,
+    :mss_movs,
+    :mss_moves_causes_b,
+    :___del_ids,
+    :mss_decommission_causes,
+    :entry,
+    :t_rem1,
+    :t_charge,
   ]
 
   class << self
     def execute_query(query)
-      Database.execute_query(Database.destination, query)
+      connection = Database.destination.sqlsent? ? Database.destination2 : Database.destination
+      Database.execute_query(connection, query)
     end
 
     def set_engine!
@@ -166,6 +178,42 @@ module Destination
       Destination::SCorrApp.const_set(
         :COLUMN_PERSON_SEX,
         Destination::SObjects.obj_id('COLUMN_PERSON_SEX')
+      )
+
+      Destination::MssOacRowstates.const_set(
+        :CURRENT,
+        begin
+          query = 
+            Destination.mss_oac_rowstates
+            .project(Destination.mss_oac_rowstates[:link])
+            .where(Destination.mss_oac_rowstates[:code].eq("current"))
+          Destination.execute_query(query.to_sql).entries.first["link"]
+        end
+      )
+      
+      Destination::TRem1.const_set(
+        :DOCUMENTS_ADM_VIP,
+        Destination::SObjects.obj_id('DOCUMENTS_ADM_VIP')
+      )
+      
+      Destination::TRem1.const_set(
+        :CHAIN_PP_ADM,
+        Destination::SObjects.obj_id('CHAIN_PP_ADM')
+      )
+      
+      Destination::Rem1.const_set(
+        :DOCUMENTS_0401003A,
+        Destination::SObjects.obj_id('DOCUMENTS_0401003A')
+      )
+      
+      Destination::TCharge.const_set(
+        :REFERENCE_PAY_CREDIT,
+        Destination::SObjects.obj_id('REFERENCE_PAY_CREDIT')
+      )
+      
+      Destination::TCharge.const_set(
+        :REFERENCE_PAY_DEBIT,
+        Destination::SObjects.obj_id('REFERENCE_PAY_DEBIT')
       )
 
       nil

@@ -195,6 +195,9 @@ namespace :paycards do
               prc.as("prc"),
               summa_f.as("summa_f"),
               credit_year_days.as("credit_year_days"),
+              Source.movesets[:is_multi_subject],
+              Source.movesets[:in_contract],
+              Source.movesets[:in_progress],
             )
             .with(moveperiods_cte)
             .join(cte_table, Arel::Nodes::OuterJoin).on(cte_table[:moveset_id].eq(Source.movesets[:id]))
@@ -235,8 +238,8 @@ namespace :paycards do
           sql = ""
           insert = []
 
-          sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-          sliced_rows.each do |rows|
+          Source.execute_query(query.to_sql).each_slice(1000) do |rows|
+          
             rows.each do |row|
               insert << {
                 ___agreement_id: row["___agreement_id"],
@@ -275,6 +278,9 @@ namespace :paycards do
                 prc: row["prc"],
                 summa_f: row["summa_f"],
                 credit_year_days: row["credit_year_days"],
+                is_multi_subject: row["is_multi_subject"],
+                in_contract: row["in_contract"],
+                in_progress: row["in_progress"],
               }
             end
 

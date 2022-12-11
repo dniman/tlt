@@ -54,8 +54,8 @@ namespace :paycards do
           sql = ""
           insert = []
 
-          sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-          sliced_rows.each do |rows|
+          Source.execute_query(query.to_sql).each_slice(1000) do |rows|
+          
             rows.each do |row|
               insert << {
                 object: row["object"],
@@ -97,7 +97,8 @@ namespace :paycards do
                 credit_year_days: row["credit_year_days"],
                 account: row["___account"],
               }
-            end
+            end 
+            
             sql = Destination::Paycard.insert_query(rows: insert, condition: "paycard.row_id = values_table.row_id")
             result = Destination.execute_query(sql)
             result.do

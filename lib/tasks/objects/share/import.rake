@@ -3,7 +3,7 @@ namespace :objects do
     namespace :import do
 
       task :tasks do 
-        Rake.invoke_task 'objects:share:source:___ids:insert'
+        Rake.invoke_task 'objects:share:source:___ids:insert', 'UNDELETABLE'
 
         Rake.invoke_task 'objects:share:destination:mss_objects:insert'
         Rake.invoke_task 'objects:share:source:___ids:update_link'

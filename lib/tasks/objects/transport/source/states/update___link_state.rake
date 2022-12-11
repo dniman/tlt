@@ -30,8 +30,8 @@ namespace :objects do
           begin
             link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
 
-            sliced_rows = Destination.execute_query(query.to_sql).each_slice(1000).to_a
-            sliced_rows.each do |rows|
+            Destination.execute_query(query.to_sql).each_slice(1000) do |rows|
+            
               columns = rows.map(&:keys).uniq.flatten
               values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
           

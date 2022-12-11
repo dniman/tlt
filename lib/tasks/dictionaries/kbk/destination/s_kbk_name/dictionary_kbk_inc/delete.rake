@@ -16,8 +16,8 @@ namespace :dictionaries do
             begin
               sql = ""
 
-              sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-              sliced_rows.each do |rows|
+              Source.execute_query(query.to_sql).each_slice(1000) do |rows|
+              
                 sql = Destination::SKbkName.delete_query(links: rows.map(&:values))
                 result = Destination.execute_query(sql)
                 result.do

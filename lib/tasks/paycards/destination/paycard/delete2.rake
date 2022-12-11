@@ -4,37 +4,26 @@ namespace :paycards do
 
       task :delete2 do |t|
         def query
-          subquery =
-            Source.___ids
-            .project(Source.___ids[:id])
-            .join(Source.___paycards).on(
-              Source.___paycards[:id].eq(Source.___ids[:id])
-              .and(Source.___ids[:table_id].eq(Source::Paycards.table_id))
-            )
-            .where(Source.___paycards[:prev_moveperiod_id].eq(nil))
-          
-          Source.___ids
-          .project(Source.___ids[:link])
-          .where(
-            Source.___ids[:table_id].eq(Source::Paycards.table_id)
-            .and(Arel::Nodes::In.new(Source.___ids[:id], subquery))
+          condition = Destination.___del_ids.create_on(
+            Destination.___del_ids[:link].eq(Destination.paycard[:link])
+            .and(Destination.___del_ids[:table_id].eq(Source::Paycards.table_id))
           )
+          source = Arel::Nodes::JoinSource.new(Destination.paycard,
+                                               [Destination.paycard.create_join(Destination.___del_ids, condition)])
+          
+          manager = Arel::DeleteManager.new Database.destination_engine
+          manager.from(source)
+          manager.where(Destination.paycard[:link_up].not_eq(nil))
+          manager.to_sql
         end
 
         begin
-          sql = ""
-          sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-          sliced_rows.each do |rows|
-            sql = Destination::Paycard.delete_query(links: rows.map(&:values))
-            result = Destination.execute_query(sql)
-            result.do
-            sql.clear
-          end
+          Destination.execute_query(query).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e
           Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."
-          Rake.info "Текст запроса \"#{ sql }\""
+          Rake.info "Текст запроса \"#{ query }\""
 
           exit
         end

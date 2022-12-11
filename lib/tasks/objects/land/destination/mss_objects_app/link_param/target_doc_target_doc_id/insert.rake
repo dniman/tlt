@@ -37,8 +37,7 @@ namespace :objects do
                 insert = []
                 link_param = Destination.execute_query(link_param_query('TARGET_DOC_TARGET_DOC_ID').to_sql).entries.first["link"]
                 
-                sliced_rows = Destination.execute_query(query.to_sql).each_slice(1000).to_a
-                sliced_rows.each do |rows|
+                Destination.execute_query(query.to_sql).each_slice(1000) do |rows|
                   rows.each do |row|
                     insert << {
                       link_up: row["link"],

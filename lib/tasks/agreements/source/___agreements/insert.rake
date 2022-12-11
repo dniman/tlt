@@ -84,9 +84,14 @@ namespace :agreements do
         begin
           sql = ""
           insert = []
+          condition =<<~SQL
+            ___agreements.movetype_name = values_table.movetype_name
+              and isnull(___agreements.document_id, 0) = isnull(values_table.document_id, 0)
+              and ___agreements.number = values_table.number
+              and ___agreements.name = values_table.name
+          SQL
           
-          sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-          sliced_rows.each do |rows|
+          Source.execute_query(query.to_sql).each_slice(1000) do |rows|
             rows.each do |row|
               insert << {
                 movetype_name: row["movetype_name"],
@@ -96,13 +101,6 @@ namespace :agreements do
               }
             end
         
-            condition =<<~SQL
-              ___agreements.movetype_name = values_table.movetype_name
-                and isnull(___agreements.document_id, 0) = isnull(values_table.document_id, 0)
-                and ___agreements.number = values_table.number
-                and ___agreements.name = values_table.name
-            SQL
-
             sql = Source::Agreements.insert_query(rows: insert, condition: condition)
             result = Source.execute_query(sql)
             result.do

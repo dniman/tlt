@@ -2,6 +2,8 @@ namespace :objects do
   namespace :partnership do
     namespace :destroy do
       task :tasks => [
+        'objects:partnership:destination:___del_ids:insert',
+
         # История наименования
         'objects:partnership:destination:mss_objects_app:link_param:obj_name_hist:delete',
 
@@ -53,6 +55,7 @@ namespace :objects do
 
         # Удаление основного объекта
         'objects:partnership:destination:mss_objects:delete',
+        'objects:partnership:destination:___del_ids:delete',
         
         # Удаление доп колонок
         'objects:partnership:source:states:drop___link_state',

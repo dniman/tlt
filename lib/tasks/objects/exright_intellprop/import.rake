@@ -3,7 +3,7 @@ namespace :objects do
     namespace :import do
 
       task :tasks do 
-        Rake.invoke_task 'objects:exright_intellprop:source:___ids:insert'
+        Rake.invoke_task 'objects:exright_intellprop:source:___ids:insert', 'UNDELETABLE'
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___intellprop_sp' 
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___func_nazn_ei' 
         Rake.invoke_task 'objects:exright_intellprop:destination:mss_objects:add___storage_authority_ei' 

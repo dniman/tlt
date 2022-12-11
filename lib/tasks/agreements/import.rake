@@ -2,8 +2,8 @@ namespace :agreements do
   namespace :import do
 
     task :tasks do
-      Rake.invoke_task 'agreements:source:___agreements:create_table'
-      Rake.invoke_task 'agreements:source:___agreements:insert'
+      Rake.invoke_task 'agreements:source:___agreements:create_table', 'UNDELETABLE'
+      Rake.invoke_task 'agreements:source:___agreements:insert', 'UNDELETABLE'
       Rake.invoke_task 'agreements:source:movesets:add___agreement_id'
       Rake.invoke_task 'agreements:source:movesets:update___agreement_id'
       Rake.invoke_task 'agreements:source:movesets:add___ground_owner'
@@ -22,8 +22,9 @@ namespace :agreements do
       Rake.invoke_task 'agreements:source:___agreements:update___docstate_name'
       Rake.invoke_task 'agreements:source:___agreements:add___docstate_link'
       Rake.invoke_task 'agreements:source:___agreements:update___docstate_link'
-      Rake.invoke_task 'agreements:source:___ids:add___object'
       Rake.invoke_task 'agreements:source:___ids:insert'
+      Rake.invoke_task 'agreements:source:___ids:add___object'
+      Rake.invoke_task 'agreements:source:___ids:update___object'
       Rake.invoke_task 'agreements:source:movesets:add___client_id'
       Rake.invoke_task 'agreements:source:movesets:update___client_id'
       Rake.invoke_task 'agreements:source:___agreements:add___client_id'

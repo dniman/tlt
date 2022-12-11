@@ -42,6 +42,9 @@ namespace :paycards do
             ,summa_f numeric(20,2)
             ,prc decimal(4,2)
             ,credit_year_days int
+            ,is_multi_subject varchar(1)
+            ,in_contract varchar(1)
+            ,in_progress varchar(1)
           )
         SQL
         

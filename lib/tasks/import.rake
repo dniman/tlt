@@ -28,6 +28,8 @@ namespace :import do
     'agreements:import',
     'paycards:import',
     'paycardobjects:import',
+    'charges:import',
+    'payments:import',
   ] do
 
     Rake::Task['import:final_message'].invoke("Импорт данных в базу назначения завершен.")

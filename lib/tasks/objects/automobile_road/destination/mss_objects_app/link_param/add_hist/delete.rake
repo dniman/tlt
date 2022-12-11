@@ -6,6 +6,28 @@ namespace :objects do
           namespace :add_hist do
             
             task :delete do |t|
+              def query
+                condition1 = Destination.mss_objects.create_on(Destination.mss_objects[:link].eq(Destination.mss_objects_app[:link_up]))
+                condition2 = Destination.___del_ids.create_on(
+                  Destination.___del_ids[:row_id].eq(Destination.mss_objects[:row_id])
+                  .and(Destination.___del_ids[:table_id].eq(Source::Objects.table_id))
+                )
+                condition3 = Destination.mss_objects_params.create_on(Destination.mss_objects_params[:link].eq(Destination.mss_objects_app[:link_param]))
+
+                source = Arel::Nodes::JoinSource.new(
+                  Destination.mss_objects_app, [
+                    Destination.mss_objects_app.create_join(Destination.mss_objects, condition1),
+                    Destination.mss_objects.create_join(Destination.___del_ids, condition2),
+                    Destination.mss_objects_app.create_join(Destination.mss_objects_params, condition3),
+                  ]
+                )
+            
+                manager = Arel::DeleteManager.new Database.destination_engine
+                manager.from(source)
+                manager.where(Destination.mss_objects_params[:code].eq('ADD_HIST'))
+                manager.to_sql
+              end
+
               begin
                 subquery = 
                   Destination.mss_objects_app

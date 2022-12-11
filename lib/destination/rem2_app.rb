@@ -23,10 +23,11 @@ module Destination
       if condition
         query =
           table
-          .project(Arel.star)
+          .project(Arel.sql("null"))
           .where(Arel.sql(condition)).exists.not
         sql << " where #{query.to_sql}"
       end
+      sql << " OPTION (QUERYTRACEON 8780)"
       sql
     end
 

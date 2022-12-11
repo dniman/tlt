@@ -2,6 +2,8 @@ namespace :objects do
   namespace :unfinished do
     namespace :destroy do
       task :tasks => [
+        'objects:unfinished:destination:___del_ids:insert',
+
         # История адреса
         'objects:unfinished:destination:mss_objects_app:link_param:add_hist:delete',
         
@@ -186,6 +188,7 @@ namespace :objects do
         'objects:unfinished:destination:mss_objects_adr:delete',
         'objects:unfinished:source:___ids:drop___link_adr',
         'objects:unfinished:destination:mss_adr:delete',
+        'objects:unfinished:destination:___del_ids:delete',
         
         'objects:unfinished:source:___ids:drop___add_hist',
         'objects:unfinished:source:___ids:drop___adr_str',

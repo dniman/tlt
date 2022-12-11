@@ -19,8 +19,8 @@ namespace :dictionaries do
                 t_kbk.object = #{ Destination::TKbk::REF_INC_ADM }
               SQL
 
-              sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-              sliced_rows.each do |rows|
+              Source.execute_query(query.to_sql).each_slice(1000) do |rows|
+              
                 sql = Destination::TKbk.delete_query(links: rows.map(&:values), condition: condition)
                 result = Destination.execute_query(sql)
                 result.do

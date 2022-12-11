@@ -36,9 +36,9 @@ namespace :objects do
                 sql = ""
                 insert = []
                 link_param = Destination.execute_query(link_param_query('ADD_HIST').to_sql).entries.first["link"]
+                condition = "mss_objects_app.link_up = values_table.link_up and mss_objects_app.link_param = values_table.link_param"
 
-                sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-                sliced_rows.each do |rows|
+                Source.execute_query(query.to_sql).each_slice(1000) do |rows|
                   rows.each do |row|
                     insert << {
                       link_up: row["link"],
@@ -47,7 +47,6 @@ namespace :objects do
                     }
                   end
 
-                  condition = "mss_objects_app.link_up = values_table.link_up and mss_objects_app.link_param = values_table.link_param"
                   sql = Destination::MssObjectsApp.insert_query(rows: insert, condition: condition)
                   result = Destination.execute_query(sql)
                   result.do

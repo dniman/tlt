@@ -2,6 +2,7 @@ namespace :objects do
   namespace :exright_intellprop do
     namespace :destroy do
       task :tasks => [
+        'objects:exright_intellprop:destination:___del_ids:insert',
         
         # История наименования
         'objects:exright_intellprop:destination:mss_objects_app:link_param:obj_name_hist:delete',
@@ -70,6 +71,7 @@ namespace :objects do
         'objects:exright_intellprop:destination:mss_objects_adr:delete',
         'objects:exright_intellprop:source:___ids:drop___link_adr',
         'objects:exright_intellprop:destination:mss_adr:delete',
+        'objects:exright_intellprop:destination:___del_ids:delete',
 
          # Удаление дополнительных колонок
         'objects:exright_intellprop:destination:mss_objects:drop___intellprop_sp',

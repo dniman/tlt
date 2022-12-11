@@ -9,21 +9,20 @@ namespace :documents do
           .where(Destination.mss_objcorr_types[:code].eq('doc'))
         end
 
-        def link_scd_state_query
-          Destination.mss_oac_rowstates
-          .project(Destination.mss_oac_rowstates[:link])
-          .where(Destination.mss_oac_rowstates[:code].eq("current"))
-        end
-
         def query
+          link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
+
           Source.documents
           .project([
             Source.documents[:docno],
             Source.documents[:docser],
             Source.documents[:docdate],
             Source.documents[:explanation],
+            Arel.sql("#{link_type}").as("link_type"),
+            Arel.sql("#{Destination.link_mo}").as("link_mo"),
             Source.doctypes[:name],
             Source.___ids[:row_id],
+            Arel.sql("#{ Destination::MssOacRowstates::CURRENT }").as("link_scd_state")
           ])
           .join(Source.___ids).on(Source.___ids[:id].eq(Source.documents[:id]).and(Source.___ids[:table_id].eq(Source::Documents.table_id)))
           .join(Source.doctypes, Arel::Nodes::OuterJoin).on(Source.doctypes[:id].eq(Source.documents[:doctypes_id]))
@@ -32,25 +31,23 @@ namespace :documents do
         begin
           sql = ""
           insert = []
+          condition = "mss_docs.row_id = values_table.row_id"
 
-          link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
-          link_scd_state = Destination.execute_query(link_scd_state_query.to_sql).entries.first["link"]
-
-          sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-          sliced_rows.each do |rows|
+          Source.execute_query(query.to_sql).each_slice(1000) do |rows|
             rows.each do |row|
               insert << {
                 num: row["docno"].nil? ? nil : row["docno"].strip[0,50],
                 ser: row["docser"].nil? ? nil : row["docser"].strip[0,50],
                 name: row["explanation"].nil? ? nil : row["explanation"].strip[0,2000],
-                link_type: link_type,
+                link_type: row["link_type"],
                 ___type: row["name"],
-                link_mo: Destination.link_mo,
-                link_scd_state: link_scd_state, 
+                link_mo: row["link_mo"],
+                link_scd_state: row["link_scd_state"], 
                 row_id: row["row_id"],
               }
             end
-            sql = Destination::MssDocs.insert_query(rows: insert, condition: "mss_docs.row_id = values_table.row_id")
+
+            sql = Destination::MssDocs.insert_query(rows: insert, condition: condition)
             result = Destination.execute_query(sql)
             result.do
             insert.clear

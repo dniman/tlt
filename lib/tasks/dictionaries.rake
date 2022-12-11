@@ -37,6 +37,8 @@ import 'lib/tasks/dictionaries/storage_authority_ei.rake'
 import 'lib/tasks/dictionaries/state.rake'
 import 'lib/tasks/dictionaries/dictionary_agree_mode.rake'
 import 'lib/tasks/dictionaries/dictionary_nazn_rent.rake'
+import 'lib/tasks/dictionaries/mss_movescausesb_di.rake'
+import 'lib/tasks/dictionaries/mss_dict_decommission_causes.rake'
 
 namespace :dictionaries do
 
@@ -80,6 +82,8 @@ namespace :dictionaries do
     'dictionaries:state:import',
     'dictionaries:dictionary_agree_mode:import',
     'dictionaries:dictionary_nazn_rent:import',
+    'dictionaries:mss_movescausesb_di:import',
+    'dictionaries:mss_dict_decommission_causes:import',
   ] 
 
   task :destroy => [
@@ -119,7 +123,9 @@ namespace :dictionaries do
     'dictionaries:func_nazn_ei:destroy',
     'dictionaries:storage_authority_ei:destroy',
     'dictionaries:state:destroy',
-    #'dictionaries:dictionary_nazn_rent:destroy',
+    'dictionaries:dictionary_nazn_rent:destroy',
+    'dictionaries:mss_movescausesb_di:destroy',
+    'dictionaries:mss_dict_decommission_causes:destroy',
   ] 
 
 end 

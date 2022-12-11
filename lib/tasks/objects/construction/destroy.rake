@@ -3,6 +3,8 @@ namespace :objects do
     namespace :destroy do
 
       task :tasks => [
+        'objects:construction:destination:___del_ids:insert',
+
         # История адреса
         'objects:construction:destination:mss_objects_app:link_param:add_hist:delete',
         
@@ -190,11 +192,12 @@ namespace :objects do
         'objects:construction:destination:mss_objects:drop___kadastrno',
         'objects:construction:destination:mss_objects_dicts:object:dictionary_land_kvartals:delete',
         'objects:construction:destination:mss_objects_adr:delete',
-        'objects:construction:source:___ids:drop___link_adr',
         'objects:construction:destination:mss_adr:delete',
+        'objects:construction:destination:___del_ids:delete',
+        
+        'objects:construction:source:___ids:drop___link_adr',
         'objects:construction:source:___ids:drop___add_hist',
         'objects:construction:source:___ids:drop___adr_str',
-        
         'objects:construction:destination:mss_objects:drop___house_material',
         'objects:construction:destination:mss_objects:drop___link_house_material',
         'objects:construction:destination:mss_objects:drop___is_immovable',

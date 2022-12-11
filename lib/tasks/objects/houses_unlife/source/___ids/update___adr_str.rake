@@ -49,9 +49,9 @@ namespace :objects do
           end
 
           begin
+            sql = ""
             update = []
-            sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-            sliced_rows.each do |rows|
+            Source.execute_query(query.to_sql).each_slice(1000) do |rows|
               rows.each do |row|
                 full_addr = [
                   row["country_name"].to_s.strip,

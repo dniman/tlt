@@ -22,8 +22,13 @@ namespace :corrs do
 
           sql = ""
           insert = []
-          sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-          sliced_rows.each do |rows|
+          condition =<<~SQL
+            mss_viw_ocval_mo_ref.link_app_up = values_table.link_app_up
+              and mss_viw_ocval_mo_ref.link_app_prop = #{ link_app_prop }
+              and mss_viw_ocval_mo_ref.link_mo = #{ Destination.link_mo }
+          SQL
+
+          Source.execute_query(query.to_sql).each_slice(1000) do |rows|
             rows.each do |row|
               insert << {
                 link_app_up: row["___link"],
@@ -31,12 +36,6 @@ namespace :corrs do
                 link_mo: Destination.link_mo, 
               }
             end
-
-            condition =<<~SQL
-              mss_viw_ocval_mo_ref.link_app_up = values_table.link_app_up
-                and mss_viw_ocval_mo_ref.link_app_prop = #{ link_app_prop }
-                and mss_viw_ocval_mo_ref.link_mo = #{ Destination.link_mo }
-            SQL
 
             sql = Destination::MssViwOcvalMoRef.insert_query(rows: insert, condition: condition)
             result = Destination.execute_query(sql)

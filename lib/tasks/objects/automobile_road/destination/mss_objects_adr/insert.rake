@@ -50,8 +50,11 @@ namespace :objects do
           begin
             sql = ""
             insert = []
-            sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-            sliced_rows.each do |rows|
+            condition =<<~SQL
+              mss_objects_adr.link_up = values_table.link_up
+            SQL
+
+            Source.execute_query(query.to_sql).each_slice(1000) do |rows|
               rows.each do |row|
                 full_addr = [
                   row[:country_name].to_s.strip,
@@ -85,9 +88,7 @@ namespace :objects do
                   row_id: Arel.sql('newid()')
                 }
               end
-              condition =<<~SQL
-                mss_objects_adr.link_up = values_table.link_up
-              SQL
+
               sql = Destination::MssObjectsAdr.insert_query(rows: insert, condition: condition)
               result = Destination.execute_query(sql)
               result.do

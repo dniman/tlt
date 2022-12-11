@@ -4,11 +4,16 @@ namespace :charges do
 
       task :delete do |t|
         def query
-          <<~QUERY
-            delete charge
-            from charge
-              join ___charge_save on ___charge_save.row_id = charge.row_id
-          QUERY
+          condition = Destination.___del_ids.create_on(
+            Destination.___del_ids[:row_id].eq(Destination.charge[:row_id])
+            .and(Destination.___del_ids[:table_id].eq(Source::Charges.table_id))
+          )
+          source = Arel::Nodes::JoinSource.new(Destination.charge,
+                                               [Destination.charge.create_join(Destination.___del_ids, condition)])
+          
+          manager = Arel::DeleteManager.new Database.destination_engine
+          manager.from(source)
+          manager.to_sql
         end
 
         begin

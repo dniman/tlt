@@ -4,33 +4,25 @@ namespace :paycardobjects do
 
       task :delete do |t|
         def query
-          subquery =
-            Source.___ids
-            .project(Source.___ids[:id])
-            .join(Source.___paycardobjects).on(
-              Source.___paycardobjects[:id].eq(Source.___ids[:id])
-              .and(Source.___ids[:table_id].eq(Source::Paycardobjects.table_id))
-            )
+          condition = Destination.___del_ids.create_on(
+            Destination.___del_ids[:link].eq(Destination.paycardobjects[:link])
+            .and(Destination.___del_ids[:table_id].eq(Source::Paycardobjects.table_id))
+          )
+          source = Arel::Nodes::JoinSource.new(Destination.paycardobjects,
+                                               [Destination.paycardobjects.create_join(Destination.___del_ids, condition)])
           
-          Source.___ids
-          .project(Source.___ids[:link])
-          .where(Arel::Nodes::In.new(Source.___ids[:id], subquery))
+          manager = Arel::DeleteManager.new Database.destination_engine
+          manager.from(source)
+          manager.to_sql
         end
 
         begin
-          sql = ""
-          sliced_rows = Source.execute_query(query.to_sql).each_slice(1000).to_a
-          sliced_rows.each do |rows|
-            sql = Destination::Paycardobjects.delete_query(links: rows.map(&:values))
-            result = Destination.execute_query(sql)
-            result.do
-            sql.clear
-          end
+          Destination.execute_query(query).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e
           Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."
-          Rake.info "Текст запроса \"#{ sql }\""
+          Rake.info "Текст запроса \"#{ query }\""
 
           exit
         end

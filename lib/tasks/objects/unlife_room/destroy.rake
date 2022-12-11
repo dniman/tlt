@@ -2,6 +2,8 @@ namespace :objects do
   namespace :unlife_room do
     namespace :destroy do
       task :tasks => [
+        'objects:unlife_room:destination:___del_ids:insert',
+
         # История адреса
         'objects:unlife_room:destination:mss_objects_app:link_param:add_hist:delete',
         
@@ -159,6 +161,7 @@ namespace :objects do
         'objects:unlife_room:destination:mss_objects_adr:delete',
         'objects:unlife_room:source:___ids:drop___link_adr',
         'objects:unlife_room:destination:mss_adr:delete',
+        'objects:unlife_room:destination:___del_ids:delete',
         
         'objects:unlife_room:source:___ids:drop___add_hist',
         'objects:unlife_room:source:___ids:drop___adr_str',
