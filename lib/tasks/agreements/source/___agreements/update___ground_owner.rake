@@ -13,7 +13,6 @@ namespace :agreements do
           .distinct
           .join(Source.___agreements).on(Source.___agreements[:id].eq(Source.movesets[:___agreement_id]))
           .where(Source.___agreements[:___ground_owner_count].eq(1))
-          manager.to_sql
         end
 
         begin
@@ -22,7 +21,7 @@ namespace :agreements do
               ___agreements.___ground_owner = values_table.___ground_owner
             from ___agreements
               join(
-                #{ query }
+                #{ query.to_sql }
               ) values_table(___agreement_id, ___ground_owner) on values_table.___agreement_id = ___agreements.id
           SQL
           
