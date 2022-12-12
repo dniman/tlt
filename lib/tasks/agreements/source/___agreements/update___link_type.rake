@@ -63,7 +63,7 @@ namespace :agreements do
             ;#{query.gsub('SELECT t.[___agreement_id], min(t.[link_type]) AS ___link_type', 'insert into #values_table(___agreement_id, ___link_type) SELECT t.[___agreement_id], min(t.[link_type]) AS ___link_type')}
             
             update ___agreements set 
-              ___agreements.___link_type = values_table.___link_type
+              ___agreements.___link_type = #values_table.___link_type
             from ___agreements
               join #values_table on #values_table.___agreement_id = ___agreements.id
 
