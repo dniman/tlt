@@ -14,24 +14,16 @@ namespace :payments do
         end
 
         begin
-          sql = ''
-
-          Source.execute_query(query).each_slice(1000) do |rows|
+          sql = <<~SQL
+            update payments set 
+              payments.___income_code = values_table.___income_code
+            from payments
+              join(
+                #{ query }
+              ) values_table(cls_kbk_id, ___income_code) on values_table.cls_kbk_id = payments.cls_kbk_id
+          SQL
           
-            columns = rows.map(&:keys).uniq.flatten
-            values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
-        
-            sql = <<~SQL
-              update payments set 
-                payments.___income_code = values_table.___income_code
-              from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
-              where payments.cls_kbk_id = values_table.cls_kbk_id
-            SQL
-
-            result = Source.execute_query(sql)
-            result.do
-            sql.clear
-          end
+          Source.execute_query(sql).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e

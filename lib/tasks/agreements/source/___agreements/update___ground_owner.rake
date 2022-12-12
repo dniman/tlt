@@ -13,24 +13,20 @@ namespace :agreements do
           .distinct
           .join(Source.___agreements).on(Source.___agreements[:id].eq(Source.movesets[:___agreement_id]))
           .where(Source.___agreements[:___ground_owner_count].eq(1))
+          manager.to_sql
         end
 
         begin
-          Source.execute_query(query.to_sql).each_slice(1000) do |rows|
-            
-              columns = rows.map(&:keys).uniq.flatten
-              values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
+          sql = <<~SQL
+            update ___agreements set 
+              ___agreements.___ground_owner = values_table.___ground_owner
+            from ___agreements
+              join(
+                #{ query }
+              ) values_table(___agreement_id, ___ground_owner) on values_table.___agreement_id = ___agreements.id
+          SQL
           
-              sql = <<~SQL
-                update ___agreements set 
-                  ___agreements.___ground_owner = values_table.___ground_owner
-                from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
-                where ___agreements.id = values_table.___agreement_id  
-              SQL
-
-              result = Source.execute_query(sql)
-              result.do
-            end
+          Source.execute_query(sql).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e

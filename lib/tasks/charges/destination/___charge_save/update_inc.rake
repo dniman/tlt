@@ -11,24 +11,20 @@ namespace :charges do
           ])
           manager.from(Destination.s_kbk)
           manager.where(Destination.s_kbk[:object].eq(Destination::SKbk::DICTIONARY_KBK_INC))
+          manager.to_sql
         end
 
         begin
-          Destination.execute_query(query.to_sql).each_slice(1000) do |rows|
-          
-            columns = rows.map(&:keys).uniq.flatten
-            values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
-        
-            sql = <<~SQL
-              update ___charge_save set 
-                ___charge_save.inc = values_table.link
-              from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
-              where ___charge_save.___cinc = values_table.code
-            SQL
+          sql = <<~SQL
+            update ___charge_save set 
+              ___charge_save.inc = values_table.link
+            from ___charge_save
+              join (
+                #{ query }
+              ) values_table(link, code) on values_table.code = ___charge_save.___cinc
+          SQL
 
-            result = Destination.execute_query(sql)
-            result.do
-          end
+          Destination.execute_query(sql).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e

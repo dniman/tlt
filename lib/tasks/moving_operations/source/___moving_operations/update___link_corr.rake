@@ -21,24 +21,20 @@ namespace :moving_operations do
             ___ids2[:id].eq(Source.___moving_operations[:client_id])
             .and(___ids2[:table_id].eq(Source::Clients.table_id))
           )
+          manager.to_sql
         end
 
         begin
-          Source.execute_query(query.to_sql).each_slice(1000) do |rows|
-          
-            columns = rows.map(&:keys).uniq.flatten
-            values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
-        
-            sql = <<~SQL
-              update ___moving_operations set 
-                ___moving_operations.___link_corr = values_table.___link_corr
-              from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
-              where ___moving_operation.id = values_table.id
-            SQL
+          sql = <<~SQL
+            update ___moving_operations set 
+              ___moving_operations.___link_corr = values_table.___link_corr
+            from ___moving_operations
+              join(
+                #{ manager.to_sql }
+              ) values_table on values_table.id = ___moving_operations.id
+          SQL
 
-            result = Source.execute_query(sql)
-            result.do
-          end
+          Source.execute_query(sql).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e

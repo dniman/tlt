@@ -52,24 +52,20 @@ namespace :agreements do
           select0.with(moveperiods_cte)
           select0.group(t[:___agreement_id])
           .having(all.eq(1))
+          select0.to_sql
         end
 
         begin
-          Source.execute_query(query.to_sql).each_slice(1000) do |rows|
-          
-            columns = rows.map(&:keys).uniq.flatten
-            values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
-        
-            sql = <<~SQL
-              update ___agreements set 
-                ___agreements.___link_type = values_table.___link_type
-              from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
-              where ___agreements.id = values_table.___agreement_id
-            SQL
+          sql = <<~SQL
+            update ___agreements set 
+              ___agreements.___link_type = values_table.___link_type
+            from ___agreements
+              join (
+                #{ query.to_sql)
+              ) values_table(___agreement_id, ___link_type) on values_table.___agreement_id = ___agreements.id
+          SQL
 
-            result = Source.execute_query(sql)
-            result.do
-          end
+          Source.execute_query(sql).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e

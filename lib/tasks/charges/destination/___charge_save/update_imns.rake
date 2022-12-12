@@ -10,24 +10,20 @@ namespace :charges do
             Destination.s_baccount[:link],
           ])
           manager.from(Destination.s_baccount)
+          manager.to_sql
         end
 
         begin
-          Destination.execute_query(query.to_sql).each_slice(1000) do |rows|
-          
-            columns = rows.map(&:keys).uniq.flatten
-            values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
-        
-            sql = <<~SQL
-              update ___charge_save set 
-                ___charge_save.imns = values_table.corr
-              from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
-              where ___charge_save.acc = values_table.link
-            SQL
+          sql = <<~SQL
+            update ___charge_save set 
+              ___charge_save.imns = values_table.corr
+            from ___charge_save
+              join (
+                #{ query }
+              ) values_table(corr, link) on values_table.link = ___charge_save.acc
+          SQL
 
-            result = Destination.execute_query(sql)
-            result.do
-          end
+          Destination.execute_query(sql).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e

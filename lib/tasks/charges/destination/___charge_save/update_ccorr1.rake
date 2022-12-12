@@ -11,24 +11,20 @@ namespace :charges do
           ])
           manager.from(Destination.s_corr)
           manager.where(Destination.s_corr[:object].eq(Destination::SCorr::DICTIONARY_CORR))
+          manager.to_sql
         end
 
         begin
-          Destination.execute_query(query.to_sql).each_slice(1000) do |rows|
-          
-            columns = rows.map(&:keys).uniq.flatten
-            values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
-        
-            sql = <<~SQL
-              update ___charge_save set 
-                ___charge_save.ccorr1 = values_table.inn
-              from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
-              where ___charge_save.___corr1 = values_table.link
-            SQL
+          sql = <<~SQL
+            update ___charge_save set 
+              ___charge_save.ccorr1 = values_table.inn
+            from ___charge_save
+              join (
+                #{ query }
+              ) values_table(link, inn) on values_table.link = ___charge_save.___corr1
+          SQL
 
-            result = Destination.execute_query(sql)
-            result.do
-          end
+          Destination.execute_query(sql).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e

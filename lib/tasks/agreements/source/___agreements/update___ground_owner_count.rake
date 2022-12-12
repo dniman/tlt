@@ -70,24 +70,20 @@ namespace :agreements do
           select0.from(t0)
           select0.where(t0[:document_id].not_eq(nil))
           select0.group(t0[:document_id])
+          select0.to_sql
         end
 
         begin
-          Source.execute_query(query.to_sql).each_slice(1000) do |rows|
-          
-            columns = rows.map(&:keys).uniq.flatten
-            values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
-        
-            sql = <<~SQL
-              update ___agreements set 
-                ___agreements.___ground_owner_count = values_table.___ground_owner_count
-              from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
-              where ___agreements.document_id = values_table.document_id  
-            SQL
+          sql = <<~SQL
+            update ___agreements set 
+              ___agreements.___ground_owner_count = values_table.___ground_owner_count
+            from ___agreements
+              join(
+                #{ query }
+              ) values_table(document_id, ___ground_owner_count) on values_table.document_id = ___agreements.document_id
+          SQL
 
-            result = Source.execute_query(sql)
-            result.do
-          end
+          Source.execute_query(sql).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e

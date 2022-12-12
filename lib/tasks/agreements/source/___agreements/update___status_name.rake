@@ -46,21 +46,16 @@ namespace :agreements do
         end
 
         begin
-          sql = ""
-          Source.execute_query(query.to_sql).each_slice(1000) do |rows|
-            columns = rows.map(&:keys).uniq.flatten
-            values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
-        
-            sql = <<~SQL
-              update ___agreements set 
-                ___agreements.___status_name = values_table.___status_name
-              from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
-              where ___agreements.id = values_table.id  
-            SQL
-
-            result = Source.execute_query(sql)
-            result.do
-          end
+          sql = <<~SQL
+            update ___agreements set 
+              ___agreements.___status_name = values_table.___status_name
+            from ___agreements 
+              join (
+                #{ query.to_sql) }
+              ) values_table(id, ___status_name) on values_table.id = ___agreements.id
+          SQL
+           
+          Source.execute_query(sql).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e
