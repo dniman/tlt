@@ -57,12 +57,17 @@ namespace :agreements do
 
         begin
           sql = <<~SQL
+            if object_id('tempdb..#values_table') is not null drop table #values_table
+            create table #values_table(___agreement_id int, ___link_type int)
+
+            ;#{query.to_sql.gsub('SELECT t.[___agreement_id], min(t.[link_type]) AS ___link_type', 'insert into #values_table(___agreement_id, ___link_type) SELECT t.[___agreement_id], min(t.[link_type]) AS ___link_type')}
+            
             update ___agreements set 
               ___agreements.___link_type = values_table.___link_type
             from ___agreements
-              join (
-                #{ query }
-              ) values_table(___agreement_id, ___link_type) on values_table.___agreement_id = ___agreements.id
+              join #values_table on #values_table.___agreement_id = ___agreements.id
+
+            drop table #values_table
           SQL
 
           Source.execute_query(sql).do
