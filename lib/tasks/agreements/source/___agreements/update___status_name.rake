@@ -51,7 +51,7 @@ namespace :agreements do
               ___agreements.___status_name = values_table.___status_name
             from ___agreements 
               join (
-                #{ query.to_sql) }
+                #{ query.to_sql }
               ) values_table(id, ___status_name) on values_table.id = ___agreements.id
           SQL
            
