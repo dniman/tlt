@@ -17,7 +17,7 @@ namespace :documents do
         end
 
         begin
-          Destination.execute_query(query)
+          Destination.execute_query(query).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e
