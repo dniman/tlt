@@ -8,7 +8,7 @@ namespace :agreements do
             manager = Arel::SelectManager.new Database.destination_engine
             manager.project(Destination.s_note[:link])
             manager.from(Destination.s_note)
-            manager.where(Destination.s_note[:code].eq('ARH_PK_ZEMPLYA'))
+            manager.where(Destination.s_note[:code].eq('ARH_PK_ZEMLYA'))
             manager.to_sql
           end
 
