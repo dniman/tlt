@@ -34,6 +34,10 @@ namespace :paycards do
       Rake.invoke_task 'paycards:source:___paycards:update___sum_rtype'
       Rake.invoke_task 'paycards:source:___paycards:add___account'
       Rake.invoke_task 'paycards:source:___paycards:update___account'
+      Rake.invoke_task 'paycards:source:___paycards:add___status'
+      Rake.invoke_task 'paycards:source:___paycards:update___status'
+      Rake.invoke_task 'paycards:source:___paycards:update_su_d'
+      Rake.invoke_task 'paycards:source:___paycards:update_de_d'
       
       Rake.invoke_task 'paycards:destination:paycard:insert1'
       Rake.invoke_task 'paycards:source:___ids:update_link1'
@@ -42,6 +46,10 @@ namespace :paycards do
       
       Rake.invoke_task 'paycards:destination:paycard:insert2'
       Rake.invoke_task 'paycards:source:___ids:update_link2'
+      
+      Rake.invoke_task 'paycards:destination:paycard_sign:exit_da:insert'
+      Rake.invoke_task 'paycards:destination:paycard_sign:plurality_persons:insert'
+      Rake.invoke_task 'paycards:destination:paycard_sign:stage_reg:insert'
     end
 
   end

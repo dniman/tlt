@@ -95,24 +95,21 @@ namespace :paycards do
             account.as("___account"),
           ])
           manager.from(Source.___paycards)
+          manager.to_sql
         end
 
         begin
-          Source.execute_query(query.to_sql).each_slice(1000) do |rows|
-          
-            columns = rows.map(&:keys).uniq.flatten
-            values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
-        
-            sql = <<~SQL
-              update ___paycards set 
-                ___paycards.___account = values_table.___account
-              from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
-              where ___paycards.id = values_table.id
-            SQL
+          sql = <<~SQL
+            update ___paycards set 
+              ___paycards.___account = values_table.___account
+            from ___paycards
+              join (
+                #{ query }
+              ) values_table(id, ___account) on values_table.id = ___paycards.id
+            where ___paycards.id = values_table.id
+          SQL
 
-            result = Source.execute_query(sql)
-            result.do
-          end
+          Source.execute_query(sql).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e

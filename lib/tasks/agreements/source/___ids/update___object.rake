@@ -7,7 +7,7 @@ namespace :agreements do
           object = Arel::Nodes::NamedFunction.new("dbo.obj_id", [ Destination.v_mss_agreements_types[:obj_code] ], 'object')
           manager = Arel::SelectManager.new Database.destination_engine
           manager.project(
-            Destination.v_mss_agreements_types[:link],
+            Destination.v_mss_agreements_types[:link].as("link_type"),
             object.as("___object"),
           )
           manager.from(Destination.v_mss_agreements_types)
@@ -18,7 +18,6 @@ namespace :agreements do
           sql = ''
 
           Destination.execute_query(query).each_slice(1000) do |rows|
-          
             columns = rows.map(&:keys).uniq.flatten
             values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
         
@@ -26,7 +25,8 @@ namespace :agreements do
               update ___ids set 
                 ___ids.___object = values_table.___object
               from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
-              where ___ids.id = values_table.id
+              where ___ids.link_type = values_table.link_type
+                and ___ids.table_id = #{ Source::Agreements.table_id }
             SQL
 
             result = Source.execute_query(sql)

@@ -5,37 +5,21 @@ namespace :agreements do
       task :update___client_id do |t|
 
         def query
-          Source.movesets
-          .project(
-            Source.movesets[:___agreement_id],
-            Source.movesets[:___client_id],
-          )
-          .distinct
-          .join(Source.___agreements).on(Source.___agreements[:id].eq(Source.movesets[:___agreement_id]))
-          .where(Source.___agreements[:___client_id].eq(nil))
+          <<~QUERY
+            update ___agreements
+              set ___agreements.___client_id = movesets.___client_id
+            from ___agreements
+              join movesets on movesets.___agreement_id = ___agreements.id
+          QUERY
         end
 
         begin
-          Source.execute_query(query.to_sql).each_slice(1000) do |rows|
-            
-              columns = rows.map(&:keys).uniq.flatten
-              values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
-          
-              sql = <<~SQL
-                update ___agreements set 
-                  ___agreements.___client_id = values_table.___client_id
-                from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
-                where ___agreements.id = values_table.___agreement_id  
-              SQL
-
-              result = Source.execute_query(sql)
-              result.do
-            end
+          Source.execute_query(query).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e
           Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."
-          Rake.info "Текст запроса \"#{ sql }\""
+          Rake.info "Текст запроса \"#{ query }\""
 
           exit
         end

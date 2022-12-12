@@ -50,6 +50,8 @@ module Destination
     :entry,
     :t_rem1,
     :t_charge,
+    :agreement_sign,
+    :paycard_sign,
   ]
 
   class << self

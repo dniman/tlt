@@ -1,12 +1,13 @@
 namespace :agreements do
   namespace :source do
     namespace :___agreements do
-
-      task :add___docstate_link do |t|
+      
+      task :drop___status_name do |t|
         begin
           sql = Arel.sql(
-            "alter table #{ Source.___agreements.name }
-              add ___docstate_link int
+            "if (col_length('#{ Source.___agreements.name }','___status_name') is not null)
+            alter table #{ Source.___agreements.name }
+              drop column ___status_name
             "
           )
           Source.execute_query(sql).do

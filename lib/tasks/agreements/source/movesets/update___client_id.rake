@@ -207,26 +207,23 @@ namespace :agreements do
         end
 
         begin
-          sql = ''
+          sql =<<~SQL
+            if object_id('tempdb..#client_ids') is not null drop table #client_ids
+            create table #client_ids(id int, ___client_id int)
+            insert into #client_ids(id, ___client_id)
+            #{query2.to_sql}
 
-          [query2, query1].each do |query|
-            Source.execute_query(query.to_sql).each_slice(1000) do |rows|
+            ;#{query1.to_sql.gsub('SELECT DISTINCT [movesets].[id], [cte_table].[client_id] AS ___client_id', 'insert into #client_ids(id, ___client_id) SELECT DISTINCT [movesets].[id], [cte_table].[client_id] AS ___client_id')}
             
-              columns = rows.map(&:keys).uniq.flatten
-              values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
-          
-              sql = <<~SQL
-                update movesets set 
-                  movesets.___client_id = values_table.___client_id
-                from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
-                where movesets.id = values_table.id  
-              SQL
+            update movesets
+              set movesets.___client_id = #client_ids.id 
+            from movesets
+              join #client_ids on #client_ids.id = movesets.id
 
-              result = Source.execute_query(sql)
-              result.do
-              sql.clear
-            end
-          end
+            drop table #client_ids
+          SQL
+
+          Source.execute_query(sql).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e

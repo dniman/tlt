@@ -15,24 +15,20 @@ namespace :paycards do
             Source.___ids[:id].eq(Source.___paycards[:___agreement_id])
             .and(Source.___ids[:table_id].eq(Source::Agreements.table_id))
           )
+          manager.to_sql
         end
 
         begin
-          Source.execute_query(query.to_sql).each_slice(1000) do |rows|
-          
-            columns = rows.map(&:keys).uniq.flatten
-            values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
-        
-            sql = <<~SQL
-              update ___paycards set 
-                ___paycards.___link_type_a = values_table.___link_type_a
-              from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
-              where ___paycards.___link_a = values_table.___link_a
-            SQL
+          sql=<<~SQL
+            update ___paycards set
+              ___paycards.___link_type_a = values_table.___link_type_a
+            from ___paycards
+              join (
+                #{ query }
+              ) values_table(___link_a, ___link_type_a) on values_table.___link_a = ___paycards.___link_a
+          SQL
 
-            result = Source.execute_query(sql)
-            result.do
-          end
+          Source.execute_query(sql).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e

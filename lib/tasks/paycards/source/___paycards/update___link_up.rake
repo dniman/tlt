@@ -8,7 +8,7 @@ namespace :paycards do
           ___paycards2 = Source.___paycards.alias("___paycards2")
           obligation_id =  Arel::Nodes::NamedFunction.new('isnull', [ Source.___paycards[:obligation_id], Arel.sql("0") ]) 
           obligation_id2 =  Arel::Nodes::NamedFunction.new('isnull', [___paycards2[:obligation_id], Arel.sql("0") ]) 
-
+        
           Source.___paycards
           .project([
             Source.___paycards[:id],
@@ -27,21 +27,17 @@ namespace :paycards do
         end
 
         begin
-          Source.execute_query(query.to_sql).each_slice(1000) do |rows|
-          
-            columns = rows.map(&:keys).uniq.flatten
-            values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
-        
-            sql = <<~SQL
-              update ___paycards set 
-                ___paycards.___link_up = values_table.___link_up
-              from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
-              where ___paycards.id = values_table.id
-            SQL
+          sql=<<~SQL
+            update ___paycards set 
+              ___paycards.___link_up = values_table.___link_up
+            from ___paycards
+              join(
+                #{ query.to_sql }
+              ) values_table(id, ___link_up) on values_table.id = ___paycards.id
+            where ___paycards.id = values_table.id
+          SQL
 
-            result = Source.execute_query(sql)
-            result.do
-          end
+          Source.execute_query(sql).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e

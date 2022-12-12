@@ -25,7 +25,7 @@ namespace :agreements do
             Source.documents[:explanation],
             Source.___agreements[:___transferbasis_link],
             Source.per_dog[:per_in_month],
-            Source.___agreements[:___docstate_link],
+            Source.___agreements[:___status],
             Source.registeredusers[:fullname],
             Source.docendprich[:name].as("termination_contract"),
             Arel::Nodes::Case.new()
@@ -65,7 +65,7 @@ namespace :agreements do
                 note_osn: row["explanation"],
                 mode: row["___transferbasis_link"],
                 term: row["per_in_month"],
-                status: row["___docstate_link"],
+                status: row["___status"],
                 isp: row["fullname"],
                 termination_contract: row["termination_contract"],
                 corr_link: row["client_link"],

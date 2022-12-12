@@ -22,7 +22,7 @@ module Destination
       
       if condition
         query =
-          Destination.agreement
+          table
           .project(Arel.star)
           .where(Arel.sql(condition)).exists.not
         sql << " where #{query.to_sql}"

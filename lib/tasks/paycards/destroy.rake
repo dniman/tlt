@@ -3,6 +3,11 @@ namespace :paycards do
 
     task :tasks => [
       'paycards:destination:___del_ids:insert',
+
+      'paycards:destination:paycard_sign:exit_da:delete',
+      'paycards:destination:paycard_sign:plurality_persons:delete',
+      'paycards:destination:paycard_sign:stage_reg:delete',
+      
       'paycards:destination:paycard:admin_fk_disable',
       'paycards:destination:paycard:delete2',
       'paycards:destination:paycard:delete1',
@@ -21,6 +26,7 @@ namespace :paycards do
       'paycards:source:___paycards:drop___inc_pr',
       'paycards:source:___paycards:drop___sum_rtype',
       'paycards:source:___paycards:drop___account',
+      'paycards:source:___paycards:drop___status',
     ]
 
   end

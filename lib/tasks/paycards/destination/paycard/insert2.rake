@@ -45,6 +45,7 @@ namespace :paycards do
             Source.___paycards[:summa_f],
             Source.___paycards[:credit_year_days],
             Source.___paycards[:___account],
+            Source.___paycards[:___status],
           ])
           .join(Source.___ids).on(
             Source.___ids[:id].eq(Source.___paycards[:id])
@@ -99,6 +100,7 @@ namespace :paycards do
                 summa_f: row["summa_f"],
                 credit_year_days: row["credit_year_days"],
                 account: row["___account"],
+                status: row["___status"],
               }
             end
             sql = Destination::Paycard.insert_query(rows: insert, condition: "paycard.row_id = values_table.row_id")
