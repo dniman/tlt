@@ -61,7 +61,7 @@ namespace :agreements do
               ___agreements.___link_type = values_table.___link_type
             from ___agreements
               join (
-                #{ query.to_sql }
+                #{ query }
               ) values_table(___agreement_id, ___link_type) on values_table.___agreement_id = ___agreements.id
           SQL
 
