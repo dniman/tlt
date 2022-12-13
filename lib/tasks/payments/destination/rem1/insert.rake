@@ -58,28 +58,50 @@ namespace :payments do
         
         begin
           sql = ""
-          insert = []
+          selects = [] 
+          unions = []
 
           Source.execute_query(query).each_slice(1000) do |rows|
-          
             rows.each do |row|
-              insert << {
-                object: row["object"],
-                link_self: row["link_self"],
-                number: row["number"],
-                date: row["date"].nil? ? nil : row["date"].strftime("%Y%m%d"),
-                date_exec: row["date_exec"].nil? ? nil : row["date_exec"].strftime("%Y%m%d"),
-                corr: row[:corr],
-                baccount: row[:baccount],
-                row_id: row["row_id"],
-                entry: row["entry"],
-              }
+              Arel::SelectManager.new.tap do |select|
+                selects <<
+                  select.project([
+                    Arel::Nodes::Quoted.new(row["object"]),
+                    Arel::Nodes::Quoted.new(row["link_self"]),
+                    Arel::Nodes::Quoted.new(row["number"]),
+                    Arel::Nodes::Quoted.new(row["date"].nil? ? nil : row["date"].strftime("%Y%m%d")),
+                    Arel::Nodes::Quoted.new(row["date_exec"].nil? ? nil : row["date_exec"].strftime("%Y%m%d")),
+                    Arel::Nodes::Quoted.new(row["corr"]),
+                    Arel::Nodes::Quoted.new(row["baccount"]),
+                    Arel::Nodes::Quoted.new(row["row_id"]),
+                    Arel::Nodes::Quoted.new(row["entry"]),
+                  ])
+              end
             end
-            sql = Destination::Rem1.insert_query(rows: insert, condition: "rem1.row_id = values_table.row_id")
+            unions << Arel::Nodes::UnionAll.new(selects[0], selects[1])
+            selects[2..-1].each do |select| 
+              unions << Arel::Nodes::UnionAll.new(unions.last, select)
+            end
+            insert_manager = Arel::InsertManager.new Database.destination_engine
+            insert_manager.columns << Destination.rem1[:object] 
+            insert_manager.columns << Destination.rem1[:link_self]
+            insert_manager.columns << Destination.rem1[:number]
+            insert_manager.columns << Destination.rem1[:date]
+            insert_manager.columns << Destination.rem1[:date_exec]
+            insert_manager.columns << Destination.rem1[:corr]
+            insert_manager.columns << Destination.rem1[:baccount]
+            insert_manager.columns << Destination.rem1[:row_id]
+            insert_manager.columns << Destination.rem1[:entry]
+            insert_manager.into(Destination.rem1)
+            insert_manager.select(unions.last)
+            sql = insert_manager.to_sql
+
+            #sql = Destination::Rem1.insert_query(rows: insert, condition: "rem1.row_id = values_table.row_id")
             result = Destination.execute_query(sql)
             result.do
-            insert.clear
+            selects.clear
             sql.clear
+            unions.clear
           end
 
           Rake.info "Задача '#{ t }' успешно выполнена."

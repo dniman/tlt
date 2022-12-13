@@ -132,55 +132,73 @@ namespace :payments do
         begin
           sql = ""
           insert = []
+          selects = [] 
+          unions = []
           
-          condition =<<~SQL
-            extrem.row_id = values_table.row_id
-          SQL
+          #condition =<<~SQL
+          #  extrem.row_id = values_table.row_id
+          #SQL
 
           Source.execute_query(query).each_slice(1000) do |rows|
             rows.each do |row|
-              insert << {
-                rem1: row["rem1"],
-                rem3: row["rem3"],
-                number: row["number"],
-                date: row["date"].nil? ? nil : row["date"].strftime("%Y%m%d"),
-                date_exec: row["date_exec"].nil? ? nil : row["date_exec"].strftime("%Y%m%d"),
-                summa: row["summa"],
-                cppu1: row["cppu1"],
-                bic1: row["bic1"],
-                bank_n1: row["bank_n1"],
-                ks1: row["ks1"],
-                cppu2: row["cppu2"],
-                bic2: row["bic2"],
-                bank_n2: row["bank_n2"],
-                ks2: row["ks2"],
-                paystatus: row["paystatus"],
-                paycate: row["paycate"],
-                payreason: row["payreason"],
-                payperiod: row["payperiod"],
-                payincnumb: row["payincnumb"],
-                payincdate: row["payincdate"],
-                payinctype: row["payinctype"],
-                paycincome: row["payincome"],
-                note1: row["note1"],
-                ccorr1: row["ccorr1"],
-                caccount1: row["caccount1"],
-                ccorr2: row["ccorr2"],
-                caccount2: row["caccount2"],
-                pay_stack: row["pay_stack"],
-                corr_n1: row["corr_n1"],
-                corr_n2: row["corr_n2"],
-                pay_date: row["pay_date"].nil? ? nil : row["pay_date"].strftime("%Y%m%d"),
-                number_el: row["number_el"],
-                payuin: row["payuin"],
-                row_id: row["row_id"],
-              }
+              Arel::SelectManager.new.tap do |select|
+                selects <<
+                  select.project([
+                    Arel::Nodes::Quoted.new(row["rem1"]),
+                    Arel::Nodes::Quoted.new(row["rem3"]),
+                    Arel::Nodes::Quoted.new(row["number"]),
+                    Arel::Nodes::Quoted.new(row["date"].nil? ? nil : row["date"].strftime("%Y%m%d")),
+                    Arel::Nodes::Quoted.new(row["date_exec"].nil? ? nil : row["date_exec"].strftime("%Y%m%d")),
+                    Arel::Nodes::Quoted.new(row["summa"]),
+                    Arel::Nodes::Quoted.new(row["cppu1"]),
+                    Arel::Nodes::Quoted.new(row["bic1"]),
+                    Arel::Nodes::Quoted.new(row["bank_n1"]),
+                    Arel::Nodes::Quoted.new(row["ks1"]),
+                    Arel::Nodes::Quoted.new(row["cppu2"]),
+                    Arel::Nodes::Quoted.new(row["bic2"]),
+                    Arel::Nodes::Quoted.new(row["bank_n2"]),
+                    Arel::Nodes::Quoted.new(row["ks2"]),
+                    Arel::Nodes::Quoted.new(row["paystatus"]),
+                    Arel::Nodes::Quoted.new(row["paycate"]),
+                    Arel::Nodes::Quoted.new(row["payreason"]),
+                    Arel::Nodes::Quoted.new(row["payperiod"]),
+                    Arel::Nodes::Quoted.new(row["payincnumb"]),
+                    Arel::Nodes::Quoted.new(row["payincdate"]),
+                    Arel::Nodes::Quoted.new(row["payinctype"]),
+                    Arel::Nodes::Quoted.new(row["paycincome"]),
+                    Arel::Nodes::Quoted.new(row["note1"]),
+                    Arel::Nodes::Quoted.new(row["ccorr1"]),
+                    Arel::Nodes::Quoted.new(row["caccount1"]),
+                    Arel::Nodes::Quoted.new(row["ccorr2"]),
+                    Arel::Nodes::Quoted.new(row["caccount2"]),
+                    Arel::Nodes::Quoted.new(row["pay_stack"]),
+                    Arel::Nodes::Quoted.new(row["corr_n1"]),
+                    Arel::Nodes::Quoted.new(row["corr_n2"]),
+                    Arel::Nodes::Quoted.new(row["pay_date"].nil? ? nil : row["pay_date"].strftime("%Y%m%d")),
+                    Arel::Nodes::Quoted.new(row["number_el"]),
+                    Arel::Nodes::Quoted.new(row["payuin"]),
+                    Arel::Nodes::Quoted.new(row["row_id"]),
+                  ])
+              end
             end  
+            unions << Arel::Nodes::UnionAll.new(selects[0], selects[1])
+            selects[2..-1].each do |select| 
+              unions << Arel::Nodes::UnionAll.new(unions.last, select)
+            end
+            insert_manager = Arel::InsertManager.new(Database.destination_engine).tap do |manager|
+              rows.first.keys.each do |column|
+                manager.columns << Destination.extrem[column.to_sym]
+              end
+              manager.into(Destination.extrem)
+              manager.select(unions.last)
+            end
+            sql = insert_manager.to_sql
             
-            sql = Destination::Extrem.insert_query(rows: insert, condition: condition)
+            #sql = Destination::Extrem.insert_query(rows: insert, condition: condition)
             result = Destination.execute_query(sql)
             result.do
-            insert.clear
+            selects.clear
+            unions.clear
             sql.clear
           end
 

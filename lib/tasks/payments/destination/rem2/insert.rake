@@ -22,28 +22,41 @@ namespace :payments do
         
         begin
           sql = ""
-          insert = []
+          selects = [] 
+          unions = []
 
           Source.execute_query(query).each_slice(1000) do |rows|
-          
             rows.each do |row|
-              insert << {
-                account: row["account"],
-                oper: row["oper"],
-                orders: row["orders"],
-                link_up: row["link_up"],
-                row_id: row["row_id"],
-              }
+              Arel::SelectManager.new.tap do |select|
+                selects <<
+                  select.project([
+                    Arel::Nodes::Quoted.new(row["account"]),
+                    Arel::Nodes::Quoted.new(row["oper"]),
+                    Arel::Nodes::Quoted.new(row["orders"]),
+                    Arel::Nodes::Quoted.new(row["link_up"]),
+                    Arel::Nodes::Quoted.new(row["row_id"]),
+                  ])
+              end
             end
+            unions << Arel::Nodes::UnionAll.new(selects[0], selects[1])
+            selects[2..-1].each do |select| 
+              unions << Arel::Nodes::UnionAll.new(unions.last, select)
+            end
+            insert_manager = Arel::InsertManager.new Database.destination_engine
+            insert_manager.columns << Destination.rem2[:account] 
+            insert_manager.columns << Destination.rem2[:oper]
+            insert_manager.columns << Destination.rem2[:orders]
+            insert_manager.columns << Destination.rem2[:link_up]
+            insert_manager.columns << Destination.rem2[:row_id]
+            insert_manager.into(Destination.rem2)
+            insert_manager.select(unions.last)
+            sql = insert_manager.to_sql
 
-            condition =<<~SQL
-              rem2.row_id = values_table.row_id
-            SQL
-
-            sql = Destination::Rem2.insert_query(rows: insert, condition: condition)
+            #sql = Destination::Rem2.insert_query(rows: insert, condition: condition)
             result = Destination.execute_query(sql)
             result.do
-            insert.clear
+            selects.clear
+            unions.clear
             sql.clear
           end
 
