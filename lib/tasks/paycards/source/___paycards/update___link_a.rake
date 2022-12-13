@@ -32,7 +32,6 @@ namespace :paycards do
               join (
                 #{ query }
               )values_table(id, ___link_a)
-            where values_table.id = ___paycards.id
           SQL
           
           Source.execute_query(sql).do
