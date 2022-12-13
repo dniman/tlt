@@ -31,7 +31,7 @@ namespace :paycards do
             from ___paycards
               join (
                 #{ query }
-              )values_table(id, ___link_a)
+              )values_table(id, ___link_a) on values_table.id = ___paycards.id
           SQL
           
           Source.execute_query(sql).do
