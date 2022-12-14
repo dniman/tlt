@@ -21,7 +21,7 @@ namespace :agreements do
             t1[:docrole_id].eq(mainrole_id)
             .and(t1[:docset_id].eq(Source.docset_members[:docset_id]))
           )
-          select1.order(t1[:id].asc)
+          select1.order(t1[:document_id].asc)
           select1.take(1)
           
           t2 = Source.docset_members.alias('t2')
@@ -34,7 +34,7 @@ namespace :agreements do
             docrole_id.not_eq(mainrole_id)
             .and(t2[:docset_id].eq(Source.docset_members[:docset_id]))
           )
-          select2.order(t2[:id].asc)
+          select2.order(t2[:document_id].asc)
           select2.take(1)
 
           document_id = Arel::Nodes::NamedFunction.new('coalesce', [select1, select2], 'document_id')
