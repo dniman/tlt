@@ -53,7 +53,10 @@ namespace :objects do
                 manager = Arel::SelectManager.new
                 manager.project(Arel.star)
                 manager.from(union_table.create_table_alias(union,:union_table))
-                manager.where(union_table[:square].not_eq(nil))
+                manager.where(
+                  union_table[:square].not_eq(nil)
+                  .or(union_table[:square].not_eq(999 999))
+                )
               end
 
               begin

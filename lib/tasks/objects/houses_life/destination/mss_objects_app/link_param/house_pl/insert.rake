@@ -32,7 +32,10 @@ namespace :objects do
                 .join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.objects[:id]))
                 .join(Source.buildtypes, Arel::Nodes::OuterJoin).on(Source.buildtypes[:id].eq(Source.buildings[:buildtypes_id]))
                 .where(Source.___ids[:link_type].eq(link_type)
-                  .and(Source.buildings[:square].not_eq(nil))
+                  .and(
+                    Source.buildings[:square].not_eq(nil)
+                    .or(Source.buildings[:square].not_eq(999 999))
+                  )
                 )
               end
 

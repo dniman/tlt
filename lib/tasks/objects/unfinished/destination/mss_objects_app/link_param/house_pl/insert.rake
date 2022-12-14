@@ -32,7 +32,10 @@ namespace :objects do
                   .join(Source.___ids).on(Source.___ids[:id].eq(Source.objects[:id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
                   .join(Source.buildings).on(Source.buildings[:objects_id].eq(Source.objects[:id]))
                   .where(Source.___ids[:link_type].eq(link_type)
-                    .and(Source.buildings[:square].not_eq(nil))
+                    .and(
+                      Source.buildings[:square].not_eq(nil)
+                      .or(Source.buildings[:square].not_eq(999 999))
+                    )
                   )
 
                 select_two =
