@@ -34,7 +34,7 @@ namespace :objects do
                 .where(Source.___ids[:link_type].eq(link_type)
                   .and(
                     Source.buildings[:square].not_eq(nil)
-                    .or(Source.buildings[:square].not_eq(999 999))
+                    .or(Source.buildings[:square].not_eq(999999))
                   )
                 )
               end

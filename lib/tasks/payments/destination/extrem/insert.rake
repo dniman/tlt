@@ -131,7 +131,6 @@ namespace :payments do
         
         begin
           sql = ""
-          insert = []
           selects = [] 
           unions = []
           

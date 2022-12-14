@@ -78,45 +78,61 @@ namespace :moving_operations do
 
         begin
           sql = ""
-          insert = []
+          selects = [] 
+          unions = []
+          
+          #condition =<<~SQL
+          #  ___moving_operations.movetype_name = values_table.movetype_name
+          #    and isnull(___moving_operations.sincedate, '19000101') = isnull(values_table.sincedate, '19000101')
+          #    and isnull(___moving_operations.enddate, '19000101') = isnull(values_table.enddate, '19000101')
+          #    and isnull(___moving_operations.moveperiod_id, 0) = isnull(values_table.moveperiod_id, 0)
+          #    and isnull(___moving_operations.moveset_id, 0) = isnull(values_table.moveset_id, 0)
+          #    and isnull(___moving_operations.client_id, 0) = isnull(values_table.client_id, 0)
+          #    and isnull(___moving_operations.object_id, 0) = isnull(values_table.object_id, 0)
+          #    and isnull(___moving_operations.docset_id, 0) = isnull(values_table.docset_id, 0)
+          #    and isnull(___moving_operations.___agreement_id, 0) = isnull(values_table.___agreement_id, 0)
+          #    and isnull(___moving_operations.___paycard_id, 0) = isnull(values_table.___paycard_id, 0)
+          #SQL
 
           Source.execute_query(query.to_sql).each_slice(1000) do |rows|
-          
             rows.each do |row|
-              insert << {
-                movetype_name: row["movetype_name"],
-                sincedate: row["sincedate"].nil? ? nil : row["sincedate"].strftime("%Y%m%d"),
-                enddate: row["enddate"].nil? ? nil : row["enddate"].strftime("%Y%m%d"),
-                moveperiod_id: row["moveperiod_id"],
-                prev_moveperiod_id: row["prev_moveperiod_id"],
-                parent_moveperiod_id: row["parent_moveperiod_id"],
-                moveset_id: row["moveset_id"],
-                client_id: row["client_id"],
-                object_id: row["object_id"],
-                docset_id: row["docset_id"],
-                ___agreement_id: row["___agreement_id"],
-                ___paycard_id: row["___paycard_id"],
-                transferbasis_id: row["transferbasis_id"],
-              }
+              Arel::SelectManager.new.tap do |select|
+                selects <<
+                  select.project([
+                    Arel::Nodes::Quoted.new(row["movetype_name"]),
+                    Arel::Nodes::Quoted.new(row["sincedate"].nil? ? nil : row["sincedate"].strftime("%Y%m%d")),
+                    Arel::Nodes::Quoted.new(row["enddate"].nil? ? nil : row["enddate"].strftime("%Y%m%d")),
+                    Arel::Nodes::Quoted.new(row["moveperiod_id"]),
+                    Arel::Nodes::Quoted.new(row["prev_moveperiod_id"]),
+                    Arel::Nodes::Quoted.new(row["parent_moveperiod_id"]),
+                    Arel::Nodes::Quoted.new(row["moveset_id"]),
+                    Arel::Nodes::Quoted.new(row["client_id"]),
+                    Arel::Nodes::Quoted.new(row["object_id"]),
+                    Arel::Nodes::Quoted.new(row["docset_id"]),
+                    Arel::Nodes::Quoted.new(row["___agreement_id"]),
+                    Arel::Nodes::Quoted.new(row["___paycard_id"]),
+                    Arel::Nodes::Quoted.new(row["transferbasis_id"]),
+                  ])
+              end
+            end  
+            unions << Arel::Nodes::UnionAll.new(selects[0], selects[1])
+            selects[2..-1].each do |select| 
+              unions << Arel::Nodes::UnionAll.new(unions.last, select)
             end
+            insert_manager = Arel::InsertManager.new(Database.source_engine).tap do |manager|
+              rows.first.keys.each do |column|
+                manager.columns << Source.___moving_operations[column.to_sym]
+              end
+              manager.into(Source.___moving_operations)
+              manager.select(unions.last)
+            end
+            sql = insert_manager.to_sql
 
-            condition =<<~SQL
-              ___moving_operations.movetype_name = values_table.movetype_name
-                and isnull(___moving_operations.sincedate, '19000101') = isnull(values_table.sincedate, '19000101')
-                and isnull(___moving_operations.enddate, '19000101') = isnull(values_table.enddate, '19000101')
-                and isnull(___moving_operations.moveperiod_id, 0) = isnull(values_table.moveperiod_id, 0)
-                and isnull(___moving_operations.moveset_id, 0) = isnull(values_table.moveset_id, 0)
-                and isnull(___moving_operations.client_id, 0) = isnull(values_table.client_id, 0)
-                and isnull(___moving_operations.object_id, 0) = isnull(values_table.object_id, 0)
-                and isnull(___moving_operations.docset_id, 0) = isnull(values_table.docset_id, 0)
-                and isnull(___moving_operations.___agreement_id, 0) = isnull(values_table.___agreement_id, 0)
-                and isnull(___moving_operations.___paycard_id, 0) = isnull(values_table.___paycard_id, 0)
-            SQL
-
-            sql = Source::MovingOperations.insert_query(rows: insert, condition: condition)
+            #sql = Source::MovingOperations.insert_query(rows: insert, condition: condition)
             result = Source.execute_query(sql)
             result.do
-            insert.clear
+            selects.clear
+            unions.clear
             sql.clear
           end
 
