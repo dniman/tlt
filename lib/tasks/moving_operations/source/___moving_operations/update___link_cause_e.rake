@@ -17,8 +17,9 @@ namespace :moving_operations do
             Source.___ids[:id].eq(Source.___moving_operations[:id])
             .and(Source.___ids[:table_id].eq(Source::MovingOperations.table_id))
           )
+          manager.join(Source.___mss_dict_decommission_causes).on(Source.___mss_dict_decommission_causes[:name].eq(Source.___moving_operations[:transferbasis_name]))
           manager.join(___ids2).on(
-            ___ids2[:id].eq(Source.___moving_operations[:transferbasis_id])
+            ___ids2[:id].eq(Source.___mss_dict_decommission_causes[:id])
             .and(___ids2[:table_id].eq(Source::MssDictDecommissionCauses.table_id))
           )
           manager.to_sql

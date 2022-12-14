@@ -11,7 +11,7 @@ namespace :moving_operations do
               Destination.mss_v_moves_types[:name],
             ])
 
-          mss_v_moves_types = Destination.execute_query(agreements_types_query.to_sql).to_a
+          mss_v_moves_types = Destination.execute_query(mss_v_moves_types_query.to_sql).to_a
           link_type =
             Arel::Nodes::Case.new(Source.___moving_operations[:movetype_name])
               .when('Собственность').then(mss_v_moves_types.select{|r| r["name"] == 'Собственность'}.first["link"])

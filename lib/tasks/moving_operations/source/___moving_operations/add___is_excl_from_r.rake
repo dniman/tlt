@@ -1,13 +1,12 @@
 namespace :moving_operations do
   namespace :source do
-    namespace :___ids do
-      
-      task :drop___is_change_reestr do |t|
+    namespace :___moving_operations do
+
+      task :add___is_excl_from_r do |t|
         begin
           sql = Arel.sql(
-            "if (col_length('#{ Source.___ids.name }','___is_change_reestr') is not null)
-            alter table #{ Source.___is_change_reestr.name }
-              drop column ___is_change_reestr
+            "alter table #{ Source.___moving_operations.name }
+              add ___is_excl_from_r int
             "
           )
           Source.execute_query(sql).do

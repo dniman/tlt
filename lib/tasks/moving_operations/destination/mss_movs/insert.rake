@@ -5,7 +5,7 @@ namespace :moving_operations do
       task :insert do |t|
         def gr_num_by_doctype_name(name)
           manager = Arel::SelectManager.new Database.source_engine
-          manager.projects(Source.docset_members[:gr_num])
+          manager.project(Source.documents[:gr_num])
           manager.from(Source.docset_members)
           manager.join(Source.documents).on(Source.documents[:id].eq(Source.docset_members[:document_id]))
           manager.join(Source.doctypes, Arel::Nodes::OuterJoin).on(Source.doctypes[:id].eq(Source.documents[:doctypes_id]))
@@ -19,8 +19,12 @@ namespace :moving_operations do
         end
         
         def gr_date_by_doctype_name(name)
+          gr_date =
+            Arel::Nodes::Case.new()
+            .when(Source.documents[:gr_date].gteq('17530101')).then(Source.documents[:gr_date])
+            
           manager = Arel::SelectManager.new Database.source_engine
-          manager.projects(Source.docset_members[:gr_num])
+          manager.project(gr_date.as("gr_date"))
           manager.from(Source.docset_members)
           manager.join(Source.documents).on(Source.documents[:id].eq(Source.docset_members[:document_id]))
           manager.join(Source.doctypes, Arel::Nodes::OuterJoin).on(Source.doctypes[:id].eq(Source.documents[:doctypes_id]))
@@ -109,34 +113,52 @@ namespace :moving_operations do
             Arel.sql("#{ Destination::MssOacRowstates::CURRENT }").as("link_scd_state")
           ])
           .join(Source.___ids).on(Source.___ids[:id].eq(Source.___moving_operations[:id]).and(Source.___ids[:table_id].eq(Source::MovingOperations.table_id)))
+          .where(Source.___ids[:link_type].not_eq(nil))
         end
         
         begin
           sql = ""
-          insert = []
+          selects = [] 
+          unions = []
 
           Source.execute_query(query.to_sql).each_slice(1000) do |rows|
-          
             rows.each do |row|
-              insert << {
-                link_key: row["link_key"],
-                link_type: row["link_type"],
-                row_id: row["row_id"],
-                date_beg: row["date_beg"].nil? ? nil : row["date_beg"].strftime("%Y%m%d"),
-                date_end: row["date_end"].nil? ? nil : row["date_end"].strftime("%Y%m%d"),
-                date_mov: row["date_mov"].nil? ? nil : row["date_mov"].strftime("%Y%m%d"),
-                link_corr: row["link_corr"],
-                num_reg: row["num_reg"],
-                date_reg: row["date_reg"],
-                link_cause_b: row["link_cause_b"],
-                link_decomm_cause: row["link_decomm_cause"],
-                link_scd_state: row["link_scd_state"],
-              }
+              Arel::SelectManager.new.tap do |select|
+                selects <<
+                  select.project([
+                    Arel::Nodes::Quoted.new(row["link_key"]),
+                    Arel::Nodes::Quoted.new(row["link_type"]),
+                    Arel::Nodes::Quoted.new(row["row_id"]),
+                    Arel::Nodes::Quoted.new(row["date_beg"].nil? ? nil : row["date_beg"].strftime("%Y%m%d")),
+                    Arel::Nodes::Quoted.new(row["date_end"].nil? ? nil : row["date_end"].strftime("%Y%m%d")),
+                    Arel::Nodes::Quoted.new(row["date_mov"].nil? ? nil : row["date_mov"].strftime("%Y%m%d")),
+                    Arel::Nodes::Quoted.new(row["link_corr"]),
+                    Arel::Nodes::Quoted.new(row["num_reg"]),
+                    Arel::Nodes::Quoted.new(row["date_reg"].nil? ? nil : row["date_reg"].strftime("%Y%m%d")),
+                    Arel::Nodes::Quoted.new(row["link_cause_b"]),
+                    Arel::Nodes::Quoted.new(row["link_decomm_cause"]),
+                    Arel::Nodes::Quoted.new(row["link_scd_state"]),
+                  ])
+              end
+            end  
+            unions << Arel::Nodes::UnionAll.new(selects[0], selects[1])
+            selects[2..-1].each do |select| 
+              unions << Arel::Nodes::UnionAll.new(unions.last, select)
             end
-            sql = Destination::MssMovs.insert_query(rows: insert, condition: "mss_movs.row_id = values_table.row_id")
+            insert_manager = Arel::InsertManager.new(Database.destination_engine).tap do |manager|
+              rows.first.keys.each do |column|
+                manager.columns << Destination.mss_movs[column.to_sym]
+              end
+              manager.into(Destination.mss_movs)
+              manager.select(unions.last)
+            end
+            sql = insert_manager.to_sql
+          
+            #sql = Destination::MssMovs.insert_query(rows: insert, condition: "mss_movs.row_id = values_table.row_id")
             result = Destination.execute_query(sql)
             result.do
-            insert.clear
+            selects.clear
+            unions.clear
             sql.clear
           end
 

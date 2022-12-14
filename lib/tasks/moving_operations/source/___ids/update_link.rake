@@ -4,16 +4,17 @@ namespace :moving_operations do
 
       task :update_link do |t|
         def query
-          Destination.paycardobjects
+          Destination.mss_movs
           .project(
-            Destination.paycardobjects[:link], 
-            Destination.paycardobjects[:row_id], 
+            Destination.mss_movs[:link], 
+            Destination.mss_movs[:row_id], 
           )
         end
 
         begin
+          sql = ""
+
           Destination.execute_query(query.to_sql).each_slice(1000) do |rows|
-          
             columns = rows.map(&:keys).uniq.flatten
             values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
         

@@ -57,7 +57,7 @@ namespace :moving_operations do
               Source.movesets[:docset_id],
               Source.movesets[:___agreement_id],
               manager.as("___paycard_id"),
-              Source.movesets[:transferbasis_id],
+              Source.transferbasis[:name].as("transferbasis_name"),
             )
             .distinct
             .with(moveperiods_cte)
@@ -73,6 +73,7 @@ namespace :moving_operations do
                 )
               )
             )
+            .join(Source.transferbasis, Arel::Nodes::OuterJoin).on(Source.transferbasis[:id].eq(Source.movesets[:transferbasis_id]))
             .order(cte_table[:sincedate],Source.movesets[:id], Source.moveitems[:object_id])
         end
 
@@ -111,7 +112,7 @@ namespace :moving_operations do
                     Arel::Nodes::Quoted.new(row["docset_id"]),
                     Arel::Nodes::Quoted.new(row["___agreement_id"]),
                     Arel::Nodes::Quoted.new(row["___paycard_id"]),
-                    Arel::Nodes::Quoted.new(row["transferbasis_id"]),
+                    Arel::Nodes::Quoted.new(row["transferbasis_name"]),
                   ])
               end
             end  

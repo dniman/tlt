@@ -18,7 +18,7 @@ namespace :moving_operations do
             ,docset_id int
             ,___agreement_id int
             ,___paycard_id int
-            ,transferbasis_id int
+            ,transferbasis_name varchar(50)
           )
         SQL
         
