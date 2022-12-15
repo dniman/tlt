@@ -6,7 +6,7 @@ namespace :moving_operation_objects do
 
         def query
           condition = Destination.___del_ids.create_on(
-            Destination.___del_ids[:link].eq(Destination.mss_moves_mss_objects[:link])
+            Destination.___del_ids[:row_id].eq(Destination.mss_moves_mss_objects[:row_id])
             .and(Destination.___del_ids[:table_id].eq(Source::MovingOperationObjects.table_id))
           )
           source = Arel::Nodes::JoinSource.new(Destination.mss_moves_mss_objects,

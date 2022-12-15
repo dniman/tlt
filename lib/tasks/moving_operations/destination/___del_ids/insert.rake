@@ -1,4 +1,4 @@
-namespace :moving_operation_objects do
+namespace :moving_operations do
   namespace :destination do
     namespace :___del_ids do
 

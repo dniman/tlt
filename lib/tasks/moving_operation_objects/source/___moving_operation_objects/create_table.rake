@@ -10,6 +10,14 @@ namespace :moving_operation_objects do
             ,object_id int
             ,objectusing_id int
             ,___paycardobject_id int
+            ,func_using_id int
+            ,summa2 numeric(20,2)
+            ,part_num int
+            ,part_name varchar(1000)
+            ,area1 numeric(20,2)
+            ,share_size numeric(20,2)
+            ,numerator int
+            ,denominator int
           )
         SQL
         

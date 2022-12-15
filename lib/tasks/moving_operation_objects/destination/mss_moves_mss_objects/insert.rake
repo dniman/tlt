@@ -11,9 +11,9 @@ namespace :moving_operation_objects do
 
           is_share =
             Arel::Nodes::Case.new
-            .when(Source.___paycardobjects[:share_size].not_eq(nil)).then(1)
+            .when(Source.___moving_operation_objects[:share_size].not_eq(nil)).then(1)
             .else(0)
-
+          
           manager = Arel::SelectManager.new Database.source_engine
           manager.project([
             moving_operations[:link].as("link_move"),
@@ -21,21 +21,19 @@ namespace :moving_operation_objects do
             Source.___moving_operation_objects[:___link_rp].as("link_rp"),
             Source.objects[:regno].as("r_num"),
             paycardobjects[:link].as("link_pco"),
-            Source.___paycards[:summa2].as("agr_summa"),
+            Source.___moving_operation_objects[:summa2].as("agr_summa"),
             is_share.as("is_share"),
-            Source.___paycardobjects[:numerator].as("numerator_share"),
-            Source.___paycardobjects[:denominator].as("denumerator_share"),
-            Source.___paycardobjects[:area1].as("area_share"),
-            Source.___paycardobjects[:part_num].as("num_share"),
-            Source.___paycardobjects[:part_name].as("name_share"),
+            Source.___moving_operation_objects[:numerator].as("numerator_share"),
+            Source.___moving_operation_objects[:denominator].as("denumerator_share"),
+            Source.___moving_operation_objects[:area1].as("area_share"),
+            Source.___moving_operation_objects[:part_num].as("num_share"),
+            Source.___moving_operation_objects[:part_name].as("name_share"),
             nazn[:link].as("agr_nazn"),
             Source.___moving_operation_objects[:___is_change_reestr].as("is_change_reestr"),
             Source.___moving_operation_objects[:___is_excl_from_r].as("is_excl_from_r"),
             Source.___ids[:row_id],
           ])
           manager.from(Source.___moving_operation_objects)
-          manager.join(Source.___paycardobjects, Arel::Nodes::OuterJoin).on(Source.___paycardobjects[:id].eq(Source.___moving_operation_objects[:___paycardobject_id]))
-          manager.join(Source.___paycards, Arel::Nodes::OuterJoin).on(Source.___paycards[:id].eq(Source.___paycardobjects[:___paycard_id]))
           manager.join(moving_operations).on(
             moving_operations[:id].eq(Source.___moving_operation_objects[:___moving_operation_id])
             .and(moving_operations[:table_id].eq(Source::MovingOperations.table_id))
@@ -53,7 +51,7 @@ namespace :moving_operation_objects do
             Source.___ids[:id].eq(Source.___moving_operation_objects[:id])
             .and(Source.___ids[:table_id].eq(Source::MovingOperationObjects.table_id))
           )
-          manager.join(nazn, Arel::Nodes::OuterJoin).on(nazn[:id].eq(Source.___paycardobjects[:func_using_id]).and(nazn[:table_id].eq(Source::FuncUsing.table_id)))
+          manager.join(nazn, Arel::Nodes::OuterJoin).on(nazn[:id].eq(Source.___moving_operation_objects[:func_using_id]).and(nazn[:table_id].eq(Source::FuncUsing.table_id)))
         end
         
         begin
@@ -69,7 +67,7 @@ namespace :moving_operation_objects do
                     Arel::Nodes::Quoted.new(row["link_move"]),
                     Arel::Nodes::Quoted.new(row["link_object"]),
                     Arel::Nodes::Quoted.new(row["link_rp"]),
-                    Arel::Nodes::Quoted.new(row["r_num"]),
+                    Arel::Nodes::Quoted.new(row["r_num"].nil? ? nil : row["r_num"].strip[0..49]),
                     Arel::Nodes::Quoted.new(row["link_pco"]),
                     Arel::Nodes::Quoted.new(row["agr_summa"]),
                     Arel::Nodes::Quoted.new(row["is_share"]),
@@ -78,7 +76,7 @@ namespace :moving_operation_objects do
                     Arel::Nodes::Quoted.new(row["area_share"]),
                     Arel::Nodes::Quoted.new(row["num_share"]),
                     Arel::Nodes::Quoted.new(row["name_share"]),
-                    Arel::Nodes::Quoted.new(row["agr_nazn"]),
+                    Arel::Nodes::Quoted.new(row["agr_nazn"].nil? ? nil : row["agr_nazn"].strip[0..999]),
                     Arel::Nodes::Quoted.new(row["is_change_reestr"]),
                     Arel::Nodes::Quoted.new(row["is_excl_from_r"]),
                     Arel::Nodes::Quoted.new(row["row_id"]),
