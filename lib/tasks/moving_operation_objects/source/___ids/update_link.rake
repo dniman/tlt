@@ -1,13 +1,13 @@
-namespace :moving_operations do
+namespace :moving_operation_objects do
   namespace :source do
     namespace :___ids do
 
       task :update_link do |t|
         def query
-          Destination.mss_movs
+          Destination.mss_moves_mss_objects
           .project(
-            Destination.mss_movs[:link], 
-            Destination.mss_movs[:row_id], 
+            Destination.mss_moves_mss_objects[:link], 
+            Destination.mss_moves_mss_objects[:row_id], 
           )
         end
 
@@ -23,6 +23,7 @@ namespace :moving_operations do
                 ___ids.link = values_table.link
               from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
               where ___ids.row_id = values_table.row_id  
+                and ___ids.table_id = #{ Source::MovingOperationObjects.table_id }
             SQL
             result = Source.execute_query(sql)
             result.do

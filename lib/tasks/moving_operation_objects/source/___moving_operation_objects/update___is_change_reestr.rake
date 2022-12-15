@@ -7,7 +7,11 @@ namespace :moving_operation_objects do
         def query
           ___is_change_reestr = 
             Arel::Nodes::Case.new()
-            .when(Source.___ids[:___code_group].eq('TO_REESTR')).then(1)
+            .when(Source.___moving_operation_objects[:___code_group].eq('TO_REESTR')).then(1)
+            .when(
+              Source.___moving_operation_objects[:___code_group].eq('OWN')
+              .and(Source.___moving_operations[:client_id].eq(5100))
+            ).then(1)
             .else(0)
 
           manager = Arel::SelectManager.new(Database.source_engine)
@@ -16,6 +20,7 @@ namespace :moving_operation_objects do
             ___is_change_reestr.as("___is_change_reestr"),
           ])
           manager.from(Source.___moving_operation_objects)
+          manager.join(Source.___moving_operations).on(Source.___moving_operations[:id].eq(Source.___moving_operation_objects[:___moving_operation_id]))
           manager.to_sql
         end
 

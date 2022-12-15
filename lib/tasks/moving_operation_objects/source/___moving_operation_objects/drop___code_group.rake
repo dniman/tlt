@@ -1,4 +1,4 @@
-namespace :moving_operations do
+namespace :moving_operation_objects do
   namespace :source do
     namespace :___moving_operation_objects do
       

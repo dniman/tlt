@@ -5,9 +5,9 @@ namespace :moving_operation_objects do
       task :drop___is_change_reestr do |t|
         begin
           sql = Arel.sql(
-            "if (col_length('#{ Source.___moving_operation_object.name }','___moving_operation_objects') is not null)
+            "if (col_length('#{ Source.___moving_operation_objects.name }','___is_change_reestr') is not null)
             alter table #{ Source.___moving_operation_objects.name }
-              drop column ___moving_operation_objects
+              drop column ___is_change_reestr
             "
           )
           Source.execute_query(sql).do

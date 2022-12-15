@@ -1,8 +1,8 @@
 module Destination
-  class MssMovs
+  class MssMovesMssObjects
 
     def self.table
-      Destination.mss_movs
+      Destination.mss_moves_mss_objects
     end
     
     def self.insert_query(rows:, condition: nil)

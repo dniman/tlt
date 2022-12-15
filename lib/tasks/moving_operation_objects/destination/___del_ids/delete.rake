@@ -1,4 +1,4 @@
-namespace :moving_operations do
+namespace :moving_operation_objects do
   namespace :destination do
     namespace :___del_ids do
 
@@ -6,7 +6,7 @@ namespace :moving_operations do
         def query
           manager = Arel::DeleteManager.new Database.destination_engine
           manager.from(Destination.___del_ids)
-          manager.where(Destination.___del_ids[:table_id].eq(Source::MovingOperations.table_id))
+          manager.where(Destination.___del_ids[:table_id].eq(Source::MovingOperationObjects.table_id))
           manager.to_sql
         end
 

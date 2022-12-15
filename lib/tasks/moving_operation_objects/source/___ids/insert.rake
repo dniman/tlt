@@ -19,9 +19,10 @@ namespace :moving_operation_objects do
             Arel::Nodes::NamedFunction.new('newid', []).as("row_id")
           ])
           select_manager.from(Source.___moving_operation_objects)
-          select_manager.join(Source.___ids).on(Source.___ids[:id].eq(Source.___moving_operation_objects[:object_id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
-          select_manager.where(subquery.exists.not)
-          
+          select_manager.where(
+            Source.___moving_operation_objects[:___object_type_name].not_eq(nil)
+            .and(subquery.exists.not)
+          ) 
           source = Arel::Nodes::JoinSource.new(select_manager,[])
 
           insert_manager = Arel::InsertManager.new Database.source_engine

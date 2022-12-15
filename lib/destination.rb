@@ -53,6 +53,7 @@ module Destination
     :agreement_sign,
     :paycard_sign,
     :mss_reestr_partitions,
+    :mss_moves_mss_objects,
   ]
 
   class << self

@@ -15,6 +15,7 @@ namespace :moving_operation_objects do
       Rake.invoke_task 'moving_operation_objects:source:___moving_operation_objects:update___object_type_name'
       Rake.invoke_task 'moving_operation_objects:source:___moving_operation_objects:add___link_rp'
       Rake.invoke_task 'moving_operation_objects:source:___moving_operation_objects:update___link_rp'
+      Rake.invoke_task 'moving_operation_objects:destination:mss_moves_mss_objects:insert'
     end
 
   end

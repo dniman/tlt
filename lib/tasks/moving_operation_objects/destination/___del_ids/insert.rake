@@ -1,4 +1,4 @@
-namespace :moving_operations do
+namespace :moving_operation_objects do
   namespace :destination do
     namespace :___del_ids do
 
@@ -10,7 +10,7 @@ namespace :moving_operations do
             Source.___ids[:link],
             Source.___ids[:row_id],
           ])
-          .where(Source.___ids[:table_id].eq(Source::MovingOperations.table_id))
+          .where(Source.___ids[:table_id].eq(Source::MovingOperationObjects.table_id))
         end
         
         begin

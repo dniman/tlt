@@ -7,7 +7,7 @@ namespace :moving_operation_objects do
         def query
           ___is_excl_from_r = 
             Arel::Nodes::Case.new()
-            .when(Source.___ids[:___code_group].eq('FROM_REESTR')).then(1)
+            .when(Source.___moving_operation_objects[:___code_group].eq('FROM_REESTR')).then(1)
             .else(0)
 
           manager = Arel::SelectManager.new(Database.source_engine)

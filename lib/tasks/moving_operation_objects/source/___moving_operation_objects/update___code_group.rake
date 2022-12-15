@@ -28,7 +28,7 @@ namespace :moving_operation_objects do
               from ___moving_operation_objects
                 join ___moving_operations on ___moving_operations.id = ___moving_operation_objects.___moving_operation_id
                 join ___ids on ___ids.id = ___moving_operations.id and ___ids.table_id = #{ Source::MovingOperations.table_id }
-                left join(#{values_list.to_sql}) values_table(#{columns.join(', ')}) on values_table.link = ___ids.link_type
+                join(#{values_list.to_sql}) values_table(#{columns.join(', ')}) on values_table.link = ___ids.link_type
             SQL
 
             result = Source.execute_query(sql)
