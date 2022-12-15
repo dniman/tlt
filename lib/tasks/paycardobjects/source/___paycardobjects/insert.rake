@@ -28,6 +28,17 @@ namespace :paycardobjects do
           subquery.join(Source.objectusing, Arel::Nodes::OuterJoin).on(Source.objectusing[:moveitem_id].eq(Source.moveitems[:id]))
 
           subquery_table = subquery.as("subquery_table")
+
+          # not exists
+          subquery2 = Arel::SelectManager.new Database.source_engine
+          subquery2.project(Arel.star)
+          subquery2.from(Source.___paycardobjects)
+          subquery2.where(
+            Source.___paycardobjects[:___paycard_id].eq(subquery_table[:___paycard_id])
+            .and(Source.___paycardobjects[:moveitem_id].eq(subquery_table[:moveitem_id]))
+            .and(Source.___paycardobjects[:object_id].eq(Source.moveitems[:object_id]))
+            .and(Source.___paycardobjects[:objectusing_id].eq(Source.objectusing[:id]))
+          )
           
           window = Arel::Nodes::Window.new.tap do |w|
             w.partition(Source.___paycards[:id], Source.___paycards[:moveperiod_id])
@@ -41,11 +52,12 @@ namespace :paycardobjects do
           share_size = 
             Arel::Nodes::NamedFunction.new('convert', [Arel.sql('numeric(20,2)'), Source.moveitems[:square]])
           
-          manager = Arel::SelectManager.new 
-          manager.project(
+          select_manager = Arel::SelectManager.new 
+          select_manager.project(
             subquery_table[:___paycard_id],
             subquery_table[:moveitem_id],
             Source.moveitems[:object_id],
+            Source.objectusing[:id].as("objectusing_id"),
             subquery_table[:func_using_id],
             part_num.as("part_num"),
             Source.usingprupose[:name].as("part_name"),
@@ -54,52 +66,39 @@ namespace :paycardobjects do
             Source.moveitems[:share_num].as("numerator"),
             Source.moveitems[:share_denom].as("denominator"),
           )
-          manager.from(subquery_table)
-          manager.join(Source.___paycards).on(Source.___paycards[:id].eq(subquery_table[:___paycard_id]))
-          manager.join(Source.moveitems).on(Source.moveitems[:id].eq(subquery_table[:moveitem_id]))
-          manager.join(Source.objectusing, Arel::Nodes::OuterJoin).on(Source.objectusing[:moveitem_id].eq(subquery_table[:moveitem_id]))
-          manager.join(Source.usingprupose, Arel::Nodes::OuterJoin).on(Source.usingprupose[:id].eq(Source.objectusing[:usingpurpose]))
+          select_manager.from(subquery_table)
+          select_manager.join(Source.___paycards).on(Source.___paycards[:id].eq(subquery_table[:___paycard_id]))
+          select_manager.join(Source.moveitems).on(Source.moveitems[:id].eq(subquery_table[:moveitem_id]))
+          select_manager.join(Source.objectusing, Arel::Nodes::OuterJoin).on(Source.objectusing[:moveitem_id].eq(subquery_table[:moveitem_id]))
+          select_manager.join(Source.usingprupose, Arel::Nodes::OuterJoin).on(Source.usingprupose[:id].eq(Source.objectusing[:usingpurpose]))
+          select_manager.where(subquery2.exists.not)
+          
+          source = Arel::Nodes::JoinSource.new(select_manager,[])
+
+          insert_manager = Arel::InsertManager.new Database.source_engine
+          insert_manager.columns << Source.___paycardobjects[:___paycard_id] 
+          insert_manager.columns << Source.___paycardobjects[:moveitem_id]
+          insert_manager.columns << Source.___paycardobjects[:object_id]
+          insert_manager.columns << Source.___paycardobjects[:objectusing_id]
+          insert_manager.columns << Source.___paycardobjects[:func_using_id]
+          insert_manager.columns << Source.___paycardobjects[:part_num]
+          insert_manager.columns << Source.___paycardobjects[:part_name]
+          insert_manager.columns << Source.___paycardobjects[:area1]
+          insert_manager.columns << Source.___paycardobjects[:share_size]
+          insert_manager.columns << Source.___paycardobjects[:numerator]
+          insert_manager.columns << Source.___paycardobjects[:denominator]
+          insert_manager.into(Source.___paycardobjects)
+          insert_manager.select(source)
+          insert_manager.to_sql
         end
 
         begin
-          sql = ""
-          insert = []
-
-          Source.execute_query(query.to_sql).each_slice(1000) do |rows|
-          
-            rows.each do |row|
-              insert << {
-                ___paycard_id: row["___paycard_id"],
-                moveitem_id: row["moveitem_id"],
-                object_id: row["object_id"],
-                func_using_id: row["func_using_id"],
-                part_num: row["part_num"],
-                part_name: row["part_name"],
-                area1: row["area1"],
-                share_size: row["share_size"],
-                numerator: row["numerator"],
-                denominator: row["denominator"],
-              }
-            end
-
-            condition =<<~SQL
-              ___paycardobjects.___paycard_id = values_table.___paycard_id
-                and ___paycardobjects.moveitem_id = values_table.moveitem_id
-                and ___paycardobjects.object_id = values_table.object_id
-                and ___paycardobjects.part_num = values_table.part_num
-            SQL
-
-            sql = Source::Paycardobjects.insert_query(rows: insert, condition: condition)
-            result = Source.execute_query(sql)
-            result.do
-            insert.clear
-            sql.clear
-          end
+          Source.execute_query(query).do
 
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e
           Rake.error "Ошибка при выполнении задачи '#{ t }' - #{e}."
-          Rake.info "Текст запроса \"#{ sql }\""
+          Rake.info "Текст запроса \"#{ query }\""
 
           exit
         end

@@ -2,34 +2,28 @@ namespace :moving_operations do
   namespace :source do
     namespace :___ids do
 
-      task :update___code_group do |t|
-
+      task :update_link do |t|
         def query
-          manager = Arel::SelectManager.new(Database.destination_engine)
-          manager.project([
-            Destination.mss_v_moves_types[:link],
-            Destination.mss_v_moves_types[:code_group].as("___code_group"),
-          ])
-          manager.from(Destination.mss_v_moves_types)
-          manager.where(Destination.mss_v_moves_types[:code_group].not_eq(nil))
-          manager.to_sql
+          Destination.mss_movs
+          .project(
+            Destination.mss_movs[:link], 
+            Destination.mss_movs[:row_id], 
+          )
         end
 
         begin
           sql = ""
 
-          Destination.execute_query(query).each_slice(1000) do |rows|
+          Destination.execute_query(query.to_sql).each_slice(1000) do |rows|
             columns = rows.map(&:keys).uniq.flatten
             values_list = Arel::Nodes::ValuesList.new(rows.map(&:values))
         
             sql = <<~SQL
               update ___ids set 
-                ___ids.___code_group = values_table.___code_group
+                ___ids.link = values_table.link
               from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
-              where ___ids.link = values_table.link
-                and ___ids.table_id = #{ Source::MovingOperations.table_id } 
+              where ___ids.row_id = values_table.row_id  
             SQL
-
             result = Source.execute_query(sql)
             result.do
           end

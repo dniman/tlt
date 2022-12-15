@@ -9,6 +9,7 @@ namespace :paycardobjects do
             ,___paycard_id int
             ,moveitem_id int
             ,object_id int
+            ,objectusing_id int
             ,func_using_id int
             ,part_num int
             ,part_name varchar(1000)

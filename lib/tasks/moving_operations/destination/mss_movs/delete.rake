@@ -5,16 +5,20 @@ namespace :moving_operations do
       task :delete do |t|
 
         def query
-          condition = Destination.___moving_operations.create_on(Destination.___moving_operations[:row_id].eq(Destination.mss_movs[:row_id]))
-          source = Arel::Nodes::JoinSource.new(Destination.___moving_operations,
-                                               [Destination.___moving_operations.create_join(Destination.mss_movs, condition)])
-
+          condition = Destination.___del_ids.create_on(
+            Destination.___del_ids[:link].eq(Destination.mss_movs[:link])
+            .and(Destination.___del_ids[:table_id].eq(Source::MovingOperations.table_id))
+          )
+          source = Arel::Nodes::JoinSource.new(Destination.mss_movs,
+                                               [Destination.mss_movs.create_join(Destination.___del_ids, condition)])
+          
           manager = Arel::DeleteManager.new Database.destination_engine
           manager.from(source)
+          manager.to_sql
         end
 
         begin
-          result = Destination.execute_query(query.to_sql).do
+          result = Destination.execute_query(query).do
           
           Rake.info "Задача '#{ t }' успешно выполнена."
         rescue StandardError => e

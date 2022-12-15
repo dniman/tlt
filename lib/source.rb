@@ -87,6 +87,7 @@ module Source
     :___moving_operations,
     :___mss_movescausesb_di,
     :___mss_dict_decommission_causes,
+    :___moving_operation_objects,
   ]
   
   class << self

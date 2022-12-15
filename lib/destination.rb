@@ -52,6 +52,7 @@ module Destination
     :t_charge,
     :agreement_sign,
     :paycard_sign,
+    :mss_reestr_partitions,
   ]
 
   class << self

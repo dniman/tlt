@@ -1,33 +1,32 @@
-namespace :moving_operations do
+namespace :moving_operation_objects do
   namespace :source do
-    namespace :___moving_operations do
+    namespace :___moving_operation_objects do
 
-      task :update___is_excl_from_r do |t|
+      task :update___is_change_reestr do |t|
 
         def query
-          ___is_excl_from_r = 
+          ___is_change_reestr = 
             Arel::Nodes::Case.new()
-            .when(Source.___ids[:___code_group].eq('FROM_REESTR')).then(1)
+            .when(Source.___ids[:___code_group].eq('TO_REESTR')).then(1)
             .else(0)
 
           manager = Arel::SelectManager.new(Database.source_engine)
           manager.project([
-            Source.___ids[:id],
-            ___is_excl_from_r.as("___is_excl_from_r"),
+            Source.___moving_operation_objects[:id],
+            ___is_change_reestr.as("___is_change_reestr"),
           ])
-          manager.from(Source.___ids)
-          manager.where(Source.___ids[:table_id].eq(Source::MovingOperations.table_id))
+          manager.from(Source.___moving_operation_objects)
           manager.to_sql
         end
 
         begin
           sql = <<~SQL
-            update ___moving_operations set 
-              ___moving_operations.___is_excl_from_r = values_table.___is_excl_from_r
-            from ___moving_operations
+            update ___moving_operation_objects set 
+              ___moving_operation_objects.___is_change_reestr = values_table.___is_change_reestr
+            from ___moving_operation_objects
               join(
                 #{ query }
-              ) values_table(id, ___is_excl_from_r) on values_table.id = ___moving_operations.id
+              ) values_table(id, ___is_change_reestr) on values_table.id = ___moving_operation_objects.id
           SQL
 
           Source.execute_query(sql).do

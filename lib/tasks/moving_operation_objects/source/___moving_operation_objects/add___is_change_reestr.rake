@@ -1,12 +1,12 @@
-namespace :moving_operations do
+namespace :moving_operation_objects do
   namespace :source do
-    namespace :___ids do
+    namespace :___moving_operation_objects do
 
-      task :add___code_group do |t|
+      task :add___is_change_reestr do |t|
         begin
           sql = Arel.sql(
-            "alter table #{ Source.___ids.name }
-              add ___code_group varchar(50) 
+            "alter table #{ Source.___moving_operation_objects.name }
+              add ___is_change_reestr int
             "
           )
           Source.execute_query(sql).do

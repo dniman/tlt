@@ -14,7 +14,7 @@ namespace :moving_operations do
             ,parent_moveperiod_id int
             ,moveset_id int
             ,client_id int
-            ,object_id int
+            ,moveitem_id int
             ,docset_id int
             ,___agreement_id int
             ,___paycard_id int

@@ -1,13 +1,13 @@
-namespace :moving_operations do
+namespace :moving_operation_objects do
   namespace :source do
-    namespace :___moving_operations do
+    namespace :___moving_operation_objects do
       
-      task :drop___is_change_reestr do |t|
+      task :drop___object_type_name do |t|
         begin
           sql = Arel.sql(
-            "if (col_length('#{ Source.___ids.name }','___moving_operations') is not null)
-            alter table #{ Source.___moving_operations.name }
-              drop column ___moving_operations
+            "if (col_length('#{ Source.___moving_operation_objects.name }','___object_type_name') is not null)
+            alter table #{ Source.___moving_operation_objects.name }
+              drop column ___object_type_name
             "
           )
           Source.execute_query(sql).do

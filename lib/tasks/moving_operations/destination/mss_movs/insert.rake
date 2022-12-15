@@ -99,7 +99,7 @@ namespace :moving_operations do
 
           Source.___moving_operations
           .project([
-            Source.___moving_operations[:___link_key].as("link_key"),
+            Source.___ids[:___link_key].as("link_key"),
             Source.___ids[:link_type],
             Source.___ids[:row_id],
             Source.___moving_operations[:sincedate].as("date_beg"),

@@ -1,13 +1,12 @@
-namespace :moving_operations do
+namespace :moving_operation_objects do
   namespace :source do
-    namespace :___moving_operations do
-      
-      task :drop___is_excl_from_r do |t|
+    namespace :___moving_operation_objects do
+
+      task :add___object_type_name do |t|
         begin
           sql = Arel.sql(
-            "if (col_length('#{ Source.___ids.name }','___is_excl_from_r') is not null)
-            alter table #{ Source.___moving_operations.name }
-              drop column ___is_excl_from_r
+            "alter table #{ Source.___moving_operation_objects.name }
+              add ___object_type_name varchar(255)
             "
           )
           Source.execute_query(sql).do

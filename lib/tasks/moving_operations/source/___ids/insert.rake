@@ -65,6 +65,8 @@ namespace :moving_operations do
             Arel::Nodes::NamedFunction.new('newid', []).as("row_id")
           ])
           select_manager.from(Source.___moving_operations)
+          select_manager.join(Source.moveitems).on(Source.moveitems[:id].eq(Source.___moving_operations[:moveitem_id]))
+          select_manager.join(Source.___ids).on(Source.___ids[:id].eq(Source.moveitems[:object_id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
           select_manager.where(subquery.exists.not)
           
           source = Arel::Nodes::JoinSource.new(select_manager,[])

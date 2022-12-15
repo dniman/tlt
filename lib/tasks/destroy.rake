@@ -54,6 +54,22 @@ namespace :destroy do
     Rake::Task['destroy:final_message'].invoke("Удаление данных в базе назначения завершено.")
   end
   
+  # Удаление объектов операций движения
+  namespace :moving_operation_objects do
+    desc 'Запуск задачи удаления объектов операций движения в базе назначения'
+    task :start => [
+      'set_logger', 
+      'source:initialize', 
+      'destination:initialize',
+
+      'moving_operation_objects:destroy',
+    ] do 
+
+      Rake::Task['destroy:delete_completed_tasks'].invoke("moving_operation_objects:%")
+      Rake::Task['destroy:final_message'].invoke("Удаление объектов операций движения в базе назначения завершено.")
+    end
+  end
+  
   # Удаление операций движения
   namespace :moving_operations do
     desc 'Запуск задачи удаления операций движения в базе назначения'

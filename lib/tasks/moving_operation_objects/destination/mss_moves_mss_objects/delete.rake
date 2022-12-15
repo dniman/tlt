@@ -1,16 +1,16 @@
-namespace :moving_operations do
+namespace :moving_operation_objects do
   namespace :destination do
-    namespace :mss_moves_key do
+    namespace :mss_moves_mss_objects do
 
       task :delete do |t|
 
         def query
           condition = Destination.___del_ids.create_on(
-            Destination.___del_ids[:link].eq(Destination.mss_moves_key[:link])
-            .and(Destination.___del_ids[:table_id].eq(Source::MovingOperations.table_id))
+            Destination.___del_ids[:link].eq(Destination.mss_moves_mss_objects[:link])
+            .and(Destination.___del_ids[:table_id].eq(Source::MovingOperationObjects.table_id))
           )
-          source = Arel::Nodes::JoinSource.new(Destination.mss_moves_key,
-                                               [Destination.mss_moves_key.create_join(Destination.___del_ids, condition)])
+          source = Arel::Nodes::JoinSource.new(Destination.mss_moves_mss_objects,
+                                               [Destination.mss_moves_mss_objects.create_join(Destination.___del_ids, condition)])
           
           manager = Arel::DeleteManager.new Database.destination_engine
           manager.from(source)

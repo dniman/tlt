@@ -1,12 +1,12 @@
-namespace :moving_operations do
+namespace :moving_operation_objects do
   namespace :source do
-    namespace :___moving_operations do
+    namespace :___moving_operation_objects do
 
-      task :add___link_key do |t|
+      task :add___is_excl_from_r do |t|
         begin
           sql = Arel.sql(
-            "alter table #{ Source.___moving_operations.name }
-              add ___link_key int
+            "alter table #{ Source.___moving_operation_objects.name }
+              add ___is_excl_from_r int
             "
           )
           Source.execute_query(sql).do
