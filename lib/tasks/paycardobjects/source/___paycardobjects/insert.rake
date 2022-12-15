@@ -21,6 +21,7 @@ namespace :paycardobjects do
                 convert(xml,objectusing.xml_param_method).value(\'(/ROOT/ORIG_VAL/PARAM[@NAME="Квв"]/@VALUE)[1]\', \'int\'),
                 convert(xml,moveitems.xml_param_method).value(\'(/ROOT/ORIG_VAL/PARAM[@NAME="Квв"]/@VALUE)[1]\', \'int\')
               )').as("func_using_id"),
+            Source.objectusing[:id].as("objectusing_id"),
           )
           subquery.distinct
           subquery.from(Source.moveitems)
@@ -37,7 +38,6 @@ namespace :paycardobjects do
             Source.___paycardobjects[:___paycard_id].eq(subquery_table[:___paycard_id])
             .and(Source.___paycardobjects[:moveitem_id].eq(subquery_table[:moveitem_id]))
             .and(Source.___paycardobjects[:object_id].eq(Source.moveitems[:object_id]))
-            .and(Source.___paycardobjects[:objectusing_id].eq(Source.objectusing[:id]))
           )
           
           window = Arel::Nodes::Window.new.tap do |w|
@@ -57,7 +57,7 @@ namespace :paycardobjects do
             subquery_table[:___paycard_id],
             subquery_table[:moveitem_id],
             Source.moveitems[:object_id],
-            Source.objectusing[:id].as("objectusing_id"),
+            subquery_table[:objectusing_id],
             subquery_table[:func_using_id],
             part_num.as("part_num"),
             Source.usingprupose[:name].as("part_name"),
@@ -69,7 +69,10 @@ namespace :paycardobjects do
           select_manager.from(subquery_table)
           select_manager.join(Source.___paycards).on(Source.___paycards[:id].eq(subquery_table[:___paycard_id]))
           select_manager.join(Source.moveitems).on(Source.moveitems[:id].eq(subquery_table[:moveitem_id]))
-          select_manager.join(Source.objectusing, Arel::Nodes::OuterJoin).on(Source.objectusing[:moveitem_id].eq(subquery_table[:moveitem_id]))
+          select_manager.join(Source.objectusing, Arel::Nodes::OuterJoin).on(
+            Source.objectusing[:moveitem_id].eq(subquery_table[:moveitem_id])
+            .and(Source.objectusing[:id].eq(subquery_table[:objectusing_id]))
+          )
           select_manager.join(Source.usingprupose, Arel::Nodes::OuterJoin).on(Source.usingprupose[:id].eq(Source.objectusing[:usingpurpose]))
           select_manager.where(subquery2.exists.not)
           
