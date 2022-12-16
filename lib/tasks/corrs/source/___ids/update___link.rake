@@ -2,13 +2,14 @@ namespace :corrs do
   namespace :source do
     namespace :___ids do
 
-      task :update_link do |t|
+      task :update___link do |t|
         def query
           Destination.s_corr
           .project(
-            Destination.s_corr[:link], 
+            Destination.mss_objcorr[:link].as("___link"),
             Destination.s_corr[:row_id], 
           )
+          .join(Destination.mss_objcorr).on(Destination.mss_objcorr[:link_s_corr].eq(Destination.s_corr[:link]))
           .where(Destination.s_corr[:object].eq(Destination::SCorr::DICTIONARY_CORR))
         end
 
@@ -20,7 +21,7 @@ namespace :corrs do
         
             sql = <<~SQL
               update ___ids set 
-                ___ids.link = values_table.link
+                ___ids.___link = values_table.___link
               from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
               where ___ids.row_id = values_table.row_id  
             SQL
