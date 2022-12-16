@@ -56,6 +56,7 @@ module Destination
     :mss_moves_mss_objects,
     :mss_detail_list,
     :mss_docs_roles_in_operations,
+    :mss_objcorr_docs,
   ]
 
   class << self

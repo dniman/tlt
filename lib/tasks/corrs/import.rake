@@ -7,7 +7,6 @@ namespace :corrs do
       Rake.invoke_task 'corrs:destination:s_corr:insert'
       Rake.invoke_task 'corrs:source:___ids:update_link'
       Rake.invoke_task 'corrs:destination:mss_viw_ocval_mo_ref:insert'
-      Rake.invoke_task 'corrs:source:___ids:drop___link'
       Rake.invoke_task 'corrs:destination:t_corr_dict:reference_corr_type:insert'
 
       # Параметры физического лица
@@ -25,6 +24,11 @@ namespace :corrs do
       
       # Пол
       Rake.invoke_task 'corrs:destination:s_corr_app:object:column_person_sex:insert'
+
+      # Документы
+      Rake.invoke_task 'corrs:destination:mss_objcorr_docs:insert'
+      
+      Rake.invoke_task 'corrs:source:___ids:drop___link'
     end
 
   end

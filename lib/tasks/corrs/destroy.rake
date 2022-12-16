@@ -4,6 +4,9 @@ namespace :corrs do
     task :tasks => [
       'corrs:destination:___del_ids:insert',
 
+      # Документы
+      'corrs:destination:mss_objcorr_docs:delete',
+
       # Параметры физического лица
       # Фамилия
       'corrs:destination:s_corr_app:object:column_person_fm:delete',
