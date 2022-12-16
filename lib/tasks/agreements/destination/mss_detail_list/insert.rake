@@ -7,7 +7,7 @@ namespace :agreements do
           docroles_ids = Source.___ids.alias("docroles_ids")
 
           doc_form =
-            Arel::Node::NamedFunction.new('max', [
+            Arel::Nodes::NamedFunction.new('max', [
               Arel::Nodes::Case.new
               .when(Source.docroles[:name].eq('Основной документ')).then(1)
               .else(0)
