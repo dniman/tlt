@@ -186,6 +186,9 @@ namespace :objects do
         # Земельные участки, в пределах которого находится объект
         'objects:engineering_network:destination:mss_objects_parentland:delete',
 
+        # Документы
+        'objects:engineering_network:destination:mss_detail_list:delete',
+        'objects:engineering_network:source:___ids:drop___link_list',
 
         'objects:engineering_network:destination:mss_objects:delete',
         'objects:engineering_network:destination:mss_objects:drop___cad_quorter',

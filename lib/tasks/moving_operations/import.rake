@@ -23,6 +23,11 @@ namespace :moving_operations do
       Rake.invoke_task 'moving_operations:source:___moving_operations:update___link_cause_e3'
       Rake.invoke_task 'moving_operations:destination:mss_movs:insert'
       Rake.invoke_task 'moving_operations:source:___ids:update_link'
+
+      Rake.invoke_task 'moving_operations:source:___ids:add___link_list'
+      Rake.invoke_task 'moving_operations:source:___ids:update___link_list'
+      Rake.invoke_task 'moving_operations:destination:mss_detail_list:insert'
+      Rake.invoke_task 'moving_operations:source:___ids:drop___link_list'
     end
 
   end

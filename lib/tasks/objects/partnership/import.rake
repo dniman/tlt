@@ -56,6 +56,12 @@ namespace :objects do
         
         # Оставшийся срок полезного использования в годах
         Rake.invoke_task 'objects:partnership:destination:mss_objects_app:object:mss_od_remaining_useful_life_y:insert'
+        
+        # Привязка документов
+        Rake.invoke_task 'objects:partnership:source:___ids:add___link_list'
+        Rake.invoke_task 'objects:partnership:source:___ids:update___link_list'
+        Rake.invoke_task 'objects:partnership:destination:mss_detail_list:insert'
+        Rake.invoke_task 'objects:partnership:source:___ids:drop___link_list'
       end 
 
     end

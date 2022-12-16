@@ -152,6 +152,10 @@ namespace :objects do
 
         # Земельные участки, в пределах которого находится объект
         'objects:unlife_room:destination:mss_objects_parentland:delete',
+       
+        # Документы
+        'objects:unlife_room:destination:mss_detail_list:delete',
+        'objects:unlife_room:source:___ids:drop___link_list',
 
 
         'objects:unlife_room:destination:mss_objects:delete',

@@ -152,6 +152,9 @@ namespace :objects do
         # Земельные участки, в пределах которого находится объект
         'objects:houses_life:destination:mss_objects_parentland:delete',
 
+        # Документы
+        'objects:houses_life:destination:mss_detail_list:delete',
+        'objects:houses_life:source:___ids:drop___link_list',
 
         'objects:houses_life:destination:mss_objects:delete',
         'objects:houses_life:destination:mss_objects:drop___cad_quorter',

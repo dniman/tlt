@@ -54,6 +54,8 @@ module Destination
     :paycard_sign,
     :mss_reestr_partitions,
     :mss_moves_mss_objects,
+    :mss_detail_list,
+    :mss_docs_roles_in_operations,
   ]
 
   class << self

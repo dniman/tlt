@@ -65,6 +65,9 @@ namespace :objects do
         # Оставшийся срок полезного использования в годах
         'objects:exright_intellprop:destination:mss_objects_app:object:mss_od_remaining_useful_life_y:delete',
 
+        # Документы
+        'objects:exright_intellprop:destination:mss_detail_list:delete',
+        'objects:exright_intellprop:source:___ids:drop___link_list',
 
         # Удаление основного объекта
         'objects:exright_intellprop:destination:mss_objects:delete',

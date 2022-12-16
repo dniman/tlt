@@ -3,6 +3,7 @@ namespace :moving_operations do
 
     task :tasks => [
       'moving_operations:destination:___del_ids:insert',
+      'moving_operations:destination:mss_detail_list:delete',
       'moving_operations:destination:mss_movs:delete',
       'moving_operations:destination:mss_moves_key:delete',
       'moving_operations:destination:___del_ids:delete',
@@ -13,6 +14,7 @@ namespace :moving_operations do
       'moving_operations:source:___moving_operations:drop___link_corr',
       'moving_operations:source:___moving_operations:drop___link_cause_b',
       'moving_operations:source:___moving_operations:drop___link_cause_e',
+      'moving_operations:source:___ids:drop___link_list',
     ]
 
   end

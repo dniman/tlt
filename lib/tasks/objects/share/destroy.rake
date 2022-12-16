@@ -53,6 +53,10 @@ namespace :objects do
 
         # Удалим ссылку на тип Хозяйственное общество или товарищество 
         'objects:share:destination:t_corr_dict:reference_corr_type:emmitstock:delete',
+        
+        # Документы
+        'objects:share:destination:mss_detail_list:delete',
+        'objects:share:source:___ids:drop___link_list',
 
         # Удаление основного объекта
         'objects:share:destination:mss_objects:delete',

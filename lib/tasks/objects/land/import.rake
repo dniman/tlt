@@ -178,6 +178,12 @@ namespace :objects do
         Rake.invoke_task 'objects:land:source:states:update___link_state' 
         Rake.invoke_task 'objects:land:destination:mss_objects_app:link_param:state:insert'
         Rake.invoke_task 'objects:land:source:states:drop___link_state' 
+        
+        # Привязка документов
+        Rake.invoke_task 'objects:land:source:___ids:add___link_list'
+        Rake.invoke_task 'objects:land:source:___ids:update___link_list'
+        Rake.invoke_task 'objects:land:destination:mss_detail_list:insert'
+        Rake.invoke_task 'objects:land:source:___ids:drop___link_list'
       end 
 
     end

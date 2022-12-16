@@ -243,6 +243,12 @@ namespace :objects do
         
         # Земельные участки, в пределах которого находится объект
         Rake.invoke_task 'objects:unfinished:destination:mss_objects_parentland:insert'
+        
+        # Привязка документов
+        Rake.invoke_task 'objects:unfinished:source:___ids:add___link_list'
+        Rake.invoke_task 'objects:unfinished:source:___ids:update___link_list'
+        Rake.invoke_task 'objects:unfinished:destination:mss_detail_list:insert'
+        Rake.invoke_task 'objects:unfinished:source:___ids:drop___link_list'
       end 
 
     end

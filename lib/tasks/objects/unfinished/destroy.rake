@@ -179,6 +179,10 @@ namespace :objects do
 
         # Земельные участки, в пределах которого находится объект
         'objects:unfinished:destination:mss_objects_parentland:delete',
+        
+        # Документы
+        'objects:unfinished:destination:mss_detail_list:delete',
+        'objects:unfineshed:source:___ids:drop___link_list',
 
 
         'objects:unfinished:destination:mss_objects:delete',

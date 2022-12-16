@@ -124,6 +124,10 @@ namespace :objects do
         
         # Оставшийся срок полезного использования в годах
         'objects:transport:destination:mss_objects_app:object:mss_od_remaining_useful_life_y:delete',
+        
+        # Документы
+        'objects:transport:destination:mss_detail_list:delete',
+        'objects:transport:source:___ids:drop___link_list',
 
         ###
         # Удаление основного объекта

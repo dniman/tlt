@@ -186,6 +186,9 @@ namespace :objects do
         # Земельные участки, в пределах которого находится объект
         'objects:automobile_road:destination:mss_objects_parentland:delete',
 
+        # Документы
+        'objects:automobile_road:destination:mss_detail_list:delete',
+        'objects:automobile_road:source:___ids:drop___link_list',
 
         'objects:automobile_road:destination:mss_objects:delete',
         'objects:automobile_road:destination:mss_objects:drop___cad_quorter',

@@ -217,6 +217,12 @@ namespace :objects do
 
         # Земельные участки, в пределах которого находится объект
         Rake.invoke_task 'objects:unlife_room:destination:mss_objects_parentland:insert'
+        
+        # Привязка документов
+        Rake.invoke_task 'objects:unlife_room:source:___ids:add___link_list'
+        Rake.invoke_task 'objects:unlife_room:source:___ids:update___link_list'
+        Rake.invoke_task 'objects:unlife_room:destination:mss_detail_list:insert'
+        Rake.invoke_task 'objects:unlife_room:source:___ids:drop___link_list'
       end 
 
     end

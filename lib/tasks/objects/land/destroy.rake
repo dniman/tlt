@@ -43,6 +43,10 @@ namespace :objects do
         
         # Состояние
         'objects:land:destination:mss_objects_app:link_param:state:delete',
+        
+        # Документы
+        'objects:land:destination:mss_detail_list:delete',
+        'objects:land:source:___ids:drop___link_list',
 
         'objects:land:destination:mss_objects:delete',
         'objects:land:destination:mss_objects:drop___cad_quorter',

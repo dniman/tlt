@@ -39,6 +39,7 @@ import 'lib/tasks/dictionaries/dictionary_agree_mode.rake'
 import 'lib/tasks/dictionaries/dictionary_nazn_rent.rake'
 import 'lib/tasks/dictionaries/mss_movescausesb_di.rake'
 import 'lib/tasks/dictionaries/mss_dict_decommission_causes.rake'
+import 'lib/tasks/dictionaries/mss_doc_roles_in_operations.rake'
 
 namespace :dictionaries do
 
@@ -84,6 +85,7 @@ namespace :dictionaries do
     'dictionaries:dictionary_nazn_rent:import',
     'dictionaries:mss_movescausesb_di:import',
     'dictionaries:mss_dict_decommission_causes:import',
+    'dictionaries:mss_doc_roles_in_operations:import',
   ] 
 
   task :destroy => [
@@ -126,6 +128,7 @@ namespace :dictionaries do
     'dictionaries:dictionary_nazn_rent:destroy',
     'dictionaries:mss_movescausesb_di:destroy',
     'dictionaries:mss_dict_decommission_causes:destroy',
+    'dictionaries:mss_doc_roles_in_operations:destroy',
   ] 
 
 end 
