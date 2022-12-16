@@ -11,7 +11,7 @@ namespace :paycards do
               Arel::Nodes::Case.new
               .when(Source.docroles[:name].eq('Основной документ')).then(1)
               .else(0)
-            ]
+            ])
 
           manager1 = Arel::SelectManager.new Database.destination_engine
           manager1.from(Source.docset_members)
@@ -49,7 +49,7 @@ namespace :paycards do
           )
           manager2.join(paycards_ids2).on(paycards_ids2[:link].eq(Source.___paycards[:___link_up]))
           manager2.where(Source.___paycards[:___link_up].not_eq(nil))
-          manager1.group(paycards_ids2[:___link_list], Source.___ids[:link])
+          manager2.group(paycards_ids2[:___link_list], Source.___ids[:link])
           
           union = manager1.union :all, manager2
           union_table = Arel::Table.new :union_table
