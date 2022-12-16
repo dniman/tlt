@@ -33,6 +33,7 @@ namespace :agreements do
             .and(Source.___ids[:table_id].eq(Source::Documents.table_id))
           )
           manager.join(Source.docroles, Arel::Nodes::OuterJoin).on(Source.docroles[:id].eq(Source.docset_members[:docrole_id]))
+          manager.group(agreements_ids[:___link_list], Source.___ids[:link])
           manager.where(agreements_ids[:___link_list].not_eq(nil))
         end
 
