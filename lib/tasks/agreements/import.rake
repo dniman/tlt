@@ -67,6 +67,12 @@ namespace :agreements do
       Rake.invoke_task 'agreements:destination:agreement_sign:project:insert'
       # расторгнут
       Rake.invoke_task 'agreements:destination:agreement_sign:terminated:insert'
+      
+      # Документы
+      Rake.invoke_task 'agreements:source:___ids:add___link_list'
+      Rake.invoke_task 'agreements:source:___ids:update___link_list'
+      Rake.invoke_task 'agreements:destination:mss_detail_list:insert'
+      Rake.invoke_task 'agreements:source:___ids:drop___link_list'
     end
 
   end

@@ -3,6 +3,7 @@ namespace :agreements do
 
     task :tasks => [
       'agreements:destination:___del_ids:insert',
+      'agreements:destination:mss_detail_list:delete',
       'agreements:destination:agreement_sign:arh_final:delete',
       'agreements:destination:agreement_sign:arh_pk_zemlya:delete',
       'agreements:destination:agreement_sign:closed_project:delete',
@@ -29,6 +30,7 @@ namespace :agreements do
       'agreements:source:___agreements:drop___status',
       'agreements:source:___agreements:drop___client_id',
       'agreements:source:___ids:drop___object',
+      'agreements:source:___ids:drop___link_list',
     ]
 
   end
