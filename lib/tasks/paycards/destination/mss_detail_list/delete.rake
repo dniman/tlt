@@ -1,19 +1,19 @@
-namespace :agreements do
+namespace :paycards do
   namespace :destination do
     namespace :mss_detail_list do
 
       task :delete do |t|
         def query
-          condition1 = Destination.mss_detail_list.create_on(Destination.agreement[:link_list].eq(Destination.mss_detail_list[:link_list]))
+          condition1 = Destination.mss_detail_list.create_on(Destination.paycard[:link_list].eq(Destination.mss_detail_list[:link_list]))
           condition2 = Destination.___del_ids.create_on(
-            Destination.___del_ids[:row_id].eq(Destination.agreement[:row_id])
-            .and(Destination.___del_ids[:table_id].eq(Source::Agreements.table_id))
+            Destination.___del_ids[:row_id].eq(Destination.paycard[:row_id])
+            .and(Destination.___del_ids[:table_id].eq(Source::Paycards.table_id))
           )
 
           source = Arel::Nodes::JoinSource.new(
             Destination.mss_detail_list, [
-              Destination.mss_detail_list.create_join(Destination.agreement, condition1),
-              Destination.agreement.create_join(Destination.___del_ids, condition2),
+              Destination.mss_detail_list.create_join(Destination.paycard, condition1),
+              Destination.paycard.create_join(Destination.___del_ids, condition2),
             ]
           )
           

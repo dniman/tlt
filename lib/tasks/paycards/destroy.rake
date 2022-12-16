@@ -4,6 +4,8 @@ namespace :paycards do
     task :tasks => [
       'paycards:destination:___del_ids:insert',
 
+      'paycards:destination:mss_detail_list:delete',
+
       'paycards:destination:paycard_sign:exit_da:delete',
       'paycards:destination:paycard_sign:plurality_persons:delete',
       'paycards:destination:paycard_sign:stage_reg:delete',
@@ -27,6 +29,7 @@ namespace :paycards do
       'paycards:source:___paycards:drop___sum_rtype',
       'paycards:source:___paycards:drop___account',
       'paycards:source:___paycards:drop___status',
+      'paycards:source:___ids:drop___link_list',
     ]
 
   end

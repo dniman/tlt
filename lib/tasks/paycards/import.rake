@@ -50,6 +50,12 @@ namespace :paycards do
       Rake.invoke_task 'paycards:destination:paycard_sign:exit_da:insert'
       Rake.invoke_task 'paycards:destination:paycard_sign:plurality_persons:insert'
       Rake.invoke_task 'paycards:destination:paycard_sign:stage_reg:insert'
+      
+      # Документы
+      Rake.invoke_task 'paycards:source:___ids:add___link_list'
+      Rake.invoke_task 'paycards:source:___ids:update___link_list'
+      Rake.invoke_task 'paycards:destination:mss_detail_list:insert'
+      Rake.invoke_task 'paycards:source:___ids:drop___link_list'
     end
 
   end
