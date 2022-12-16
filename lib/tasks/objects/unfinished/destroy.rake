@@ -182,7 +182,7 @@ namespace :objects do
         
         # Документы
         'objects:unfinished:destination:mss_detail_list:delete',
-        'objects:unfineshed:source:___ids:drop___link_list',
+        'objects:unfinished:source:___ids:drop___link_list',
 
 
         'objects:unfinished:destination:mss_objects:delete',
