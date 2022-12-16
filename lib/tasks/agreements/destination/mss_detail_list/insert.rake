@@ -7,9 +7,11 @@ namespace :agreements do
           docroles_ids = Source.___ids.alias("docroles_ids")
 
           doc_form =
-            Arel::Nodes::Case.new
-            .when(Source.docroles[:name].eq('Основной документ')).then(1)
-            .else(0)
+            Arel::Node::NamedFunction.new('max', [
+              Arel::Nodes::Case.new
+              .when(Source.docroles[:name].eq('Основной документ')).then(1)
+              .else(0)
+            ])
 
           manager = Arel::SelectManager.new Database.destination_engine
           manager.project(
