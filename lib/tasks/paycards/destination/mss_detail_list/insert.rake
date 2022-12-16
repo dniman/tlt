@@ -58,7 +58,7 @@ namespace :paycards do
           select_manager.project(Arel.star)
           select_manager.distinct
           select_manager.from(union_table.create_table_alias(union,:union_table))
-          select_manager.where(union_table[:___link_list].not_eq(nil))
+          select_manager.where(union_table[:link_list].not_eq(nil))
         end
 
         begin
