@@ -7,6 +7,7 @@ namespace :corrs do
           select_one = 
             Source.clients
             .project([
+              Source.___ids[:row_id][-7..-1].as("code"),
               Source.clients[:inn],
               Source.clients[:name].as("sname"),
               Source.privates[:fullname].as("name"),
@@ -21,6 +22,7 @@ namespace :corrs do
           select_two =
             Source.clients
             .project([
+              Arel.sql("null").as("code"),
               Source.clients[:inn],
               Source.clients[:name].as("sname"),
               Source.organisations[:name],
@@ -46,6 +48,7 @@ namespace :corrs do
           Source.execute_query(query.to_sql).each_slice(1000) do |rows|
             rows.each do |row|
               insert << {
+                code: row["code"],
                 inn: row["inn"].nil? ? nil : row["inn"].strip[0,13],
                 sname: row["sname"].nil? ? row["name"].strip[0, 160] : row["sname"].strip[0,160],
                 name: row["name"].nil? ? row["sname"].strip[0, 250] : row["name"].strip[0,250],
