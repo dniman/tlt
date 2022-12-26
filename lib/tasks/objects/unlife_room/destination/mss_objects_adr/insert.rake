@@ -54,18 +54,18 @@ namespace :objects do
             
               rows.each do |row|
                 full_addr = [
-                  row[:country_name].to_s.strip,
-                  row[:post_index].to_s.strip,
-                  row[:region_name].to_s.strip,
-                  row[:rayon_name].to_s.strip,
+                  row["country_name"].to_s.strip,
+                  row["post_index"].to_s.strip,
+                  row["region_name"].to_s.strip,
+                  row["rayon_name"].to_s.strip,
                   '',
-                  row[:city_name].to_s.strip,
+                  row["city_name"].to_s.strip,
                   '',
-                  row[:street_name].to_s.strip,
-                  row[:house_num].to_s.strip,
-                  row[:corp_num].to_s.strip,
-                  row[:room_num].to_s.strip,
-                  row[:addition].to_s.strip
+                  row["street_name"].to_s.strip,
+                  row["house_num"].to_s.strip,
+                  row["corp_num"].to_s.strip,
+                  row["room_num"].to_s.strip,
+                  row["addition"].to_s.strip
                 ]
                 insert << {
                   link_up: row['___link_adr'],

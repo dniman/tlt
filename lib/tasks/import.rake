@@ -76,7 +76,37 @@ namespace :import do
       'corrs:import',
     ] do 
 
-      Rake::Task['import:final_message'].invoke("Импорт кореспондентов в базу назначения завершен.")
+      Rake::Task['import:final_message'].invoke("Импорт корреспондентов в базу назначения завершен.")
+    end
+    
+    # Импорт физических лиц
+    namespace :fl_pers do
+      desc 'Запуск задачи импорта физических лиц в базу назначения'
+      task :start => [
+        'set_logger', 
+        'source:initialize', 
+        'destination:initialize',
+
+        'corrs:fl_pers:import',
+      ] do 
+
+        Rake::Task['import:final_message'].invoke("Импорт физических лиц в базу назначения завершен.")
+      end
+    end
+    
+    # Импорт юридических лиц
+    namespace :ul do
+      desc 'Запуск задачи импорта юридических лиц в базу назначения'
+      task :start => [
+        'set_logger', 
+        'source:initialize', 
+        'destination:initialize',
+
+        'corrs:ul:import',
+      ] do 
+
+        Rake::Task['import:final_message'].invoke("Импорт юридических лиц в базу назначения завершен.")
+      end
     end
   end
  

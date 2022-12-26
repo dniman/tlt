@@ -57,6 +57,16 @@ module Destination
     :mss_detail_list,
     :mss_docs_roles_in_operations,
     :mss_objcorr_docs,
+    :s_bank,
+    :mss_viw_ocval_simple,
+    :mss_viw_ocval_scorrapp,
+    :mss_objcorr_app,
+    :mss_objcorr_dictsimptext,
+    :mss_viw_ocval_dictstxt,
+    :t_corr_note,
+    :mss_corr_chief,
+    :mss_viw_ocval_s_corr_ref,
+    :s_corr_cpp,
   ]
 
   class << self
@@ -186,6 +196,116 @@ module Destination
         :COLUMN_PERSON_SEX,
         Destination::SObjects.obj_id('COLUMN_PERSON_SEX')
       )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_PERSON_BIRTHPLACE,
+        Destination::SObjects.obj_id('COLUMN_PERSON_BIRTHPLACE')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_PERSON_INSUR_NUM,
+        Destination::SObjects.obj_id('COLUMN_PERSON_INSUR_NUM')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_PERSON_DOC_N,
+        Destination::SObjects.obj_id('COLUMN_PERSON_DOC_N')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_PERSON_DOC_WHOM,
+        Destination::SObjects.obj_id('COLUMN_PERSON_DOC_WHOM')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_PERSON_DOC_DATE,
+        Destination::SObjects.obj_id('COLUMN_PERSON_DOC_DATE')
+      )
+      
+      Destination::TCorrDict.const_set(
+        :DICTIONARY_PERSON_PASSPORT,
+        Destination::SObjects.obj_id('DICTIONARY_PERSON_PASSPORT')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_PERSON_UFMS_CODE,
+        Destination::SObjects.obj_id('COLUMN_PERSON_UFMS_CODE')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_PERSON_COMMENT,
+        Destination::SObjects.obj_id('COLUMN_PERSON_COMMENT')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_DICT_PERS_PHONE,
+        Destination::SObjects.obj_id('COLUMN_DICT_PERS_PHONE')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :MSS_PERSON_OGRNIP,
+        Destination::SObjects.obj_id('MSS_PERSON_OGRNIP')
+      )
+
+      Destination::SCorrApp.const_set(
+        :MSS_REF_CORR_DATE_B,
+        Destination::SObjects.obj_id('MSS_REF_CORR_DATE_B')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :MSS_PERSON_IP_EMAIL,
+        Destination::SObjects.obj_id('MSS_PERSON_IP_EMAIL')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_PERSON_PHONE,
+        Destination::SObjects.obj_id('COLUMN_PERSON_PHONE')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :MSS_PERSON_IP_RASSCHET,
+        Destination::SObjects.obj_id('MSS_PERSON_IP_RASSCHET')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :MSS_PERSON_IP_BIK,
+        Destination::SObjects.obj_id('MSS_PERSON_IP_BIK')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_DICT_CORR_ADDRESS,
+        Destination::SObjects.obj_id('COLUMN_DICT_CORR_ADDRESS')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_PERSON_ADR_FACT,
+        Destination::SObjects.obj_id('COLUMN_PERSON_ADR_FACT')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :REF_MSSDICORR_ADRUKL,
+        Destination::SObjects.obj_id('REF_MSSDICORR_ADRUKL')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :REF_MSSDICORR_PADRUKL,
+        Destination::SObjects.obj_id('REF_MSSDICORR_PADRUKL')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :REFERENCE_POSTAL_ADDRESS,
+        Destination::SObjects.obj_id('REFERENCE_POSTAL_ADDRESS')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :MSS_REF_CORR_DATE_B_ORG,
+        Destination::SObjects.obj_id('MSS_REF_CORR_DATE_B_ORG')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :MSS_REF_CORR_DATE_E_ORG,
+        Destination::SObjects.obj_id('MSS_REF_CORR_DATE_E_ORG')
+      )
 
       Destination::MssOacRowstates.const_set(
         :CURRENT,
@@ -221,6 +341,76 @@ module Destination
       Destination::TCharge.const_set(
         :REFERENCE_PAY_DEBIT,
         Destination::SObjects.obj_id('REFERENCE_PAY_DEBIT')
+      )
+
+      Destination::TCorrNote.const_set(
+        :REFERENCE_OKVED,
+        Destination::SObjects.obj_id('REFERENCE_OKVED')
+      )
+      
+      Destination::SNote.const_set(
+        :RCPT_OKVED,
+        Destination::SObjects.obj_id('RCPT_OKVED')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_DICT_CORR_PHONE,
+        Destination::SObjects.obj_id('COLUMN_DICT_CORR_PHONE')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :MSS_REF_CORR_SIGNRCD,
+        Destination::SObjects.obj_id('MSS_REF_CORR_SIGNRCD')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :MSS_REF_OWNER_OGRN,
+        Destination::SObjects.obj_id('MSS_REF_OWNER_OGRN')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :REFERENCE_EMAIL,
+        Destination::SObjects.obj_id('REFERENCE_EMAIL')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :OKPO,
+        Destination::SObjects.obj_id('OKPO')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_DICT_CORR_FIO_BOSS,
+        Destination::SObjects.obj_id('COLUMN_DICT_CORR_FIO_BOSS')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_DICT_CORR_PHONE_BOSS,
+        Destination::SObjects.obj_id('COLUMN_DICT_CORR_PHONE_BOSS')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :REFERENCE_BOSS_DOL,
+        Destination::SObjects.obj_id('REFERENCE_BOSS_DOL')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :COLE_DICT_CORR_CHECK_MAIN_ORG,
+        Destination::SObjects.obj_id('COLE_DICT_CORR_CHECK_MAIN_ORG')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_DICT_CORR_FIO_BUH,
+        Destination::SObjects.obj_id('COLUMN_DICT_CORR_FIO_BUH')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :COLUMN_DICT_CORR_PHONE_BUH,
+        Destination::SObjects.obj_id('COLUMN_DICT_CORR_PHONE_BUH')
+      )
+      
+      Destination::SCorrCpp.const_set(
+        :REFERENCE_CPPU,
+        Destination::SObjects.obj_id('REFERENCE_CPPU')
       )
 
       nil

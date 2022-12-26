@@ -558,23 +558,35 @@ namespace :destroy do
       Rake::Task['destroy:final_message'].invoke("Удаление корреспондентов в базе назначения завершено.")
     end
 
-    namespace :appendix do
-      namespace :delete do
-        desc 'Запуск задачи удаления параметров корреспондентов в базе назначения'
-        task :start => [
-          'set_logger', 
-          'source:initialize', 
-          'destination:initialize',
+    # Удаление физических лиц
+    namespace :fl_pers do
+      desc 'Запуск задачи удаления физических лиц в базе назначения'
+      task :start => [
+        'set_logger', 
+        'source:initialize', 
+        'destination:initialize',
 
-          'corrs:destination:s_corr_app:object:column_person_fm:delete',
-          'corrs:destination:s_corr_app:object:column_person_im:delete',
-          'corrs:destination:s_corr_app:object:column_person_ot:delete',
-          'corrs:destination:s_corr_app:object:column_person_birthdate:delete',
-        ] do 
+        'corrs:fl_pers:destroy',
+      ] do 
 
-          Rake::Task['destroy:delete_completed_tasks'].invoke("corrs:destination:s_corr_app:object:%")
-          Rake::Task['destroy:final_message'].invoke("Удаление параметров корреспондентов в базе назначения завершено.")
-        end
+        Rake::Task['destroy:delete_completed_tasks'].invoke("corrs:fl_pers:%")
+        Rake::Task['destroy:final_message'].invoke("Удаление физических лиц в базе назначения завершено.")
+      end
+    end
+    
+    # Удаление юридических лиц
+    namespace :ul do
+      desc 'Запуск задачи удаления юридических лиц в базе назначения'
+      task :start => [
+        'set_logger', 
+        'source:initialize', 
+        'destination:initialize',
+
+        'corrs:ul:destroy',
+      ] do 
+
+        Rake::Task['destroy:delete_completed_tasks'].invoke("corrs:ul:%")
+        Rake::Task['destroy:final_message'].invoke("Удаление юридических лиц в базе назначения завершено.")
       end
     end
   end

@@ -88,6 +88,16 @@ module Source
     :___mss_movescausesb_di,
     :___mss_dict_decommission_causes,
     :___moving_operation_objects,
+    :privdoctypes,
+    :privufms,
+    :___client_banks,
+    :sections,
+    :___industries,
+    :orgforms,
+    :industsubj,
+    :___main_otrs,
+    :___kat_pols,
+    :category_client,
   ]
   
   class << self

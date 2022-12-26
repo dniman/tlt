@@ -40,6 +40,10 @@ import 'lib/tasks/dictionaries/dictionary_nazn_rent.rake'
 import 'lib/tasks/dictionaries/mss_movescausesb_di.rake'
 import 'lib/tasks/dictionaries/mss_dict_decommission_causes.rake'
 import 'lib/tasks/dictionaries/mss_doc_roles_in_operations.rake'
+import 'lib/tasks/dictionaries/dictionary_bank.rake'
+import 'lib/tasks/dictionaries/industry.rake'
+import 'lib/tasks/dictionaries/main_otr.rake'
+import 'lib/tasks/dictionaries/kat_pol.rake'
 
 namespace :dictionaries do
 
@@ -86,6 +90,10 @@ namespace :dictionaries do
     'dictionaries:mss_movescausesb_di:import',
     'dictionaries:mss_dict_decommission_causes:import',
     'dictionaries:mss_doc_roles_in_operations:import',
+    'dictionaries:dictionary_bank:import',
+    'dictionaries:industry:import',
+    'dictionaries:main_otr:import',
+    'dictionaries:kat_pol:import',
   ] 
 
   task :destroy => [
@@ -129,6 +137,10 @@ namespace :dictionaries do
     'dictionaries:mss_movescausesb_di:destroy',
     'dictionaries:mss_dict_decommission_causes:destroy',
     'dictionaries:mss_doc_roles_in_operations:destroy',
+    'dictionaries:dictionary_bank:destroy',
+    'dictionaries:industry:destroy',
+    'dictionaries:main_otr:destroy',
+    'dictionaries:kat_pol:destroy',
   ] 
 
 end 

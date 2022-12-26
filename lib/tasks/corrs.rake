@@ -1,12 +1,18 @@
-Dir[File.expand_path('../corrs/**/*.rake', __FILE__)].each {|path| import path}
+import 'lib/tasks/corrs/fl_pers.rake'
+import 'lib/tasks/corrs/ul.rake'
 
 namespace :corrs do
+
   task :import => [
-    'corrs:import:tasks',
+    'corrs:fl_pers:import',
+    'corrs:ul:import',
   ] 
   
   task :destroy => [
-    'corrs:destroy:tasks',
+    'corrs:fl_pers:destroy',
+    'corrs:ul:destroy',
   ] 
+
 end  
+
 
