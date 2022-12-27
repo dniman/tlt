@@ -47,7 +47,7 @@ namespace :objects do
                     insert << {
                       link_up: row["link"],
                       link_param: row["link_param"],
-                      datetime: row["date_pay_company"].nil? ? nil : row["date_pay_company"].strftime("%Y%m%d"),
+                      date: row["date_pay_company"].nil? ? nil : row["date_pay_company"].strftime("%Y%m%d"),
                     }
                   end
                   
