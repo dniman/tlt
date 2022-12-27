@@ -16,7 +16,7 @@ namespace :objects do
             update = [ 
               ___link_owner_pay_acc_capital_repair: Arel.sql(
                 "(
-                  select link 
+                  select top 1 link 
                   from mss_objects_dicts 
                   where name = mss_objects.___owner_pay_acc_capital_repair
                     and mss_objects_dicts.link_dict = #{ link_param }

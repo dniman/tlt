@@ -75,7 +75,7 @@ namespace :objects do
             manager.project(
               union_table[:link_list],
               union_table[:link_doc],
-              Arel::Nodes::Max.new(union_table[:doc_form]).as("doc_form"),
+              union_table[:doc_form].maximum.as("doc_form"),
               union_table[:row_id],
             )
             manager.distinct
@@ -90,7 +90,7 @@ namespace :objects do
           begin
             sql = ""
             selects = []
-byebug
+            
             Source.execute_query(query.to_sql).each_slice(1000) do |rows|
               rows.each do |row|
                 Arel::SelectManager.new.tap do |select|
