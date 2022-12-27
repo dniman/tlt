@@ -19,29 +19,62 @@ namespace :objects do
               .when(Source.docroles[:name].eq('Основной документ')).then(1)
               .else(0)
 
-            manager = Arel::SelectManager.new Database.destination_engine
-            manager.project(
+            manager1 = Arel::SelectManager.new Database.destination_engine
+            manager1.project(
               object_ids[:___link_list].as("link_list"),
               Source.___ids[:link].as("link_doc"),
               doc_form.as("doc_form"),
               Source.___ids[:row_id],
             )
-            manager.from(Source.docset_members)
-            manager.join(Source.documents).on(Source.documents[:id].eq(Source.docset_members[:document_id]))
-            manager.join(Source.objects).on(Source.objects[:docset_id].eq(Source.docset_members[:docset_id]))
-            manager.join(object_ids).on(
+            manager1.from(Source.docset_members)
+            manager1.join(Source.documents).on(Source.documents[:id].eq(Source.docset_members[:document_id]))
+            manager1.join(Source.objects).on(Source.objects[:docset_id].eq(Source.docset_members[:docset_id]))
+            manager1.join(object_ids).on(
               object_ids[:id].eq(Source.objects[:id])
               .and(object_ids[:table_id].eq(Source::Objects.table_id))
             )
-            manager.join(Source.___ids).on(
+            manager1.join(Source.___ids).on(
               Source.___ids[:id].eq(Source.documents[:id])
               .and(Source.___ids[:table_id].eq(Source::Documents.table_id))
             )
-            manager.join(Source.docroles, Arel::Nodes::OuterJoin).on(Source.docroles[:id].eq(Source.docset_members[:docrole_id]))
-            manager.where(
+            manager1.join(Source.docroles, Arel::Nodes::OuterJoin).on(Source.docroles[:id].eq(Source.docset_members[:docrole_id]))
+            manager1.where(
               object_ids[:table_id].eq(Source::Objects.table_id)
               .and(object_ids[:link_type].eq(link_type))
             )
+            
+            manager2 = Arel::SelectManager.new Database.destination_engine
+            manager2.project(
+              object_ids[:___link_list].as("link_list"),
+              Source.___ids[:link].as("link_doc"),
+              doc_form.as("doc_form"),
+              Source.___ids[:row_id],
+            )
+            manager2.from(Source.states)
+            manager2.join(Source.objects).on(Source.objects[:id].eq(Source.states[:objects_id]))
+            manager2.join(object_ids).on(
+              object_ids[:id].eq(Source.objects[:id])
+              .and(object_ids[:table_id].eq(Source::Objects.table_id))
+            )
+            manager2.join(Source.docset_members).on(Source.docset_members[:docset_id].eq(Source.states[:documents_id]))
+            manager2.join(Source.documents).on(Source.documents[:id].eq(Source.docset_members[:document_id]))
+            manager2.join(Source.___ids).on(
+              Source.___ids[:id].eq(Source.documents[:id])
+              .and(Source.___ids[:table_id].eq(Source::Documents.table_id))
+            )
+            manager2.join(Source.docroles, Arel::Nodes::OuterJoin).on(Source.docroles[:id].eq(Source.docset_members[:docrole_id]))
+            manager2.where(
+              object_ids[:table_id].eq(Source::Objects.table_id)
+              .and(object_ids[:link_type].eq(link_type))
+            )
+            
+            union = manager1.union :all, manager2
+            union_table = Arel::Table.new :union_table
+
+            manager = Arel::SelectManager.new
+            manager.project(Arel.star)
+            manager.distinct
+            manager.from(union_table.create_table_alias(union,:union_table))
           end
 
           begin
