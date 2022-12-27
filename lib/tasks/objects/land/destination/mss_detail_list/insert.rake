@@ -72,15 +72,25 @@ namespace :objects do
             union_table = Arel::Table.new :union_table
 
             manager = Arel::SelectManager.new
-            manager.project(Arel.star)
+            manager.project(
+              union_table[:link_list],
+              union_table[:link_doc],
+              Arel::Nodes::Max.new(union_table[:doc_form]).as("doc_form"),
+              union_table[:row_id],
+            )
             manager.distinct
             manager.from(union_table.create_table_alias(union,:union_table))
+            manager.group(
+              union_table[:link_list],
+              union_table[:link_doc],
+              union_table[:row_id],
+            )
           end
 
           begin
             sql = ""
             selects = []
-            
+           byebug 
             Source.execute_query(query.to_sql).each_slice(1000) do |rows|
               rows.each do |row|
                 Arel::SelectManager.new.tap do |select|
