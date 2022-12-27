@@ -107,9 +107,13 @@ namespace :objects do
                 end
               end
               
-              unions = Arel::Nodes::UnionAll.new(selects[0], selects[1])
-              selects[2..-1].each do |select|
-                unions = Arel::Nodes::UnionAll.new(unions, select)
+              if selects.size > 1
+                unions = Arel::Nodes::UnionAll.new(selects[0], selects[1])
+                selects[2..-1].each do |select|
+                  unions = Arel::Nodes::UnionAll.new(unions, select)
+                end
+              else
+                unions = selects.first
               end
 
               values_table = Arel::Table.new(:values_table)
