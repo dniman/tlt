@@ -12,7 +12,7 @@ namespace :dictionaries do
     
     task :destroy => [
       'dictionaries:main_otr:destination:___del_ids:insert',
-      'dictionaries:main_otr:destination:mss_objcorr_distsimptext:delete',
+      'dictionaries:main_otr:destination:mss_objcorr_dictsimptext:delete',
       'dictionaries:main_otr:destination:___del_ids:delete'
     ]
   end
