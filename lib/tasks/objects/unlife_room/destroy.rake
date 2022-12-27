@@ -148,7 +148,21 @@ namespace :objects do
         
         # Оставшийся срок полезного использования в годах
         'objects:unlife_room:destination:mss_objects_app:object:mss_od_remaining_useful_life_y:delete',
+        
+        # Владелец счета оплаты за кап ремонт
+        'objects:unlife_room:destination:mss_objects_app:link_param:owner_pay_acc_capital_repair:delete',
 
+        # Код МКД по рег программе 
+        'objects:unlife_room:destination:mss_objects_app:link_param:mkd_code:delete',
+
+        # Дата включения в региональную программу
+        'objects:unlife_room:destination:mss_objects_app:link_param:date_inclusion_rp:delete',
+        
+        # Дата изменения держателя счета
+        'objects:unlife_room:destination:mss_objects_app:link_param:date_change_acc_holder:delete',
+        
+        # Документ основания изменения держателя счета
+        'objects:unlife_room:destination:mss_objects_app:link_param:doc_reason_chang_acc_holder:delete',
 
         # Земельные участки, в пределах которого находится объект
         'objects:unlife_room:destination:mss_objects_parentland:delete',
@@ -187,6 +201,10 @@ namespace :objects do
         'objects:unlife_room:destination:mss_objects:drop___unmovable_used',
         'objects:unlife_room:destination:mss_objects:drop___link_unmovable_used',
         'objects:unlife_room:source:states:drop___link_state',
+        'objects:unlife_room:destination:mss_objects:drop___owner_pay_acc_capital_repair',
+        'objects:unlife_room:destination:mss_objects:drop___link_owner_pay_acc_capital_repair',
+        'objects:unlife_room:destination:mss_objects:drop___mkd_code',
+        'objects:unlife_room:destination:mss_objects:drop___link_mkd_code',
       ]
     end
   end

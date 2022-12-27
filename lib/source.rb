@@ -98,6 +98,8 @@ module Source
     :___main_otrs,
     :___kat_pols,
     :category_client,
+    :company,
+    :reg_operator_kod_erin,
   ]
   
   class << self

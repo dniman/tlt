@@ -171,7 +171,7 @@ namespace :corrs do
         Rake.invoke_task 'corrs:fl_pers:source:___ids:drop___link'
         Rake.invoke_task 'corrs:fl_pers:source:___ids:drop___okved_link'
         Rake.invoke_task 'corrs:fl_pers:source:___ids:drop___okved_code'
-        Rake.invoke_task 'corrs:fl_pers:source:___ids:drop___kateg_pol_name'
+        Rake.invoke_task 'corrs:fl_pers:source:___ids:drop___kat_pol_name'
       end
 
     end

@@ -8,7 +8,7 @@ namespace :corrs do
             Source.clients
             .project(
               Source.clients[:id],
-              Source.categor_client[:name].as("___kat_pol_name"),
+              Source.category_client[:name].as("___kat_pol_name"),
             )
             .join(Source.client_types, Arel::Nodes::OuterJoin).on(Source.client_types[:id].eq(Source.clients[:client_types_id]))
             .join(Source.category_client, Arel::Nodes::OuterJoin).on(Source.category_client[:id].eq(Source.clients[:clientcategory_id]))
@@ -24,7 +24,7 @@ namespace :corrs do
           
               sql = <<~SQL
                 update ___ids set 
-                  ___ids.___kat_pol_name = values_table.__kat_pol_name
+                  ___ids.___kat_pol_name = values_table.___kat_pol_name
                 from(#{values_list.to_sql}) values_table(#{columns.join(', ')})
                 where ___ids.id = values_table.id
               SQL

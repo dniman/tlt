@@ -41,7 +41,8 @@ namespace :objects do
                     replace(replace([buildings].[purpose], char(9), ''), char(10), '')
                   ))"
               ).as("___unmovable_used"),
-              
+              Source.company[:name].as("___owner_pay_acc_capital_repair"),
+              Source.reg_operator_kod_erin[:cod_rp].as("___mkd_code"),
             ])
             .join(Source.objtypes, Arel::Nodes::OuterJoin).on(Source.objtypes[:id].eq(Source.objects[:objtypes_id]))
             .join(Source.___ids).on(Source.___ids[:id].eq(Source.objects[:id]).and(Source.___ids[:table_id].eq(Source::Objects.table_id)))
@@ -50,6 +51,8 @@ namespace :objects do
             .join(Source.buildmaterials, Arel::Nodes::OuterJoin).on(Source.buildmaterials[:id].eq(Source.buildings[:buildmaterial_id]))
             .join(Source.spr_zhkh_vid, Arel::Nodes::OuterJoin).on(Source.spr_zhkh_vid[:id].eq(Source.objects[:vid_zhkh_id]))
             .join(Source.monumenttypes, Arel::Nodes::OuterJoin).on(Source.monumenttypes[:id].eq(Source.objects[:mntype_id]))
+            .join(Source.company, Arel::Nodes::OuterJoin).on(Source.company[:id].eq(Source.buildings[:company_id]))
+            .join(Source.reg_operator_kod_erin, Arel::Nodes::OuterJoin).on(Source.reg_operator_kod_erin[:id].eq(Source.buildings[:kod_mkd_id]))
             .where(Source.___ids[:link_type].eq(link_type))
           end
 
@@ -116,6 +119,8 @@ namespace :objects do
                   ___vid_obj_zkx: row["___vid_obj_zkx"]&.strip,
                   ___culturial_sense: row["___culturial_sense"]&.strip,
                   ___unmovable_used: row["___unmovable_used"]&.strip,
+                  ___owner_pay_acc_capital_repair: row["___owner_pay_acc_capital_repair"]&.strip,
+                  ___mkd_code: row["___mkd_code"]&.strip,
                 }
               end
 

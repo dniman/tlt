@@ -12,6 +12,8 @@ namespace :objects do
         Rake.invoke_task 'objects:unlife_room:destination:mss_objects:add___vid_obj_zkx' 
         Rake.invoke_task 'objects:unlife_room:destination:mss_objects:add___culturial_sense' 
         Rake.invoke_task 'objects:unlife_room:destination:mss_objects:add___unmovable_used' 
+        Rake.invoke_task 'objects:unlife_room:destination:mss_objects:add___owner_pay_acc_capital_repair' 
+        Rake.invoke_task 'objects:unlife_room:destination:mss_objects:add___mkd_code' 
 
         Rake.invoke_task 'objects:unlife_room:destination:mss_objects:add___kadastrno'
         Rake.invoke_task 'objects:unlife_room:source:___ids:add___link_adr'
@@ -214,7 +216,29 @@ namespace :objects do
         # Оставшийся срок полезного использования в годах
         Rake.invoke_task 'objects:unlife_room:destination:mss_objects_app:object:mss_od_remaining_useful_life_y:insert'
         
+        # Владелец счета оплаты за капремонт
+        Rake.invoke_task 'objects:unlife_room:destination:mss_objects:add___link_owner_pay_acc_capital_repair' 
+        Rake.invoke_task 'objects:unlife_room:destination:mss_objects:update___link_owner_pay_acc_capital_repair' 
+        Rake.invoke_task 'objects:unlife_room:destination:mss_objects_app:link_param:owner_pay_acc_capital_repair:insert'
+        Rake.invoke_task 'objects:unlife_room:destination:mss_objects:drop___owner_pay_acc_capital_repair' 
+        Rake.invoke_task 'objects:unlife_room:destination:mss_objects:drop___link_owner_pay_acc_capital_repair' 
+        
+        # Код МКД по рег программе 
+        Rake.invoke_task 'objects:unlife_room:destination:mss_objects:add___link_mkd_code' 
+        Rake.invoke_task 'objects:unlife_room:destination:mss_objects:update___link_mkd_code' 
+        Rake.invoke_task 'objects:unlife_room:destination:mss_objects_app:link_param:mkd_code:insert'
+        Rake.invoke_task 'objects:unlife_room:destination:mss_objects:drop___mkd_code' 
+        Rake.invoke_task 'objects:unlife_room:destination:mss_objects:drop___link_mkd_code' 
 
+        # Дата включения в региональную программу
+        Rake.invoke_task 'objects:unlife_room:destination:mss_objects_app:link_param:date_inclusion_rp:insert'
+        
+        # Дата изменения держателя счета
+        Rake.invoke_task 'objects:unlife_room:destination:mss_objects_app:link_param:date_change_acc_holder:insert'
+        
+        # Документ основания изменения держателя счета
+        Rake.invoke_task 'objects:unlife_room:destination:mss_objects_app:link_param:doc_reason_chang_acc_holder:insert'
+        
         # Земельные участки, в пределах которого находится объект
         Rake.invoke_task 'objects:unlife_room:destination:mss_objects_parentland:insert'
         

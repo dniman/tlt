@@ -44,6 +44,8 @@ import 'lib/tasks/dictionaries/dictionary_bank.rake'
 import 'lib/tasks/dictionaries/industry.rake'
 import 'lib/tasks/dictionaries/main_otr.rake'
 import 'lib/tasks/dictionaries/kat_pol.rake'
+import 'lib/tasks/dictionaries/owner_pay_acc_capital_repair.rake'
+import 'lib/tasks/dictionaries/mkd_code.rake'
 
 namespace :dictionaries do
 
@@ -94,6 +96,8 @@ namespace :dictionaries do
     'dictionaries:industry:import',
     'dictionaries:main_otr:import',
     'dictionaries:kat_pol:import',
+    'dictionaries:owner_pay_acc_capital_repair:import',
+    'dictionaries:mkd_code:import',
   ] 
 
   task :destroy => [
@@ -141,6 +145,8 @@ namespace :dictionaries do
     'dictionaries:industry:destroy',
     'dictionaries:main_otr:destroy',
     'dictionaries:kat_pol:destroy',
+    'dictionaries:owner_pay_acc_capital_repair:destroy',
+    'dictionaries:mkd_code:destroy',
   ] 
 
 end 

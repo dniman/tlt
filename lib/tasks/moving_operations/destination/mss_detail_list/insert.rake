@@ -8,7 +8,10 @@ namespace :moving_operations do
 
           doc_form =
             Arel::Nodes::Case.new
-            .when(Source.docset_members[:docrole_id].eq(nil)).then(1)
+            .when(Source.docset_members[:docrole_id].eq(nil)).then(0)
+            .when(Source.docroles[:name].eq('Основной документ')).then(1)
+            .when(Source.docroles[:name].eq('Основание включения в реестр')).then(1)
+            .when(Source.docroles[:name].eq('О принятии в собственность')).then(1)
             .else(docroles_ids[:link])
 
           manager = Arel::SelectManager.new Database.destination_engine

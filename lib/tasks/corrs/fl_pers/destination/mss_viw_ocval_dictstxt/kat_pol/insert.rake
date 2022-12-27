@@ -2,7 +2,7 @@ namespace :corrs do
   namespace :fl_pers do
     namespace :destination do
       namespace :mss_viw_ocval_dictstxt do
-        namespace :kateg_pol do
+        namespace :kat_pol do
 
           task :insert do |t|
             def link_app_prop_query

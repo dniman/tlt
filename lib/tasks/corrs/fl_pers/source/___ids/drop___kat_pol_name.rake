@@ -1,5 +1,5 @@
 namespace :corrs do
-  namespace :kat_pol do
+  namespace :fl_pers do
     namespace :source do
       namespace :___ids do
         
