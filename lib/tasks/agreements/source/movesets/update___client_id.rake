@@ -216,7 +216,7 @@ namespace :agreements do
             ;#{query1.to_sql.gsub('SELECT DISTINCT [movesets].[id], [cte_table].[client_id] AS ___client_id', 'insert into #client_ids(id, ___client_id) SELECT DISTINCT [movesets].[id], [cte_table].[client_id] AS ___client_id')}
             
             update movesets
-              set movesets.___client_id = #client_ids.id 
+              set movesets.___client_id = #client_ids.___client_id 
             from movesets
               join #client_ids on #client_ids.id = movesets.id
 
