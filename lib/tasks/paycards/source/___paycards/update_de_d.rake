@@ -10,6 +10,7 @@ namespace :paycards do
               .and(Source.___paycards[:de_d].gt(1))
               .and(Source.___paycards[:___name_type_a].matches('Неосновательное обогащение%'))
             ).then(Arel::Nodes::Subtraction.new(Source.___paycards[:de_d], 1))
+            .else(Source.___paycards[:de_d])
             
           manager = Arel::UpdateManager.new(Database.source_engine)
           manager.set([[Source.___paycards[:de_d],de_d]])
