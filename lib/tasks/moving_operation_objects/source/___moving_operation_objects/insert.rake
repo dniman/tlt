@@ -15,6 +15,8 @@ namespace :moving_operation_objects do
             .and(Source.___moving_operation_objects[:___paycardobject_id].eq(Source.___paycardobjects[:id]))
           )
 
+          share_size = 
+            Arel::Nodes::NamedFunction.new('convert', [Arel.sql('numeric(20,2)'), Source.moveitems[:square]])
 
           select_manager = Arel::SelectManager.new Database.source_engine
           select_manager.project(
@@ -23,9 +25,9 @@ namespace :moving_operation_objects do
             Source.objectusing[:id].as("objectusing_id"),
             Source.___paycardobjects[:id].as("___paycardobject_id"),
             Source.___paycards[:summa2],
-            Source.___paycardobjects[:share_size],
-            Source.___paycardobjects[:numerator],
-            Source.___paycardobjects[:denominator],
+            share_size.as("share_size"),
+            Source.moveitems[:share_num].as("numerator"),
+            Source.moveitems[:share_denom].as("denominator"),
             Source.___paycardobjects[:area1],
             Source.___paycardobjects[:part_num],
             Source.___paycardobjects[:part_name],
