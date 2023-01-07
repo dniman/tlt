@@ -166,6 +166,9 @@ namespace :objects do
 
         # Земельные участки, в пределах которого находится объект
         'objects:houses_unlife:destination:mss_objects_parentland:delete',
+        
+        # Составные части объекта
+        'objects:houses_unlife:destination:mss_objects_struelem:delete',
 
         # Документы
         'objects:houses_unlife:destination:mss_detail_list:delete',

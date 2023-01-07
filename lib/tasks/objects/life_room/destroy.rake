@@ -168,6 +168,9 @@ namespace :objects do
         # Земельные участки, в пределах которого находится объект
         'objects:life_room:destination:mss_objects_parentland:delete',
         
+        # Составные части объекта
+        'objects:life_room:destination:mss_objects_struelem:delete',
+        
         # Документы
         'objects:life_room:destination:mss_detail_list:delete',
         'objects:life_room:source:___ids:drop___link_list',

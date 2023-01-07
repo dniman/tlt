@@ -67,6 +67,7 @@ module Destination
     :mss_corr_chief,
     :mss_viw_ocval_s_corr_ref,
     :s_corr_cpp,
+    :mss_objects_struelem,
   ]
 
   class << self
