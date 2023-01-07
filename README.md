@@ -14,4 +14,10 @@ gem install tiny_tds -- --with-freetds-dir=C:\freetds-1.00
 
 bundle install
 
-During the development was added the trace flag 8649 forces the query optimizer to generate a parallel plan for the same query.
+During the development was added the trace flag 8780 gives the sql optimizer more time to find the most effective (e.g. quickest) way to retrieve the data.
+
+After convert execute
+  exec MSS_OBJECTS_CACHE_SAVE @bUpdAll=1
+  exec MSS_OBJECTS_STRUELEM_UPDTREE @bRebuildAll = 1
+  bug 180501
+
