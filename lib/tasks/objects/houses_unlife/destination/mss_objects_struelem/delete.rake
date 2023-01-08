@@ -20,7 +20,7 @@ namespace :objects do
             )
 
             source = Arel::Nodes::JoinSource.new(
-              Destination.mss_objects_parentland, [
+              Destination.mss_objects_struelem, [
                 Destination.mss_objects_struelem.create_join(Destination.mss_objects, condition1),
                 Destination.mss_objects.create_join(Destination.___del_ids, condition2),
               ]
