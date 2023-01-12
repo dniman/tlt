@@ -64,6 +64,9 @@ namespace :objects do
         Rake.invoke_task 'objects:movable_other:source:states:update___link_state' 
         Rake.invoke_task 'objects:movable_other:destination:mss_objects_app:link_param:state:insert'
         Rake.invoke_task 'objects:movable_other:source:states:drop___link_state' 
+        
+        # Количество
+        Rake.invoke_task 'objects:movable_other:destination:mss_objects_app:link_param:amount:insert'
 
 
         # Счет учета ОС

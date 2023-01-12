@@ -44,6 +44,9 @@ namespace :objects do
         # Счет учета ОС
         'objects:movable_other:destination:mss_objects_app:link_param:fixed_assets_account:delete',
         
+        # Количество
+        'objects:movable_other:destination:mss_objects_app:link_param:amount:delete',
+        
         # Нормы амортизации
         'objects:movable_other:destination:mss_objects_app:object:mss_depre_rates:delete',
         
