@@ -40,6 +40,9 @@ namespace :objects do
         # Состояние
         'objects:exright_intellprop:destination:mss_objects_app:link_param:state:delete',
         
+        # Количество
+        'objects:exright_intellprop:destination:mss_objects_app:link_param:amount:delete',
+        
 
         # Счет учета ОС
         'objects:exright_intellprop:destination:mss_objects_app:link_param:fixed_assets_account:delete',
