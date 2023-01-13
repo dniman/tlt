@@ -12,7 +12,7 @@ namespace :dictionaries do
     
     task :destroy => [
       'dictionaries:kat_pol:destination:___del_ids:insert',
-      'dictionaries:kat_pol:destination:mss_objcorr_distsimptext:delete',
+      'dictionaries:kat_pol:destination:mss_objcorr_dictsimptext:delete',
       'dictionaries:kat_pol:destination:___del_ids:delete'
     ]
   end
