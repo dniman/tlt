@@ -15,10 +15,10 @@ namespace :objects do
 
             b = Source.buildings.alias("b")
             b1 = Source.buildings.alias("b1")
-            o = Source.objects.alias("b")
-            o1 = Source.objects.alias("b1")
-            mo = Source.___ids.alias("b")
-            mo1 = Source.___ids.alias("b1")
+            o = Source.objects.alias("o")
+            o1 = Source.objects.alias("o1")
+            mo = Source.___ids.alias("mo")
+            mo1 = Source.___ids.alias("mo1")
             
             manager = Arel::SelectManager.new(Database.source_engine)
             manager.project([
