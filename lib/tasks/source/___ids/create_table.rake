@@ -10,6 +10,7 @@ namespace :source do
           ,link_type bigint
           ,row_id uniqueidentifier
         )
+
         if not exists(select * from sys.indexes where name = 'ix____ids_table_id_id' and object_id = object_id('___ids'))
         create nonclustered index [ix____ids_table_id_id] on [dbo].[___ids] ([table_id], [id] asc)
         
@@ -18,6 +19,9 @@ namespace :source do
 
         if not exists(select * from sys.indexes where name = 'ix____ids_row_id' and object_id = object_id('___ids'))
         create nonclustered index [ix____ids_row_id] on [dbo].[___ids]([row_id])
+
+        if not exists(select * from sys.indexes where name = 'ix____ids_table_id_link' and object_id = object_id('___ids'))
+        create nonclustered index [ix____ids_table_id_link] on [dbo].[___ids]([table_id], [link])
       SQL
       
       unless Source.table_exists?('___ids')
