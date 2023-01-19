@@ -19,7 +19,7 @@ namespace :payments do
           manager.project([
             Arel.sql("1").as("first_rec"),
             Arel.sql("3").as("dt_ct"),
-            income,
+            income.as("income"),
             Source.payments[:sum].as("summa"),
             Arel.sql("#{ Destination.link_oktmo }").as("ate"),
             Source.payments[:___bcorr].as("imns"),
