@@ -1,7 +1,7 @@
 module Source
-  class CategoryClient
+  class Clientcategory
     def self.table
-      Source.___category_client
+      Source.clientcategory
     end
     
     def self.table_id

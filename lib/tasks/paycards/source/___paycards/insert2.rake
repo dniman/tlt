@@ -115,8 +115,8 @@ namespace :paycards do
               .then(Source.paydocs[:calendar_type_id])
 
           su_d = Source.paydocs[:finedate]
-          su_t = Source.paydocs[:finemonths]
-          su_m =
+          su_m = Source.paydocs[:finemonths]
+          su_t =
             Arel::Nodes::Case.new()
             .when(Source.paydocs[:kind].eq('A'))
             .then(1)
@@ -157,6 +157,23 @@ namespace :paycards do
           kbk_inc_p = Source.cls_kbk.alias("kbk_inc_p")
           kbk_inc_pr = Source.cls_kbk.alias("kbk_inc_pr")
           
+          paysize = 
+            Arel::Nodes::Multiplication.new(
+              Source.paydocs[:paysize],
+              Arel::Nodes::Case.new(Source.paydocs[:periodical])
+              .when('Y').then(12)
+              .when('Q').then(4)
+              .when('H').then(2)
+              .when('G').then(1)
+              .when('T').then(1)
+              .when('N').then(1)
+            )
+
+          summa2 = 
+            Arel::Nodes::Case.new()
+            .when(Source.paydocs[:is_yearly_paysize].eq('Y')).then(Source.paydocs[:paysize])
+            .else(paysize)
+          
           Source.movesets
             .project(
               Source.movesets[:___agreement_id],
@@ -174,7 +191,7 @@ namespace :paycards do
               Source.paydocs[:id].as("paydoc_id"),
               Source.movesets[:client_id].as("client_id1"),
               Source.___agreements[:___client_id].as("client_id2"),
-              Source.paydocs[:paysize].as("summa2"),
+              summa2.as("summa2"),
               kbk_inc_a[:name].as("cinc_a"),
               kbk_inc_p[:name].as("cinc_p"),
               kbk_inc_pr[:name].as("cinc_pr"),

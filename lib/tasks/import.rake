@@ -119,6 +119,7 @@ namespace :import do
       'destination:initialize',
 
       'objects:import',
+      'object_references:import',
     ] do 
 
       Rake::Task['import:final_message'].invoke("Импорт объектов в базу назначения завершен.")

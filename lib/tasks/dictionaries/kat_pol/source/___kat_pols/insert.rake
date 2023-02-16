@@ -9,15 +9,15 @@ namespace :dictionaries do
             subquery.project(Arel.star)
             subquery.from(Source.___kat_pols)
             subquery.where(
-              Source.___kat_pols[:name].eq(Source.category_client[:name])
+              Source.___kat_pols[:name].eq(Source.clientcategory[:name])
             )
              
             select_manager = Arel::SelectManager.new
             select_manager.project([
-              Source.category_client[:name],
+              Source.clientcategory[:name],
             ])
             select_manager.distinct
-            select_manager.from(Source.category_client)
+            select_manager.from(Source.clientcategory)
             select_manager.where(subquery.exists.not)
             
             source = Arel::Nodes::JoinSource.new(select_manager,[])

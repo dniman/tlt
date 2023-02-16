@@ -8,10 +8,10 @@ namespace :corrs do
             Source.clients
             .project(
               Source.clients[:id],
-              Source.category_client[:name].as("___kat_pol_name"),
+              Source.clientcategory[:name].as("___kat_pol_name"),
             )
             .join(Source.client_types, Arel::Nodes::OuterJoin).on(Source.client_types[:id].eq(Source.clients[:client_types_id]))
-            .join(Source.category_client, Arel::Nodes::OuterJoin).on(Source.category_client[:id].eq(Source.clients[:clientcategory_id]))
+            .join(Source.clientcategory, Arel::Nodes::OuterJoin).on(Source.clientcategory[:id].eq(Source.clients[:clientcategory_id]))
             .where(Source.client_types[:name].eq('Юридическое лицо'))
           end
 

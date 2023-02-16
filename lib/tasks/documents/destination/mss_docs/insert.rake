@@ -16,7 +16,7 @@ namespace :documents do
           .project([
             Source.documents[:docno],
             Source.documents[:docser],
-            Source.documents[:docdate],
+            Source.documents[:docdate].as("date"),
             Source.documents[:explanation],
             Arel.sql("#{link_type}").as("link_type"),
             Arel.sql("#{Destination.link_mo}").as("link_mo"),
@@ -38,6 +38,7 @@ namespace :documents do
               insert << {
                 num: row["docno"].nil? ? nil : row["docno"].strip[0,50],
                 ser: row["docser"].nil? ? nil : row["docser"].strip[0,50],
+                date: row["date"].nil? ? nil : row["date"].strftime("%Y%m%d"),
                 name: row["explanation"].nil? ? nil : row["explanation"].strip[0,2000],
                 link_type: row["link_type"],
                 ___type: row["name"],

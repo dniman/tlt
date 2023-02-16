@@ -242,9 +242,6 @@ namespace :objects do
         # Земельные участки, в пределах которого находится объект
         Rake.invoke_task 'objects:houses_life:destination:mss_objects_parentland:insert'
         
-        # Составные части объекта
-        Rake.invoke_task 'objects:houses_life:destination:mss_objects_struelem:insert'
-        
         # Привязка документов
         Rake.invoke_task 'objects:houses_life:source:___ids:add___link_list'
         Rake.invoke_task 'objects:houses_life:source:___ids:update___link_list'
