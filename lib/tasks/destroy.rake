@@ -175,7 +175,7 @@ namespace :destroy do
       'source:initialize', 
       'destination:initialize',
 
-      'object_references:destroy',
+      'object_references:destroy:tasks',
       'objects:destroy',
     ] do 
 
