@@ -1,4 +1,5 @@
-Dir[File.expand_path('../object_references/**/*.rake', __FILE__)].each {|path| import path}
+#Dir[File.expand_path('../object_references/**/*.rake', __FILE__)].each {|path| import path}
+import 'lib/tasks/object_references/destination/mss_objects_struelem/insert.rake'
 
 namespace :object_references do
   namespace :import do
