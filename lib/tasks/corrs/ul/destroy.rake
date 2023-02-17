@@ -130,6 +130,9 @@ namespace :corrs do
         
         # Предыдущее наименование
         'corrs:ul:destination:mss_objcorr_app:creating_name_old:delete',
+        
+        # Реестровый номер
+        'corrs:ul:destination:s_corr_app:object:mss_ref_corr_r_num:delete',
 
         # Типы корреспондентов
         'corrs:ul:destination:t_corr_dict:reference_corr_type:delete',

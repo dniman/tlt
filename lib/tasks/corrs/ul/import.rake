@@ -128,6 +128,9 @@ namespace :corrs do
         
         # Предыдущее наименование
         Rake.invoke_task 'corrs:ul:destination:mss_viw_ocval_simple:creating_name_old:insert'
+        
+        # Реестровый номер
+        Rake.invoke_task 'corrs:ul:destination:s_corr_app:object:mss_ref_corr_r_num:insert'
 
         # Документы
         Rake.invoke_task 'corrs:ul:destination:mss_objcorr_docs:insert'

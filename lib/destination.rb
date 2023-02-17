@@ -307,6 +307,7 @@ module Destination
         :MSS_REF_CORR_DATE_E_ORG,
         Destination::SObjects.obj_id('MSS_REF_CORR_DATE_E_ORG')
       )
+      
 
       Destination::MssOacRowstates.const_set(
         :CURRENT,
@@ -412,6 +413,11 @@ module Destination
       Destination::SCorrCpp.const_set(
         :REFERENCE_CPPU,
         Destination::SObjects.obj_id('REFERENCE_CPPU')
+      )
+      
+      Destination::SCorrApp.const_set(
+        :MSS_REF_CORR_R_NUM,
+        Destination::SObjects.obj_id('MSS_REF_CORR_R_NUM')
       )
 
       nil
