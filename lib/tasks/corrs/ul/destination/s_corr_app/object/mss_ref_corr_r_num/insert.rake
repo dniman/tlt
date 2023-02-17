@@ -36,7 +36,7 @@ namespace :corrs do
                 Source.execute_query(query.to_sql).each_slice(1000) do |rows|
                   rows.each do |row|
                     insert << {
-                      link_up: row['link'],
+                      link_up: row['link_up'],
                       value: row['value'],
                       object: row['object'],
                     }
