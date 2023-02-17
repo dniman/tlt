@@ -12,7 +12,7 @@ namespace :objects do
 
           def query
             link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
-            name = Arel::Nodes::Concat.new(Source.propnames[:name], ' ') 
+            name = Arel::Nodes::Concat.new(Source.propnames[:name], Arel.sql("' '")) 
             name = Arel::Nodes::Concat.new(name, Source.property[:model])
 
             Source.objects
