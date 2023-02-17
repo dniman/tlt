@@ -1,3 +1,5 @@
+Dir[File.expand_path('../object_references/**/*.rake', __FILE__)].each {|path| import path}
+
 namespace :object_references do
   namespace :destroy do
     task :tasks => [
