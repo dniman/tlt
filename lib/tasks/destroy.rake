@@ -3,6 +3,7 @@ require 'logger'
 import 'lib/tasks/dictionaries.rake'
 import 'lib/tasks/corrs.rake'
 import 'lib/tasks/objects.rake'
+import 'lib/tasks/object_references/destroy.rake'
 
 namespace :destroy do
   task :set_logger do

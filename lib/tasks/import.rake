@@ -3,6 +3,7 @@ require 'logger'
 import 'lib/tasks/dictionaries.rake'
 import 'lib/tasks/corrs.rake'
 import 'lib/tasks/objects.rake'
+import 'lib/tasks/object_references/import.rake'
 import 'lib/tasks/agreements.rake'
 
 namespace :import do
