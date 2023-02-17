@@ -3,7 +3,7 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects_app do
         namespace :link_param do
-          namespace :house_spread do
+          namespace :road_len do
 
             task :insert do |t|
               def link_type_query
@@ -59,7 +59,7 @@ namespace :objects do
               begin
                 sql = ""
                 insert = []
-                link_param = Destination.execute_query(link_param_query('HOUSE_SPREAD').to_sql).entries.first["link"]
+                link_param = Destination.execute_query(link_param_query('ROAD_LEN').to_sql).entries.first["link"]
                 
                 Source.execute_query(query.to_sql).each_slice(1000) do |rows|
                 

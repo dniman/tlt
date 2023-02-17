@@ -3,7 +3,7 @@ namespace :objects do
     namespace :destination do
       namespace :mss_objects_app do
         namespace :link_param do
-          namespace :house_spread do
+          namespace :road_len do
             
             task :delete do |t|
               def query
@@ -24,7 +24,7 @@ namespace :objects do
             
                 manager = Arel::DeleteManager.new Database.destination_engine
                 manager.from(source)
-                manager.where(Destination.mss_objects_params[:code].eq('HOUSE_SPREAD')) 
+                manager.where(Destination.mss_objects_params[:code].eq('ROAD_LEN')) 
                 manager.to_sql
               end
 

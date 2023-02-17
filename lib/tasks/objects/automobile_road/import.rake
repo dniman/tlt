@@ -171,8 +171,8 @@ namespace :objects do
         # Кадастровый(условный) номер 
         Rake.invoke_task 'objects:automobile_road:destination:mss_objects_app:link_param:cad_num_dop:insert'
 
-        # Протяженность
-        Rake.invoke_task 'objects:automobile_road:destination:mss_objects_app:link_param:house_spread:insert'
+        # Протяженность дороги
+        Rake.invoke_task 'objects:automobile_road:destination:mss_objects_app:link_param:road_len:insert'
         
         # Ширина
         Rake.invoke_task 'objects:automobile_road:destination:mss_objects_app:link_param:width:insert'
