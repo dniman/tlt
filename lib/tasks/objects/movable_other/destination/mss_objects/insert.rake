@@ -12,6 +12,8 @@ namespace :objects do
 
           def query
             link_type = Destination.execute_query(link_type_query.to_sql).entries.first["link"]
+            name = Arel::Nodes::Concat.new(Source.propnames[:name], ' ') 
+            name = Arel::Nodes::Concat.new(name, Source.property[:model])
 
             Source.objects
             .project([
@@ -19,7 +21,8 @@ namespace :objects do
               Source.objects[:invno],
               Source.___ids[:row_id],
               Source.___ids[:link_type],
-              Source.property[:model].as("name"),
+              #Source.property[:model].as("name"),
+              name.as("name"),
               Source.propnames[:name].as("___dict_name"),
               Source.propgroups[:name].as("___group"),
               Source.propsections[:name].as("___section"),
