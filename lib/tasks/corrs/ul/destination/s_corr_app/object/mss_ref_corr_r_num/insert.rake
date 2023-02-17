@@ -11,8 +11,8 @@ namespace :corrs do
                 Source.clients
                 .project([
                   Source.___ids[:link].as("link_up"),
-                  Arel.sql("#{ Destination::SCorrApp::MSS_REF_CORR_R_NUM }").as("object"),
                   Source.objects[:regno].as("value"),
+                  Arel.sql("#{ Destination::SCorrApp::MSS_REF_CORR_R_NUM }").as("object"),
                 ])
                 .join(Source.___ids).on(Source.___ids[:id].eq(Source.clients[:id]).and(Source.___ids[:table_id].eq(Source::Clients.table_id)))
                 .join(Source.client_types, Arel::Nodes::OuterJoin).on(Source.client_types[:id].eq(Source.clients[:client_types_id]))
