@@ -26,7 +26,7 @@ namespace :charges do
           date_exec = 
             Arel::Nodes::Case.new()
             .when(
-              Source.___paycards[:___name_type_a].not_matches("Неосновательное обогащение%")
+              Source.___paycards[:___name_type_a].does_not_match("Неосновательное обогащение%")
               .or(Source.___paycards[:___name_type_a].matches("Неосновательное обогащение%").and(Source.___paycards[:___name_objtype].eq(nil)))
               .and(Source.charges[:charge_type].in(['OBLIGATION', 'OTHER', 'PERCENT']))
               .and(Source.charges[:chargedate].gt("19000101"))
@@ -36,7 +36,7 @@ namespace :charges do
           rdate = 
             Arel::Nodes::Case.new()
             .when(
-              Source.___paycards[:___name_type_a].not_matches("Неосновательное обогащение%")
+              Source.___paycards[:___name_type_a].does_not_match("Неосновательное обогащение%")
               .or(Source.___paycards[:___name_type_a].matches("Неосновательное обогащение%").and(Source.___paycards[:___name_objtype].eq(nil)))
               .and(Source.charges[:charge_type].in(['OBLIGATION', 'OTHER', 'PERCENT']))
               .and(Source.charges[:chargedate].gt("19000101"))
