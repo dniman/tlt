@@ -46,6 +46,8 @@ namespace :paycards do
             Source.___paycards[:credit_year_days],
             Source.___paycards[:___account],
             Source.___paycards[:___status],
+            Arel.sql("convert(datetime, '20220721')").as("calc_date_b"),
+            Arel.sql("convert(datetime, '20220721')").as("calc_date_peny_b"),
           ])
           .join(Source.___ids).on(
             Source.___ids[:id].eq(Source.___paycards[:id])
@@ -73,7 +75,7 @@ namespace :paycards do
                 payer_type: row["___payer_type"],
                 corr2: row["___corr2"],
                 summa2: row["summa2"],
-                autocalcsum: 0,
+                autocalcsum: 1,
                 inc_a: row["___inc_a"],
                 inc_p: row["___inc_p"],
                 inc_pr: row["___inc_pr"],
@@ -101,6 +103,8 @@ namespace :paycards do
                 credit_year_days: row["credit_year_days"],
                 account: row["___account"],
                 status: row["___status"],
+                calc_date_b: row["calc_date_b"].nil? ? nil : row["calc_date_b"].strftime("%Y%m%d"),
+                calc_date_peny_b: row["calc_date_peny_b"].nil? ? nil : row["calc_date_peny_b"].strftime("%Y%m%d"),
               }
             end
             sql = Destination::Paycard.insert_query(rows: insert, condition: "paycard.row_id = values_table.row_id")

@@ -45,6 +45,8 @@ namespace :paycards do
             Source.___paycards[:credit_year_days],
             Source.___paycards[:___account],
             Source.___paycards[:___status],
+            Arel.sql("convert(datetime, '20220721')").as("calc_date_b"),
+            Arel.sql("convert(datetime, '20220721')").as("calc_date_peny_b"),
           ])
           .join(Source.___ids).on(Source.___ids[:id].eq(Source.___paycards[:id]).and(Source.___ids[:table_id].eq(Source::Paycards.table_id)))
           .where(Source.___paycards[:prev_moveperiod_id].eq(nil))
@@ -69,7 +71,7 @@ namespace :paycards do
                 payer_type: row["___payer_type"],
                 corr2: row["___corr2"],
                 summa2: row["summa2"],
-                autocalcsum: 0,
+                autocalcsum: 1,
                 inc_a: row["___inc_a"],
                 inc_p: row["___inc_p"],
                 inc_pr: row["___inc_pr"],
@@ -89,7 +91,7 @@ namespace :paycards do
                 date_f: row["date_f"].nil? ? nil : row["date_f"].strftime("%Y%m%d"),
                 sum_recalc: 1,
                 date_e_inclusive: 1,
-                penyOne: 1,
+                penyOne: 0,
                 amount_period: row["amount_period"],
                 credit_rev_sum: row["credit_rev_sum"],
                 date_f_pay: row["date_f_pay"].nil? ? nil : row["date_f_pay"].strftime("%Y%m%d"),
@@ -98,6 +100,8 @@ namespace :paycards do
                 credit_year_days: row["credit_year_days"],
                 account: row["___account"],
                 status: row["___status"],
+                calc_date_b: row["calc_date_b"].nil? ? nil : row["calc_date_b"].strftime("%Y%m%d"),
+                calc_date_peny_b: row["calc_date_peny_b"].nil? ? nil : row["calc_date_peny_b"].strftime("%Y%m%d"),
               }
             end 
             

@@ -22,6 +22,26 @@ namespace :charges do
             .when(Source.charges[:charge_type].in(['OBLIGATION', 'OTHER']).and(Source.charges[:cls_kbk_id].eq(nil))).then(Source.___paycards[:cinc_a])
             .when(Source.charges[:charge_type].matches("%FINE%").and(Source.charges[:cls_kbk_id].eq(nil))).then(Source.___paycards[:cinc_p])
             .else(Source.cls_kbk[:name])
+
+          date_exec = 
+            Arel::Nodes::Case.new()
+            .when(
+              Source.___paycards[:___name_type_a].not_matches("Неосновательное обогащение%")
+              .or(Source.___paycards[:___name_type_a].matches("Неосновательное обогащение%").and(Source.___paycards[:___name_objtype].eq(nil)))
+              .and(Source.charges[:charge_type].in(['OBLIGATION', 'OTHER', 'PERCENT']))
+              .and(Source.charges[:chargedate].gt("19000101"))
+            ).then(Arel.sql("dateadd(day, -1, charges.chargedate)"))
+            .else(Source.charges[:chargedate])
+          
+          rdate = 
+            Arel::Nodes::Case.new()
+            .when(
+              Source.___paycards[:___name_type_a].not_matches("Неосновательное обогащение%")
+              .or(Source.___paycards[:___name_type_a].matches("Неосновательное обогащение%").and(Source.___paycards[:___name_objtype].eq(nil)))
+              .and(Source.charges[:charge_type].in(['OBLIGATION', 'OTHER', 'PERCENT']))
+              .and(Source.charges[:chargedate].gt("19000101"))
+            ).then(Arel.sql("dateadd(day, -1, charges.chargedate)"))
+            .else(Source.charges[:chargedate])
             
           manager = Arel::SelectManager.new(Database.destination_engine)
           manager.project([
@@ -29,14 +49,14 @@ namespace :charges do
             Arel.sql("1").as("upd"),
             paycards[:link].as("pc"), 
             type.as("type"),
-            Source.charges[:chargedate].as("date_exec"),
-            Source.charges[:chargedate].as("rdate"),
+            date_exec.as("date_exec"),
+            rdate.as("rdate"),
             Source.charges[:calperiod_start].as("date_b"),
             Source.charges[:calperiod_end].as("date_e"),
             Source.charges[:paysize].as("summa"),
             note.as("note"),
             ___cinc.as("___cinc"),
-            Arel.sql("0").as("on_schedule"),
+            Arel.sql("1").as("on_schedule"),
             Source.___paycards[:___account].as("acc"),
             Arel.sql("#{ Destination.link_oktmo }").as("ate"),
             Source.___paycards[:___corr1].as("___corr1"),

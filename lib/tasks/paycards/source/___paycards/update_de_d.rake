@@ -7,8 +7,10 @@ namespace :paycards do
           de_d =
             Arel::Nodes::Case.new()
             .when(Source.___paycards[:de_d].not_eq(nil)
-              .and(Source.___paycards[:de_d].gt(1))
-              .and(Source.___paycards[:___name_type_a].not_matches('Неосновательное обогащение%'))
+              .and(Source.___paycards[:___name_type_a].does_not_match('Неосновательное обогащение%')
+                .or(Source.___paycards[:___name_type_a].matches('Неосновательное обогащение%').and(Source.___paycards[:___name_objtype].eq(nil)))
+              )
+              .and(Source.___paycards[:nach_p].not_eq(5).or(Source.___paycards[:nach_p].not_eq(6)))
             ).then(Arel::Nodes::Subtraction.new(Source.___paycards[:de_d], 1))
             .else(Source.___paycards[:de_d])
             

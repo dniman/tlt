@@ -60,6 +60,7 @@ namespace :agreements do
           type_name36 = 'Договор купли-продажи помещения'
           type_name37 = 'Договор купли-продажи'
           type_name38 = 'Договор аренды'
+          type_name39 = 'Пользование'
 
           link1 = Destination.execute_query(link_agreement_type_query(type_name1).to_sql).entries.first["link"]
           link2 = Destination.execute_query(link_agreement_type_query(type_name2).to_sql).entries.first["link"]
@@ -99,6 +100,7 @@ namespace :agreements do
           link36 = Destination.execute_query(link_agreement_type_query(type_name36).to_sql).entries.first["link"]
           link37 = Destination.execute_query(link_agreement_type_query(type_name37).to_sql).entries.first["link"]
           link38 = Destination.execute_query(link_agreement_type_query(type_name38).to_sql).entries.first["link"]
+          link39 = Destination.execute_query(link_agreement_type_query(type_name39).to_sql).entries.first["link"]
 
           # Земельные участки
           land = Destination.execute_query(link_type_query('LAND').to_sql).entries.first["link"]
@@ -328,24 +330,27 @@ namespace :agreements do
                 .and(___ground_owner_count.gt(1))
             ).then(link25)
             .when(
-              movetype_name.in(['Бессрочное пользование', 'Пользование'])
-                .and(___ground_owner.eq('ГС').or(___ground_owner.eq('РФ')))
-                .and(___ground_owner_count.eq(1))
-            ).then(link23)
-            .when(
-              movetype_name.in(['Бессрочное пользование', 'Пользование'])
-                .and(___ground_owner.eq('МС'))
-                .and(___ground_owner_count.eq(1))
-            ).then(link24)
-            .when(
-              movetype_name.in(['Бессрочное пользование', 'Пользование'])
-                .and(___ground_owner.not_eq('ГС').or(___ground_owner.not_eq('РФ').or(___ground_owner.not_eq('МС').or(___ground_owner.eq(nil)))))
-                .and(___ground_owner_count.eq(1))
-            ).then(link25)
-            .when(
-              movetype_name.in(['Бессрочное пользование', 'Пользование'])
-                .and(___ground_owner_count.gt(1))
-            ).then(link25)
+              movetype_name.eq('Пользование')
+            ).then(link39)
+            #.when(
+            #  movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            #    .and(___ground_owner.eq('ГС').or(___ground_owner.eq('РФ')))
+            #    .and(___ground_owner_count.eq(1))
+            #).then(link23)
+            #.when(
+            #  movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            #    .and(___ground_owner.eq('МС'))
+            #    .and(___ground_owner_count.eq(1))
+            #).then(link24)
+            #.when(
+            #  movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            #    .and(___ground_owner.not_eq('ГС').or(___ground_owner.not_eq('РФ').or(___ground_owner.not_eq('МС').or(___ground_owner.eq(nil)))))
+            #    .and(___ground_owner_count.eq(1))
+            #).then(link25)
+            #.when(
+            #  movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            #    .and(___ground_owner_count.gt(1))
+            #).then(link25)
             .as('link_type'),
           ])
           select1.from(Source.___agreements)
@@ -396,9 +401,12 @@ namespace :agreements do
             .when(
               movetype_name.eq('Безв.польз.балансодержателей')
             ).then(link34)
+            #.when(
+            #  movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            #).then(link33)
             .when(
-              movetype_name.in(['Бессрочное пользование', 'Пользование'])
-            ).then(link33)
+              movetype_name.eq('Пользование')
+            ).then(link39)
             .as('link_type'),
           ])
           select2.from(Source.___agreements)
@@ -479,9 +487,12 @@ namespace :agreements do
             .when(
               movetype_name.eq('Безв.польз.балансодержателей')
             ).then(link34)
+            #.when(
+            #  movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            #).then(link33)
             .when(
-              movetype_name.in(['Бессрочное пользование', 'Пользование'])
-            ).then(link33)
+              movetype_name.eq('Пользование')
+            ).then(link39)
             .as('link_type'),
           ])
           select4.from(Source.___agreements)
@@ -519,9 +530,12 @@ namespace :agreements do
             .when(
               movetype_name.eq('Безв.польз.балансодержателей')
             ).then(link34)
+            #.when(
+            #  movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            #).then(link33)
             .when(
-              movetype_name.in(['Бессрочное пользование', 'Пользование'])
-            ).then(link33)
+              movetype_name.eq('Пользование')
+            ).then(link39)
             .as('link_type'),
           ])
           select5.from(Source.___agreements)
@@ -579,9 +593,12 @@ namespace :agreements do
             .when(
               movetype_name.eq('Безв.польз.балансодержателей')
             ).then(link34)
+            #.when(
+            #  movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            #).then(link33)
             .when(
-              movetype_name.in(['Бессрочное пользование', 'Пользование'])
-            ).then(link33)
+              movetype_name.eq('Пользование')
+            ).then(link39)
             .as('link_type'),
           ])
           select6.from(Source.___agreements)
@@ -605,9 +622,12 @@ namespace :agreements do
             .when(
               movetype_name.eq('Безв.польз.балансодержателей')
             ).then(link34)
+            #.when(
+            #  movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            #).then(link33)
             .when(
-              movetype_name.in(['Бессрочное пользование', 'Пользование'])
-            ).then(link33)
+              movetype_name.eq('Пользование')
+            ).then(link39)
             .as('link_type'),
           ])
           select7.from(Source.___agreements)
@@ -833,9 +853,12 @@ namespace :agreements do
             .when(
               movetype_name.eq('Безв.польз.балансодержателей')
             ).then(link34)
+            #.when(
+            #  movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            #).then(link33)
             .when(
-              movetype_name.in(['Бессрочное пользование', 'Пользование'])
-            ).then(link33)
+              movetype_name.eq('Пользование')
+            ).then(link39)
             .as('link_type'),
           ])
           select13.from(Source.___agreements)
@@ -893,9 +916,12 @@ namespace :agreements do
             .when(
               movetype_name.eq('Безв.польз.балансодержателей')
             ).then(link34)
+            #.when(
+            #  movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            #).then(link33)
             .when(
-              movetype_name.in(['Бессрочное пользование', 'Пользование'])
-            ).then(link33)
+              movetype_name.eq('Пользование')
+            ).then(link39)
             .as('link_type'),
           ])
           select14.from(Source.___agreements)
@@ -953,9 +979,12 @@ namespace :agreements do
             .when(
               movetype_name.eq('Безв.польз.балансодержателей')
             ).then(link34)
+            #.when(
+            #  movetype_name.in(['Бессрочное пользование', 'Пользование'])
+            #).then(link33)
             .when(
-              movetype_name.in(['Бессрочное пользование', 'Пользование'])
-            ).then(link33)
+              movetype_name.eq('Пользование')
+            ).then(link39)
             .as('link_type'),
           ])
           select15.from(Source.___agreements)

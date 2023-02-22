@@ -10,7 +10,7 @@ namespace :corrs do
               Arel.sql("null").as("code"),
               Source.clients[:inn],
               Source.clients[:name].as("sname"),
-              Source.organisations[:name],
+              Source.organisations[:fullname].as("name"),
               Arel.sql("#{ Destination::SCorr::DICTIONARY_CORR }").as("object"),
               Source.___ids[:row_id],
             ])
