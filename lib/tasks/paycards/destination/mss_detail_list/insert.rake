@@ -38,6 +38,7 @@ namespace :paycards do
             paycards_ids[:___link_list].as("link_list"),
             Source.___ids[:link].as("link_doc"),
             doc_form.as("doc_form"),
+            Source.___ids[:row_id],
           )
           manager1.where(Source.___paycards[:___link_up].eq(nil))
           manager1.group(paycards_ids[:___link_list], Source.___ids[:link])
@@ -46,6 +47,7 @@ namespace :paycards do
             paycards_ids2[:___link_list].as("link_list"),
             Source.___ids[:link].as("link_doc"),
             doc_form.as("doc_form"),
+            Source.___ids[:row_id],
           )
           manager2.join(paycards_ids2).on(paycards_ids2[:link].eq(Source.___paycards[:___link_up]))
           manager2.where(Source.___paycards[:___link_up].not_eq(nil))
