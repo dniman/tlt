@@ -68,6 +68,7 @@ module Destination
     :mss_viw_ocval_s_corr_ref,
     :s_corr_cpp,
     :mss_objects_struelem,
+    :payments_plan,
   ]
 
   class << self
