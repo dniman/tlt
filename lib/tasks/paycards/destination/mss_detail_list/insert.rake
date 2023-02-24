@@ -38,7 +38,6 @@ namespace :paycards do
             paycards_ids[:___link_list].as("link_list"),
             Source.___ids[:link].as("link_doc"),
             doc_form.as("doc_form"),
-            Source.___ids[:row_id],
           )
           manager1.where(Source.___paycards[:___link_up].eq(nil))
           manager1.group(paycards_ids[:___link_list], Source.___ids[:link])
@@ -47,7 +46,6 @@ namespace :paycards do
             paycards_ids2[:___link_list].as("link_list"),
             Source.___ids[:link].as("link_doc"),
             doc_form.as("doc_form"),
-            Source.___ids[:row_id],
           )
           manager2.join(paycards_ids2).on(paycards_ids2[:link].eq(Source.___paycards[:___link_up]))
           manager2.where(Source.___paycards[:___link_up].not_eq(nil))
@@ -69,14 +67,12 @@ namespace :paycards do
             union_table[:link_list],
             union_table[:link_doc],
             union_table[:doc_form].maximum.as("doc_form"),
-            union_table[:row_id],
           )
           manager.distinct
           manager.from(union_table.create_table_alias(union,:union_table))
           manager.group(
             union_table[:link_list],
             union_table[:link_doc],
-            union_table[:row_id],
           )
         end
 
