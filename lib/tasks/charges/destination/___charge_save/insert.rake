@@ -19,7 +19,7 @@ namespace :charges do
               Arel.sql('varchar(250)'), 
               Arel::Nodes::Case.new()
                 .when(
-                  Source.___paycards.does_not_match("%купли-продажи%")
+                  Source.___paycards[:___name_type_a].does_not_match("%купли-продажи%")
                     .and(Source.charges[:comments].not_eq('Сумма по договору'))
                 ).then(Source.charges[:comments])
                 .else(Source.payments_plan[:comments])
@@ -54,7 +54,7 @@ namespace :charges do
           summa =
             Arel::Nodes::Case.new()
               .when(
-                Source.___paycards.does_not_match("%купли-продажи%")
+                Source.___paycards[:___name_type_a].does_not_match("%купли-продажи%")
                   .and(Source.charges[:comments].not_eq('Сумма по договору'))
               ).then(Source.charges[:payments])
               .else(Source.payments_plan[:val])
