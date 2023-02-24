@@ -126,6 +126,7 @@ namespace :payments do
           manager.join(Source.ifs_assigned_payments, Arel::Nodes::OuterJoin).on(Source.ifs_assigned_payments[:pay_id].eq(Source.payments[:id]))
           manager.join(Source.ifs_payments, Arel::Nodes::OuterJoin).on(Source.ifs_payments[:id].eq(Source.ifs_assigned_payments[:ifs_payment_id]))
           manager.join(Source.clients, Arel::Nodes::OuterJoin).on(Source.clients[:id].eq(Source.payments[:payer_id]))
+          manager.where(Source.payments[:___paycard_id].not_eq(nil))
           manager.to_sql
         end
         

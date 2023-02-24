@@ -17,6 +17,7 @@ namespace :payments do
             Source.___ids[:id].eq(Source.payments[:id])
             .and(Source.___ids[:table_id].eq(Source::Payments.table_id))
           )
+          manager.where(Source.payments[:___paycard_id].not_eq(nil))
           manager.to_sql
         end
         
