@@ -51,14 +51,31 @@ namespace :paycards do
           manager2.where(Source.___paycards[:___link_up].not_eq(nil))
           manager2.group(paycards_ids2[:___link_list], Source.___ids[:link])
           
+          #union = manager1.union :all, manager2
+          #union_table = Arel::Table.new :union_table
+          #select_manager = Arel::SelectManager.new
+          #select_manager.project(Arel.star)
+          #select_manager.distinct
+          #select_manager.from(union_table.create_table_alias(union,:union_table))
+          #select_manager.where(union_table[:link_list].not_eq(nil))
+
           union = manager1.union :all, manager2
           union_table = Arel::Table.new :union_table
-         
-          select_manager = Arel::SelectManager.new
-          select_manager.project(Arel.star)
-          select_manager.distinct
-          select_manager.from(union_table.create_table_alias(union,:union_table))
-          select_manager.where(union_table[:link_list].not_eq(nil))
+
+          manager = Arel::SelectManager.new
+          manager.project(
+            union_table[:link_list],
+            union_table[:link_doc],
+            union_table[:doc_form].maximum.as("doc_form"),
+            union_table[:row_id],
+          )
+          manager.distinct
+          manager.from(union_table.create_table_alias(union,:union_table))
+          manager.group(
+            union_table[:link_list],
+            union_table[:link_doc],
+            union_table[:row_id],
+          )
         end
 
         begin
