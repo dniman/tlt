@@ -100,6 +100,7 @@ module Source
     :clientcategory,
     :company,
     :reg_operator_kod_erin,
+    :payments_plan,
   ]
   
   class << self
