@@ -78,7 +78,7 @@ namespace :charges do
               imns_sono,
               admpr_stat,
               charge_p,
-              on_schedule,
+              on_schedule
             into #charge_save 
             from ___charge_save  
             where rnum = 1
