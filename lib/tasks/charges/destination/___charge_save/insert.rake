@@ -77,6 +77,7 @@ namespace :charges do
             Arel.sql("#{ Destination.link_oktmo }").as("ate"),
             Source.___paycards[:___corr1].as("___corr1"),
             Source.___ids["row_id"],
+            Arel.sql("row_number() over(partition by row_id order by charges.calperiod_start)").as("rnum"),
           ])
           manager.distinct
           manager.from(Source.charges)
@@ -114,6 +115,7 @@ namespace :charges do
                 ate: row["ate"],
                 ___corr1: row["___corr1"],
                 row_id: row["row_id"],
+                rnum: row["rnum"],
               }
             end
             
