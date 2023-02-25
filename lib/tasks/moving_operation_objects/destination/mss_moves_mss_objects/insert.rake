@@ -76,7 +76,7 @@ namespace :moving_operation_objects do
                     Arel::Nodes::Quoted.new(row["area_share"]),
                     Arel::Nodes::Quoted.new(row["num_share"]),
                     Arel::Nodes::Quoted.new(row["name_share"]),
-                    Arel::Nodes::Quoted.new(row["agr_nazn"].nil? ? nil : row["agr_nazn"].strip[0..999]),
+                    Arel::Nodes::Quoted.new(row["agr_nazn"].nil? ? nil : row["agr_nazn"].to_s.strip[0..999]),
                     Arel::Nodes::Quoted.new(row["is_change_reestr"]),
                     Arel::Nodes::Quoted.new(row["is_excl_from_r"]),
                     Arel::Nodes::Quoted.new(row["row_id"]),
