@@ -11,7 +11,6 @@ namespace :moving_operation_objects do
           ])
           manager.from(Destination.mss_reestr_partitions)
           manager.where(Destination.mss_reestr_partitions[:name].eq(name))
-
           Destination.execute_query(manager.to_sql).entries.first["link"]
         end
 
@@ -35,7 +34,7 @@ namespace :moving_operation_objects do
           queries << query('Имущественный комплекс', 'РЕЕСТР ОБЪЕКТОВ НЕДВИЖИМОГО ИМУЩЕСТВА')
           queries << query('Рекламные конструкции', 'РЕЕСТР ОБЪЕКТОВ НЕДВИЖИМОГО ИМУЩЕСТВА')
           queries << query('Движимое сооружение', 'РЕЕСТР ОБЪЕКТОВ НЕДВИЖИМОГО ИМУЩЕСТВА')
-          queries << query('Земельный участок', 'ЗЕМЕЛЬНЫЕ УЧАСТКИ ТЛТ')
+          queries << query('Земельный участок', 'ЗЕМЕЛЬНЫЕ УЧАСТКИ')
           queries << query('Сооружение', 'ОБЪЕКТЫ ИНЖЕНЕРНОЙ ИНФРАСТРУКТУРЫ')
           queries << query('Инженерная сеть', 'ОБЪЕКТЫ ИНЖЕНЕРНОЙ ИНФРАСТРУКТУРЫ')
           queries << query('Автомобильная дорога', 'АВТОМОБИЛЬНЫЕ ДОРОГИ')
