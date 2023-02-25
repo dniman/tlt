@@ -101,6 +101,7 @@ module Source
     :company,
     :reg_operator_kod_erin,
     :payments_plan,
+    :___charges,
   ]
   
   class << self

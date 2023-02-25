@@ -71,8 +71,7 @@ namespace :charges do
             imns_sono varchar(10),
             admpr_stat int,
             charge_p int,
-            on_schedule int,
-            rnum int,
+            on_schedule int
           )
         SQL
           

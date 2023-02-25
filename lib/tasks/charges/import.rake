@@ -2,6 +2,8 @@ namespace :charges do
   namespace :import do
 
     task :tasks do
+      Rake.invoke_task 'charges:source:___charges:create_table', 'UNDELETABLE'
+      Rake.invoke_task 'charges:source:___charges:insert', 'UNDELETABLE'
       Rake.invoke_task 'charges:source:___ids:insert', 'UNDELETABLE'
       Rake.invoke_task 'charges:destination:___charge_save:create_table'
       Rake.invoke_task 'charges:destination:___charge_save:add___cinc'

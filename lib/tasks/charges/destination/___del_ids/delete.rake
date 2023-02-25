@@ -6,7 +6,7 @@ namespace :charges do
         def query
           manager = Arel::DeleteManager.new Database.destination_engine
           manager.from(Destination.___del_ids)
-          manager.where(Destination.___del_ids[:table_id].eq(Source::Charges.table_id))
+          manager.where(Destination.___del_ids[:table_id].eq(Source::Charges___.table_id))
           manager.to_sql
         end
 

@@ -8,17 +8,17 @@ namespace :charges do
           subquery.project(Arel.star)
           subquery.from(Source.___ids)
           subquery.where(
-            Source.___ids[:id].eq(Source.charges[:id])
-            .and(Source.___ids[:table_id].eq(Source::Charges.table_id))
+            Source.___ids[:id].eq(Source.___charges[:id])
+            .and(Source.___ids[:table_id].eq(Source::Charges___.table_id))
           )
            
           select_manager = Arel::SelectManager.new
           select_manager.project([
-            Arel.sql("#{Source::Charges.table_id}").as("table_id"),
-            Source.charges[:id],
+            Arel.sql("#{Source::Charges___.table_id}").as("table_id"),
+            Source.___charges[:id],
             Arel::Nodes::NamedFunction.new('newid', []).as("row_id")
           ])
-          select_manager.from(Source.charges)
+          select_manager.from(Source.___charges)
           select_manager.where(subquery.exists.not)
           
           source = Arel::Nodes::JoinSource.new(select_manager,[])

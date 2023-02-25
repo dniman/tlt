@@ -10,7 +10,7 @@ namespace :charges do
             Source.___ids[:link],
             Source.___ids[:row_id],
           ])
-          .where(Source.___ids[:table_id].eq(Source::Charges.table_id))
+          .where(Source.___ids[:table_id].eq(Source::Charges___.table_id))
         end
         
         begin

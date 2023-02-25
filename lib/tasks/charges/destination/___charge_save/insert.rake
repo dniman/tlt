@@ -11,7 +11,7 @@ namespace :charges do
             Arel::Nodes::Case.new()
               .when(Source.charges[:charge_type].in(['OBLIGATION', 'OTHER'])).then(1)
               .when(Source.charges[:charge_type].matches("%FINE%")).then(2)
-              .when(Source.charges[:charge_type].eq('PERCENT').and(Source.___paycards[:___name_type_a].matches("%купли-продажи%"))).then(4)
+              .when(Source.charges[:charge_type].eq('PERCENT').and(Source.___paycards[:___name_type_a].matches("%купли-продажи%"))).then(16)
               .when(Source.charges[:charge_type].eq('PERCENT').and(Source.___paycards[:___name_type_a].matches("%аренда%"))).then(4)
 
           note =
@@ -77,19 +77,22 @@ namespace :charges do
             Arel.sql("#{ Destination.link_oktmo }").as("ate"),
             Source.___paycards[:___corr1].as("___corr1"),
             Source.___ids["row_id"],
-            Arel.sql("row_number() over(partition by ___ids.row_id order by charges.calperiod_start)").as("rnum"),
           ])
           manager.distinct
-          manager.from(Source.charges)
+          manager.from(Source.___charges)
+          manager.join(Source.charges).on(Source.charges[:id].eq(Source.___charges[:charges_id]))
           manager.join(Source.___paycards).on(
             Source.___paycards[:moveset_id].eq(Source.charges[:movesets_id])
             .and(Source.___paycards[:prev_moveperiod_id].eq(nil))
             .and(Source.charges[:obligationtype_id].eq(Source.___paycards[:obligationtype_id]))
           )
           manager.join(paycards).on(paycards[:id].eq(Source.___paycards[:id]).and(paycards[:table_id].eq(Source::Paycards.table_id)))
-          manager.join(Source.___ids).on(Source.___ids[:id].eq(Source.charges[:id]).and(Source.___ids[:table_id].eq(Source::Charges.table_id)))
+          manager.join(Source.___ids).on(Source.___ids[:id].eq(Source.___charges[:id]).and(Source.___ids[:table_id].eq(Source::Charges___.table_id)))
           manager.join(Source.cls_kbk, Arel::Nodes::OuterJoin).on(Source.cls_kbk[:id].eq(Source.charges[:cls_kbk_id]))
-          manager.join(Source.payments_plan, Arel::Nodes::OuterJoin).on(Source.payments_plan[:charges_id].eq(Source.charges[:id]))
+          manager.join(Source.payments_plan, Arel::Nodes::OuterJoin).on(
+            Source.payments_plan[:charges_id].eq(Source.charges[:id])
+              .and(Source.payments_plan[:id].eq(Source.___charges[:payments_plan_id]))
+          )
         end
         
         begin
@@ -115,7 +118,6 @@ namespace :charges do
                 ate: row["ate"],
                 ___corr1: row["___corr1"],
                 row_id: row["row_id"],
-                rnum: row["rnum"],
               }
             end
             

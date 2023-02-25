@@ -6,7 +6,7 @@ namespace :charges do
         def query
           condition = Destination.___del_ids.create_on(
             Destination.___del_ids[:row_id].eq(Destination.entry[:row_id])
-            .and(Destination.___del_ids[:table_id].eq(Source::Charges.table_id))
+            .and(Destination.___del_ids[:table_id].eq(Source::Charges___.table_id))
           )
           source = Arel::Nodes::JoinSource.new(Destination.entry,
                                                [Destination.entry.create_join(Destination.___del_ids, condition)])
