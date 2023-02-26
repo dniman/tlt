@@ -45,7 +45,7 @@ namespace :charges do
             ).then(Arel.sql("dateadd(day, -1, charges.chargedate)"))
             .else(
               Arel::Nodes::Case.new()
-              .when(Source.___paycards[:__name_type_a].matches('%купли-продажи%')).then(Source.charges[:finedate])
+              .when(Source.___paycards[:___name_type_a].matches('%купли-продажи%')).then(Source.charges[:finedate])
               .else(Source.charges[:chargedate])
             )
           
@@ -63,7 +63,7 @@ namespace :charges do
             ).then(Arel.sql("dateadd(day, -1, charges.chargedate)"))
             .else(
               Arel::Nodes::Case.new()
-              .when(Source.___paycards[:__name_type_a].matches('%купли-продажи%')).then(Source.charges[:finedate])
+              .when(Source.___paycards[:___name_type_a].matches('%купли-продажи%')).then(Source.charges[:finedate])
               .else(Source.charges[:chargedate])
             )
 
