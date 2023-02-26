@@ -33,23 +33,39 @@ namespace :charges do
 
           date_exec = 
             Arel::Nodes::Case.new()
-            .when(
-              Source.___paycards[:___name_type_a].does_not_match("Неосновательное обогащение%")
-              .or(Source.___paycards[:___name_type_a].matches("Неосновательное обогащение%").and(Source.___paycards[:___name_objtype].eq(nil)))
+            .when(Source.___paycards[:___name_type_a].does_not_match('Неосновательное обогащение%')
+              .or(Source.___paycards[:___name_type_a].matches('Неосновательное обогащение%')
+                .and(Source.___paycards[:___name_objtype].eq(nil)
+                  .or(Source.___paycards[:___name_objtype].not_eq('Земельные участки'))
+                )
+              )
               .and(Source.charges[:charge_type].in(['OBLIGATION', 'OTHER', 'PERCENT']))
               .and(Source.charges[:chargedate].gt("19000101"))
+              .and(Source.___paycards[:___name_type_a].does_not_match('%купли-продажи%'))
             ).then(Arel.sql("dateadd(day, -1, charges.chargedate)"))
-            .else(Source.charges[:chargedate])
+            .else(
+              Arel::Nodes::Case.new()
+              .when(Source.___paycards[:__name_type_a].match('%купли-продажи%')).then(Source.charges[:finedate])
+              .else(Source.charges[:chargedate])
+            )
           
           rdate = 
             Arel::Nodes::Case.new()
-            .when(
-              Source.___paycards[:___name_type_a].does_not_match("Неосновательное обогащение%")
-              .or(Source.___paycards[:___name_type_a].matches("Неосновательное обогащение%").and(Source.___paycards[:___name_objtype].eq(nil)))
+            .when(Source.___paycards[:___name_type_a].does_not_match('Неосновательное обогащение%')
+              .or(Source.___paycards[:___name_type_a].matches('Неосновательное обогащение%')
+                .and(Source.___paycards[:___name_objtype].eq(nil)
+                  .or(Source.___paycards[:___name_objtype].not_eq('Земельные участки'))
+                )
+              )
               .and(Source.charges[:charge_type].in(['OBLIGATION', 'OTHER', 'PERCENT']))
               .and(Source.charges[:chargedate].gt("19000101"))
+              .and(Source.___paycards[:___name_type_a].does_not_match('%купли-продажи%'))
             ).then(Arel.sql("dateadd(day, -1, charges.chargedate)"))
-            .else(Source.charges[:chargedate])
+            .else(
+              Arel::Nodes::Case.new()
+              .when(Source.___paycards[:__name_type_a].match('%купли-продажи%')).then(Source.charges[:finedate])
+              .else(Source.charges[:chargedate])
+            )
 
           summa =
             Arel::Nodes::Case.new()

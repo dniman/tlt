@@ -12,9 +12,12 @@ namespace :paycards do
           manager.where(
             Source.___paycards[:su_d].eq(0)
             .and(Source.___paycards[:de_t].eq(2))
-            .and(
-              Source.___paycards[:___name_type_a].does_not_match("Неосновательное обогащение%")
-              .or(Source.___paycards[:___name_type_a].matches("Неосновательное обогащение%").and(Source.___paycards[:___name_objtype].eq(nil)))
+            .and(Source.___paycards[:___name_type_a].does_not_match('Неосновательное обогащение%')
+              .or(Source.___paycards[:___name_type_a].matches('Неосновательное обогащение%')
+                .and(Source.___paycards[:___name_objtype].eq(nil)
+                  .or(Source.___paycards[:___name_objtype].not_eq('Земельные участки'))
+                )
+              )
             )
             .and(Source.___paycards[:nach_p].not_eq(5).or(Source.___paycards[:nach_p].not_eq(6)))
           )
