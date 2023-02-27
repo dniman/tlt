@@ -46,7 +46,7 @@ namespace :charges do
             .else(
               Arel::Nodes::Case.new()
               .when(Source.___paycards[:___name_type_a].matches('%купли-продажи%')).then(
-                Arel::Nodes::NamedFunction.new('isnull', [ Source.payments_plan[:finedate], Source.charges[:finedate] ]))
+                Arel::Nodes::NamedFunction.new('isnull', [ Source.payments_plan[:finedate], Source.charges[:finedate] ])
               )
               .else(Source.charges[:chargedate])
             )
@@ -66,7 +66,7 @@ namespace :charges do
             .else(
               Arel::Nodes::Case.new()
               .when(Source.___paycards[:___name_type_a].matches('%купли-продажи%')).then(
-                Arel::Nodes::NamedFunction.new('isnull', [ Source.payments_plan[:finedate], Source.charges[:finedate] ]))
+                Arel::Nodes::NamedFunction.new('isnull', [ Source.payments_plan[:finedate], Source.charges[:finedate] ])
               )
               .else(Source.charges[:chargedate])
             )
