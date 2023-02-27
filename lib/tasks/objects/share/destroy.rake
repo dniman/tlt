@@ -28,6 +28,9 @@ namespace :objects do
         # Количество выпущенных обыкновенных акций
         'objects:share:destination:mss_objects_app:link_param:stock_simpc_all:delete',
         
+        # Номинал обыкновенной акции
+        'objects:share:destination:mss_objects_app:link_param:simple_shr_par:delete',
+        
         
         # Счет учета ОС
         'objects:share:destination:mss_objects_app:link_param:fixed_assets_account:delete',

@@ -27,6 +27,12 @@ namespace :objects do
         # Остаточная стоимость
         Rake.invoke_task 'objects:partnership:destination:mss_objects_app:link_param:price_remain:insert'
         
+        # Доля в уставном капитале
+        Rake.invoke_task 'objects:partnership:destination:mss_objects_app:link_param:capital_share:insert'
+        
+        # Доля,руб
+        Rake.invoke_task 'objects:partnership:destination:mss_objects_app:link_param:share_rub:insert'
+        
         # Состояние
         Rake.invoke_task 'objects:partnership:source:states:add___link_state' 
         Rake.invoke_task 'objects:partnership:source:states:update___link_state' 

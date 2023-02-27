@@ -24,6 +24,12 @@ namespace :objects do
         
         # Состояние
         'objects:partnership:destination:mss_objects_app:link_param:state:delete',
+        
+        # Доля в уставном капитале
+        'objects:partnership:destination:mss_objects_app:link_param:capital_share:delete',
+        
+        # Доля, руб
+        'objects:partnership:destination:mss_objects_app:link_param:share_rub:delete',
 
         
         # Счет учета ОС

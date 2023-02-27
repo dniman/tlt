@@ -36,6 +36,8 @@ namespace :objects do
         # Количество выпущенных обыкновенных акций
         Rake.invoke_task 'objects:share:destination:mss_objects_app:link_param:stock_simpc_all:insert'
 
+        # Номинал обыкновенной акции
+        Rake.invoke_task 'objects:share:destination:mss_objects_app:link_param:simple_shr_par:insert'
         
         # Счет учета ОС
         Rake.invoke_task 'objects:share:destination:mss_objects_app:link_param:fixed_assets_account:insert'
