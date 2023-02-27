@@ -48,13 +48,14 @@ namespace :objects do
                       link_up: row["link"],
                       link_param: link_param,
                       int: row["sharesnumber"],
-                      #real_date: row["calcdate"].strftime("%Y%m%d")
+                      real_date: row["calcdate"].strftime("%Y%m%d")
                     }
                   end
                   
                   condition =<<~SQL
                     mss_objects_app.link_up = values_table.link_up 
                       and mss_objects_app.link_param = values_table.link_param
+                      and mss_objects_app.real_date = values_table.real_date
                   SQL
 
                   sql = Destination::MssObjectsApp.insert_query(rows: insert, condition: condition)
