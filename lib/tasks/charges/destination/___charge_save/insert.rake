@@ -13,7 +13,7 @@ namespace :charges do
               .when(Source.charges[:charge_type].matches("%FINE%")).then(2)
               .when(Source.charges[:charge_type].eq('PERCENT').and(Source.___paycards[:___name_type_a].matches("%купли-продажи%"))).then(16)
               .when(Source.charges[:charge_type].eq('PERCENT').and(Source.___paycards[:___name_type_a].matches("%аренда%"))).then(4)
-
+          
           note =
             Arel::Nodes::NamedFunction.new('convert', [ 
               Arel.sql('varchar(250)'), 
@@ -22,7 +22,7 @@ namespace :charges do
                   Source.___paycards[:___name_type_a].does_not_match("%купли-продажи%")
                     .and(Source.charges[:comments].not_eq('Сумма по договору'))
                 ).then(Source.charges[:comments])
-                .else(Source.payments_plan[:comments])
+                .else(Arel::Nodes::NamedFunction.new('isnull', [ Source.payments_plan[:comments], Source.charges[:comments] ]))
             ])
          
           ___cinc =
@@ -45,7 +45,9 @@ namespace :charges do
             ).then(Arel.sql("dateadd(day, -1, charges.chargedate)"))
             .else(
               Arel::Nodes::Case.new()
-              .when(Source.___paycards[:___name_type_a].matches('%купли-продажи%')).then(Source.payments_plan[:finedate])
+              .when(Source.___paycards[:___name_type_a].matches('%купли-продажи%')).then(
+                Arel::Nodes::NamedFunction.new('isnull', [ Source.payments_plan[:finedate], Source.charges[:finedate] ]))
+              )
               .else(Source.charges[:chargedate])
             )
           
@@ -63,7 +65,9 @@ namespace :charges do
             ).then(Arel.sql("dateadd(day, -1, charges.chargedate)"))
             .else(
               Arel::Nodes::Case.new()
-              .when(Source.___paycards[:___name_type_a].matches('%купли-продажи%')).then(Source.payments_plan[:finedate])
+              .when(Source.___paycards[:___name_type_a].matches('%купли-продажи%')).then(
+                Arel::Nodes::NamedFunction.new('isnull', [ Source.payments_plan[:finedate], Source.charges[:finedate] ]))
+              )
               .else(Source.charges[:chargedate])
             )
 

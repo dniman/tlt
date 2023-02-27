@@ -33,6 +33,9 @@ namespace :objects do
         Rake.invoke_task 'objects:share:destination:mss_objects_app:link_param:state:insert'
         Rake.invoke_task 'objects:share:source:states:drop___link_state' 
 
+        # Количество выпущенных обыкновенных акций
+        Rake.invoke_task 'objects:share:destination:mss_objects_app:link_param:stock_simpc_all:insert'
+
         
         # Счет учета ОС
         Rake.invoke_task 'objects:share:destination:mss_objects_app:link_param:fixed_assets_account:insert'

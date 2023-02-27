@@ -25,6 +25,9 @@ namespace :objects do
         # Состояние
         'objects:share:destination:mss_objects_app:link_param:state:delete',
         
+        # Количество выпущенных обыкновенных акций
+        'objects:share:destination:mss_objects_app:link_param:stock_simpc_all:delete',
+        
         
         # Счет учета ОС
         'objects:share:destination:mss_objects_app:link_param:fixed_assets_account:delete',
