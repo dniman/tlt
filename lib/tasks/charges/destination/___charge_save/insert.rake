@@ -77,7 +77,7 @@ namespace :charges do
                 Source.___paycards[:___name_type_a].does_not_match("%купли-продажи%")
                   .and(Source.charges[:comments].not_eq('Сумма по договору'))
               ).then(Source.charges[:paysize])
-              .else(Arel::Nodes::NamedFunction.new('coalesce', [ Source.payments_plan[:val], Source.charges[:paysize] ])
+              .else(Arel::Nodes::NamedFunction.new('coalesce', [ Source.payments_plan[:val], Source.charges[:paysize] ]))
 
           manager = Arel::SelectManager.new(Database.destination_engine)
           manager.project([
