@@ -219,7 +219,7 @@ namespace :paycards do
               kbk_inc_p[:name].as("cinc_p"),
               kbk_inc_pr[:name].as("cinc_pr"),
               nach_p.as("nach_p"),
-              real_nch_p.as("real_nach_p"),
+              real_nach_p.as("real_nach_p"),
               peny_t.as("peny_t"),
               peny_distribution.as("peny_distribution"),
               peny_f.as("peny_f"),
