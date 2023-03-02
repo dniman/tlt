@@ -127,13 +127,13 @@ namespace :paycards do
           
           date_f = 
             Arel::Nodes::Case.new()
-            .when(Source.___paycards[:___name_type_a].matches("%купли-продажи%"))
+            .when(Source.___agreements[:movetype_name].in(['Купля-продажа', 'Приватизация', 'Собственность']))
             .then(Arel::Nodes::NamedFunction.new('isnull', [ Source.paydocs[:creditfirstpaydate], cte_table[:sincedate] ]))
             .else(Source.paydocs[:oncepaydate])
           
           date_f_pay = 
             Arel::Nodes::Case.new()
-            .when(Source.___paycards[:___name_type_a].matches("%купли-продажи%"))
+            .when(Source.___agreements[:movetype_name].in(['Купля-продажа', 'Приватизация', 'Собственность']))
             .then(Source.paydocs[:oncepaydate])
             .else(nil)
   
