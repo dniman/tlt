@@ -26,6 +26,7 @@ namespace :paycards do
             ,cinc_p varchar(50)
             ,cinc_pr varchar(50)
             ,nach_p int
+            ,real_nach_p int
             ,peny_t int
             ,peny_distribution int
             ,peny_f numeric(20,6)

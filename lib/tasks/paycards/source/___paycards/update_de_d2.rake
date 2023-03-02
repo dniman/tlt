@@ -19,7 +19,7 @@ namespace :paycards do
                 )
               )
             )
-            .and(Source.___paycards[:nach_p].not_eq(5).or(Source.___paycards[:nach_p].not_eq(6)))
+            #.and(Source.___paycards[:nach_p].not_eq(5).or(Source.___paycards[:nach_p].not_eq(6)))
           )
           manager.to_sql
         end

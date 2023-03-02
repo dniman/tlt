@@ -14,7 +14,7 @@ namespace :paycards do
                   )
                 )
               )
-              .and(Source.___paycards[:nach_p].not_eq(5).or(Source.___paycards[:nach_p].not_eq(6)))
+              #.and(Source.___paycards[:nach_p].not_eq(5).or(Source.___paycards[:nach_p].not_eq(6)))
             ).then(Arel::Nodes::Subtraction.new(Source.___paycards[:de_d], 1))
             .else(Source.___paycards[:de_d])
             

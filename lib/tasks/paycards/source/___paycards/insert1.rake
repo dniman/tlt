@@ -83,6 +83,19 @@ namespace :paycards do
             .when(Source.paydocs[:periodical].eq('H')).then(3)
             .when(Source.paydocs[:periodical].eq('G')).then(4)
             .when(Source.paydocs[:periodical].eq('T')).then(1)
+            .when(Source.paydocs[:periodical].eq('N')).then(
+              Arel::Nodes::Case.new()
+              .when(Source.___agreements[:movetype_name].in(['Купля-продажа', 'Приватизация', 'Собственность'])).then(6)
+              .else(5)
+            )
+          
+          real_nach_p =
+            Arel::Nodes::Case.new()
+            .when(Source.paydocs[:periodical].eq('Y')).then(1)
+            .when(Source.paydocs[:periodical].eq('Q')).then(2)
+            .when(Source.paydocs[:periodical].eq('H')).then(3)
+            .when(Source.paydocs[:periodical].eq('G')).then(4)
+            .when(Source.paydocs[:periodical].eq('T')).then(1)
             .when(Source.paydocs[:periodical].eq('N')).then(6)
 
           peny_t =
@@ -206,6 +219,7 @@ namespace :paycards do
               kbk_inc_p[:name].as("cinc_p"),
               kbk_inc_pr[:name].as("cinc_pr"),
               nach_p.as("nach_p"),
+              real_nch_p.as("real_nach_p"),
               peny_t.as("peny_t"),
               peny_distribution.as("peny_distribution"),
               peny_f.as("peny_f"),
@@ -289,6 +303,7 @@ namespace :paycards do
                 cinc_p: row["cinc_p"],
                 cinc_pr: row["cinc_pr"],
                 nach_p: row["nach_p"],
+                real_nach_p: row["real_nach_p"],
                 peny_t: row["peny_t"],
                 peny_distribution: row["peny_distribution"],
                 peny_f: row["peny_f"],
