@@ -11,7 +11,7 @@ namespace :paycards do
           manager.table(Source.___paycards)
           manager.where(
             Source.___paycards[:su_d].eq(0)
-            .and(Source.___paycards[:su_t].eq(2))
+            .and(Source.___paycards[:su_t].eq(1))
             .and(Source.___paycards[:___name_type_a].does_not_match('Неосновательное обогащение%')
               .or(Source.___paycards[:___name_type_a].matches('Неосновательное обогащение%')
                 .and(Source.___paycards[:___name_objtype].eq(nil)
