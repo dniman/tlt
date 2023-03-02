@@ -125,7 +125,17 @@ namespace :paycards do
             .when(Source.paydocs[:kind].eq('P'))
             .then(3)
           
-          date_f = Arel::Nodes::NamedFunction.new('isnull', [ Source.paydocs[:creditfirstpaydate], cte_table[:sincedate] ]) 
+          date_f = 
+            Arel::Nodes::Case.new()
+            .when(Source.___paycards[:___name_type_a].matches("%купли-продажи%"))
+            .then(Arel::Nodes::NamedFunction.new('isnull', [ Source.paydocs[:creditfirstpaydate], cte_table[:sincedate] ]))
+            .else(Source.paydocs[:oncepaydate])
+          
+          date_f_pay = 
+            Arel::Nodes::Case.new()
+            .when(Source.___paycards[:___name_type_a].matches("%купли-продажи%"))
+            .then(Source.paydocs[:oncepaydate])
+            .else(nil)
   
           prc =
             Arel::Nodes::Case.new()
@@ -208,7 +218,7 @@ namespace :paycards do
               date_f.as("date_f"),
               Source.paydocs[:creditcountmonth].as("amount_period"),
               Source.paydocs[:creditsize].as("credit_rev_sum"),
-              Source.paydocs[:oncepaydate].as("date_f_pay"),
+              date_f_pay.as("date_f_pay"),
               prc.as("prc"),
               summa_f.as("summa_f"),
               credit_year_days.as("credit_year_days"),
