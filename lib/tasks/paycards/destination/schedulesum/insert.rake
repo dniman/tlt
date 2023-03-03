@@ -22,6 +22,7 @@ namespace :paycards do
             from ___paycards
               join ___ids on ___ids.id = ___paycards.id and table_id = object_id('___paycards')
             where ___paycards.___name_type_a not like 'Неосновательное обогащение%' and ___name_objtype = 'Земельные участки'
+              and real_nach_p = 6
           QUERY
         end
 
