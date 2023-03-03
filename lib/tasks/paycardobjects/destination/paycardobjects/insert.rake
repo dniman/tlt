@@ -12,12 +12,17 @@ namespace :paycardobjects do
           objects = Source.___ids.alias("objects")
           nazn = Source.___ids.alias("nazn")
 
+          summa2 =
+            Arel::Nodes::Case.new()
+            .when(Source.___paycardobjects[:part_num].eq(1)).then(Source.___paycards[:summa2])
+            .else(Arel.sql("0"))
+
           Source.___paycardobjects
           .project([
             paycards[:link].as("link_pc"),
             objects[:link].as("link_obj"),
             Source.___paycardobjects[:area1],
-            Source.___paycards[:summa2],
+            summa2.as("summa2"),
             nazn[:link].as("nazn"),
             Source.___paycardobjects[:share_size],
             Source.___paycardobjects[:numerator],
