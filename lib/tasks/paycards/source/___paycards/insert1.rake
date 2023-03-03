@@ -146,7 +146,7 @@ namespace :paycards do
             Arel::Nodes::Case.new()
             .when(Source.___agreements[:movetype_name].in(['Купля-продажа', 'Приватизация', 'Собственность']))
             .then(Arel::Nodes::NamedFunction.new('isnull', [ Source.paydocs[:creditfirstpaydate], cte_table[:sincedate] ]))
-            .else(Source.paydocs[:oncepaydate])
+            .else(Arel::Nodes::NamedFunction.new('isnull', [ Source.paydocs[:oncepaydate], cte_table[:sincedate] ]))
           
           date_f_pay = 
             Arel::Nodes::Case.new()
