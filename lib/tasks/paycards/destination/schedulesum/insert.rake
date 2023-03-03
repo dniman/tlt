@@ -1,11 +1,12 @@
 namespace :paycards do
   namespace :destination do
     namespace :schedulesum do
+      
       task :insert do |t|
         def query
           <<~QUERY
             select
-              ___ids.link, 
+              ___ids.link as link_pc, 
               ___paycards.summa2 as summa, 
               ___paycards.summa2 as summa_prc, 
               ___paycards.sincedate as date_b,   
@@ -63,6 +64,7 @@ namespace :paycards do
             selects.clear
             unions.clear
             sql.clear
+          end
         end
       end
 
