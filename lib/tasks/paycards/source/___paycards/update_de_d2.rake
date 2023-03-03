@@ -10,7 +10,7 @@ namespace :paycards do
           manager.set([[Source.___paycards[:de_d], de_d]])
           manager.table(Source.___paycards)
           manager.where(
-            Source.___paycards[:su_d].eq(0)
+            Source.___paycards[:de_d].eq(0)
             .and(Source.___paycards[:de_t].eq(2))
             .and(Source.___paycards[:___name_type_a].does_not_match('Неосновательное обогащение%')
               .or(Source.___paycards[:___name_type_a].matches('Неосновательное обогащение%')

@@ -31,6 +31,7 @@ namespace :paycards do
       'paycards:source:___paycards:drop___account',
       'paycards:source:___paycards:drop___status',
       'paycards:source:___ids:drop___link_list',
+      'paycards:destination:schedulesum:delete',
     ]
 
   end

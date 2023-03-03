@@ -64,6 +64,9 @@ namespace :paycards do
       Rake.invoke_task 'paycards:source:___ids:update___link_list'
       Rake.invoke_task 'paycards:destination:mss_detail_list:insert'
       Rake.invoke_task 'paycards:source:___ids:drop___link_list'
+      
+      # Пользовательский график
+      Rake.invoke_task 'paycards:destination:schedulesum:insert'
     end
 
   end

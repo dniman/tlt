@@ -69,6 +69,7 @@ module Destination
     :s_corr_cpp,
     :mss_objects_struelem,
     :t_charge_accrual,
+    :schedulesum,
   ]
 
   class << self
