@@ -12,13 +12,17 @@ namespace :paycards do
               ___paycards.sincedate as date_b,   
               case when 
                 ___name_type_a like '%купля-продажа%'
-              then case when ___paycards.date_f_pay is null then null else dateadd(day, -1, ___paycards.date_f_pay) end
-              else case when ___paycards.date_f is null then null else dateadd(day, -1, ___paycards.date_f) end
+              then ___paycards.date_f_pay
+              else ___paycards.date_f
+              --then case when ___paycards.date_f_pay is null then null else dateadd(day, -1, ___paycards.date_f_pay) end
+              --else case when ___paycards.date_f is null then null else dateadd(day, -1, ___paycards.date_f) end
               end as rdate,
               case when 
                 ___name_type_a like '%купля-продажа%' 
-              then case when ___paycards.date_f_pay is null then null else dateadd(day, -1, ___paycards.date_f_pay) end
-              else case when ___paycards.date_f is null then null else dateadd(day, -1, ___paycards.date_f) end
+              then ___paycards.date_f_pay
+              else ___paycards.date_f
+              --then case when ___paycards.date_f_pay is null then null else dateadd(day, -1, ___paycards.date_f_pay) end
+              --else case when ___paycards.date_f is null then null else dateadd(day, -1, ___paycards.date_f) end
               end as date_exec
             from ___paycards
               join ___ids on ___ids.id = ___paycards.id and table_id = object_id('___paycards')
