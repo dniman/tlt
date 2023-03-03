@@ -32,7 +32,7 @@ namespace :paycards do
           selects = [] 
           unions = []
           
-          Source.execute_query(query.to_sql).each_slice(1000) do |rows|
+          Source.execute_query(query).each_slice(1000) do |rows|
             rows.each do |row|
               Arel::SelectManager.new.tap do |select|
                 selects <<
