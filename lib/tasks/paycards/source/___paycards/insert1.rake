@@ -125,7 +125,11 @@ namespace :paycards do
             .when(Source.paydocs[:fine_kind].eq('P'))
               .then(Source.paydocs[:finepercent])
             .when(Source.paydocs[:fine_kind].eq('R'))
-              .then(Source.paydocs[:calendar_type_id])
+              .then(
+                Arel::Nodes::Case.new()
+                .when(Source.paydocs[:refinratepart].eq(nil).or(Source.paydocs[:refinratepart].gt(0))).then(Source.paydocs[:refinratepart])
+                .else(Source.paydocs[:calendar_type_id])
+              )
 
           su_d = Source.paydocs[:finedate]
           su_m = Source.paydocs[:finemonths]
