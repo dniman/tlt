@@ -29,21 +29,55 @@ namespace :corrs do
                 Arel::Nodes::Case.new
                 .when(Source.organisations[:liquidated].eq('Y')).then(yes)
 
-              Source.clients
-              .project([
-                Source.___ids[:___link].as("link_app_up"),
-                Arel.sql("#{ link_app_prop }").as("link_app_prop"),
-                is_liquidated.as("link_dict"),
-              ])
-              .join(Source.___ids).on(Source.___ids[:id].eq(Source.clients[:id]).and(Source.___ids[:table_id].eq(Source::Clients.table_id)))
-              .join(Source.client_types, Arel::Nodes::OuterJoin).on(Source.client_types[:id].eq(Source.clients[:client_types_id]))
-              .join(Source.organisations, Arel::Nodes::OuterJoin).on(Source.organisations[:clients_id].eq(Source.clients[:id]))
-              .where(Source.client_types[:name].eq('Юридическое лицо')
-                .and(
-                  Source.organisations[:liquidated].not_eq(nil)
-                  .or(Source.organisations[:liquidated].not_eq('N'))
+              select1 =
+                Source.clients
+                .project([
+                  Source.___ids[:___link].as("link_app_up"),
+                  Arel.sql("#{ link_app_prop }").as("link_app_prop"),
+                  is_liquidated.as("link_dict"),
+                  Source.clients[:exists_end].as("actual_date"),
+                ])
+                .join(Source.___ids).on(Source.___ids[:id].eq(Source.clients[:id]).and(Source.___ids[:table_id].eq(Source::Clients.table_id)))
+                .join(Source.client_types, Arel::Nodes::OuterJoin).on(Source.client_types[:id].eq(Source.clients[:client_types_id]))
+                .join(Source.organisations, Arel::Nodes::OuterJoin).on(Source.organisations[:clients_id].eq(Source.clients[:id]))
+                .where(Source.client_types[:name].eq('Юридическое лицо')
+                  .and(
+                    Source.organisations[:liquidated].not_eq(nil)
+                    .or(Source.organisations[:liquidated].not_eq('N'))
+                  )
                 )
-              )
+              
+              select2 = 
+                Source.clients
+                .project([
+                  Source.___ids[:___link].as("link_app_up"),
+                  Arel.sql("#{ link_app_prop }").as("link_app_prop"),
+                  is_liquidated.as("link_dict"),
+                  Source.objects[:exists_end].as("actual_date"),
+                ])
+                .join(Source.___ids).on(Source.___ids[:id].eq(Source.clients[:id]).and(Source.___ids[:table_id].eq(Source::Clients.table_id)))
+                .join(Source.client_types, Arel::Nodes::OuterJoin).on(Source.client_types[:id].eq(Source.clients[:client_types_id]))
+                .join(Source.organisations, Arel::Nodes::OuterJoin).on(Source.organisations[:clients_id].eq(Source.clients[:id]))
+                .join(Source.objects).on(Source.objects[:id].eq(Source.organisations[:objects_id]))
+                .where(Source.client_types[:name].eq('Юридическое лицо')
+                  .and(
+                    Source.objects[:exists_end].not_eq(nil)
+                  )
+                )
+
+                union = Arel::Nodes::Union.new(select1, select2)
+                union_table = Arel::Table.new :union_table
+                
+                select_manager = Arel::SelectManager.new
+                select_manager.project([
+                  union_table[:link_app_up],
+                  union_table[:link_app_prop],
+                  union_table[:link_dict],
+                  union_table[:actual_date],
+                ])
+                select_manager.distinct
+                select_manager.from(union_table.create_table_alias(union,:union_table))
+                select_manager
             end
 
             begin
@@ -61,6 +95,7 @@ namespace :corrs do
                     link_app_up: row["link_app_up"],
                     link_app_prop: row["link_app_prop"],
                     link_dict: row["link_dict"],
+                    actual_date: row["actual_date"],
                   }
                 end
 
