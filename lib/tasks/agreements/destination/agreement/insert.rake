@@ -63,6 +63,7 @@ namespace :agreements do
                 number_osn: row["number"].strip[0,50],
                 date_osn: row["docdate"].nil? ? nil : row["docdate"].strftime("%Y%m%d"),
                 note_osn: row["explanation"],
+                supplem: row["explanation"],
                 mode: row["___transferbasis_link"],
                 term: row["per_in_month"],
                 status: row["___status"],
