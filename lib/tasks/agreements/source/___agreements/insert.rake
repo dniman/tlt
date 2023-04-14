@@ -51,6 +51,11 @@ namespace :agreements do
           docno = Arel::Nodes::NamedFunction.new("cast", [ Source.movesets[:id].as("varchar(100)") ])
           name = Arel::Nodes::NamedFunction.new("cast", [ Source.movetype[:name].as("varchar(150)") ])
           movetype_name = Arel::Nodes::NamedFunction.new("ltrim", [ Arel::Nodes::NamedFunction.new("rtrim", [ name ]) ])
+          movetype_name = 
+            Arel::Nodes::Case.new()
+            .when(movetype_name.eq('Собственность')).then('Купля-продажа')
+            .when(movetype_name.eq('Приватизация')).then('Купля-продажа')
+            .else(movetype_name)
 
           Source.movesets
           .project([
