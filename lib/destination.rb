@@ -70,6 +70,7 @@ module Destination
     :mss_objects_struelem,
     :t_charge_accrual,
     :schedulesum,
+    :isk_etap_charges,
   ]
 
   class << self

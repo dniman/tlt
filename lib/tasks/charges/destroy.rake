@@ -4,6 +4,7 @@ namespace :charges do
     task :tasks => [
       'charges:destination:___del_ids:insert',
       'charges:destination:t_charge_accrual:delete',
+      'charges:destination:isk_etap_charges:delete',
       'charges:destination:charge:delete',
       'charges:destination:rem3:delete',
       'charges:destination:rem2:delete',
