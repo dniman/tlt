@@ -21,6 +21,8 @@ namespace :moving_operations do
       Rake.invoke_task 'moving_operations:source:___moving_operations:update___link_cause_e'
       Rake.invoke_task 'moving_operations:source:___moving_operations:update___link_cause_e2'
       Rake.invoke_task 'moving_operations:source:___moving_operations:update___link_cause_e3'
+      Rake.invoke_task 'moving_operations:source:___moving_operations:add___link_pc'
+      Rake.invoke_task 'moving_operations:source:___moving_operations:update___link_pc'
       Rake.invoke_task 'moving_operations:destination:mss_movs:insert'
       Rake.invoke_task 'moving_operations:source:___ids:update_link'
 

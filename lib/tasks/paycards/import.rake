@@ -14,6 +14,8 @@ namespace :paycards do
       Rake.invoke_task 'paycards:source:___paycards:update___link_type_a'
       Rake.invoke_task 'paycards:source:___paycards:add___name_type_a'
       Rake.invoke_task 'paycards:source:___paycards:update___name_type_a'
+      Rake.invoke_task 'paycards:source:___paycards:add___move_type_name'
+      Rake.invoke_task 'paycards:source:___paycards:update___move_type_name'
       Rake.invoke_task 'paycards:source:___paycards:add___name_objtype'
       Rake.invoke_task 'paycards:source:___paycards:update___name_objtype'
       Rake.invoke_task 'paycards:source:___paycards:add___corr1'

@@ -111,6 +111,7 @@ namespace :moving_operations do
             Source.___moving_operations[:___link_cause_b].as("link_cause_b"),
             Source.___moving_operations[:___link_cause_e].as("link_decomm_cause"),
             Arel.sql("#{ Destination::MssOacRowstates::CURRENT }").as("link_scd_state")
+            Source.___moving_operations[:___link_pc].as("link_pc"),
           ])
           .join(Source.___ids).on(Source.___ids[:id].eq(Source.___moving_operations[:id]).and(Source.___ids[:table_id].eq(Source::MovingOperations.table_id)))
           .where(Source.___ids[:link_type].not_eq(nil))
@@ -138,6 +139,7 @@ namespace :moving_operations do
                     Arel::Nodes::Quoted.new(row["link_cause_b"]),
                     Arel::Nodes::Quoted.new(row["link_decomm_cause"]),
                     Arel::Nodes::Quoted.new(row["link_scd_state"]),
+                    Arel::Nodes::Quoted.new(row["link_pc"]),
                   ])
               end
             end  

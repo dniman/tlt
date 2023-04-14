@@ -20,6 +20,7 @@ namespace :paycards do
       'paycards:source:___paycards:drop___link_a',
       'paycards:source:___paycards:drop___link_type_a',
       'paycards:source:___paycards:drop___name_type_a',
+      'paycards:source:___paycards:drop___move_type_name',
       'paycards:source:___paycards:drop___name_objtype',
       'paycards:source:___paycards:drop___payer_type',
       'paycards:source:___paycards:drop___corr1',

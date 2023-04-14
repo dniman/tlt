@@ -14,6 +14,7 @@ namespace :moving_operations do
       'moving_operations:source:___moving_operations:drop___link_corr',
       'moving_operations:source:___moving_operations:drop___link_cause_b',
       'moving_operations:source:___moving_operations:drop___link_cause_e',
+      'moving_operations:source:___moving_operations:drop___link_pc',
       'moving_operations:source:___ids:drop___link_list',
     ]
 
