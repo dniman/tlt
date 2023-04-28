@@ -13,7 +13,15 @@ namespace :charges do
           ])
           manager.distinct
           manager.from(Source.charges)
-          manager.join(Source.payments_plan, Arel::Nodes::OuterJoin).on(Source.payments_plan[:charges_id].eq(Source.charges[:id]))
+          manager.join(Source.___paycards).on(
+            Source.___paycards[:moveset_id].eq(Source.charges[:movesets_id])
+            .and(Source.___paycards[:prev_moveperiod_id].eq(nil))
+            .and(Source.charges[:obligationtype_id].eq(Source.___paycards[:obligationtype_id]))
+          )
+          manager.join(Source.payments_plan, Arel::Nodes::OuterJoin).on(
+            Source.payments_plan[:charges_id].eq(Source.charges[:id])
+            .and(Source.payments_plan[:obligations_id].eq(Source.___paycards[:obligation_id]))
+          )
 
           source = Arel::Nodes::JoinSource.new(manager,[])
 
