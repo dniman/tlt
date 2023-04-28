@@ -110,7 +110,7 @@ namespace :moving_operations do
             date_reg.as("date_reg"),
             Source.___moving_operations[:___link_cause_b].as("link_cause_b"),
             Source.___moving_operations[:___link_cause_e].as("link_decomm_cause"),
-            Arel.sql("#{ Destination::MssOacRowstates::CURRENT }").as("link_scd_state")
+            Arel.sql("#{ Destination::MssOacRowstates::CURRENT }").as("link_scd_state"),
             Source.___moving_operations[:___link_pc].as("link_pc"),
           ])
           .join(Source.___ids).on(Source.___ids[:id].eq(Source.___moving_operations[:id]).and(Source.___ids[:table_id].eq(Source::MovingOperations.table_id)))
